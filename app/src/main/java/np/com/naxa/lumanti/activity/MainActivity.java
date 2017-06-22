@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         GeneralFormModel generalFormModel = new GeneralFormModel();
         generalFormModel.setA1("test");
 
