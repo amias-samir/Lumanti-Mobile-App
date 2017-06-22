@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_layout"
+        android:id="@+id/toolbar"/>
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            card_view:cardBackgroundColor="@color/transparent"
+            card_view:cardElevation="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_margin"
+                android:orientation="vertical">
+
+
+
+                <!--main drinking water source-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/drinkingWaterLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Main source of drinking water"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/water_sanitation_drinking_water_source"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/drinkingWaterLbl"
+                            android:entries="@array/drinking_water_source"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--other water source-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:hint="Specify others (Water Source)"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:id="@+id/water_sanitation_other_drinking_water_source" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--type of toilet-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/toiletTypeLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Type of toilet "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/water_sanitation_toilet_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/toiletTypeLbl"
+                            android:entries="@array/toilet_type"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+                <!-- Next -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_SaveSend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/layout_margin"
+                        android:padding="5dp">
+
+                        <Button
+                            android:id="@+id/water_sanitation_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/button_pressed_hwc_light"
+                            android:text="Next"
+                            android:textColor="#ffffff" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </ScrollView>
+
+    </RelativeLayout>

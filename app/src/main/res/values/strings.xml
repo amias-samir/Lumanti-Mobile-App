@@ -1,0 +1,124 @@
+<resources>
+    <string name="app_name">Lumanti</string>
+
+
+    <string-array name="sex">
+        <item>"Male"</item>
+        <item>"Female"</item>
+        <item>"Other"</item>
+    </string-array>
+
+    <string-array name="house_damage">
+        <item>"Fully damaged"</item>
+        <item>"Partially damaged"</item>
+    </string-array>
+
+    <string-array name="yes_no">
+        <item>"Yes"</item>
+        <item>"No"</item>
+    </string-array>
+
+    <string-array name="before_after_earthquake">
+        <item>"Before Earthquake"</item>
+        <item>"After Earthquake"</item>
+    </string-array>
+
+    <string-array name="district_name">
+        <item>"Rasuwa"</item>
+        <item>"Ktm"</item>
+        <item>"Lalitpur"</item>
+        <item>"Makawanpur"</item>
+    </string-array>
+
+
+    <string-array name="current_living_situation">
+        <item>"At own house"</item>
+        <item>"At relatives house"</item>
+        <item>"At temporary shelter"</item>
+        <item>"At rented house"</item>
+        <item>"Others"</item>
+    </string-array>
+
+    <string-array name="build_by">
+        <item>"Constructed with technical and financial support"</item>
+        <item>"On your own"</item>
+    </string-array>
+
+    <string-array name="consctruction_type">
+        <item>"Stone Mud masonry (RCC Ties/Timber Ties)"</item>
+        <item>"Stone Cement Masonry"</item>
+        <item>"Brick Mud Masonry (RCC Ties/Timber Ties)"</item>
+        <item>"Brick Cement Masonry"</item>
+        <item>"RCC "</item>
+    </string-array>
+
+    <string-array name="received_support">
+        <item>"In Cash"</item>
+        <item>"In Kind"</item>
+    </string-array>
+
+    <string-array name="installment">
+        <item>"First Installment"</item>
+        <item>"Second Installment"</item>
+        <item>"Third Installment"</item>
+    </string-array>
+
+    <string-array name="family_income_source">
+        <item>"Agriculture"</item>
+        <item>"Business/Enterprises"</item>
+        <item>"Salaried job"</item>
+        <item>"Wage labor"</item>
+        <item>"Remittance"</item>
+        <item>"Pension"</item>
+        <item>"Rent"</item>
+        <item>"Bank interest"</item>
+        <item>"Others"</item>
+    </string-array>
+
+
+    <string-array name="savings_per_month">
+        <item>"0-50"</item>
+        <item>"50-100"</item>
+        <item>"100-500"</item>
+        <item>"500-1000"</item>
+        <item>"Above 1000"</item>
+    </string-array>
+
+
+    <string-array name="tentative_monthly_income">
+        <item>"Below 5000"</item>
+        <item>"5000-10,000"</item>
+        <item>"10,000-20,000"</item>
+        <item>"20,000-50,000"</item>
+        <item>"50,000 and above"</item>
+    </string-array>
+
+
+    <string-array name="drinking_water_source">
+        <item>"Piped water (private connection)"</item>
+        <item>"Public tap stand"</item>
+        <item>"Tube well"</item>
+        <item>"River"</item>
+        <item>"Spring"</item>
+        <item>"Other"</item>
+    </string-array>
+
+
+    <string-array name="toilet_type">
+        <item>"Toilet with septic tank"</item>
+        <item>"Pit latrine"</item>
+        <item>"Toilet without septic tank"</item>
+        <item>"Without toilet"</item>
+    </string-array>
+
+    <string-array name="disaster_training_type">
+        <item>"Search and Rescue"</item>
+        <item>"First Aid"</item>
+        <item>"Disaster Management Training (Leadership / Social Mobilization)"</item>
+        <item>"Mason Training"</item>
+        <item>"Micro finance"</item>
+        <item>"Others"</item>
+    </string-array>
+
+
+</resources>

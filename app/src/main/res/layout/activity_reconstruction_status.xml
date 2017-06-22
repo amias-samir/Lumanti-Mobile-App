@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="np.com.naxa.lumanti.activity.MainActivity">
+
+    <include layout="@layout/toolbar_layout"
+        android:id="@+id/toolbar"/>
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            card_view:cardBackgroundColor="@color/transparent"
+            card_view:cardElevation="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_margin"
+                android:orientation="vertical">
+
+
+                <!--get Gps Location-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/layout_margin"
+                            android:padding="5dp">
+
+                            <Button
+                                android:id="@+id/reconstruction_status_GpsStart"
+                                android:layout_width="212dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:background="@drawable/button_pressed_hwc_light"
+                                android:gravity="center"
+                                android:text="Get gps location"
+                                android:textColor="#ffffff" />
+
+                        </RelativeLayout>
+
+                        <Button
+                            android:id="@+id/reconstruction_status_preview_map"
+                            android:layout_width="212dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/button_pressed_hwc_light"
+                            android:text="Preview Map"
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <!--Photograph1 of the site-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/layout_margin"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/reconstructionPhotographSiteLable1"
+                            android:layout_width="200dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Photograph1"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <ImageButton
+                            android:id="@+id/reconstruction_status_photo_site1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignBottom="@+id/reconstructionPhotographSiteLable1"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/ic_photo"
+                            android:src="@drawable/button_pressed_transparent" />
+
+                        <ImageView
+                            android:id="@+id/preconstruction_PhotographSiteimageViewPreview1"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_below="@+id/reconstructionPhotographSiteLable1"
+                            android:layout_centerHorizontal="true"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <!--Photograph2 of the site-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/layout_margin"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/reconstructionPhotographSiteLable2"
+                            android:layout_width="200dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Photograph2"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <ImageButton
+                            android:id="@+id/reconstruction_status_photo_site2"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignBottom="@+id/reconstructionPhotographSiteLable2"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/ic_photo"
+                            android:src="@drawable/button_pressed_transparent" />
+
+                        <ImageView
+                            android:id="@+id/preconstruction_PhotographSiteimageViewPreview2"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_below="@+id/reconstructionPhotographSiteLable2"
+                            android:layout_centerHorizontal="true"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <!--Photograph3 of the site-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/layout_margin"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/reconstructionPhotographSiteLable3"
+                            android:layout_width="200dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Photograph3"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <ImageButton
+                            android:id="@+id/reconstruction_status_photo_site3"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignBottom="@+id/reconstructionPhotographSiteLable3"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/ic_photo"
+                            android:src="@drawable/button_pressed_transparent" />
+
+                        <ImageView
+                            android:id="@+id/preconstruction_PhotographSiteimageViewPreview3"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_below="@+id/reconstructionPhotographSiteLable3"
+                            android:layout_centerHorizontal="true"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <!--Photograph4 of the site with family member-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/layout_margin"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/reconstructionPhotographSiteLable4"
+                            android:layout_width="200dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Photograph of house with owner/family member"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <ImageButton
+                            android:id="@+id/reconstruction_status_photo_site4"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignBottom="@+id/reconstructionPhotographSiteLable4"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/ic_photo"
+                            android:src="@drawable/button_pressed_transparent" />
+
+                        <ImageView
+                            android:id="@+id/preconstruction_PhotographSiteimageViewPreview4"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_below="@+id/reconstructionPhotographSiteLable4"
+                            android:layout_centerHorizontal="true"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <!--Living Situation-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/livingsituationLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="What is the current living situation of your family and location?"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/reconstruction_status_living_situation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/livingsituationLbl"
+                            android:entries="@array/current_living_situation"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--build by-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/buildByLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Build By"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/reconstruction_status_build_by"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/buildByLbl"
+                            android:entries="@array/build_by"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--construction type-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/constTypeLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Construction Type"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/reconstruction_status_construction_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/constTypeLbl"
+                            android:entries="@array/consctruction_type"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+
+                <!--specify Others-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:hint="Specify Others"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:id="@+id/reconstruction_status_others_specify" />
+                </android.support.design.widget.TextInputLayout>
+
+
+
+                <!-- Next -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_SaveSend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/layout_margin"
+                        android:padding="5dp">
+
+                        <Button
+                            android:id="@+id/reconstruction_status_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/button_pressed_hwc_light"
+                            android:text="Next"
+                            android:textColor="#ffffff" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

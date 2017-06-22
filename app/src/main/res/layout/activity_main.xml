@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="np.com.naxa.lumanti.activity.MainActivity">
+
+    <include layout="@layout/toolbar_layout"
+        android:id="@+id/toolbar"/>
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            card_view:cardBackgroundColor="@color/transparent"
+            card_view:cardElevation="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/layout_margin"
+            android:orientation="vertical">
+
+            <!--damage type-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="@color/transparent"
+                card_view:cardElevation="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/damageLbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/general_info_damage_type"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="Damage Type"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/monsoon" />
+
+                    <Spinner
+                        android:id="@+id/general_info_damage_type"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/damageLbl"
+                        android:layout_toRightOf="@+id/damageLbl"
+                        android:entries="@array/house_damage"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <!--district Name-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="@color/transparent"
+                card_view:cardElevation="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/districtLbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/general_info_district_name"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="District Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/monsoon" />
+
+                    <Spinner
+                        android:id="@+id/general_info_district_name"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/districtLbl"
+                        android:layout_toRightOf="@+id/districtLbl"
+                        android:entries="@array/district_name"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <!--District Code-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:hint="District Code"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:id="@+id/general_info_district_code" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--Rural Municipality-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:hint="Rural Municipality"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:id="@+id/general_info_rural_municipality" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--Current  Ward no-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:hint="Current  Ward no"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:id="@+id/general_info_current_ward_no" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--Previous VDC/Mun-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:hint="Previous VDC/Mun"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:id="@+id/general_info_previous_vdc_mun" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--Previous Ward no-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:hint="Previous Ward no"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:id="@+id/general_info_previous_ward_no" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--Tole-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:hint="Tole"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:id="@+id/general_info_tole" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--House code-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:hint="House code"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:id="@+id/general_info_house_code" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--Nissa no-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:hint="Nissa no"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:id="@+id/general_info_nissa_no" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--Citizenship No-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:hint="Citizenship No"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:id="@+id/general_info_citizenship_no" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--PA no-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:hint="PA no"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:id="@+id/general_info_pa_no" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <!-- Next -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_SaveSend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                card_view:cardBackgroundColor="@color/transparent"
+                card_view:cardElevation="1dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/layout_margin"
+                    android:padding="5dp">
+
+                    <Button
+                        android:id="@+id/general_info_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/button_pressed_hwc_light"
+                        android:text="Next"
+                        android:textColor="#ffffff" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

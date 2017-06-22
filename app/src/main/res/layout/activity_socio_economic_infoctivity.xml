@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="np.com.naxa.lumanti.activity.MainActivity">
+
+    <include layout="@layout/toolbar_layout"
+        android:id="@+id/toolbar"/>
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            card_view:cardBackgroundColor="@color/transparent"
+            card_view:cardElevation="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_margin"
+                android:orientation="vertical">
+
+
+                <!--land with your land title?-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/landWithLandTitleLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Do you have land with your land title?"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/socio_economic_land_with_land_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/landWithLandTitleLbl"
+                            android:entries="@array/yes_no"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--land at other place-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:hint="Land title at other place"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:id="@+id/socio_economic_land_at_other_place" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--land area-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:hint="Area of land (Approximate) Aana, Ropani"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:id="@+id/socio_economic_land_area" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--income source-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/incomeSourceLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Major source of income of your family"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/socio_economic_major_income_source"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/incomeSourceLbl"
+                            android:entries="@array/family_income_source"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--income source others-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:hint="Income source (Others)"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:id="@+id/socio_economic_other_income_source" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--member of saving groups?-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/memberOfAnyGroupLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Are you member of any Saving Groups/Cooperative?"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/socio_economic_saving_cooperative_member"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/memberOfAnyGroupLbl"
+                            android:entries="@array/yes_no"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+                <!--savings per month-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/savingsPerMonthLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Saving per month"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/socio_economic_savings_per_month"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/savingsPerMonthLbl"
+                            android:entries="@array/savings_per_month"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+                <!--tetative monthly income-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/tentativeMonthlyIncomeLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Tentative monthly income"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/socio_economic_tentative_monthly_income"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/tentativeMonthlyIncomeLbl"
+                            android:entries="@array/tentative_monthly_income"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!-- Next -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_SaveSend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/layout_margin"
+                        android:padding="5dp">
+
+                        <Button
+                            android:id="@+id/socio_economic_info_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/button_pressed_hwc_light"
+                            android:text="Next"
+                            android:textColor="#ffffff" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </ScrollView>
+
+</RelativeLayout>
+

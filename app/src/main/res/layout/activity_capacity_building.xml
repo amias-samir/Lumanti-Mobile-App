@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_layout"
+        android:id="@+id/toolbar"/>
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            card_view:cardBackgroundColor="@color/transparent"
+            card_view:cardElevation="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_margin"
+                android:orientation="vertical">
+
+
+                <!--participate in community meeting-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/participateMeetingLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Have you participate in any household/community meeting, orientation programs on reconstruction in your VDC/ Ward ?"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/capacity_building_participate_in_community_meeting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/participateMeetingLbl"
+                            android:entries="@array/yes_no"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--participate in disaster training-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/disasterTrainingLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="2.	Have you (any one from your family member) attended trainings related with Disaster Preparedness / Housing reconstruction (Y/N)?"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/capacity_building_participate_in_disaster_training"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/disasterTrainingLbl"
+                            android:entries="@array/yes_no"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--disaster training type-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/disasterTrainingTypeLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Attended disaster training"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/capacity_building_disaster_training_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/disasterTrainingTypeLbl"
+                            android:entries="@array/disaster_training_type"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--specify other disaster training -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:hint="Specify others (Disaster Training)"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:id="@+id/capacity_building_other_disaster_training" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <!--idea about stockpiling-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/stockpilingIdeaLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Do you have any idea about Stockpiling (storage of search and rescue, first aid materials) in your VDC?"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/capacity_building_stockpiling_idea"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/stockpilingIdeaLbl"
+                            android:entries="@array/yes_no"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--disaser community member-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/disasterCommunityMemberLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Are you the member of Disaster Management Committee?"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/monsoon" />
+
+                        <Spinner
+                            android:id="@+id/capacity_building_disaster_community_member"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/disasterCommunityMemberLbl"
+                            android:entries="@array/yes_no"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+                <!--recommendation regarding reconstruction-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:hint="Do you have any recommendation regarding reconstruction activities by Lumanti?"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:id="@+id/capacity_building_recommendation_regarding_reconstruction" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <!--any specific information-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:hint="Any specific information "
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:id="@+id/capacity_building_any_specific_info" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--gap  identifier by surveyor-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:hint="Any gap identified by surveyor"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:id="@+id/capacity_building_identified_gap" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <!-- Next -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_SaveSend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/layout_margin"
+                        android:padding="5dp">
+
+                        <Button
+                            android:id="@+id/water_sanitation_send"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/button_pressed_hwc_light"
+                            android:text="send"
+                            android:textColor="#ffffff" />
+
+                        <Button
+                            android:id="@+id/water_sanitation_save"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/button_pressed_hwc_light"
+                            android:text="save"
+                            android:textColor="#ffffff" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </ScrollView>
+
+</RelativeLayout>

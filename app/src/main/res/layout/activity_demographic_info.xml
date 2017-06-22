@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="np.com.naxa.lumanti.activity.DemographicInfoActivity">
+
+    <include layout="@layout/toolbar_layout"
+        android:id="@+id/toolbar"/>
+
+    <ScrollView
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        card_view:cardBackgroundColor="@color/transparent"
+        card_view:cardElevation="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/layout_margin"
+            android:orientation="vertical">
+
+            <!--head of the household-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="@color/transparent"
+                card_view:cardElevation="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Head of the Household "
+                    android:textSize="20dp"/>
+
+                    <!--Name-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="Name"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_head_name" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Sex-->
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        card_view:cardBackgroundColor="@color/transparent"
+                        card_view:cardElevation="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:id="@+id/sexLbl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/general_info_district_name"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="5dp"
+                                android:text="Sex"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="@color/monsoon" />
+
+                            <Spinner
+                                android:id="@+id/demographic_info_head_sex"
+                                android:layout_width="220dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_toEndOf="@+id/sexLbl"
+                                android:layout_toRightOf="@+id/sexLbl"
+                                android:entries="@array/sex"/>
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <!--Age-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="Age"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:id="@+id/general_info_district_code" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+
+                </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+            <!--Family Members-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="@color/transparent"
+                card_view:cardElevation="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Family Members "
+                        android:textSize="20dp"/>
+
+                    <!--Below 5-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="Below 5"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_below_5_no" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Between 5-14-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="Between 5-14"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_between5_14_no" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Between 15-64-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="Between 15-64"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_between_15_64_no" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Above 65-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="Above 65"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_above_65_no" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Male no-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="Male No"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_male_family_no" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Female no-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="female No"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_female_family_no" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Other no-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="Other No"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_othre_family_no" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Total no of family members-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="Total No. Of Family Members"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:id="@+id/general_info_family_mem_total" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <!--disable/pregnant/lactating -->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="@color/transparent"
+                card_view:cardElevation="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Disable/Pregnant/Lactating "
+                        android:textSize="20dp"/>
+
+
+                    <!--dis/preg/lac-->
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        card_view:cardBackgroundColor="@color/transparent"
+                        card_view:cardElevation="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:id="@+id/dis_preg_lacLbl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/general_info_district_name"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="5dp"
+                                android:text="Do you have disable/pregnant/lactating women in your family? "
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="@color/monsoon" />
+
+                            <Spinner
+                                android:id="@+id/demographic_info_dis_preg_lac"
+                                android:layout_width="220dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/dis_preg_lacLbl"
+                                android:layout_alignParentRight="true"
+                                android:entries="@array/yes_no"
+                                android:layout_alignParentEnd="true"/>
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <!--Name-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:hint="Disability type"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_disability_type" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--before/after disable-->
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        card_view:cardBackgroundColor="@color/transparent"
+                        card_view:cardElevation="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:id="@+id/before_after_disableLbl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="5dp"
+                                android:text="After earthquake or Before earthquake? "
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="@color/monsoon"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
+                            <Spinner
+                                android:id="@+id/demographic_info_before_after_disabled"
+                                android:layout_width="220dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/before_after_disableLbl"
+                                android:entries="@array/before_after_earthquake"
+                                android:layout_alignParentEnd="true"/>
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+        <!-- Next -->
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_SaveSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            card_view:cardBackgroundColor="@color/transparent"
+            card_view:cardElevation="1dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/layout_margin"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/demographic_info_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/button_pressed_hwc_light"
+                    android:text="Next"
+                    android:textColor="#ffffff" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</ScrollView>
+
+
+</RelativeLayout>
