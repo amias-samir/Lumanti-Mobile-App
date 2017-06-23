@@ -7,15 +7,20 @@ import android.support.v7.widget.Toolbar;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.model.GeneralFormModel;
 
 public class WaterSanitationActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    GeneralFormModel generalFormModel;
+
+
     @BindView(R.id.water_sanitation_drinking_water_source)
     Spinner spinnerDrinkingWaterSource;
     @BindView(R.id.water_sanitation_other_drinking_water_source)
@@ -36,6 +41,10 @@ public class WaterSanitationActivity extends AppCompatActivity {
         toolbar.setTitle("Water Sanitation");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        generalFormModel = new GeneralFormModel();
+        generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
 
     }
 
