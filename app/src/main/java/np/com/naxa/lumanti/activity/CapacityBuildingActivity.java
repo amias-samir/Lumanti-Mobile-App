@@ -105,7 +105,7 @@ public class CapacityBuildingActivity extends AppCompatActivity {
 
         generalFormModel = new GeneralFormModel();
         generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
-        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
 
 
         spinnerDisasterTrainingType.setVisibility(View.INVISIBLE);
@@ -391,40 +391,40 @@ public class CapacityBuildingActivity extends AppCompatActivity {
 //                dataBaseNepalPublicHealthSent.close();
 //
 //
-//                    DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-//                    int width = metrics.widthPixels;
-//                    int height = metrics.heightPixels;
-//
-////                    Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
-//
-//                    final Dialog showDialog = new Dialog(context);
-//                    showDialog.setContentView(R.layout.thank_you_popup);
-//                    final Button yes = (Button) showDialog.findViewById(R.id.buttonYes);
-//                    final Button no = (Button) showDialog.findViewById(R.id.buttonNo);
-//
-//                    showDialog.setTitle("Successfully Sent");
-//                    showDialog.setCancelable(false);
-//                    showDialog.show();
-//                    showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
-//
-//                    yes.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            showDialog.dismiss();
-//                            Intent intent = new Intent(CapacityBuildingActivity.this, MainActivity.class);
+                    DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+                    int width = metrics.widthPixels;
+                    int height = metrics.heightPixels;
+
+//                    Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
+
+                    final Dialog showDialog = new Dialog(context);
+                    showDialog.setContentView(R.layout.thank_you_popup);
+                    final Button yes = (Button) showDialog.findViewById(R.id.buttonYes);
+                    final Button no = (Button) showDialog.findViewById(R.id.buttonNo);
+
+                    showDialog.setTitle("Successfully Sent");
+                    showDialog.setCancelable(false);
+                    showDialog.show();
+                    showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog.dismiss();
+                            Intent intent = new Intent(CapacityBuildingActivity.this, MainActivity.class);
+                            startActivity(intent);
+//                                finish();
+                        }
+                    });
+
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog.dismiss();
+//                            Intent intent = new Intent(PregnentWomenActivity.this, MainActivity.class);
 //                            startActivity(intent);
-////                                finish();
-//                        }
-//                    });
-//
-//                    no.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            showDialog.dismiss();
-////                            Intent intent = new Intent(PregnentWomenActivity.this, MainActivity.class);
-////                            startActivity(intent);
-//                        }
-//                    });
+                        }
+                    });
                 }
 
 

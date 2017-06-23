@@ -55,7 +55,7 @@ public class SocioEconomicInfoctivity extends AppCompatActivity {
 
         generalFormModel = new GeneralFormModel();
         generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
-        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
 
         tvLandAtOtherPlace.setVisibility(View.INVISIBLE);
         tvLandArea.setVisibility(View.INVISIBLE);
@@ -120,7 +120,7 @@ public class SocioEconomicInfoctivity extends AppCompatActivity {
     public void spinnerSavingsGroupSelected(Spinner spinner, int position) {
         // code here
         int id = position ;
-        String selected_item = spinnerMajorIncomeSource.getSelectedItem().toString();
+        String selected_item = spinnerSavingCooperativeMember.getSelectedItem().toString();
         if (selected_item.equals("Yes")){
             spinnerSavingsPerMonth.setVisibility(View.VISIBLE);
         }

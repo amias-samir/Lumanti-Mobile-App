@@ -49,7 +49,7 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
 
         generalFormModel = new GeneralFormModel();
         generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
-        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
 
 
     }

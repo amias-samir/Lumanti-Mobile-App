@@ -46,7 +46,7 @@ public class WaterSanitationActivity extends AppCompatActivity {
 
         generalFormModel = new GeneralFormModel();
         generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
-        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
 
         tvOtherDrinkingWaterSource.setVisibility(View.INVISIBLE);
 
