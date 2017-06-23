@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -12,18 +13,22 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemSelected;
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 
 public class DemographicInfoActivity extends AppCompatActivity {
+
+    GeneralFormModel generalFormModel;
 
     Toolbar toolbar;
     @BindView(R.id.demographic_info_head_name)
     AutoCompleteTextView tvHeadName;
     @BindView(R.id.demographic_info_head_sex)
     Spinner spinnerHeadSex;
-    @BindView(R.id.general_info_district_code)
-    AutoCompleteTextView tvDistrictCode;
+    @BindView(R.id.demographic_info_head_age)
+    AutoCompleteTextView tvHeadAge;
     @BindView(R.id.demographic_info_below_5_no)
     AutoCompleteTextView tvBelow_5_No;
     @BindView(R.id.demographic_info_between5_14_no)
@@ -42,6 +47,8 @@ public class DemographicInfoActivity extends AppCompatActivity {
     AutoCompleteTextView tvFamilyMemTotal;
     @BindView(R.id.demographic_info_dis_preg_lac)
     Spinner spinnerDisPregLac;
+    @BindView(R.id.demographic_info_specify_dis_preg_lac)
+    Spinner spinnerSpecifyDisPregLac;
     @BindView(R.id.demographic_info_disability_type)
     AutoCompleteTextView tvDisabilityType;
     @BindView(R.id.demographic_info_before_after_disabled)
@@ -54,6 +61,9 @@ public class DemographicInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demographic_info);
         ButterKnife.bind(this);
+        spinnerSpecifyDisPregLac.setVisibility(View.INVISIBLE);
+        tvDisabilityType.setVisibility(View.INVISIBLE);
+        spinnerBeforeAfterDisabled.setVisibility(View.INVISIBLE);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Demographic Information");
@@ -61,9 +71,9 @@ public class DemographicInfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
-         GeneralFormModel generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
-        Toast.makeText(this, ""+ generalFormModel.getA1(), Toast.LENGTH_SHORT).show();
+            generalFormModel = new GeneralFormModel();
+         generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -72,8 +82,44 @@ public class DemographicInfoActivity extends AppCompatActivity {
     @OnClick(R.id.demographic_info_next)
     public void NextPage() {
 
+        generalFormModel.setA1(tvHeadName.getText().toString());
+        generalFormModel.setA1_a(spinnerHeadSex.getSelectedItem().toString());
+        generalFormModel.setA1_b(tvHeadAge.getText().toString());
+        generalFormModel.setA2(tvHeadAge.getText().toString());
 
         Intent intent = new Intent(DemographicInfoActivity.this, ReconstructionStatusActivity.class);
+        intent.putExtra("generalFormModel", generalFormModel);
         startActivity(intent);
+    }
+
+
+    @OnItemSelected(R.id.demographic_info_dis_preg_lac)
+    public void spinnerItemSelected(Spinner spinner, int position) {
+        // code here
+        int id = position ;
+        String disable = spinnerDisPregLac.getSelectedItem().toString();
+        if (disable.equals("Yes")){
+            spinnerSpecifyDisPregLac.setVisibility(View.VISIBLE);
+
+        }
+        else {
+            spinnerSpecifyDisPregLac.setVisibility(View.INVISIBLE);
+        }
+
+    }
+    @OnItemSelected(R.id.demographic_info_specify_dis_preg_lac)
+    public void DisableSelected(Spinner spinner, int position) {
+        // code here
+        int id = position ;
+        String specifyDisable = spinnerSpecifyDisPregLac.getSelectedItem().toString();
+        if (specifyDisable.equals("Disable")){
+            tvDisabilityType.setVisibility(View.VISIBLE);
+            spinnerBeforeAfterDisabled.setVisibility(View.VISIBLE);
+        }
+        else {
+            tvDisabilityType.setVisibility(View.INVISIBLE);
+            spinnerBeforeAfterDisabled.setVisibility(View.INVISIBLE);
+        }
+
     }
 }

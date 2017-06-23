@@ -73,10 +73,23 @@ public class MainActivity extends AppCompatActivity {
     public void NextPage() {
 
 
+//        dist_code = tvDistrictCode.getText().toString();
 
 
         GeneralFormModel generalFormModel = new GeneralFormModel();
-        generalFormModel.setA1("test");
+        generalFormModel.setG1(spinnerDamageType.getSelectedItem().toString());
+        generalFormModel.setG2(spinnerDistrictName.getSelectedItem().toString());
+        generalFormModel.setG3(tvDistrictCode.getText().toString());
+        generalFormModel.setG4(tvRuralMunicipality.getText().toString());
+        generalFormModel.setG5(tvCurrentWardNo.getText().toString());
+        generalFormModel.setG6(tvPreviousVdcMun.getText().toString());
+        generalFormModel.setG7(tvPreviousWardNo.getText().toString());
+        generalFormModel.setG8(tvTole.getText().toString());
+        generalFormModel.setG9(tvHouseCode.getText().toString());
+        generalFormModel.setG_10(tvNissaNo.getText().toString());
+        generalFormModel.setG_11(tvCitizenshipNo.getText().toString());
+        generalFormModel.setG_12(tvPaNo.getText().toString());
+
 
 
 
@@ -86,11 +99,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @OnItemSelected(R.id.general_info_district_name)
-    public void spinnerItemSelected(Spinner spinner, int position) {
-        // code here
-        int id = position ;
-            dist_name = Constant.DISTRICT_NAMR[id];
-
-    }
 }
