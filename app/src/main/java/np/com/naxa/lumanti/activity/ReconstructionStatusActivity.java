@@ -45,8 +45,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,17 +57,15 @@ import butterknife.OnItemSelected;
 import np.com.naxa.lumanti.R;
 import np.com.naxa.lumanti.gps.GPS_TRACKER_FOR_POINT;
 import np.com.naxa.lumanti.gps.MapPointActivity;
-import np.com.naxa.lumanti.model.CheckValues;
 import np.com.naxa.lumanti.model.Default_DIalog;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 import np.com.naxa.lumanti.model.StaticListOfCoordinates;
 
-import static android.R.attr.onClick;
-
 public class ReconstructionStatusActivity extends AppCompatActivity {
 
     Toolbar toolbar;
-    GeneralFormModel generalFormModel ;
+    GeneralFormModel generalFormModel;
+
 
     int CAMERA_PIC1_REQUEST = 02;
     int CAMERA_PIC2_REQUEST = 03;
@@ -151,10 +147,10 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 .addApi(LocationServices.API)
                 .build();
         askForPermission(Manifest.permission.ACCESS_FINE_LOCATION, LOCATION);
-        askForPermission(Manifest.permission.CAMERA, CAMERA_PIC1_REQUEST);
-        askForPermission(Manifest.permission.CAMERA, CAMERA_PIC2_REQUEST);
-        askForPermission(Manifest.permission.CAMERA, CAMERA_PIC3_REQUEST);
-        askForPermission(Manifest.permission.CAMERA, CAMERA_PIC4_REQUEST);
+        askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, CAMERA_PIC1_REQUEST);
+        askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, CAMERA_PIC2_REQUEST);
+        askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, CAMERA_PIC3_REQUEST);
+        askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, CAMERA_PIC4_REQUEST);
 
         btnPhotoSite1.setOnClickListener(new View.OnClickListener() {
             @Override

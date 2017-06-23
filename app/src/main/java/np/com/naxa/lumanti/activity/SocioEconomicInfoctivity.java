@@ -22,7 +22,6 @@ public class SocioEconomicInfoctivity extends AppCompatActivity {
     Toolbar toolbar;
     GeneralFormModel generalFormModel ;
 
-
     @BindView(R.id.socio_economic_land_with_land_title)
     Spinner spinnerLandWithLandTitle;
     @BindView(R.id.socio_economic_land_at_other_place)

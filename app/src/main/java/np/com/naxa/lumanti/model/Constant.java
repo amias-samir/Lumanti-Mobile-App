@@ -10,4 +10,6 @@ public class Constant {
     public static String [] HOUSE_DAMAGE = {"Fully damaged", "Partially damaged"};
     public static String [] YES_NO = {"Yes", "No"};
     public static String [] SEX = {"Male", "Female", "Other"};
+
+    public static String URL_DATA_SEND = "http://naxa.com.np/lumanti/ApiController/insertdata";
 }
