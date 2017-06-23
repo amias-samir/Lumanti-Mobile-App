@@ -26,7 +26,7 @@ public class GeneralFormModel implements Serializable{
     private String A1;
     private String A1_a;
     private String A1_b;
-    private String A2;
+    private String A2_h;
     private String A2_a;
     private String A2_b;
     private String A2_c;
@@ -46,6 +46,10 @@ public class GeneralFormModel implements Serializable{
     private String B1_img2;
     private String B1_img3;
     private String B1_img4;
+    private String B1_img1_path;
+    private String B1_img2_path;
+    private String B1_img3_path;
+    private String B1_img4_path;
     private String B2;
     private String B2_a;
     private String B2_b;
@@ -209,12 +213,12 @@ public String getA1() {
         A1_b = a1_b;
     }
 
-    public String getA2() {
-        return A2;
+    public String getA2_h() {
+        return A2_h;
     }
 
-    public void setA2(String a2) {
-        A2 = a2;
+    public void setA2_h(String a2_h) {
+        A2_h = a2_h;
     }
 
     public String getA2_a() {
@@ -354,6 +358,37 @@ public String getB1_lat() {
 
     public void setB1_img4(String b1_img4) {
         B1_img4 = b1_img4;
+    }
+    public String getB1_img1_path() {
+        return B1_img1_path;
+    }
+
+    public void setB1_img1_path(String b1_img1_path) {
+        B1_img1_path = b1_img1_path;
+    }
+
+    public String getB1_img2_path() {
+        return B1_img2_path;
+    }
+
+    public void setB1_img2_path(String b1_img2_path) {
+        B1_img2_path = b1_img2_path;
+    }
+
+    public String getB1_img3_path() {
+        return B1_img3_path;
+    }
+
+    public void setB1_img3_path(String b1_img3_path) {
+        B1_img3_path = b1_img3_path;
+    }
+
+    public String getB1_img4_path() {
+        return B1_img4_path;
+    }
+
+    public void setB1_img4_path(String b1_img4_path) {
+        B1_img4_path = b1_img4_path;
     }
 
     public String getB2() {

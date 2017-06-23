@@ -85,12 +85,26 @@ public class DemographicInfoActivity extends AppCompatActivity {
         generalFormModel.setA1(tvHeadName.getText().toString());
         generalFormModel.setA1_a(spinnerHeadSex.getSelectedItem().toString());
         generalFormModel.setA1_b(tvHeadAge.getText().toString());
-        generalFormModel.setA2(tvHeadAge.getText().toString());
+        generalFormModel.setA2_a(tvBelow_5_No.getText().toString());
+        generalFormModel.setA2_b(tvBetween_5_14_No.getText().toString());
+        generalFormModel.setA2_c(tvBetween_15_64_No.getText().toString());
+        generalFormModel.setA2_d(tvAbove_65_No.getText().toString());
+        generalFormModel.setA2_e(tvFamilyMemTotal.getText().toString());
+        generalFormModel.setA2_f(tvMaleFamilyNo.getText().toString());
+        generalFormModel.setA2_g(tvFemaleFamilyNo.getText().toString());
+        generalFormModel.setA2_h(tvOthreFamilyNo.getText().toString());
+        generalFormModel.setA3(spinnerDisPregLac.getSelectedItem().toString());
+        generalFormModel.setA3_a(spinnerSpecifyDisPregLac.getSelectedItem().toString());
+        generalFormModel.setA3_b(tvDisabilityType.getText().toString());
+        generalFormModel.setA3_c(spinnerBeforeAfterDisabled.getSelectedItem().toString());
 
         Intent intent = new Intent(DemographicInfoActivity.this, ReconstructionStatusActivity.class);
         intent.putExtra("generalFormModel", generalFormModel);
         startActivity(intent);
     }
+
+
+
 
 
     @OnItemSelected(R.id.demographic_info_dis_preg_lac)

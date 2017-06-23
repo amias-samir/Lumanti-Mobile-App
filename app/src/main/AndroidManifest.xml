@@ -47,6 +47,13 @@
             android:windowSoftInputMode="stateHidden">
         </activity>
 
+        <activity android:name=".gps.MapPointActivity"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity android:name=".gps.MapPolyLineActivity"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+
 
     </application>
 
