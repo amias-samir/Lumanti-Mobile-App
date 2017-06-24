@@ -4,7 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -212,6 +212,8 @@ public class CapacityBuildingActivity extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
                 String dateString = sdf.format(date);
                 dateToInput.setText(dateString);
+
+                Log.e(TAG, "SaveSend: "+dateToInput );
 
                 AppCompatButton logIn = (AppCompatButton) showDialog.findViewById(R.id.login_button);
                 showDialog.setTitle("Save Data");
