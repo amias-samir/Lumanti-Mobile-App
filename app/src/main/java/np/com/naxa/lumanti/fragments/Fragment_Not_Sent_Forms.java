@@ -46,6 +46,7 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.activity.SavedFormsActivity;
 import np.com.naxa.lumanti.adapter.GridSpacingItemDecorator;
 import np.com.naxa.lumanti.adapter.Not_Sent_Forms_Adapter;
 import np.com.naxa.lumanti.adapter.RecyclerItemClickListener;
@@ -236,22 +237,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
         super.onDetach();
     }
 
-    private void createList() {
-        resultCur.clear();
-        DataBaseForm_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseForm_NotSent(getActivity());
-        dataBaseNepalPublicHealthNotSent.open();
 
-        resultCur.addAll(dataBaseNepalPublicHealthNotSent.getAllNotSentForms());
-        fillTable();
-    }
-
-    public void fillTable() {
-        Log.e("FILLTABLE", "INSIDE FILL TABLE");
-        ca = new Not_Sent_Forms_Adapter(resultCur);
-        recyclerView.setAdapter(ca);
-        Log.e("FILLTABLE", "AFTER FILL TABLE");
-//        CheckValues.setValue();
-    }
 
 
     public void sendDatToserver() {
@@ -319,8 +305,9 @@ public class Fragment_Not_Sent_Forms extends Fragment {
 
                 Toast.makeText(getActivity(), "Data sent successfully", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getActivity(),Fragment_Not_Sent_Forms.class);
+                Intent intent = new Intent(getActivity(),SavedFormsActivity.class);
                 startActivity(intent);
+//                createList();
 
             }
         }
@@ -368,6 +355,23 @@ public class Fragment_Not_Sent_Forms extends Fragment {
             }
             return result;
         }
+    }
+
+    private void createList() {
+        resultCur.clear();
+        DataBaseForm_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseForm_NotSent(getActivity());
+        dataBaseNepalPublicHealthNotSent.open();
+
+        resultCur.addAll(dataBaseNepalPublicHealthNotSent.getAllNotSentForms());
+        fillTable();
+    }
+
+    public void fillTable() {
+        Log.e("FILLTABLE", "INSIDE FILL TABLE");
+        ca = new Not_Sent_Forms_Adapter(resultCur);
+        recyclerView.setAdapter(ca);
+        Log.e("FILLTABLE", "AFTER FILL TABLE");
+//        CheckValues.setValue();
     }
 
 }

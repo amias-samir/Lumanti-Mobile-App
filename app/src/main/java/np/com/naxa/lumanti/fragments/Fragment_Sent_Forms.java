@@ -199,21 +199,6 @@ public class Fragment_Sent_Forms extends Fragment {
 
     }
 
-//    public void loadForm(String formId, String jsonData , String photo , String gps, String DBid , String status){
-//        switch (formId){
-//            case "1" :
-//                Intent intent1 = new Intent(getActivity(), PregnentWomenActivity.class);
-//                intent1.putExtra("JSON1", jsonData);
-//                intent1.putExtra("photo" , photo);
-//                intent1.putExtra("gps" , gps) ;
-//                intent1.putExtra("DBid", DBid);
-//                intent1.putExtra("sent_Status", status);
-//                startActivity(intent1);
-//                break;
-//
-//
-//        }
-//    }
 
     @Override
     public void onAttach(Activity activity) {
