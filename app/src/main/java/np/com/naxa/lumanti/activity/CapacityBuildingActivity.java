@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -36,7 +37,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -45,8 +45,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import np.com.naxa.lumanti.R;
-import np.com.naxa.lumanti.database.DataBaseNepalPublicHealth_NotSent;
-import np.com.naxa.lumanti.database.DataBaseNepalPublicHealth_Sent;
+import np.com.naxa.lumanti.database.DataBaseForm_NotSent;
+import np.com.naxa.lumanti.database.DataBaseForm_Sent;
 import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 
@@ -100,7 +100,7 @@ public class CapacityBuildingActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Capacity Building");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         generalFormModel = new GeneralFormModel();
@@ -186,90 +186,90 @@ public class CapacityBuildingActivity extends AppCompatActivity {
             case R.id.water_sanitation_save:
 
 
-//                convertDataToJson();
-//
-//                DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-//                final int width = metrics.widthPixels;
-//                int height = metrics.heightPixels;
-//
-//                final Dialog showDialog = new Dialog(context);
-//                showDialog.setContentView(R.layout.date_input_layout);
-//                final EditText FormNameToInput = (EditText) showDialog.findViewById(R.id.input_tableName);
-//                final EditText dateToInput = (EditText) showDialog.findViewById(R.id.input_date);
-//
-////                if (formNameSavedForm.equals("")){
-//                    FormNameToInput.setText("Lumanti");
-////                }
-////                else {
-////                    FormNameToInput.setText(formNameSavedForm);
-////                    DataBaseNepalPublicHealth_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseNepalPublicHealth_NotSent(context);
-////                    dataBaseNepalPublicHealthNotSent.open();
-////                    dataBaseNepalPublicHealthNotSent.dropRowNotSentForms(formid);
-////                }
-//
-//                long date = System.currentTimeMillis();
-//
-//                SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
-//                String dateString = sdf.format(date);
-//                dateToInput.setText(dateString);
-//
-//                AppCompatButton logIn = (AppCompatButton) showDialog.findViewById(R.id.login_button);
-//                showDialog.setTitle("Save Data");
-//                showDialog.setCancelable(true);
-//                showDialog.show();
-//                showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
-//
-//                logIn.setOnClickListener(new View.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View v) {
-//                        // TODO Auto-generated method stub
-//                        String dateDataCollected = dateToInput.getText().toString();
-//                        String formName = FormNameToInput.getText().toString();
-//                        if (dateDataCollected == null || dateDataCollected.equals("") || formName == null || formName.equals("")) {
-//                            Toast.makeText(context, "Please fill the required field. ", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            String[] data = new String[]{"1", formName, dateDataCollected, jsonToSend, "",
-//                                    "" + "", "Not Sent", "0"};
-//
-//                            DataBaseNepalPublicHealth_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseNepalPublicHealth_NotSent(context);
-//                            dataBaseNepalPublicHealthNotSent.open();
-//                            dataBaseNepalPublicHealthNotSent.insertIntoTable_Main(data);
-//
-//                            Toast.makeText(CapacityBuildingActivity.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
-//                            showDialog.dismiss();
-//
-//                            final Dialog showDialog = new Dialog(context);
-//                            showDialog.setContentView(R.layout.savedform_sent_popup);
-//                            final Button yes = (Button) showDialog.findViewById(R.id.buttonYes);
-//                            final Button no = (Button) showDialog.findViewById(R.id.buttonNo);
-//
-//                            showDialog.setTitle("Successfully Saved");
-//                            showDialog.setCancelable(false);
-//                            showDialog.show();
-//                            showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
-//
-//                            yes.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    showDialog.dismiss();
-//                                    Intent intent = new Intent(CapacityBuildingActivity.this, SavedFormsActivity.class);
-//                                    startActivity(intent);
-////                                finish();
-//                                }
-//                            });
-//
-//                            no.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    showDialog.dismiss();
-////                                    Intent intent = new Intent(CapacityBuildingActivity.this, MainActivity.class);
-////                                    startActivity(intent);
-//                                }
-//                            });
-//                        }
-//                    }
-//                });
+                convertDataToJson();
+
+                DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+                final int width = metrics.widthPixels;
+                int height = metrics.heightPixels;
+
+                final Dialog showDialog = new Dialog(context);
+                showDialog.setContentView(R.layout.date_input_layout);
+                final EditText FormNameToInput = (EditText) showDialog.findViewById(R.id.input_tableName);
+                final EditText dateToInput = (EditText) showDialog.findViewById(R.id.input_date);
+
+//                if (formNameSavedForm.equals("")){
+                    FormNameToInput.setText("Lumanti");
+//                }
+//                else {
+//                    FormNameToInput.setText(formNameSavedForm);
+//                    DataBaseForm_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseForm_NotSent(context);
+//                    dataBaseNepalPublicHealthNotSent.open();
+//                    dataBaseNepalPublicHealthNotSent.dropRowNotSentForms(formid);
+//                }
+
+                long date = System.currentTimeMillis();
+
+                SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
+                String dateString = sdf.format(date);
+                dateToInput.setText(dateString);
+
+                AppCompatButton logIn = (AppCompatButton) showDialog.findViewById(R.id.login_button);
+                showDialog.setTitle("Save Data");
+                showDialog.setCancelable(true);
+                showDialog.show();
+                showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                logIn.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        String dateDataCollected = dateToInput.getText().toString();
+                        String formName = FormNameToInput.getText().toString();
+                        if (dateDataCollected == null || dateDataCollected.equals("") || formName == null || formName.equals("")) {
+                            Toast.makeText(context, "Please fill the required field. ", Toast.LENGTH_SHORT).show();
+                        } else {
+                            String[] data = new String[]{"1", formName, dateDataCollected, jsonToSend, "",
+                                    "" + "", "Not Sent", "0"};
+
+                            DataBaseForm_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseForm_NotSent(context);
+                            dataBaseNepalPublicHealthNotSent.open();
+                            dataBaseNepalPublicHealthNotSent.insertIntoTable_Main(data);
+
+                            Toast.makeText(CapacityBuildingActivity.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+                            showDialog.dismiss();
+
+                            final Dialog showDialog = new Dialog(context);
+                            showDialog.setContentView(R.layout.savedform_sent_popup);
+                            final Button yes = (Button) showDialog.findViewById(R.id.buttonYes);
+                            final Button no = (Button) showDialog.findViewById(R.id.buttonNo);
+
+                            showDialog.setTitle("Successfully Saved");
+                            showDialog.setCancelable(false);
+                            showDialog.show();
+                            showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                            yes.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    showDialog.dismiss();
+                                    Intent intent = new Intent(CapacityBuildingActivity.this, SavedFormsActivity.class);
+                                    startActivity(intent);
+//                                finish();
+                                }
+                            });
+
+                            no.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    showDialog.dismiss();
+                                    Intent intent = new Intent(CapacityBuildingActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }
+                });
 
                 break;
         }
@@ -371,31 +371,28 @@ public class CapacityBuildingActivity extends AppCompatActivity {
 
 
             if (dataSentStatus.equals("200")) {
-                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
 
-//                long date = System.currentTimeMillis();
+                long date = System.currentTimeMillis();
+
+                SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
+                dateString = sdf.format(date);
 //
-//                SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
-//                dateString = sdf.format(date);
-////                new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE)
-////                        .setTitleText("")
-////                        .setContentText("Data sent successfully!")
-////                        .show();
-//                String[] data = new String[]{"1", "Recording Tool For Pregnent Women", dateString, jsonToSend, "",
-//                        "" + "", "Sent", "0"};
-//
-//                DataBaseNepalPublicHealth_Sent dataBaseNepalPublicHealthSent = new DataBaseNepalPublicHealth_Sent(context);
-//                dataBaseNepalPublicHealthSent.open();
-//                long id = dataBaseNepalPublicHealthSent.insertIntoTable_Main(data);
-//                Log.e("dbID", "" + id);
-//                dataBaseNepalPublicHealthSent.close();
+                String[] data = new String[]{"1", "Recording Tool For Pregnent Women", dateString, jsonToSend, "",
+                        "" + "", "Sent", "0"};
+
+                DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(context);
+                dataBaseFormSent.open();
+                long id = dataBaseFormSent.insertIntoTable_Main(data);
+                Log.e("dbID", "" + id);
+                dataBaseFormSent.close();
 //
 //
                     DisplayMetrics metrics = context.getResources().getDisplayMetrics();
                     int width = metrics.widthPixels;
                     int height = metrics.heightPixels;
 
-//                    Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
 
                     final Dialog showDialog = new Dialog(context);
                     showDialog.setContentView(R.layout.thank_you_popup);
@@ -430,8 +427,6 @@ public class CapacityBuildingActivity extends AppCompatActivity {
 
 
             }
-        }
-
 
         public String POST(String urll) {
             String result = "";
@@ -476,5 +471,8 @@ public class CapacityBuildingActivity extends AppCompatActivity {
             }
             return result;
         }
+        }
+
+
 
     }

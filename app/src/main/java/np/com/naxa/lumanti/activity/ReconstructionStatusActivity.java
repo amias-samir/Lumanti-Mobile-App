@@ -136,11 +136,12 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Reconstruction Information");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         spinnerConstructionType.setVisibility(View.INVISIBLE);
         spinnerBuildBy.setVisibility(View.INVISIBLE);
         tvOthersSpecify.setVisibility(View.INVISIBLE);
+        btnPreviewMap.setEnabled(false);
 
         client = new GoogleApiClient.Builder(this)
                 .addApi(AppIndex.API)

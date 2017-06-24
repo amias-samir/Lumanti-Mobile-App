@@ -8,7 +8,7 @@
     <color name="primary">#03A9F4</color>
     <color name="primary_dark">#0288D1</color>
     <color name="primary_darker">#0376b6</color>
-    <color name="primary_alight">#fcfafa</color>
+    <color name="primary_light">#fcfafa</color>
     <!--<color name="accent">#9E9E9E</color>-->
     <color name="accent">#000000</color>
     <color name="primary_text">#212121</color>

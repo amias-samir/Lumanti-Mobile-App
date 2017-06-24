@@ -13,11 +13,13 @@ import java.util.List;
 
 import np.com.naxa.lumanti.model.SavedFormParameters;
 
+
 /**
  * Created by Samir on 4/4/2017.
  */
-public class DataBaseNepalPublicHealth_Sent extends SQLiteOpenHelper {
-        private final static String db_name = "_db_Lumanti_Sent.db";
+public class DataBaseForm_NotSent extends SQLiteOpenHelper {
+
+        private final static String db_name = "_db_Lumanti_NotSent.db";
         private final static int db_version = (int) 1;
 
         public final static String ID_TABLE = "_id_table";
@@ -29,7 +31,7 @@ public class DataBaseNepalPublicHealth_Sent extends SQLiteOpenHelper {
         public final static String TABLE_GPS = "_table_Gps";
         public final static String TABLE_PHOTO = "_table_photo";
         public final static String DELETE_FLAG = "_delete_flag";
-        public final static String TABLE_MAIN = "_table_sent";
+        public final static String TABLE_MAIN = "_table_not_sent";
 
         public final static String[] COLS_TABLE_MAIN = new String[]{ID_TABLE , TABLE_ID ,TABLE_NAME ,TABLE_DATE ,TABLE_JSON , TABLE_GPS , TABLE_PHOTO , TABLE_STATUS  , DELETE_FLAG };
         static String CREATE_TABLE_MAIN = "Create table if not exists " + TABLE_MAIN + "("
@@ -42,7 +44,7 @@ public class DataBaseNepalPublicHealth_Sent extends SQLiteOpenHelper {
         long id;
         Context con;
 
-    public DataBaseNepalPublicHealth_Sent(Context context) {
+    public DataBaseForm_NotSent(Context context) {
         super(context, db_name, null, db_version);
         this.con = context;
         // TODO Auto-generated constructor stub
@@ -137,7 +139,6 @@ public class DataBaseNepalPublicHealth_Sent extends SQLiteOpenHelper {
                 name[7] = cursor.getString(8);
                 name[8] = cursor.getString(0);
 
-
             }
         } finally {
             cursor.close();
@@ -152,10 +153,10 @@ public class DataBaseNepalPublicHealth_Sent extends SQLiteOpenHelper {
         return rowsUpdated;
     }
 
-    public void dropRowSentForms(String DBid) {
+    public void dropRowNotSentForms(String DBid) {
         //Open the database
         SQLiteDatabase database = this.getWritableDatabase();
-        Log.e("", "dropRowSentFormsID: "+ DBid );
+        Log.e("", "dropRowNotSentFormsID: "+ DBid );
         //Execute sql query to remove from database
         //NOTE: When removing by String in SQL, value must be enclosed with ''
         database.execSQL("DELETE FROM " + TABLE_MAIN + " WHERE " + ID_TABLE + "= '" + DBid + "'");
@@ -163,14 +164,27 @@ public class DataBaseNepalPublicHealth_Sent extends SQLiteOpenHelper {
         database.close();
     }
 
+    public void updateRowNotSentForms(String[] list , String formID){
 
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TABLE_ID , list[0]);
+        contentValues.put(TABLE_NAME, list[1] );
+        contentValues.put(TABLE_DATE, list[2]);
+        contentValues.put(TABLE_JSON, list[3]);
+        contentValues.put(TABLE_GPS, list[4]);
+        contentValues.put(TABLE_PHOTO, list[5]);
+        contentValues.put(TABLE_STATUS , list[6]);
+        contentValues.put(DELETE_FLAG, list[7]);
 
-    public List<SavedFormParameters> getAllSentForms() {
-        ArrayList<SavedFormParameters> sentFormsDetailsAll = new ArrayList<SavedFormParameters>();
+        db.update(TABLE_MAIN, contentValues, ID_TABLE + "= '" + formID + "'", null);
+
+    }
+
+    public List<SavedFormParameters> getAllNotSentForms() {
+        ArrayList<SavedFormParameters> notSentFormsDetailsAll = new ArrayList<SavedFormParameters>();
 
         String sql = "SELECT  * FROM " + TABLE_MAIN + " ORDER BY "+ ID_TABLE+" DESC" ;
-
-        //  Log.e("YUWAPUSTA_DATABASE_ACTIVITY", sql);
+//        +"ORDER BY" + ID_TABLE +"DESC"
 
         Cursor c = getReadableDatabase().rawQuery(sql, null);
 
@@ -188,17 +202,16 @@ public class DataBaseNepalPublicHealth_Sent extends SQLiteOpenHelper {
 
 //              new Vardump(TAG,iAmAmazingStoryModel);
 
-            sentFormsDetailsAll.add(savedFormParameters);
+            notSentFormsDetailsAll.add(savedFormParameters);
 
-            Log.e("", "getNOT_SENT_FORMS: " + sentFormsDetailsAll.size() );
+            Log.e("", "getNOT_SENT_FORMS: " + notSentFormsDetailsAll.size() );
 
 
         }
         c.close();
 
         //    Log.e(TAG, "getYuwaPustaQueriesDetailsfrom sqlite: "+ queriesDetailsAll.size() );
-        return sentFormsDetailsAll;
+        return notSentFormsDetailsAll;
     }
-
 
 }

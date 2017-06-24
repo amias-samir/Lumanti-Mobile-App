@@ -42,7 +42,7 @@ public class WaterSanitationActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Water Sanitation");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         generalFormModel = new GeneralFormModel();
         generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");

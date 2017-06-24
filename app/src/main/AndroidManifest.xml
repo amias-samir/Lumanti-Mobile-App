@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Dark">
-        <activity android:name=".activity.MainActivity"
+        <activity android:name=".activity.SplashScreenActivity"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +36,8 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity android:name=".activity.MainActivity"
+            android:windowSoftInputMode="stateHidden"/>
 
         <activity android:name=".activity.DemographicInfoActivity"
             android:windowSoftInputMode="stateHidden"/>
@@ -59,8 +61,16 @@
         <activity android:name=".gps.MapPointActivity"
             android:windowSoftInputMode="stateHidden">
         </activity>
+
         <activity android:name=".gps.MapPolyLineActivity"
+        android:windowSoftInputMode="stateHidden">
+    </activity>
+
+        <activity android:name=".activity.SavedFormsActivity"
             android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
         </activity>
 
 

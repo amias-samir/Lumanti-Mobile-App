@@ -42,7 +42,7 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Earthquake Relief Status");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         receivedInstallment.setVisibility(View.INVISIBLE);
         tvKindSupport.setVisibility(View.INVISIBLE);

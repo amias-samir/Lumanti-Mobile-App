@@ -1,9 +1,15 @@
 package np.com.naxa.lumanti.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -62,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("General Information");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 //        NextPage();
@@ -71,10 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.general_info_next)
     public void NextPage() {
-
-
-//        dist_code = tvDistrictCode.getText().toString();
-
 
         GeneralFormModel generalFormModel = new GeneralFormModel();
         generalFormModel.setG1(spinnerDamageType.getSelectedItem().toString());
@@ -98,5 +100,59 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("generalFormModel", generalFormModel);
         startActivity(intent);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_saved_forms:
+                Intent intent = new Intent(MainActivity.this, SavedFormsActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+
+                return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Exit From App")
+                .setMessage("Are you sure you want to Exit?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.this.onBackPressed();
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            finishAffinity();
+                        } else {
+                            finish();
+                        }
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+
+    }
+
 
 }
