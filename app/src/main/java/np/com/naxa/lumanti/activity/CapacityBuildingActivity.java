@@ -380,7 +380,7 @@ public class CapacityBuildingActivity extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
                 dateString = sdf.format(date);
 //
-                String[] data = new String[]{"1", "Recording Tool For Pregnent Women", dateString, jsonToSend, "",
+                String[] data = new String[]{"1", "Lumanti", dateString, jsonToSend, "",
                         "" + "", "Sent", "0"};
 
                 DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(context);
