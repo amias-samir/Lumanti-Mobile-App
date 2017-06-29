@@ -47,6 +47,14 @@
     <string name="stringC2">What kind of support have you received for shelter and livelihoods after the earthquake?</string>
     <string name="stringC2_a">Installment</string>
     <string name="stringC2_b">Specify Received Kind Support</string>
+    <string name="stringD1">Do you have land with your land title?</string>
+    <string name="stringD2">Land title at other place</string>
+    <string name="stringD2_a">Area of land (Approximate) Aana, Ropani</string>
+    <string name="stringD3">Major source of income of your family</string>
+    <string name="stringD3_a">Income source (Others)</string>
+    <string name="stringD4">Are you member of any Saving Groups/Cooperative?</string>
+    <string name="stringD4_a">Saving per month</string>
+    <string name="stringD5">Tentative monthly income</string>
 
 
     <string-array name="sex">

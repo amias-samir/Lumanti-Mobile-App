@@ -55,7 +55,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Do you have land with your land title?"
+                            android:text="@string/stringD1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -80,7 +80,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="Land title at other place"
+                        android:hint="@string/stringD2"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/socio_economic_land_at_other_place" />
@@ -95,7 +95,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="Area of land (Approximate) Aana, Ropani"
+                        android:hint="@string/stringD2_a"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/socio_economic_land_area" />
@@ -121,14 +121,14 @@
                             android:id="@+id/incomeSourceLbl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Major source of income of your family"
+                            android:text="@string/stringD3"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/monsoon" />
+                            android:textColor="@color/monsoon"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true" />
 
                         <Spinner
                             android:id="@+id/socio_economic_major_income_source"
@@ -151,7 +151,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="Income source (Others)"
+                        android:hint="@string/stringD3_a"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/socio_economic_other_income_source" />
@@ -182,7 +182,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Are you member of any Saving Groups/Cooperative?"
+                            android:text="@string/stringD4"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -224,7 +224,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Saving per month"
+                            android:text="@string/stringD4_a"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -266,7 +266,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Tentative monthly income"
+                            android:text="@string/stringD5"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -307,7 +307,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
                             android:background="@drawable/button_pressed_hwc_light"
-                            android:text="Next"
+                            android:text="@string/stringNext"
                             android:textColor="#ffffff" />
 
                     </RelativeLayout>
