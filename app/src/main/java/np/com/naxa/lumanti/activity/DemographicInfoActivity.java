@@ -153,13 +153,13 @@ public class DemographicInfoActivity extends AppCompatActivity {
         startActivity(intent);
         }
         else {
-            tvBelow_5_No.setError("total family member error, please review your input");
-            tvBetween_5_14_No.setError("total family member error, please review your input");
-            tvBetween_15_64_No.setError("total family member error, please review your input");
-            tvAbove_65_No.setError("total family member error, please review your input");
-            tvMaleFamilyNo.setError("total family member error, please review your input");
-            tvFemaleFamilyNo.setError("total family member error, please review your input");
-            tvOthreFamilyNo.setError("total family member error, please review your input");
+            tvBelow_5_No.setError(getString(R.string.total_mem_validation_error));
+            tvBetween_5_14_No.setError(getString(R.string.total_mem_validation_error));
+            tvBetween_15_64_No.setError(getString(R.string.total_mem_validation_error));
+            tvAbove_65_No.setError(getString(R.string.total_mem_validation_error));
+            tvMaleFamilyNo.setError(getString(R.string.total_mem_validation_error));
+            tvFemaleFamilyNo.setError(getString(R.string.total_mem_validation_error));
+            tvOthreFamilyNo.setError(getString(R.string.total_mem_validation_error));
         }
 
     }

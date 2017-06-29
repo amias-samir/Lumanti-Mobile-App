@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Lumanti</string>
     <string name="view_saved_forms">View Saved Forms</string>
+    <string name="total_mem_validation_error">total family member error, please review your input</string>
 
 
     <string-array name="sex">
