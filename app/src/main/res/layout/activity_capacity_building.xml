@@ -55,7 +55,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Have you participate in any household/community meeting, orientation programs on reconstruction in your VDC/ Ward ?"
+                            android:text="@string/stringF1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -96,7 +96,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="2.	Have you (any one from your family member) attended trainings related with Disaster Preparedness / Housing reconstruction (Y/N)?"
+                            android:text="@string/stringF2"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -137,7 +137,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Attended disaster training"
+                            android:text="@string/stringF2_a"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -162,7 +162,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="Specify others (Disaster Training)"
+                        android:hint="@string/stringF2_b"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/capacity_building_other_disaster_training" />
@@ -194,7 +194,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Do you have any idea about Stockpiling (storage of search and rescue, first aid materials) in your VDC?"
+                            android:text="@string/stringF3"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -235,7 +235,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Are you the member of Disaster Management Committee?"
+                            android:text="@string/stringF4"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -261,7 +261,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="Do you have any recommendation regarding reconstruction activities by Lumanti?"
+                        android:hint="@string/stringF5"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/capacity_building_recommendation_regarding_reconstruction" />
@@ -277,7 +277,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="Any specific information "
+                        android:hint="@string/stringF6"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/capacity_building_any_specific_info" />
@@ -292,7 +292,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="Any gap identified by surveyor"
+                        android:hint="@string/stringF7"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/capacity_building_identified_gap" />
@@ -323,7 +323,7 @@
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentTop="true"
                             android:background="@drawable/button_pressed_hwc_light"
-                            android:text="send"
+                            android:text="@string/sendBtnText"
                             android:textColor="#ffffff" />
 
                         <Button
@@ -334,7 +334,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
                             android:background="@drawable/button_pressed_hwc_light"
-                            android:text="save"
+                            android:text="@string/saveBtnText"
                             android:textColor="#ffffff" />
 
                     </RelativeLayout>

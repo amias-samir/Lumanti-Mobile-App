@@ -58,6 +58,17 @@
     <string name="stringE1">Main source of drinking water</string>
     <string name="stringE1_a">Specify others (Water Source)</string>
     <string name="stringE2">Type of toilet</string>
+    <string name="stringF1">Have you participate in any household/community meeting, orientation programs on reconstruction in your VDC/ Ward ?</string>
+    <string name="stringF2">Have you (any one from your family member) attended trainings related with Disaster Preparedness / Housing reconstruction (Y/N)?</string>
+    <string name="stringF2_a">Attended disaster training</string>
+    <string name="stringF2_b">Specify others (Disaster Training)</string>
+    <string name="stringF3">Do you have any idea about Stockpiling (storage of search and rescue, first aid materials) in your VDC?</string>
+    <string name="stringF4">Are you the member of Disaster Management Committee?</string>
+    <string name="stringF6">Any specific information</string>
+    <string name="stringF7">Any gap identified by surveyor</string>
+    <string name="stringF5">Do you have any recommendation regarding reconstruction activities by Lumanti?</string>
+    <string name="sendBtnText">send</string>
+    <string name="saveBtnText">save</string>
 
 
     <string-array name="sex">
