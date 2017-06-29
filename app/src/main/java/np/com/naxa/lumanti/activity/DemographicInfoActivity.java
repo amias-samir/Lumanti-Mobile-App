@@ -82,7 +82,53 @@ public class DemographicInfoActivity extends AppCompatActivity {
 
     @OnClick(R.id.demographic_info_next)
     public void NextPage() {
+        String b_5no,b15_64no,b5_14no,ab_65no,maleno,femaleno,otherno;
 
+
+
+        b_5no = tvBelow_5_No.getText().toString();
+        b5_14no = tvBetween_5_14_No.getText().toString();
+        b15_64no = tvBetween_15_64_No.getText().toString();
+        ab_65no = tvAbove_65_No.getText().toString();
+        maleno = tvMaleFamilyNo.getText().toString();
+        femaleno = tvFemaleFamilyNo.getText().toString();
+        otherno = tvOthreFamilyNo.getText().toString();
+
+        if(b_5no.isEmpty() || b_5no.equals("")){
+            b_5no = "0";
+        }
+        if(b5_14no.isEmpty() || b5_14no.equals("")){
+            b5_14no = "0";
+        }
+        if(b15_64no.isEmpty() || b15_64no.equals("")){
+            b15_64no = "0";
+        }
+        if(ab_65no.isEmpty() || ab_65no.equals("")){
+            ab_65no = "0";
+        }
+        if(maleno.isEmpty() || maleno.equals("")){
+            maleno = "0";
+        }
+        if(femaleno.isEmpty() || femaleno.equals("")){
+            femaleno = "0";
+        }
+        if(otherno.isEmpty() || otherno.equals("")){
+            otherno = "0";
+        }
+
+
+        int below5 = Integer.parseInt(b_5no);
+        int betn5_14 = Integer.parseInt(b5_14no);
+        int betn15_64 = Integer.parseInt(b15_64no);
+        int above65 = Integer.parseInt(ab_65no);
+        int male = Integer.parseInt(maleno);
+        int female = Integer.parseInt(femaleno);
+        int other = Integer.parseInt(otherno);
+
+        int total1 = below5+betn5_14+betn15_64+above65;
+        int total2 = male+female+other ;
+
+        if(total1 == total2){
         generalFormModel.setA1(tvHeadName.getText().toString());
         generalFormModel.setA1_a(spinnerHeadSex.getSelectedItem().toString());
         generalFormModel.setA1_b(tvHeadAge.getText().toString());
@@ -90,6 +136,7 @@ public class DemographicInfoActivity extends AppCompatActivity {
         generalFormModel.setA2_b(tvBetween_5_14_No.getText().toString());
         generalFormModel.setA2_c(tvBetween_15_64_No.getText().toString());
         generalFormModel.setA2_d(tvAbove_65_No.getText().toString());
+
 
         generalFormModel.setA2_e(tvFamilyMemTotal.getText().toString());
 
@@ -104,6 +151,17 @@ public class DemographicInfoActivity extends AppCompatActivity {
         Intent intent = new Intent(DemographicInfoActivity.this, ReconstructionStatusActivity.class);
         intent.putExtra("generalFormModel", generalFormModel);
         startActivity(intent);
+        }
+        else {
+            tvBelow_5_No.setError("total family member error, please review your input");
+            tvBetween_5_14_No.setError("total family member error, please review your input");
+            tvBetween_15_64_No.setError("total family member error, please review your input");
+            tvAbove_65_No.setError("total family member error, please review your input");
+            tvMaleFamilyNo.setError("total family member error, please review your input");
+            tvFemaleFamilyNo.setError("total family member error, please review your input");
+            tvOthreFamilyNo.setError("total family member error, please review your input");
+        }
+
     }
 
 
