@@ -64,6 +64,7 @@ public class DemographicInfoActivity extends AppCompatActivity {
         spinnerSpecifyDisPregLac.setVisibility(View.INVISIBLE);
         tvDisabilityType.setVisibility(View.INVISIBLE);
         spinnerBeforeAfterDisabled.setVisibility(View.INVISIBLE);
+        tvFamilyMemTotal.setEnabled(false);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Demographic Information");
@@ -89,7 +90,9 @@ public class DemographicInfoActivity extends AppCompatActivity {
         generalFormModel.setA2_b(tvBetween_5_14_No.getText().toString());
         generalFormModel.setA2_c(tvBetween_15_64_No.getText().toString());
         generalFormModel.setA2_d(tvAbove_65_No.getText().toString());
+
         generalFormModel.setA2_e(tvFamilyMemTotal.getText().toString());
+
         generalFormModel.setA2_f(tvMaleFamilyNo.getText().toString());
         generalFormModel.setA2_g(tvFemaleFamilyNo.getText().toString());
         generalFormModel.setA2_h(tvOthreFamilyNo.getText().toString());

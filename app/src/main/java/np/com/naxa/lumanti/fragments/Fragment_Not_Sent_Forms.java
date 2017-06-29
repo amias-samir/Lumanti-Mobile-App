@@ -147,12 +147,19 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                     String sent_Status = resultCur.get(position).status;
                     form_name = resultCur.get(position).formName;
 
-                    mProgressDlg = new ProgressDialog(getActivity());
-                    mProgressDlg.setMessage("Please wait...");
-                    mProgressDlg.setIndeterminate(false);
-                    mProgressDlg.setCancelable(false);
-                    mProgressDlg.show();
-                    sendDatToserver();
+                    if (networkInfo != null && networkInfo.isConnected()) {
+
+
+                        mProgressDlg = new ProgressDialog(getActivity());
+                        mProgressDlg.setMessage("Please wait...");
+                        mProgressDlg.setIndeterminate(false);
+                        mProgressDlg.setCancelable(false);
+                        mProgressDlg.show();
+                        sendDatToserver();
+                    }else {
+                        Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+
+                    }
 
 //                    loadForm(id, jSon, photo, gps, DBid, sent_Status, form_name);
 

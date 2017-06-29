@@ -198,7 +198,13 @@ public class CapacityBuildingActivity extends AppCompatActivity {
                 final EditText dateToInput = (EditText) showDialog.findViewById(R.id.input_date);
 
 //                if (formNameSavedForm.equals("")){
+
+                if(!generalFormModel.getG_10().equals("") && !generalFormModel.getG2().equals("") ) {
+
+                    FormNameToInput.setText(generalFormModel.getG_10() + "_" + generalFormModel.getG2());
+                }else {
                     FormNameToInput.setText("Lumanti");
+                }
 //                }
 //                else {
 //                    FormNameToInput.setText(formNameSavedForm);
@@ -374,13 +380,20 @@ public class CapacityBuildingActivity extends AppCompatActivity {
 
             if (dataSentStatus.equals("200")) {
 //                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
+                String formNameToSend;
+                if(!generalFormModel.getG_10().equals("") && !generalFormModel.getG2().equals("") ) {
+
+                    formNameToSend = (generalFormModel.getG_10() + "_" + generalFormModel.getG2());
+                }else {
+                    formNameToSend = ("Lumanti");
+                }
 
                 long date = System.currentTimeMillis();
 
                 SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
                 dateString = sdf.format(date);
 //
-                String[] data = new String[]{"1", "Lumanti", dateString, jsonToSend, "",
+                String[] data = new String[]{"1", formNameToSend, dateString, jsonToSend, "",
                         "" + "", "Sent", "0"};
 
                 DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(context);

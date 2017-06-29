@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -59,7 +60,15 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
 
         generalFormModel.setC1(spinnerReconstructionGrant.getSelectedItem().toString());
         generalFormModel.setC2(spinnerReceivedSupport.getSelectedItem().toString());
-        generalFormModel.setC2_a(receivedInstallment.getSelectedItem().toString());
+
+        if(spinnerReceivedSupport.getSelectedItem().toString().equals("In Kind")){
+            generalFormModel.setC2_a("0");
+        }
+        else {
+            generalFormModel.setC2_a(receivedInstallment.getSelectedItemId()+"");
+
+        }
+
         generalFormModel.setC2_b(tvKindSupport.getText().toString());
 
 

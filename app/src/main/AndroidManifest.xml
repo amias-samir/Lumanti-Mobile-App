@@ -74,6 +74,11 @@
         </activity>
 
 
+        <activity android:name=".gps.GeoPointActivity"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+
+
     </application>
 
 </manifest>

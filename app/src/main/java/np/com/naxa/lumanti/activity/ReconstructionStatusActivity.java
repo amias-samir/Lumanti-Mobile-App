@@ -56,6 +56,7 @@ import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import np.com.naxa.lumanti.R;
 import np.com.naxa.lumanti.gps.GPS_TRACKER_FOR_POINT;
+import np.com.naxa.lumanti.gps.GeoPointActivity;
 import np.com.naxa.lumanti.gps.MapPointActivity;
 import np.com.naxa.lumanti.model.Default_DIalog;
 import np.com.naxa.lumanti.model.GeneralFormModel;
@@ -65,6 +66,9 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     GeneralFormModel generalFormModel;
+
+    public static final int GEOPOINT_RESULT_CODE = 1994;
+    public static final String LOCATION_RESULT = "LOCATION_RESULT";
 
 
     int CAMERA_PIC1_REQUEST = 02;
@@ -240,44 +244,67 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     public void StartGPS() {
 
 
-        if (GPS_SETTINGS.equals(true) || GPS_TRACKER_FOR_POINT.GPS_POINT_INITILIZED) {
+//        if (GPS_SETTINGS.equals(true) || GPS_TRACKER_FOR_POINT.GPS_POINT_INITILIZED) {
+//
+//            if (gps.canGetLocation()) {
+//                gpslocation.add(gps.getLocation());
+//                finalLat = gps.getLatitude();
+//                finalLong = gps.getLongitude();
+//                if (finalLat != 0) {
+//                    btnPreviewMap.setEnabled(true);
+//                    try {
+//                        JSONObject data = new JSONObject();
+//                        data.put("latitude", finalLat);
+//                        data.put("longitude", finalLong);
+//
+////                        jsonArrayGPS.put(data);
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    LatLng d = new LatLng(finalLat, finalLong);
+//
+//                    listCf.add(d);
+//                    isGpsTaken = true;
+//                    Toast.makeText(
+//                            getApplicationContext(),
+//                            "Your Location is - \nLat: " + finalLat
+//                                    + "\nLong: " + finalLong, Toast.LENGTH_SHORT)
+//                            .show();
+////                    stringBuilder.append("[" + finalLat + "," + finalLong + "]" + ",");
+//                }
+//
+//            }
+//        } else {
+//            askForGPS();
+//            gps = new GPS_TRACKER_FOR_POINT(ReconstructionStatusActivity.this);
+//            Default_DIalog.showDefaultDialog(context, R.string.app_name, "Please try again, Gps not initialized");
+////                        gps.showSettingsAlert();
+//        }
 
-            if (gps.canGetLocation()) {
-                gpslocation.add(gps.getLocation());
-                finalLat = gps.getLatitude();
-                finalLong = gps.getLongitude();
-                if (finalLat != 0) {
-                    btnPreviewMap.setEnabled(true);
-                    try {
-                        JSONObject data = new JSONObject();
-                        data.put("latitude", finalLat);
-                        data.put("longitude", finalLong);
-
-//                        jsonArrayGPS.put(data);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    LatLng d = new LatLng(finalLat, finalLong);
-
-                    listCf.add(d);
-                    isGpsTaken = true;
-                    Toast.makeText(
-                            getApplicationContext(),
-                            "Your Location is - \nLat: " + finalLat
-                                    + "\nLong: " + finalLong, Toast.LENGTH_SHORT)
-                            .show();
-//                    stringBuilder.append("[" + finalLat + "," + finalLong + "]" + ",");
-                }
-
-            }
-        } else {
-            askForGPS();
-            gps = new GPS_TRACKER_FOR_POINT(ReconstructionStatusActivity.this);
-            Default_DIalog.showDefaultDialog(context, R.string.app_name, "Please try again, Gps not initialized");
-//                        gps.showSettingsAlert();
-        }
+        Intent toGeoPointActivity = new Intent(this.context, GeoPointActivity.class);
+        startActivityForResult(toGeoPointActivity, GEOPOINT_RESULT_CODE);
     }
+
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        switch (requestCode) {
+//            case GEOPOINT_RESULT_CODE:
+//                switch (resultCode) {
+//                    case RESULT_OK:
+//                        String location = data.getStringExtra(LOCATION_RESULT);
+//                        Toast.makeText(this.context, location, Toast.LENGTH_SHORT).show();
+//                        break;
+//                }
+//                break;
+//        }
+//    }
+
+
+
+
 
     @OnClick(R.id.reconstruction_status_preview_map)
     public void PreviewMap() {
@@ -328,6 +355,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == 1)
             if (resultCode == Activity.RESULT_OK) {
                 Uri selectedImage = data.getData();
@@ -410,6 +438,37 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 saveToExternalSorage(thumbnail4);
                 addImage();
 //                Toast.makeText(getApplicationContext(), "" + encodedImage, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        if(requestCode == GEOPOINT_RESULT_CODE ){
+            switch (resultCode) {
+                case RESULT_OK:
+                    String location = data.getStringExtra(LOCATION_RESULT);
+
+                    String string = location;
+                    String[] parts = string.split(" ");
+                    String split_lat = parts[0]; // 004
+                    String split_lon = parts[1]; // 034556
+
+                    finalLat = Double.parseDouble(split_lat);
+                    finalLong = Double.parseDouble(split_lon);
+
+                    LatLng d = new LatLng(finalLat, finalLong);
+//
+                    listCf.add(d);
+                    isGpsTaken = true;
+
+                    if(!split_lat.equals("") && !split_lon.equals("")) {
+                        GPS_TRACKER_FOR_POINT.GPS_POINT_INITILIZED = true ;
+                        btnPreviewMap.setEnabled(true);
+                        btnGpsStart.setText("Location Recorded");
+                    }
+
+
+
+                    Toast.makeText(this.context, location, Toast.LENGTH_SHORT).show();
+                    break;
             }
         }
     }
