@@ -43,6 +43,10 @@
     <string name="stringB2_a">Built By</string>
     <string name="stringB2_b">Construction Type</string>
     <string name="stringB2_c">Specify Others</string>
+    <string name="stringC1">Do you have idea about the process on the release of government reconstruction grant?</string>
+    <string name="stringC2">What kind of support have you received for shelter and livelihoods after the earthquake?</string>
+    <string name="stringC2_a">Installment</string>
+    <string name="stringC2_b">Specify Received Kind Support</string>
 
 
     <string-array name="sex">

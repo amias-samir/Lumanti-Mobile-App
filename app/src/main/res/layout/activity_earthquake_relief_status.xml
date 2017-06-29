@@ -55,7 +55,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Do you have idea about the process on the release of government reconstruction grant?"
+                            android:text="@string/stringC1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -96,7 +96,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="What kind of support have you received for shelter and livelihoods after the earthquake?"
+                            android:text="@string/stringC2"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -137,7 +137,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Installment"
+                            android:text="@string/stringC2_a"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -162,7 +162,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="Specify Received Kind Support"
+                        android:hint="@string/stringC2_b"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/earthquake_relief_kind_support" />
@@ -195,7 +195,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
                             android:background="@drawable/button_pressed_hwc_light"
-                            android:text="Next"
+                            android:text="@string/stringNext"
                             android:textColor="#ffffff" />
 
                     </RelativeLayout>
