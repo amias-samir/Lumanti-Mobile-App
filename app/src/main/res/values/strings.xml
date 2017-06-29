@@ -55,6 +55,9 @@
     <string name="stringD4">Are you member of any Saving Groups/Cooperative?</string>
     <string name="stringD4_a">Saving per month</string>
     <string name="stringD5">Tentative monthly income</string>
+    <string name="stringE1">Main source of drinking water</string>
+    <string name="stringE1_a">Specify others (Water Source)</string>
+    <string name="stringE2">Type of toilet</string>
 
 
     <string-array name="sex">

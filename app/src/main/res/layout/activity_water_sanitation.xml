@@ -55,7 +55,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Main source of drinking water"
+                            android:text="@string/stringE1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -80,7 +80,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="Specify others (Water Source)"
+                        android:hint="@string/stringE1_a"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/water_sanitation_other_drinking_water_source" />
@@ -106,14 +106,14 @@
                             android:id="@+id/toiletTypeLbl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Type of toilet "
+                            android:text="@string/stringE2"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/monsoon" />
+                            android:textColor="@color/monsoon"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true" />
 
                         <Spinner
                             android:id="@+id/water_sanitation_toilet_type"
@@ -153,7 +153,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
                             android:background="@drawable/button_pressed_hwc_light"
-                            android:text="Next"
+                            android:text="@string/stringNext"
                             android:textColor="#ffffff" />
 
                     </RelativeLayout>
