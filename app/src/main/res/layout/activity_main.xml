@@ -55,7 +55,7 @@
                         android:layout_alignParentTop="true"
                         android:gravity="center_vertical"
                         android:paddingLeft="5dp"
-                        android:text="Damage Type"
+                        android:text="@string/stringG1"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/monsoon" />
 
@@ -99,7 +99,7 @@
                         android:layout_alignParentTop="true"
                         android:gravity="center_vertical"
                         android:paddingLeft="5dp"
-                        android:text="District Name"
+                        android:text="@string/stringG2"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/monsoon" />
 
@@ -126,7 +126,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:hint="District Code"
+                    android:hint="@string/stringG3"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_district_code" />
@@ -141,7 +141,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:hint="Rural Municipality"
+                    android:hint="@string/stringG4"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_rural_municipality" />
@@ -156,7 +156,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:hint="Current  Ward no"
+                    android:hint="@string/stringG5"
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_current_ward_no" />
@@ -171,7 +171,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:hint="Previous VDC/Mun"
+                    android:hint="@string/stringG6"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_previous_vdc_mun" />
@@ -186,7 +186,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:hint="Previous Ward no"
+                    android:hint="@string/stringG7"
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_previous_ward_no" />
@@ -201,7 +201,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:hint="Tole"
+                    android:hint="@string/stringG8"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_tole" />
@@ -216,7 +216,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:hint="House code"
+                    android:hint="@string/stringG9"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_house_code" />
@@ -231,7 +231,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:hint="Nissa no"
+                    android:hint="@string/stringG10"
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_nissa_no" />
@@ -246,7 +246,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:hint="Citizenship No"
+                    android:hint="@string/stringG11"
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_citizenship_no" />
@@ -261,7 +261,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:hint="PA no"
+                    android:hint="@string/stringG12"
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_pa_no" />
@@ -293,7 +293,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true"
                         android:background="@drawable/button_pressed_hwc_light"
-                        android:text="Next"
+                        android:text="@string/stringNext"
                         android:textColor="#ffffff" />
 
                 </RelativeLayout>

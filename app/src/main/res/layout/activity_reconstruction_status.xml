@@ -60,7 +60,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:background="@drawable/button_pressed_hwc_light"
                                 android:gravity="center"
-                                android:text="Get gps location"
+                                android:text="@string/get_gps_locationBtnText"
                                 android:textColor="#ffffff" />
 
                         </RelativeLayout>
@@ -71,7 +71,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@drawable/button_pressed_hwc_light"
-                            android:text="Preview Map"
+                            android:text="@string/preview_mapBtnText"
                             android:textColor="#ffffff" />
 
                     </LinearLayout>
@@ -101,7 +101,7 @@
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Photograph1"
+                            android:text="@string/photograph1LBL"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
 
                         <ImageButton
@@ -149,7 +149,7 @@
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Photograph2"
+                            android:text="@string/photograph2LBL"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
 
                         <ImageButton
@@ -197,7 +197,7 @@
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Photograph3"
+                            android:text="@string/photograph3LBL"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
 
                         <ImageButton
@@ -245,7 +245,7 @@
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Photograph of house with owner/family member"
+                            android:text="@string/photograph4LBL"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
 
                         <ImageButton
@@ -295,7 +295,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="What is the current living situation of your family and location?"
+                            android:text="@string/stringB2"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -336,7 +336,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Build By"
+                            android:text="@string/stringB2_a"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -377,7 +377,7 @@
                             android:layout_alignParentTop="true"
                             android:gravity="center_vertical"
                             android:paddingLeft="5dp"
-                            android:text="Construction Type"
+                            android:text="@string/stringB2_b"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
@@ -404,7 +404,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="Specify Others"
+                        android:hint="@string/stringB2_c"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/reconstruction_status_others_specify" />
@@ -437,7 +437,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
                             android:background="@drawable/button_pressed_hwc_light"
-                            android:text="Next"
+                            android:text="@string/stringNext"
                             android:textColor="#ffffff" />
 
                     </RelativeLayout>

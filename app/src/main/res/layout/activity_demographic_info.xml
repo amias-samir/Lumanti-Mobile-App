@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Head of the Household "
+                    android:text="@string/head_of_the_householdLBL"
                     android:textSize="20dp"/>
 
                     <!--Name-->
@@ -58,7 +58,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="Name"
+                            android:hint="@string/stringA1"
                             android:inputType="text"
                             android:textColor="@color/black"
                             android:id="@+id/demographic_info_head_name" />
@@ -90,7 +90,7 @@
                                 android:layout_alignParentTop="true"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="5dp"
-                                android:text="Sex"
+                                android:text="@string/stringA1_a"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textColor="@color/monsoon" />
 
@@ -117,7 +117,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="Age"
+                            android:hint="@string/stringA1_b"
                             android:inputType="number"
                             android:textColor="@color/black"
                             android:id="@+id/demographic_info_head_age" />
@@ -147,7 +147,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Family Members "
+                        android:text="@string/family_membersLBL"
                         android:textSize="20dp"/>
 
                     <!--Below 5-->
@@ -159,7 +159,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="Below 5"
+                            android:hint="@string/stringA2_a"
                             android:inputType="number"
                             android:textColor="@color/black"
                             android:id="@+id/demographic_info_below_5_no" />
@@ -174,7 +174,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="Between 5-14"
+                            android:hint="@string/stringA2_b"
                             android:inputType="number"
                             android:textColor="@color/black"
                             android:id="@+id/demographic_info_between5_14_no" />
@@ -189,7 +189,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="Between 15-64"
+                            android:hint="@string/stringA2_c"
                             android:inputType="number"
                             android:textColor="@color/black"
                             android:id="@+id/demographic_info_between_15_64_no" />
@@ -201,13 +201,13 @@
                         android:layout_height="wrap_content">
 
                         <AutoCompleteTextView
+                            android:id="@+id/demographic_info_above_65_no"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="Above 65"
+                            android:hint="@string/stringA2_d"
                             android:inputType="number"
-                            android:textColor="@color/black"
-                            android:id="@+id/demographic_info_above_65_no" />
+                            android:textColor="@color/black" />
                     </android.support.design.widget.TextInputLayout>
 
                     <!--Male no-->
@@ -219,7 +219,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="Male No"
+                            android:hint="@string/stringA2_f"
                             android:inputType="number"
                             android:textColor="@color/black"
                             android:id="@+id/demographic_info_male_family_no" />
@@ -234,7 +234,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="female No"
+                            android:hint="@string/stringA2_g"
                             android:inputType="number"
                             android:textColor="@color/black"
                             android:id="@+id/demographic_info_female_family_no" />
@@ -249,7 +249,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="Other No"
+                            android:hint="@string/stringA2_h"
                             android:inputType="number"
                             android:textColor="@color/black"
                             android:id="@+id/demographic_info_othre_family_no" />
@@ -264,7 +264,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="Total No. Of Family Members"
+                            android:hint="@string/stringA2_e"
                             android:inputType="number"
                             android:textColor="@color/black"
                             android:id="@+id/general_info_family_mem_total" />
@@ -295,7 +295,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Disable/Pregnant/Lactating "
+                        android:text="@string/disable_pregnant_lactatingLBL"
                         android:textSize="20dp"/>
 
 
@@ -325,7 +325,7 @@
                                 android:layout_alignParentTop="true"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="5dp"
-                                android:text="Do you have disable/pregnant/lactating women in your family? "
+                                android:text="@string/stringA3"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textColor="@color/monsoon" />
 
@@ -368,7 +368,7 @@
                                 android:layout_alignParentTop="true"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="5dp"
-                                android:text="Please specify disable/pregnant/lactating"
+                                android:text="@string/stringA3_a"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textColor="@color/monsoon" />
 
@@ -394,7 +394,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="45dp"
-                            android:hint="Disability type"
+                            android:hint="@string/stringA3_b"
                             android:inputType="text"
                             android:textColor="@color/black"
                             android:id="@+id/demographic_info_disability_type" />
@@ -422,7 +422,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="5dp"
-                                android:text="After earthquake or Before earthquake? "
+                                android:text="@string/stringA3_c"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textColor="@color/monsoon"
                                 android:layout_alignParentTop="true"
@@ -473,7 +473,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:background="@drawable/button_pressed_hwc_light"
-                    android:text="Next"
+                    android:text="@string/stringNext"
                     android:textColor="#ffffff" />
 
             </RelativeLayout>
