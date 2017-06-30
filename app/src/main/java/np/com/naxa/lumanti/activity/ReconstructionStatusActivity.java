@@ -772,6 +772,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         if (living_situation.equals("At own house")){
             spinnerBuildBy.setVisibility(View.VISIBLE);
             spinnerConstructionType.setVisibility(View.VISIBLE);
+            tvOthersSpecify.setVisibility(View.INVISIBLE);
+
 
         }
         else if(living_situation.equals("Others")){

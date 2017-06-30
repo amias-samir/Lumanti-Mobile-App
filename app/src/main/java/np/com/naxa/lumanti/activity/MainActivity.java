@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,11 +54,9 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView tvPaNo;
     @BindView(R.id.general_info_next)
     Button btnNext;
+    @BindView(R.id.damageLbl)
+    TextView tvDamageLBL ;
 
-    ArrayAdapter distNamedpt, damageTypeadpt ;
-
-    String h_damage, dist_name, dist_code, rural_mun, current_ward, prev_vdc_name, prev_ward_num, tole, h_code, nissa_num,
-            citizen_num, pa_num ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,28 +77,41 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.general_info_next)
     public void NextPage() {
+        tvNissaNo.setError(null);
 
-        GeneralFormModel generalFormModel = new GeneralFormModel();
-        generalFormModel.setG1(spinnerDamageType.getSelectedItem().toString());
-        generalFormModel.setG2(spinnerDistrictName.getSelectedItem().toString());
-        generalFormModel.setG3(tvDistrictCode.getText().toString());
-        generalFormModel.setG4(tvRuralMunicipality.getText().toString());
-        generalFormModel.setG5(tvCurrentWardNo.getText().toString());
-        generalFormModel.setG6(tvPreviousVdcMun.getText().toString());
-        generalFormModel.setG7(tvPreviousWardNo.getText().toString());
-        generalFormModel.setG8(tvTole.getText().toString());
-        generalFormModel.setG9(tvHouseCode.getText().toString());
-        generalFormModel.setG_10(tvNissaNo.getText().toString());
-        generalFormModel.setG_11(tvCitizenshipNo.getText().toString());
-        generalFormModel.setG_12(tvPaNo.getText().toString());
+//        if(!(spinnerDistrictName.getSelectedItem().toString()).equals("") && !(tvNissaNo.getText().toString()).isEmpty() && !(tvNissaNo.getText().toString()).equals("") ) {
+
+            GeneralFormModel generalFormModel = new GeneralFormModel();
+            generalFormModel.setG1(spinnerDamageType.getSelectedItem().toString());
+            generalFormModel.setG2(spinnerDistrictName.getSelectedItem().toString());
+            generalFormModel.setG3(tvDistrictCode.getText().toString());
+            generalFormModel.setG4(tvRuralMunicipality.getText().toString());
+            generalFormModel.setG5(tvCurrentWardNo.getText().toString());
+            generalFormModel.setG6(tvPreviousVdcMun.getText().toString());
+            generalFormModel.setG7(tvPreviousWardNo.getText().toString());
+            generalFormModel.setG8(tvTole.getText().toString());
+            generalFormModel.setG9(tvHouseCode.getText().toString());
+            generalFormModel.setG_10(tvNissaNo.getText().toString());
+            generalFormModel.setG_11(tvCitizenshipNo.getText().toString());
+            generalFormModel.setG_12(tvPaNo.getText().toString());
 
 
+            Intent intent = new Intent(MainActivity.this, DemographicInfoActivity.class);
 
+            intent.putExtra("generalFormModel", generalFormModel);
+            startActivity(intent);
+//        }
+//        else {
+//            tvNissaNo.setError("The field cannot be empty");
+//            tvDamageLBL.setError("The field cannot be empty");
+//        }
+    }
 
-        Intent intent = new Intent(MainActivity.this, DemographicInfoActivity.class);
-
-        intent.putExtra("generalFormModel", generalFormModel);
-        startActivity(intent);
+    @OnItemSelected (R.id.general_info_district_name)
+    public void spinner (){
+        if(!(spinnerDistrictName.getSelectedItem().toString()).equals("")){
+            tvDamageLBL.setError(null);
+        }
     }
 
     @Override

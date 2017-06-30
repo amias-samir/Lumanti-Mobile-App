@@ -87,9 +87,11 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
         String living_situation = spinnerReceivedSupport.getSelectedItem().toString();
         if (living_situation.equals("In Cash")){
             receivedInstallment.setVisibility(View.VISIBLE);
+            tvKindSupport.setVisibility(View.INVISIBLE);
         }
         else if(living_situation.equals("In Kind")){
             tvKindSupport.setVisibility(View.VISIBLE);
+            receivedInstallment.setVisibility(View.INVISIBLE);
 
         }
         else {

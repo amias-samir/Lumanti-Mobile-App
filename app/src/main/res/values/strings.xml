@@ -15,6 +15,8 @@
     <string name="stringG11">Citizenship No</string>
     <string name="stringG12">PA no</string>
     <string name="stringNext">Next</string>
+
+
     <string name="head_of_the_householdLBL">Head of the Household</string>
     <string name="stringA1">Name</string>
     <string name="stringA1_a">Sex</string>
@@ -33,6 +35,7 @@
     <string name="stringA3_a">Please specify disable/pregnant/lactating</string>
     <string name="stringA3_b">Disability type</string>
     <string name="stringA3_c">After earthquake or Before earthquake?</string>
+
     <string name="get_gps_locationBtnText">Get gps location</string>
     <string name="preview_mapBtnText">Preview Map</string>
     <string name="photograph1LBL">Photograph1</string>
@@ -43,10 +46,12 @@
     <string name="stringB2_a">Built By</string>
     <string name="stringB2_b">Construction Type</string>
     <string name="stringB2_c">Specify Others</string>
+
     <string name="stringC1">Do you have idea about the process on the release of government reconstruction grant?</string>
     <string name="stringC2">What kind of support have you received for shelter and livelihoods after the earthquake?</string>
     <string name="stringC2_a">Installment</string>
     <string name="stringC2_b">Specify Received Kind Support</string>
+
     <string name="stringD1">Do you have land with your land title?</string>
     <string name="stringD2">Land title at other place</string>
     <string name="stringD2_a">Area of land (Approximate) Aana, Ropani</string>
@@ -55,9 +60,11 @@
     <string name="stringD4">Are you member of any Saving Groups/Cooperative?</string>
     <string name="stringD4_a">Saving per month</string>
     <string name="stringD5">Tentative monthly income</string>
+
     <string name="stringE1">Main source of drinking water</string>
     <string name="stringE1_a">Specify others (Water Source)</string>
     <string name="stringE2">Type of toilet</string>
+
     <string name="stringF1">Have you participate in any household/community meeting, orientation programs on reconstruction in your VDC/ Ward ?</string>
     <string name="stringF2">Have you (any one from your family member) attended trainings related with Disaster Preparedness / Housing reconstruction (Y/N)?</string>
     <string name="stringF2_a">Attended disaster training</string>
@@ -67,6 +74,7 @@
     <string name="stringF6">Any specific information</string>
     <string name="stringF7">Any gap identified by surveyor</string>
     <string name="stringF5">Do you have any recommendation regarding reconstruction activities by Lumanti?</string>
+
     <string name="sendBtnText">send</string>
     <string name="saveBtnText">save</string>
 
@@ -190,7 +198,7 @@
         <item>"Tube well"</item>
         <item>"River"</item>
         <item>"Spring"</item>
-        <item>"Other"</item>
+        <item>"Others"</item>
     </string-array>
 
 
