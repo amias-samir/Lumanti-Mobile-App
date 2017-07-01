@@ -16,6 +16,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView tvPaNo;
     @BindView(R.id.general_info_next)
     Button btnNext;
-    @BindView(R.id.damageLbl)
-    TextView tvDamageLBL ;
+    @BindView(R.id.districtLbl)
+    TextView tvDistrictLBL ;
 
 
     @Override
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     public void NextPage() {
         tvNissaNo.setError(null);
 
-//        if(!(spinnerDistrictName.getSelectedItem().toString()).equals("") && !(tvNissaNo.getText().toString()).isEmpty() && !(tvNissaNo.getText().toString()).equals("") ) {
+        if((!(spinnerDistrictName.getSelectedItem().toString()).equals("") || !(tvNissaNo.getText().toString()).isEmpty()) && !(tvNissaNo.getText().toString()).equals("") ) {
 
             GeneralFormModel generalFormModel = new GeneralFormModel();
             generalFormModel.setG1(spinnerDamageType.getSelectedItem().toString());
@@ -100,17 +101,18 @@ public class MainActivity extends AppCompatActivity {
 
             intent.putExtra("generalFormModel", generalFormModel);
             startActivity(intent);
-//        }
-//        else {
-//            tvNissaNo.setError("The field cannot be empty");
-//            tvDamageLBL.setError("The field cannot be empty");
-//        }
+        }
+        else {
+            Toast.makeText(this, "District name and Nissa no. is required", Toast.LENGTH_SHORT).show();
+            tvNissaNo.setError("The field cannot be empty");
+            tvDistrictLBL.setError("The field cannot be empty");
+        }
     }
 
     @OnItemSelected (R.id.general_info_district_name)
     public void spinner (){
         if(!(spinnerDistrictName.getSelectedItem().toString()).equals("")){
-            tvDamageLBL.setError(null);
+            tvDistrictLBL.setError(null);
         }
     }
 

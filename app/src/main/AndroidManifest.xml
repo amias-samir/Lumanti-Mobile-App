@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Dark">
-        <activity android:name=".activity.SplashScreenActivity"
+        <activity
+            android:name=".activity.SplashScreenActivity"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +29,6 @@
             </intent-filter>
         </activity>
 
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAMJnKb37T0YzQqwZ30djyGVgOtw-KTqUo" />
@@ -36,49 +36,44 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".activity.MainActivity"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".activity.DemographicInfoActivity"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".activity.ReconstructionStatusActivity"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".activity.EarthquakeReliefStatusActivity"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".activity.SocioEconomicInfoctivity"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".activity.WaterSanitationActivity"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".activity.CapacityBuildingActivity"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-
-        <activity android:name=".gps.MapPointActivity"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-
-        <activity android:name=".gps.MapPolyLineActivity"
-        android:windowSoftInputMode="stateHidden">
-    </activity>
-
-        <activity android:name=".activity.SavedFormsActivity"
+        <activity
+            android:name=".activity.MainActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.DemographicInfoActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.ReconstructionStatusActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.EarthquakeReliefStatusActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.SocioEconomicInfoctivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.WaterSanitationActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.CapacityBuildingActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".gps.MapPointActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".gps.MapPolyLineActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".activity.SavedFormsActivity"
             android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.MainActivity" />
         </activity>
-
-
-        <activity android:name=".gps.GeoPointActivity"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-
-
+        <activity
+            android:name=".gps.GeoPointActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".activity.SaveSendActivity"></activity>
     </application>
 
 </manifest>

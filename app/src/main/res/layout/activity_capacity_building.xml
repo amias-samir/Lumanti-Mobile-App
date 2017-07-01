@@ -252,51 +252,51 @@
                 </android.support.v7.widget.CardView>
 
 
-                <!--recommendation regarding reconstruction-->
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <!--&lt;!&ndash;recommendation regarding reconstruction&ndash;&gt;-->
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
 
-                    <AutoCompleteTextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="45dp"
-                        android:hint="@string/stringF5"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:id="@+id/capacity_building_recommendation_regarding_reconstruction" />
-                </android.support.design.widget.TextInputLayout>
+                    <!--<AutoCompleteTextView-->
+                        <!--android:layout_width="fill_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="45dp"-->
+                        <!--android:hint="@string/stringF5"-->
+                        <!--android:inputType="text"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:id="@+id/capacity_building_recommendation_regarding_reconstruction" />-->
+                <!--</android.support.design.widget.TextInputLayout>-->
 
 
-                <!--any specific information-->
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <!--&lt;!&ndash;any specific information&ndash;&gt;-->
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
 
-                    <AutoCompleteTextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="45dp"
-                        android:hint="@string/stringF6"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:id="@+id/capacity_building_any_specific_info" />
-                </android.support.design.widget.TextInputLayout>
+                    <!--<AutoCompleteTextView-->
+                        <!--android:layout_width="fill_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="45dp"-->
+                        <!--android:hint="@string/stringF6"-->
+                        <!--android:inputType="text"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:id="@+id/capacity_building_any_specific_info" />-->
+                <!--</android.support.design.widget.TextInputLayout>-->
 
-                <!--gap  identifier by surveyor-->
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <!--&lt;!&ndash;gap  identifier by surveyor&ndash;&gt;-->
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
 
-                    <AutoCompleteTextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="45dp"
-                        android:hint="@string/stringF7"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:id="@+id/capacity_building_identified_gap" />
-                </android.support.design.widget.TextInputLayout>
+                    <!--<AutoCompleteTextView-->
+                        <!--android:layout_width="fill_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="45dp"-->
+                        <!--android:hint="@string/stringF7"-->
+                        <!--android:inputType="text"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:id="@+id/capacity_building_identified_gap" />-->
+                <!--</android.support.design.widget.TextInputLayout>-->
 
 
                 <!-- Next -->
@@ -316,25 +316,25 @@
                         android:layout_margin="@dimen/layout_margin"
                         android:padding="5dp">
 
-                        <Button
-                            android:id="@+id/water_sanitation_send"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentTop="true"
-                            android:background="@drawable/button_pressed_hwc_light"
-                            android:text="@string/sendBtnText"
-                            android:textColor="#ffffff" />
+                        <!--<Button-->
+                            <!--android:id="@+id/water_sanitation_send"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_alignParentLeft="true"-->
+                            <!--android:layout_alignParentTop="true"-->
+                            <!--android:background="@drawable/button_pressed_hwc_light"-->
+                            <!--android:text="@string/sendBtnText"-->
+                            <!--android:textColor="#ffffff" />-->
 
                         <Button
-                            android:id="@+id/water_sanitation_save"
+                            android:id="@+id/water_sanitation_next"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
                             android:background="@drawable/button_pressed_hwc_light"
-                            android:text="@string/saveBtnText"
+                            android:text="@string/stringNext"
                             android:textColor="#ffffff" />
 
                     </RelativeLayout>
