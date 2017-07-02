@@ -173,7 +173,7 @@ public class DemographicInfoActivity extends AppCompatActivity {
         // code here
         int id = position ;
         String disable = spinnerDisPregLac.getSelectedItem().toString();
-        if (disable.equals("Yes")){
+        if (disable.equals("Yes(छ)")){
             spinnerSpecifyDisPregLac.setVisibility(View.VISIBLE);
 
         }
@@ -187,7 +187,7 @@ public class DemographicInfoActivity extends AppCompatActivity {
         // code here
         int id = position ;
         String specifyDisable = spinnerSpecifyDisPregLac.getSelectedItem().toString();
-        if (specifyDisable.equals("Disable")){
+        if (specifyDisable.equals("Disable(अपाङ्ग)")){
             tvDisabilityType.setVisibility(View.VISIBLE);
             spinnerBeforeAfterDisabled.setVisibility(View.VISIBLE);
         }

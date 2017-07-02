@@ -31,7 +31,8 @@
                 <!--recommendation regarding reconstruction-->
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <AutoCompleteTextView
                         android:layout_width="fill_parent"
@@ -71,7 +72,8 @@
                         android:hint="@string/stringF7"
                         android:inputType="text"
                         android:textColor="@color/black"
-                        android:id="@+id/capacity_building_identified_gap" />
+                        android:id="@+id/capacity_building_identified_gap"
+                        />
                 </android.support.design.widget.TextInputLayout>
 
 

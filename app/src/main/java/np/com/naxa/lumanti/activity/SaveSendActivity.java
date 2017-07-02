@@ -346,7 +346,7 @@ public class SaveSendActivity extends AppCompatActivity {
                 int width = metrics.widthPixels;
                 int height = metrics.heightPixels;
 
-                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.data_sent_successfully, Toast.LENGTH_SHORT).show();
 
                 final Dialog showDialog = new Dialog(context);
                 showDialog.setContentView(R.layout.thank_you_popup);

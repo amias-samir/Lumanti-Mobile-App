@@ -77,147 +77,148 @@
 
     <string name="sendBtnText">send</string>
     <string name="saveBtnText">save</string>
+    <string name="data_sent_successfully">Data sent successfully</string>
 
 
     <string-array name="sex">
         <item>""</item>
-        <item>"Male"</item>
-        <item>"Female"</item>
-        <item>"Other"</item>
+        <item>"पुरुष(Male)"</item>
+        <item>"महिला(Female)"</item>
+        <item>"अन्य(Other)"</item>
     </string-array>
 
     <string-array name="house_damage">
         <item>""</item>
-        <item>"Fully damaged"</item>
-        <item>"Partially damaged"</item>
+        <item>"पूर्ण क्षति(Fully damaged)"</item>
+        <item>"आंशिक क्षति(Partially damaged)"</item>
     </string-array>
 
     <string-array name="yes_no">
         <item>""</item>
-        <item>"Yes"</item>
-        <item>"No"</item>
+        <item>"Yes(छ)"</item>
+        <item>"No(छैन)"</item>
     </string-array>
 
     <string-array name="specify_dis_lac_preg">
         <item>""</item>
-        <item>"Disable"</item>
-        <item>"Pregnant"</item>
-        <item>"Lactating"</item>
+        <item>"Disable(अपाङ्ग)"</item>
+        <item>"Pregnant(गर्भवती)"</item>
+        <item>"Lactating(स्तनपान गराइरहेको)"</item>
     </string-array>
 
     <string-array name="before_after_earthquake">
         <item>""</item>
-        <item>"Before Earthquake"</item>
-        <item>"After Earthquake"</item>
+        <item>"Before Earthquake(भूकम्प पहिले)"</item>
+        <item>"After Earthquake(भूकम्प पछि)"</item>
     </string-array>
 
     <string-array name="district_name">
         <item>""</item>
-        <item>"Rasuwa"</item>
-        <item>"Ktm"</item>
-        <item>"Lalitpur"</item>
-        <item>"Makawanpur"</item>
+        <item>"Rasuwa(रसुवा)"</item>
+        <item>"Ktm(काठमाडौँ)"</item>
+        <item>"Lalitpur(ललितपुर)"</item>
+        <item>"Makawanpur(मकवानपुर)"</item>
     </string-array>
 
 
     <string-array name="current_living_situation">
         <item>""</item>
-        <item>"At own house"</item>
-        <item>"At relatives house"</item>
-        <item>"At temporary shelter"</item>
-        <item>"At rented house"</item>
-        <item>"Others"</item>
+        <item>"At own house(आफ्नै घरमा)"</item>
+        <item>"At relatives house(आफन्तको घरमा)"</item>
+        <item>"At temporary shelter(अस्थाइ बसोबास)"</item>
+        <item>"At rented house(भाडाको घरमा)"</item>
+        <item>"Others(अन्य)"</item>
     </string-array>
 
     <string-array name="build_by">
         <item>""</item>
-        <item>"Constructed with technical and financial support"</item>
-        <item>"On your own"</item>
+        <item>"Constructed with technical and financial support(प्राविधिक र आर्थिक सहयोगमा निर्माण गरेको)"</item>
+        <item>"On your own(आफैँले बनाएको)"</item>
     </string-array>
 
     <string-array name="consctruction_type">
         <item>""</item>
-        <item>"Stone Mud masonry (RCC Ties/Timber Ties)"</item>
-        <item>"Stone Cement Masonry"</item>
-        <item>"Brick Mud Masonry (RCC Ties/Timber Ties)"</item>
-        <item>"Brick Cement Masonry"</item>
-        <item>"RCC "</item>
+        <item>"Stone Mud masonry (RCC Ties/Timber Ties)(ढुङ्गाको गाह्रोमा माटोको जोडाई )"</item>
+        <item>"Stone Cement Masonry(ढुङ्गाको गाह्रोमा सिमेन्टको जोडाई)"</item>
+        <item>"Brick Mud Masonry (RCC Ties/Timber Ties)(इट्टाको गाह्रोमा माटोको जोडाई)"</item>
+        <item>"Brick Cement Masonry"(इट्टाको गाह्रोमा सिमेन्टको जोडाई)</item>
+        <item>"RCC(आर. सि. सि.)"</item>
     </string-array>
 
     <string-array name="received_support">
         <item>""</item>
-        <item>"In Cash"</item>
-        <item>"In Kind"</item>
+        <item>"In Cash(पैसामा)"</item>
+        <item>"In Kind(सामानमा)"</item>
     </string-array>
 
     <string-array name="installment">
         <item>""</item>
-        <item>"First Installment"</item>
-        <item>"Second Installment"</item>
-        <item>"Third Installment"</item>
+        <item>"First Installment(पहिलो किस्ता)"</item>
+        <item>"Second Installment(दोस्रो किस्ता)"</item>
+        <item>"Third Installment(तेस्रो किस्ता)"</item>
     </string-array>
 
     <string-array name="family_income_source">
         <item>""</item>
-        <item>"Agriculture"</item>
-        <item>"Business/Enterprises"</item>
-        <item>"Salaried job"</item>
-        <item>"Wage labor"</item>
-        <item>"Remittance"</item>
-        <item>"Pension"</item>
-        <item>"Rent"</item>
-        <item>"Bank interest"</item>
-        <item>"Others"</item>
+        <item>"Agriculture(कृषि)"</item>
+        <item>"Business/Enterprises(व्यापार व्यवसाय)"</item>
+        <item>"Salaried job(तलबी काम)"</item>
+        <item>"Wage labor(ज्याला मजदुरी)"</item>
+        <item>"Remittance(रेमिट्यान्स)"</item>
+        <item>"Pension(पेन्सन)"</item>
+        <item>"Rent(भाडा)"</item>
+        <item>"Bank interest(बैँकको ब्याज)"</item>
+        <item>"Others(अन्य)"</item>
     </string-array>
 
 
     <string-array name="savings_per_month">
         <item>""</item>
-        <item>"0-50"</item>
-        <item>"50-100"</item>
-        <item>"100-500"</item>
-        <item>"500-1000"</item>
-        <item>"Above 1000"</item>
+        <item>"0-50(५० भन्दा कम)"</item>
+        <item>"50-100(५०-१००)"</item>
+        <item>"100-500(१००-५००)"</item>
+        <item>"500-1000(५००-१,०००)"</item>
+        <item>"Above 1000(१००० भन्दा बढी)"</item>
     </string-array>
 
 
     <string-array name="tentative_monthly_income">
         <item>""</item>
-        <item>"Below 5000"</item>
-        <item>"5000-10,000"</item>
-        <item>"10,000-20,000"</item>
-        <item>"20,000-50,000"</item>
-        <item>"50,000 and above"</item>
+        <item>"Below 5000(५००० भन्दा कम)"</item>
+        <item>"5000-10,000(५,०००-१०,०००)"</item>
+        <item>"10,000-20,000(१०,०००-२०,०००)"</item>
+        <item>"20,000-50,000(२०,०००-५०,०००)"</item>
+        <item>"50,000 and above(५०,००० भन्दा बढी)"</item>
     </string-array>
 
 
     <string-array name="drinking_water_source">
         <item>""</item>
-        <item>"Piped water (private connection)"</item>
-        <item>"Public tap stand"</item>
-        <item>"Tube well"</item>
-        <item>"River"</item>
-        <item>"Spring"</item>
-        <item>"Others"</item>
+        <item>"Piped water (private connection)(पाइपबाट घरसम्म ल्याइएको)"</item>
+        <item>"Public tap stand(सार्वजनिक धारा)"</item>
+        <item>"Tube well(ट्यूब वेल)"</item>
+        <item>"River(खोला)"</item>
+        <item>"Spring(मूल)"</item>
+        <item>"Others(अन्य)"</item>
     </string-array>
 
 
     <string-array name="toilet_type">
         <item>""</item>
-        <item>"Toilet with septic tank"</item>
-        <item>"Pit latrine"</item>
-        <item>"Toilet without septic tank"</item>
-        <item>"Without toilet"</item>
+        <item>"Toilet with septic tank(सेप्टिक ट्याङ्कवाला चर्पी)"</item>
+        <item>"Pit latrine(खाल्डोवाला चर्पी)"</item>
+        <item>"Toilet without septic tank(सेप्टिक ट्याङ्क बिनाको चर्पी)"</item>
+        <item>"Without toilet(चर्पी नभएको)"</item>
     </string-array>
 
     <string-array name="disaster_training_type">
         <item>""</item>
-        <item>"Search and Rescue"</item>
-        <item>"First Aid"</item>
-        <item>"Disaster Management Training (Leadership / Social Mobilization)"</item>
-        <item>"Mason Training"</item>
-        <item>"Micro finance"</item>
-        <item>"Others"</item>
+        <item>"Search and Rescue(खोज तथा उद्धार)"</item>
+        <item>"First Aid(प्राथमिक उपचार)"</item>
+        <item>"Disaster Management Training (Leadership / Social Mobilization)(प्रकोप व्यवस्थापन तालिम/सामाजिक परिचालन)"</item>
+        <item>"Mason Training(डकर्मी तालिम)"</item>
+        <item>"Micro finance(लघुवित्त)"</item>
+        <item>"Others(अन्य)"</item>
     </string-array>
 
 

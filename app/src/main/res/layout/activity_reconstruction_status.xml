@@ -95,8 +95,8 @@
 
                         <TextView
                             android:id="@+id/reconstructionPhotographSiteLable1"
-                            android:layout_width="200dp"
-                            android:layout_height="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
@@ -143,8 +143,8 @@
 
                         <TextView
                             android:id="@+id/reconstructionPhotographSiteLable2"
-                            android:layout_width="200dp"
-                            android:layout_height="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
@@ -191,8 +191,8 @@
 
                         <TextView
                             android:id="@+id/reconstructionPhotographSiteLable3"
-                            android:layout_width="200dp"
-                            android:layout_height="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
@@ -239,8 +239,8 @@
 
                         <TextView
                             android:id="@+id/reconstructionPhotographSiteLable4"
-                            android:layout_width="200dp"
-                            android:layout_height="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
