@@ -154,6 +154,12 @@
                 </android.support.v7.widget.CardView>
 
                 <!--specify other disaster training -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stringF2_b"
+                    android:textColor="@color/accent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"/>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -161,8 +167,6 @@
                     <AutoCompleteTextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="45dp"
-                        android:hint="@string/stringF2_b"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/capacity_building_other_disaster_training" />

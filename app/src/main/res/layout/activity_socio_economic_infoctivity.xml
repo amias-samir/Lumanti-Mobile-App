@@ -72,6 +72,12 @@
                 </android.support.v7.widget.CardView>
 
                 <!--land at other place-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stringD2"
+                    android:textColor="@color/accent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"/>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -79,14 +85,19 @@
                     <AutoCompleteTextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="45dp"
-                        android:hint="@string/stringD2"
+                        android:hint=""
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/socio_economic_land_at_other_place" />
                 </android.support.design.widget.TextInputLayout>
 
                 <!--land area-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stringD2_a"
+                    android:textColor="@color/accent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"/>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -94,8 +105,7 @@
                     <AutoCompleteTextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="45dp"
-                        android:hint="@string/stringD2_a"
+                        android:hint=""
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/socio_economic_land_area" />
@@ -143,6 +153,12 @@
                 </android.support.v7.widget.CardView>
 
                 <!--income source others-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stringD3_a"
+                    android:textColor="@color/accent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"/>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -150,8 +166,7 @@
                     <AutoCompleteTextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="45dp"
-                        android:hint="@string/stringD3_a"
+                        android:hint=""
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/socio_economic_other_income_source" />

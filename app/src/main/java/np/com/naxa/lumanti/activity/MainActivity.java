@@ -4,14 +4,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.support.v4.view.GravityCompat;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -23,10 +23,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import np.com.naxa.lumanti.R;
-import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 
 public class MainActivity extends AppCompatActivity {
+
+    String rural_municipality;
 
     Toolbar toolbar;
     @BindView(R.id.general_info_damage_type)
@@ -56,7 +57,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.general_info_next)
     Button btnNext;
     @BindView(R.id.districtLbl)
-    TextView tvDistrictLBL ;
+    TextView tvDistrictLBL;
+    @BindView(R.id.general_info_rural_municipality_spinner)
+    Spinner spinnerRuralMunicipality;
+    @BindView(R.id.ruralCardLayout)
+    CardView rlRuralCardLayout;
+    @BindView(R.id.inputlatoutRural)
+    TextInputLayout inputlatoutRural;
 
 
     @Override
@@ -80,13 +87,19 @@ public class MainActivity extends AppCompatActivity {
     public void NextPage() {
         tvNissaNo.setError(null);
 
-        if((!(spinnerDistrictName.getSelectedItem().toString()).equals("") || !(tvNissaNo.getText().toString()).isEmpty()) && !(tvNissaNo.getText().toString()).equals("") ) {
+        if ((!(spinnerDistrictName.getSelectedItem().toString()).equals("") || !(tvNissaNo.getText().toString()).isEmpty()) && !(tvNissaNo.getText().toString()).equals("")) {
+
+            final String[] values = getResources().getStringArray(R.array.district_name);
+            if(!(spinnerDistrictName.getSelectedItem().toString()).equals(values[1])){
+                rural_municipality = tvRuralMunicipality.getText().toString();
+            }
+
 
             GeneralFormModel generalFormModel = new GeneralFormModel();
             generalFormModel.setG1(spinnerDamageType.getSelectedItem().toString());
             generalFormModel.setG2(spinnerDistrictName.getSelectedItem().toString());
             generalFormModel.setG3(tvDistrictCode.getText().toString());
-            generalFormModel.setG4(tvRuralMunicipality.getText().toString());
+            generalFormModel.setG4(rural_municipality);
             generalFormModel.setG5(tvCurrentWardNo.getText().toString());
             generalFormModel.setG6(tvPreviousVdcMun.getText().toString());
             generalFormModel.setG7(tvPreviousWardNo.getText().toString());
@@ -101,20 +114,58 @@ public class MainActivity extends AppCompatActivity {
 
             intent.putExtra("generalFormModel", generalFormModel);
             startActivity(intent);
-        }
-        else {
+        } else {
             Toast.makeText(this, "District name and Nissa no. is required", Toast.LENGTH_SHORT).show();
             tvNissaNo.setError("The field cannot be empty");
             tvDistrictLBL.setError("The field cannot be empty");
         }
     }
 
-    @OnItemSelected (R.id.general_info_district_name)
-    public void spinner (){
-        if(!(spinnerDistrictName.getSelectedItem().toString()).equals("")){
+    @OnItemSelected(R.id.general_info_district_name)
+    public void spinner(Spinner spinner, int position) {
+        final String[] values = getResources().getStringArray(R.array.district_name);
+        int id = position;
+        String selected_item = spinnerDistrictName.getSelectedItem().toString();
+
+        if (selected_item.equals("")) {
             tvDistrictLBL.setError(null);
+            rlRuralCardLayout.setVisibility(View.INVISIBLE);
+            inputlatoutRural.setVisibility(View.INVISIBLE);
+            tvPreviousVdcMun.setText("");
+            tvPreviousVdcMun.setText("");
+
+        } else if (selected_item.equals(values[1])) {
+            rlRuralCardLayout.setVisibility(View.VISIBLE);
+            inputlatoutRural.setVisibility(View.INVISIBLE);
+
+        } else {
+            rlRuralCardLayout.setVisibility(View.INVISIBLE);
+            inputlatoutRural.setVisibility(View.VISIBLE);
+            tvPreviousVdcMun.setText("");
+            tvPreviousVdcMun.setText("");
+
+
+
         }
     }
+
+
+    @OnItemSelected(R.id.general_info_rural_municipality_spinner)
+    public void ruralSpinner(Spinner spinner, int position) {
+        final String[] values = getResources().getStringArray(R.array.rural_municipality);
+        int id = position;
+        String selected_item = spinnerRuralMunicipality.getSelectedItem().toString();
+        if (selected_item.equals(values[1])) {
+            rural_municipality = values[1];
+            tvPreviousVdcMun.setText("Dhaibung VDC ((धैबुङ्ग गाविस))");
+
+        } else if (selected_item.equals(values[2])) {
+            tvPreviousVdcMun.setText("Laharapauwa VDC (धैबुङ्ग गाविस)");
+            rural_municipality = values[2];
+
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

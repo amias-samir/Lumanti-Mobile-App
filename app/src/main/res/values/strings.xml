@@ -17,11 +17,11 @@
     <string name="stringNext">Next</string>
 
 
-    <string name="head_of_the_householdLBL">Head of the Household(घरमुलीको जानकारी)</string>
+    <string name="head_of_the_householdLBL">Head of the Household (घरमुलीको जानकारी)</string>
     <string name="stringA1">Name(नाम)</string>
     <string name="stringA1_a">Sex(लिङ्ग)</string>
     <string name="stringA1_b">Age(उमेर)</string>
-    <string name="family_membersLBL">Family Members(परिवारको सदस्य संख्या)</string>
+    <string name="family_membersLBL">Family Members (परिवारको सदस्य संख्या)</string>
     <string name="stringA2_a">Below 5(५ वर्ष मुनि)</string>
     <string name="stringA2_b">Between 5-14(५-१४)</string>
     <string name="stringA2_c">Between 15-64(१५-६४)</string>
@@ -29,51 +29,51 @@
     <string name="stringA2_f">Male No(पुरुष)</string>
     <string name="stringA2_g">female No(महिला)</string>
     <string name="stringA2_h">Other No(अन्य)</string>
-    <string name="stringA2_e">Total No. Of Family Members(परिवारको कुल सदस्य संख्या)</string>
-    <string name="disable_pregnant_lactatingLBL">Disable/Pregnant/Lactating(अपाङ्ग  / गर्भवती / स्तनपान गराइरहेको )</string>
-    <string name="stringA3">Do you have disable/pregnant/lactating women in your family?(के तपाईँको घरमा अपाङ्ग  / गर्भवती / स्तनपान गराइरहेको सदस्यहरु छन्?)</string>
-    <string name="stringA3_a">Please specify disable/pregnant/lactating(अपाङ्ग  / गर्भवती / स्तनपान गराइरहेको मध्ये छान्नुहोस्)</string>
-    <string name="stringA3_b">Disability type(अपाङ्गताको किसिम)</string>
-    <string name="stringA3_c">After earthquake or Before earthquake?(भूकम्प पहिले भएको वा पछि? )</string>
+    <string name="stringA2_e">Total No. Of Family Members (परिवारको कुल सदस्य संख्या)</string>
+    <string name="disable_pregnant_lactatingLBL">Disable/Pregnant/Lactating(अपाङ्ग/गर्भवती/स्तनपान गराइरहेको )</string>
+    <string name="stringA3">Do you have disable/pregnant/lactating women in your family? (के तपाईँको घरमा अपाङ्ग  / गर्भवती / स्तनपान गराइरहेको सदस्यहरु छन्?)</string>
+    <string name="stringA3_a">Please specify disable/pregnant/lactating (अपाङ्ग  / गर्भवती / स्तनपान गराइरहेको मध्ये छान्नुहोस्)</string>
+    <string name="stringA3_b">Disability type (अपाङ्गताको किसिम)</string>
+    <string name="stringA3_c">After earthquake or Before earthquake? (भूकम्प पहिले भएको वा पछि? )</string>
 
     <string name="get_gps_locationBtnText">Get gps location (घरको GPS लिनुहोस्)</string>
-    <string name="preview_mapBtnText">Preview Map(नक्सामा हर्नुहोस्)</string>
-    <string name="photograph1LBL">Front image of the house with family member(घरको फोटो (अगाडी बाट परिवारका सदस्यहरु सहित)</string>
-    <string name="photograph2LBL">Left imge of the house(घरको फोटो (देब्रेतिर बाट))</string>
-    <string name="photograph3LBL">Right image of the house(घरको फोटो (दाहिनेतिर बाट)</string>
-    <string name="photograph4LBL">Back image of the house(घरको फोटो (पछाडी बाट))/</string>
-    <string name="stringB2">What is the current living situation of your family and location?(तपाईँको परिवारको हालको बसोबास कस्तो छ? )</string>
-    <string name="stringB2_a">Built By(निर्माण गरिदिने)</string>
-    <string name="stringB2_b">Construction Type(निर्माणको प्रकार)</string>
-    <string name="stringB2_c">Specify Others(अन्य खुलाउनुहोस्)</string>
+    <string name="preview_mapBtnText">Preview Map (नक्सामा हर्नुहोस्)</string>
+    <string name="photograph1LBL">Front image of the house with family member (घरको फोटो (अगाडी बाट परिवारका सदस्यहरु सहित)</string>
+    <string name="photograph2LBL">Left imge of the house (घरको फोटो (देब्रेतिर बाट))</string>
+    <string name="photograph3LBL">Right image of the house (घरको फोटो (दाहिनेतिर बाट)</string>
+    <string name="photograph4LBL">Back image of the house (घरको फोटो (पछाडी बाट))</string>
+    <string name="stringB2">What is the current living situation of your family and location? (तपाईँको परिवारको हालको बसोबास कस्तो छ? )</string>
+    <string name="stringB2_a">Built By (निर्माण गरिदिने)</string>
+    <string name="stringB2_b">Construction Type (निर्माणको प्रकार)</string>
+    <string name="stringB2_c">Specify Others (अन्य खुलाउनुहोस्)</string>
 
-    <string name="stringC1">Do you have idea about the process on the release of government reconstruction grant?(के तपाईँलाई नेपाल सरकारले पुनर्निर्माणका लागी उपलब्ध गराएको अनुदान र प्राप्त गर्ने तरिकाबारे केहि थाहा छ? )</string>
-    <string name="stringC2">What kind of support have you received for shelter and livelihoods after the earthquake?(तपाईँले भूकम्पपछि आवास र जिविकाको लागी कुनै प्रकारका सहयोग प्राप्त गर्नुभएको छ? )</string>
-    <string name="stringC2_a">Installment(लिएको किस्ता)</string>
-    <string name="stringC2_b">Specify Received Kind Support(सामान सहयोग पाएको भए खुलाउनुहोस्)</string>
+    <string name="stringC1">Do you have idea about the process on the release of government reconstruction grant? (के तपाईँलाई नेपाल सरकारले पुनर्निर्माणका लागी उपलब्ध गराएको अनुदान र प्राप्त गर्ने तरिकाबारे केहि थाहा छ? )</string>
+    <string name="stringC2">What kind of support have you received for shelter and livelihoods after the earthquake? (तपाईँले भूकम्पपछि आवास र जिविकाको लागी कुनै प्रकारका सहयोग प्राप्त गर्नुभएको छ? )</string>
+    <string name="stringC2_a">Installment (लिएको किस्ता)</string>
+    <string name="stringC2_b">Specify Received Kind Support (सामान सहयोग पाएको भए खुलाउनुहोस्)</string>
 
-    <string name="stringD1">Do you have land with your land title?(के तपाईँको स्वामित्वमा जग्गाजमिन छ? )</string>
-    <string name="stringD2">Land title at other place(अन्य ठाउँमा जमिन भएमा)</string>
-    <string name="stringD2_a">Area of land (Approximate) Aana, Ropani(जमिनको क्षेत्रफल (रोपनी/आना) )</string>
-    <string name="stringD3">Major source of income of your family(परिवारको प्रमुख आम्दानीको श्रोत)</string>
-    <string name="stringD3_a">Income source (Others)(अन्य आम्दानीको श्रोत भए खुलाउनुहोस्)</string>
-    <string name="stringD4">Are you member of any Saving Groups/Cooperative?(के तपाईँ कुनै बचत तथा सरकारी संस्थाको सदस्य हुनुहुन्छ? )</string>
-    <string name="stringD4_a">Saving per month(मासिक बचत)</string>
-    <string name="stringD5">Tentative monthly income(मासिक आम्दानी)</string>
+    <string name="stringD1">Do you have land with your land title? (के तपाईँको स्वामित्वमा जग्गाजमिन छ? )</string>
+    <string name="stringD2">Land title at other place (अन्य ठाउँमा जमिन भएमा)</string>
+    <string name="stringD2_a">Area of land (Approximate) Aana, Ropani (जमिनको क्षेत्रफल (रोपनी/आना) )</string>
+    <string name="stringD3">Major source of income of your family (परिवारको प्रमुख आम्दानीको श्रोत)</string>
+    <string name="stringD3_a">Income source (Others) (अन्य आम्दानीको श्रोत भए खुलाउनुहोस्)</string>
+    <string name="stringD4">Are you member of any Saving Groups/Cooperative? (के तपाईँ कुनै बचत तथा सरकारी संस्थाको सदस्य हुनुहुन्छ? )</string>
+    <string name="stringD4_a">Saving per month (मासिक बचत)</string>
+    <string name="stringD5">Tentative monthly income (मासिक आम्दानी)</string>
 
-    <string name="stringE1">Main source of drinking water(खानेपानीको प्रमुख श्रोत)</string>
-    <string name="stringE1_a">Specify others (Water Source)(अन्य पानीको श्रोत भए खुलाउनुहोस्)</string>
-    <string name="stringE2">Type of toilet(चर्पीको प्रकार)</string>
+    <string name="stringE1">Main source of drinking water (खानेपानीको प्रमुख श्रोत)</string>
+    <string name="stringE1_a">Specify others (Water Source) (अन्य पानीको श्रोत भए खुलाउनुहोस्)</string>
+    <string name="stringE2">Type of toilet (चर्पीको प्रकार)</string>
 
-    <string name="stringF1">Have you participate in any household/community meeting, orientation programs on reconstruction in your VDC/ Ward ?(के तपाईँ आफ्नो गा.वि.स./वडामा घरेलु वा सामाजिक छलफल तथा अभिमुखिकरण कार्यक्रममा सहभागि हुनुभएको छ? )</string>
-    <string name="stringF2">Have you (any one from your family member) attended trainings related with Disaster Preparedness / Housing reconstruction (Y/N)?(के तपाईँले वा परिवारको कुनै सदस्यले प्रकोप व्यवस्थापन वा पुनर्निर्माण सम्बन्धि तालिम लिनुभएको छ? )</string>
-    <string name="stringF2_a">Attended disaster training(लिएको प्रकोपसम्बन्धि तालिम)</string>
-    <string name="stringF2_b">Specify others (Disaster Training)(अन्य प्रकोप व्यवस्थापन सम्बन्धि तालिम भए खुलाउनुहोस्)</string>
-    <string name="stringF3">Do you have any idea about Stockpiling (storage of search and rescue, first aid materials) in your VDC?(के तपाईँलाई गा.वि.स.मा खोजी, उद्धार तथा प्राथमिक उपचारका सामग्री भण्डारण गर्ने तरिकाबारे केहि थाहा छ?)</string>
-    <string name="stringF4">Are you the member of Disaster Management Committee?(के तपाईँ प्रकोप व्यवस्थापन समितिको सदस्य हुनुहुन्छ?)</string>
-    <string name="stringF6">Any specific information(अन्य महत्वपूर्ण जानकारी केहि भए भर्नुहोस्)</string>
-    <string name="stringF7">Any gap identified by surveyor(प्रश्नकर्ताले थप्न चाहेका कुराहरु)</string>
-    <string name="stringF5">Do you have any recommendation regarding reconstruction activities by Lumanti?(लुमन्तीले गरेका पुनर्निर्माणका कामहरुमा तपाईँको केहि सल्लाह सुझाव छ? )</string>
+    <string name="stringF1">Have you participate in any household/community meeting, orientation programs on reconstruction in your VDC/ Ward ? (के तपाईँ आफ्नो गा.वि.स./वडामा घरेलु वा सामाजिक छलफल तथा अभिमुखिकरण कार्यक्रममा सहभागि हुनुभएको छ? )</string>
+    <string name="stringF2">Have you (any one from your family member) attended trainings related with Disaster Preparedness / Housing reconstruction (Y/N)? (के तपाईँले वा परिवारको कुनै सदस्यले प्रकोप व्यवस्थापन वा पुनर्निर्माण सम्बन्धि तालिम लिनुभएको छ? )</string>
+    <string name="stringF2_a">Attended disaster training (लिएको प्रकोपसम्बन्धि तालिम)</string>
+    <string name="stringF2_b">Specify others (Disaster Training) (अन्य प्रकोप व्यवस्थापन सम्बन्धि तालिम भए खुलाउनुहोस्)</string>
+    <string name="stringF3">Do you have any idea about Stockpiling (storage of search and rescue, first aid materials) in your VDC? (के तपाईँलाई गा.वि.स.मा खोजी, उद्धार तथा प्राथमिक उपचारका सामग्री भण्डारण गर्ने तरिकाबारे केहि थाहा छ?)</string>
+    <string name="stringF4">Are you the member of Disaster Management Committee? (के तपाईँ प्रकोप व्यवस्थापन समितिको सदस्य हुनुहुन्छ?)</string>
+    <string name="stringF6">Any specific information (अन्य महत्वपूर्ण जानकारी केहि भए भर्नुहोस्)</string>
+    <string name="stringF7">Any gap identified by surveyor (प्रश्नकर्ताले थप्न चाहेका कुराहरु)</string>
+    <string name="stringF5">Do you have any recommendation regarding reconstruction activities by Lumanti? (लुमन्तीले गरेका पुनर्निर्माणका कामहरुमा तपाईँको केहि सल्लाह सुझाव छ? )</string>
 
     <string name="sendBtnText">send</string>
     <string name="saveBtnText">save</string>
@@ -115,9 +115,15 @@
     <string-array name="district_name">
         <item>""</item>
         <item>"Rasuwa(रसुवा)"</item>
-        <item>"Ktm(काठमाडौँ)"</item>
+        <item>"Kathmandu(काठमाडौँ)"</item>
         <item>"Lalitpur(ललितपुर)"</item>
         <item>"Makawanpur(मकवानपुर)"</item>
+    </string-array>
+
+    <string-array name="rural_municipality">
+        <item>""</item>
+        <item>"Kalika Rural Municipality (कालिका गाउँपालिका)"</item>
+        <item>"Uttargaya Rural Municipality (उत्तरगया गाउँपालिका)"</item>
     </string-array>
 
 

@@ -78,4 +78,10 @@ public class WaterSanitationActivity extends AppCompatActivity {
             tvOtherDrinkingWaterSource.setVisibility(View.INVISIBLE);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        return;
+
+    }
 }

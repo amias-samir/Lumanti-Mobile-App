@@ -132,4 +132,10 @@ public class SocioEconomicInfoctivity extends AppCompatActivity {
             spinnerSavingsPerMonth.setVisibility(View.INVISIBLE);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        return;
+
+    }
 }

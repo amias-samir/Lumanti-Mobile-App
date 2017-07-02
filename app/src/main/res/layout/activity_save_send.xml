@@ -29,6 +29,11 @@
                 android:layout_margin="@dimen/layout_margin"
                 android:orientation="vertical">
                 <!--recommendation regarding reconstruction-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stringF5"
+                    android:textColor="@color/accent"/>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -38,7 +43,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="@string/stringF5"
+                        android:hint=""
                         android:inputType="text|textMultiLine"
                         android:textColor="@color/black"
                         android:singleLine="false"
@@ -47,6 +52,12 @@
 
 
                 <!--any specific information-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stringF6"
+                    android:textColor="@color/accent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"/>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -55,13 +66,19 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="@string/stringF6"
+                        android:hint=""
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/capacity_building_any_specific_info" />
                 </android.support.design.widget.TextInputLayout>
 
                 <!--gap  identifier by surveyor-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stringF7"
+                    android:textColor="@color/accent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"/>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -70,7 +87,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
-                        android:hint="@string/stringF7"
+                        android:hint=""
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/capacity_building_identified_gap"
