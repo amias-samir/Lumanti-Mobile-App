@@ -68,9 +68,10 @@ public class WaterSanitationActivity extends AppCompatActivity {
     @OnItemSelected(R.id.water_sanitation_drinking_water_source)
     public void spinnerOtherWaterSelected(Spinner spinner, int position) {
         // code here
+        final String[] values = getResources().getStringArray(R.array.drinking_water_source);
         int id = position ;
         String selected_item = spinnerDrinkingWaterSource.getSelectedItem().toString();
-        if (selected_item.equals("Others")){
+        if (selected_item.equals(values[6])){
             tvOtherDrinkingWaterSource.setVisibility(View.VISIBLE);
         }
         else {

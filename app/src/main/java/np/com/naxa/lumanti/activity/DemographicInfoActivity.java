@@ -153,6 +153,7 @@ public class DemographicInfoActivity extends AppCompatActivity {
         startActivity(intent);
         }
         else {
+            Toast.makeText(this, getString(R.string.total_mem_validation_error), Toast.LENGTH_SHORT).show();
             tvBelow_5_No.setError(getString(R.string.total_mem_validation_error));
             tvBetween_5_14_No.setError(getString(R.string.total_mem_validation_error));
             tvBetween_15_64_No.setError(getString(R.string.total_mem_validation_error));
@@ -185,9 +186,10 @@ public class DemographicInfoActivity extends AppCompatActivity {
     @OnItemSelected(R.id.demographic_info_specify_dis_preg_lac)
     public void DisableSelected(Spinner spinner, int position) {
         // code here
+        final String[] values = getResources().getStringArray(R.array.specify_dis_lac_preg);
         int id = position ;
         String specifyDisable = spinnerSpecifyDisPregLac.getSelectedItem().toString();
-        if (specifyDisable.equals("Disable(अपाङ्ग)")){
+        if (specifyDisable.equals(values[1])){
             tvDisabilityType.setVisibility(View.VISIBLE);
             spinnerBeforeAfterDisabled.setVisibility(View.VISIBLE);
         }

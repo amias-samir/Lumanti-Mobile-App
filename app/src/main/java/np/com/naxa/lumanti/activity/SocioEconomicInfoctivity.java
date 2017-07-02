@@ -86,9 +86,10 @@ public class SocioEconomicInfoctivity extends AppCompatActivity {
     @OnItemSelected(R.id.socio_economic_land_with_land_title)
     public void spinnerItemSelected(Spinner spinner, int position) {
         // code here
+        final String[] values = getResources().getStringArray(R.array.yes_no);
         int id = position ;
         String selected_item = spinnerLandWithLandTitle.getSelectedItem().toString();
-        if (selected_item.equals("Yes")){
+        if (selected_item.equals(values[1])){
             tvLandAtOtherPlace.setVisibility(View.VISIBLE);
             tvLandArea.setVisibility(View.VISIBLE);
 
@@ -105,9 +106,11 @@ public class SocioEconomicInfoctivity extends AppCompatActivity {
     @OnItemSelected(R.id.socio_economic_major_income_source)
     public void spinnerMajorIncomeSelected(Spinner spinner, int position) {
         // code here
+        final String[] values = getResources().getStringArray(R.array.family_income_source);
+
         int id = position ;
         String selected_item = spinnerMajorIncomeSource.getSelectedItem().toString();
-        if (selected_item.equals("Others")){
+        if (selected_item.equals(values[9])){
             tvOtherIncomeSource.setVisibility(View.VISIBLE);
         }
         else {
@@ -119,9 +122,10 @@ public class SocioEconomicInfoctivity extends AppCompatActivity {
     @OnItemSelected(R.id.socio_economic_saving_cooperative_member)
     public void spinnerSavingsGroupSelected(Spinner spinner, int position) {
         // code here
+        final String[] values = getResources().getStringArray(R.array.yes_no);
         int id = position ;
         String selected_item = spinnerSavingCooperativeMember.getSelectedItem().toString();
-        if (selected_item.equals("Yes")){
+        if (selected_item.equals(values[1])){
             spinnerSavingsPerMonth.setVisibility(View.VISIBLE);
         }
         else {

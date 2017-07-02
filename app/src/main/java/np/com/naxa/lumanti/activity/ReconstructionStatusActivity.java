@@ -244,63 +244,9 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     public void StartGPS() {
 
 
-//        if (GPS_SETTINGS.equals(true) || GPS_TRACKER_FOR_POINT.GPS_POINT_INITILIZED) {
-//
-//            if (gps.canGetLocation()) {
-//                gpslocation.add(gps.getLocation());
-//                finalLat = gps.getLatitude();
-//                finalLong = gps.getLongitude();
-//                if (finalLat != 0) {
-//                    btnPreviewMap.setEnabled(true);
-//                    try {
-//                        JSONObject data = new JSONObject();
-//                        data.put("latitude", finalLat);
-//                        data.put("longitude", finalLong);
-//
-////                        jsonArrayGPS.put(data);
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    LatLng d = new LatLng(finalLat, finalLong);
-//
-//                    listCf.add(d);
-//                    isGpsTaken = true;
-//                    Toast.makeText(
-//                            getApplicationContext(),
-//                            "Your Location is - \nLat: " + finalLat
-//                                    + "\nLong: " + finalLong, Toast.LENGTH_SHORT)
-//                            .show();
-////                    stringBuilder.append("[" + finalLat + "," + finalLong + "]" + ",");
-//                }
-//
-//            }
-//        } else {
-//            askForGPS();
-//            gps = new GPS_TRACKER_FOR_POINT(ReconstructionStatusActivity.this);
-//            Default_DIalog.showDefaultDialog(context, R.string.app_name, "Please try again, Gps not initialized");
-////                        gps.showSettingsAlert();
-//        }
-
         Intent toGeoPointActivity = new Intent(this.context, GeoPointActivity.class);
         startActivityForResult(toGeoPointActivity, GEOPOINT_RESULT_CODE);
     }
-
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        switch (requestCode) {
-//            case GEOPOINT_RESULT_CODE:
-//                switch (resultCode) {
-//                    case RESULT_OK:
-//                        String location = data.getStringExtra(LOCATION_RESULT);
-//                        Toast.makeText(this.context, location, Toast.LENGTH_SHORT).show();
-//                        break;
-//                }
-//                break;
-//        }
-//    }
 
 
 
@@ -467,7 +413,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
 
 
-                    Toast.makeText(this.context, location, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this.context, location, Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -697,18 +643,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
     }
 
-//    private void loadImageFromStorage(String path) {
-//
-//        try {
-//            previewImageSite.setVisibility(View.VISIBLE);
-//            File f = new File(path);
-//            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
-//            previewImageSite.setImageBitmap(b);
-//        } catch (FileNotFoundException e) {
-//            Toast.makeText(getApplicationContext(), "invalid path", Toast.LENGTH_SHORT).show();
-//            e.printStackTrace();
-//        }
-//    }
 
 
     private void askForPermission(String permission, Integer requestCode) {
@@ -767,16 +701,17 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     @OnItemSelected(R.id.reconstruction_status_living_situation)
     public void spinnerItemSelected(Spinner spinner, int position) {
         // code here
+        final String[] values = getResources().getStringArray(R.array.current_living_situation);
         int id = position ;
         String living_situation = spinnerLivingSituation.getSelectedItem().toString();
-        if (living_situation.equals("At own house")){
+        if (living_situation.equals(values[1])){
             spinnerBuildBy.setVisibility(View.VISIBLE);
             spinnerConstructionType.setVisibility(View.VISIBLE);
             tvOthersSpecify.setVisibility(View.INVISIBLE);
 
 
         }
-        else if(living_situation.equals("Others")){
+        else if(living_situation.equals(values[5])){
             tvOthersSpecify.setVisibility(View.VISIBLE);
 
         }

@@ -83,13 +83,14 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
     @OnItemSelected(R.id.earthquake_relief_received_support)
     public void spinnerItemSelected(Spinner spinner, int position) {
         // code here
+        final String[] values = getResources().getStringArray(R.array.received_support);
         int id = position ;
         String living_situation = spinnerReceivedSupport.getSelectedItem().toString();
-        if (living_situation.equals("In Cash")){
+        if (living_situation.equals(values[1])){
             receivedInstallment.setVisibility(View.VISIBLE);
             tvKindSupport.setVisibility(View.INVISIBLE);
         }
-        else if(living_situation.equals("In Kind")){
+        else if(living_situation.equals(values[2])){
             tvKindSupport.setVisibility(View.VISIBLE);
             receivedInstallment.setVisibility(View.INVISIBLE);
 

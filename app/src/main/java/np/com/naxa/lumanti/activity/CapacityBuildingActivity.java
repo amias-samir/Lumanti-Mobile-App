@@ -119,9 +119,11 @@ public class CapacityBuildingActivity extends AppCompatActivity {
     @OnItemSelected(R.id.capacity_building_participate_in_disaster_training)
     public void spinnerDisasterTrainingSelected(Spinner spinner, int position) {
         // code here
+        final String[] values = getResources().getStringArray(R.array.yes_no);
+
         int id = position ;
         String selected_item = spinnerParticipateInDisasterTraining.getSelectedItem().toString();
-        if (selected_item.equals("Yes")){
+        if (selected_item.equals(values[1])){
             spinnerDisasterTrainingType.setVisibility(View.VISIBLE);
         }
         else {
@@ -132,9 +134,11 @@ public class CapacityBuildingActivity extends AppCompatActivity {
     @OnItemSelected(R.id.capacity_building_disaster_training_type)
     public void spinnerTrainingTypeSelected(Spinner spinner, int position) {
         // code here
+        final String[] values = getResources().getStringArray(R.array.disaster_training_type);
+
         int id = position ;
         String selected_item = spinnerDisasterTrainingType.getSelectedItem().toString();
-        if (selected_item.equals("Others")){
+        if (selected_item.equals(values[6])){
             tvOtherDisasterTraining.setVisibility(View.VISIBLE);
         }
         else {
