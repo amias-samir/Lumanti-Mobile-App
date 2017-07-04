@@ -184,6 +184,7 @@ public class DemographicInfoActivity extends AppCompatActivity {
         }
         else {
             spinnerSpecifyDisPregLac.setVisibility(View.INVISIBLE);
+            tvDisabilityType.setVisibility(View.INVISIBLE);
         }
 
     }
