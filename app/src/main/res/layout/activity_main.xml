@@ -197,6 +197,12 @@
 
 
             <!--Current  Ward no-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stringG5"
+                android:textColor="@color/accent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -204,14 +210,19 @@
                 <AutoCompleteTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
-                    android:hint="@string/stringG5"
+                    android:hint=""
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_current_ward_no" />
             </android.support.design.widget.TextInputLayout>
 
             <!--Previous VDC/Mun-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stringG6"
+                android:textColor="@color/accent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -219,14 +230,19 @@
                 <AutoCompleteTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
-                    android:hint="@string/stringG6"
+                    android:hint=""
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_previous_vdc_mun" />
             </android.support.design.widget.TextInputLayout>
 
             <!--Previous Ward no-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stringG7"
+                android:textColor="@color/accent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -234,14 +250,19 @@
                 <AutoCompleteTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
-                    android:hint="@string/stringG7"
+                    android:hint=""
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_previous_ward_no" />
             </android.support.design.widget.TextInputLayout>
 
             <!--Tole-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stringG8"
+                android:textColor="@color/accent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -249,14 +270,19 @@
                 <AutoCompleteTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
-                    android:hint="@string/stringG8"
+                    android:hint=""
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_tole" />
             </android.support.design.widget.TextInputLayout>
 
             <!--House code-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stringG9"
+                android:textColor="@color/accent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -264,14 +290,19 @@
                 <AutoCompleteTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
-                    android:hint="@string/stringG9"
+                    android:hint=""
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_house_code" />
             </android.support.design.widget.TextInputLayout>
 
             <!--Nissa no-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stringG10"
+                android:textColor="@color/accent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -279,14 +310,19 @@
                 <AutoCompleteTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
-                    android:hint="@string/stringG10"
+                    android:hint=""
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_nissa_no" />
             </android.support.design.widget.TextInputLayout>
 
             <!--Citizenship No-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stringG11"
+                android:textColor="@color/accent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -294,14 +330,19 @@
                 <AutoCompleteTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
-                    android:hint="@string/stringG11"
+                    android:hint=""
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_citizenship_no" />
             </android.support.design.widget.TextInputLayout>
 
             <!--PA no-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stringG12"
+                android:textColor="@color/accent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -309,8 +350,7 @@
                 <AutoCompleteTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
-                    android:hint="@string/stringG12"
+                    android:hint=""
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_pa_no" />

@@ -154,6 +154,7 @@ public class DemographicInfoActivity extends AppCompatActivity {
         Intent intent = new Intent(DemographicInfoActivity.this, ReconstructionStatusActivity.class);
         intent.putExtra("generalFormModel", generalFormModel);
         startActivity(intent);
+
         }
         else {
             Toast.makeText(this, getString(R.string.total_mem_validation_error), Toast.LENGTH_SHORT).show();
@@ -203,9 +204,9 @@ public class DemographicInfoActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        return;
-
-    }
+//    @Override
+//    public void onBackPressed() {
+//        return;
+//
+//    }
 }

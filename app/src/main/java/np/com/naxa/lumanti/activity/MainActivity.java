@@ -164,6 +164,9 @@ public class MainActivity extends AppCompatActivity {
             tvPreviousVdcMun.setText("Laharapauwa VDC (धैबुङ्ग गाविस)");
             rural_municipality = values[2];
 
+        }else {
+            rural_municipality = values[0];
+            tvPreviousVdcMun.setText("");
         }
     }
 

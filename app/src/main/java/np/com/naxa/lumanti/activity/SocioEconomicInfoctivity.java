@@ -133,9 +133,9 @@ public class SocioEconomicInfoctivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        return;
-
-    }
+//    @Override
+//    public void onBackPressed() {
+//        return;
+//
+//    }
 }

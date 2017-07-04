@@ -79,9 +79,9 @@ public class WaterSanitationActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        return;
-
-    }
+//    @Override
+//    public void onBackPressed() {
+//        return;
+//
+//    }
 }
