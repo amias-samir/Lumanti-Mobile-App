@@ -81,39 +81,39 @@
 
 
     <string-array name="sex">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"पुरुष(Male)"</item>
         <item>"महिला(Female)"</item>
         <item>"अन्य(Other)"</item>
     </string-array>
 
     <string-array name="house_damage">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"पूर्ण क्षति(Fully damaged)"</item>
         <item>"आंशिक क्षति(Partially damaged)"</item>
     </string-array>
 
     <string-array name="yes_no">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Yes(छ)"</item>
         <item>"No(छैन)"</item>
     </string-array>
 
     <string-array name="specify_dis_lac_preg">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Disable(अपाङ्ग)"</item>
         <item>"Pregnant(गर्भवती)"</item>
         <item>"Lactating(स्तनपान गराइरहेको)"</item>
     </string-array>
 
     <string-array name="before_after_earthquake">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Before Earthquake(भूकम्प पहिले)"</item>
         <item>"After Earthquake(भूकम्प पछि)"</item>
     </string-array>
 
     <string-array name="district_name">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Rasuwa(रसुवा)"</item>
         <item>"Kathmandu(काठमाडौँ)"</item>
         <item>"Lalitpur(ललितपुर)"</item>
@@ -121,14 +121,14 @@
     </string-array>
 
     <string-array name="rural_municipality">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Kalika Rural Municipality (कालिका गाउँपालिका)"</item>
         <item>"Uttargaya Rural Municipality (उत्तरगया गाउँपालिका)"</item>
     </string-array>
 
 
     <string-array name="current_living_situation">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"At own house(आफ्नै घरमा)"</item>
         <item>"At relatives house(आफन्तको घरमा)"</item>
         <item>"At temporary shelter(अस्थाइ बसोबास)"</item>
@@ -137,13 +137,13 @@
     </string-array>
 
     <string-array name="build_by">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Constructed with technical and financial support(प्राविधिक र आर्थिक सहयोगमा निर्माण गरेको)"</item>
         <item>"On your own(आफैँले बनाएको)"</item>
     </string-array>
 
     <string-array name="consctruction_type">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Stone Mud masonry (RCC Ties/Timber Ties)(ढुङ्गाको गाह्रोमा माटोको जोडाई )"</item>
         <item>"Stone Cement Masonry(ढुङ्गाको गाह्रोमा सिमेन्टको जोडाई)"</item>
         <item>"Brick Mud Masonry (RCC Ties/Timber Ties)(इट्टाको गाह्रोमा माटोको जोडाई)"</item>
@@ -152,20 +152,20 @@
     </string-array>
 
     <string-array name="received_support">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"In Cash(पैसामा)"</item>
         <item>"In Kind(सामानमा)"</item>
     </string-array>
 
     <string-array name="installment">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"First Installment(पहिलो किस्ता)"</item>
         <item>"Second Installment(दोस्रो किस्ता)"</item>
         <item>"Third Installment(तेस्रो किस्ता)"</item>
     </string-array>
 
     <string-array name="family_income_source">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Agriculture(कृषि)"</item>
         <item>"Business/Enterprises(व्यापार व्यवसाय)"</item>
         <item>"Salaried job(तलबी काम)"</item>
@@ -179,7 +179,7 @@
 
 
     <string-array name="savings_per_month">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"0-50(५० भन्दा कम)"</item>
         <item>"50-100(५०-१००)"</item>
         <item>"100-500(१००-५००)"</item>
@@ -189,7 +189,7 @@
 
 
     <string-array name="tentative_monthly_income">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Below 5000(५००० भन्दा कम)"</item>
         <item>"5000-10,000(५,०००-१०,०००)"</item>
         <item>"10,000-20,000(१०,०००-२०,०००)"</item>
@@ -199,7 +199,7 @@
 
 
     <string-array name="drinking_water_source">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Piped water (private connection)(पाइपबाट घरसम्म ल्याइएको)"</item>
         <item>"Public tap stand(सार्वजनिक धारा)"</item>
         <item>"Tube well(ट्यूब वेल)"</item>
@@ -210,7 +210,7 @@
 
 
     <string-array name="toilet_type">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Toilet with septic tank(सेप्टिक ट्याङ्कवाला चर्पी)"</item>
         <item>"Pit latrine(खाल्डोवाला चर्पी)"</item>
         <item>"Toilet without septic tank(सेप्टिक ट्याङ्क बिनाको चर्पी)"</item>
@@ -218,7 +218,7 @@
     </string-array>
 
     <string-array name="disaster_training_type">
-        <item>""</item>
+        <item>"N/A"</item>
         <item>"Search and Rescue(खोज तथा उद्धार)"</item>
         <item>"First Aid(प्राथमिक उपचार)"</item>
         <item>"Disaster Management Training (Leadership / Social Mobilization)(प्रकोप व्यवस्थापन तालिम/सामाजिक परिचालन)"</item>

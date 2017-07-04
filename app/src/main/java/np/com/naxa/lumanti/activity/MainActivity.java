@@ -86,10 +86,11 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.general_info_next)
     public void NextPage() {
         tvNissaNo.setError(null);
+        final String[] values = getResources().getStringArray(R.array.district_name);
 
-        if ((!(spinnerDistrictName.getSelectedItem().toString()).equals("") || !(tvNissaNo.getText().toString()).isEmpty()) && !(tvNissaNo.getText().toString()).equals("")) {
+        if ((!(spinnerDistrictName.getSelectedItem().toString()).equals(values[0]) || !(tvNissaNo.getText().toString()).isEmpty()) && !(tvNissaNo.getText().toString()).equals("")) {
 
-            final String[] values = getResources().getStringArray(R.array.district_name);
+//            final String[] values = getResources().getStringArray(R.array.district_name);
             if(!(spinnerDistrictName.getSelectedItem().toString()).equals(values[1])){
                 rural_municipality = tvRuralMunicipality.getText().toString();
             }
@@ -127,19 +128,19 @@ public class MainActivity extends AppCompatActivity {
         int id = position;
         String selected_item = spinnerDistrictName.getSelectedItem().toString();
 
-        if (selected_item.equals("")) {
+        if (selected_item.equals(values[0])) {
             tvDistrictLBL.setError(null);
-            rlRuralCardLayout.setVisibility(View.INVISIBLE);
-            inputlatoutRural.setVisibility(View.INVISIBLE);
+            rlRuralCardLayout.setVisibility(View.GONE);
+            inputlatoutRural.setVisibility(View.GONE);
             tvPreviousVdcMun.setText("");
             tvPreviousVdcMun.setText("");
 
         } else if (selected_item.equals(values[1])) {
             rlRuralCardLayout.setVisibility(View.VISIBLE);
-            inputlatoutRural.setVisibility(View.INVISIBLE);
+            inputlatoutRural.setVisibility(View.GONE);
 
         } else {
-            rlRuralCardLayout.setVisibility(View.INVISIBLE);
+            rlRuralCardLayout.setVisibility(View.GONE);
             inputlatoutRural.setVisibility(View.VISIBLE);
             tvPreviousVdcMun.setText("");
             tvPreviousVdcMun.setText("");

@@ -281,7 +281,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
                     android:hint="@string/stringG10"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_nissa_no" />
             </android.support.design.widget.TextInputLayout>
@@ -311,7 +311,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
                     android:hint="@string/stringG12"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:textColor="@color/black"
                     android:id="@+id/general_info_pa_no" />
             </android.support.design.widget.TextInputLayout>

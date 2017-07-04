@@ -712,6 +712,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
         }
         else if(living_situation.equals(values[5])){
+            spinnerBuildBy.setVisibility(View.INVISIBLE);
+            spinnerConstructionType.setVisibility(View.INVISIBLE);
             tvOthersSpecify.setVisibility(View.VISIBLE);
 
         }
