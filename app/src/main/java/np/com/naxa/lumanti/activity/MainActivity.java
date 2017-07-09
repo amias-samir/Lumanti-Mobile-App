@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,11 +19,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
     String rural_municipality;
 
     Toolbar toolbar;
+    GeneralFormModel generalFormModel;
+
+    static int count = 0 ;
+
+
     @BindView(R.id.general_info_damage_type)
     Spinner spinnerDamageType;
     @BindView(R.id.general_info_district_name)
@@ -76,10 +88,21 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("General Information");
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        generalFormModel = new GeneralFormModel();
+
 
 
 //        NextPage();
+        Log.e(" MAIN ACTIVITY SAMIR", "onCreate: "+""+Constant.countGeneral );
+        if(Constant.countGeneral!=0) {
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+
+            initializeUI();
+        }
+
+
 
     }
 
@@ -96,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            GeneralFormModel generalFormModel = new GeneralFormModel();
             generalFormModel.setG1(spinnerDamageType.getSelectedItem().toString());
             generalFormModel.setG2(spinnerDistrictName.getSelectedItem().toString());
             generalFormModel.setG3(tvDistrictCode.getText().toString());
@@ -110,9 +132,8 @@ public class MainActivity extends AppCompatActivity {
             generalFormModel.setG_11(tvCitizenshipNo.getText().toString());
             generalFormModel.setG_12(tvPaNo.getText().toString());
 
-
+            Constant.countGeneral = 1;
             Intent intent = new Intent(MainActivity.this, DemographicInfoActivity.class);
-
             intent.putExtra("generalFormModel", generalFormModel);
             startActivity(intent);
         } else {
@@ -144,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
             inputlatoutRural.setVisibility(View.VISIBLE);
             tvPreviousVdcMun.setText("");
             tvPreviousVdcMun.setText("");
+            tvRuralMunicipality.setText("");
 
 
 
@@ -170,6 +192,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+////    @Nullable
+//    @OnClick(android.R.id.home)
+//    public void homeBack(){
+//        Intent intent_back = new Intent(MainActivity.this, HomeListActivity.class);
+//        startActivity(intent_back);
+//    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -190,6 +219,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
 
+            case android.R.id.home:
+                Intent intent_back = new Intent(MainActivity.this, HomeListActivity.class);
+                startActivity(intent_back);
+
+//                this.onBackPressed();
+                break;
+
             default:
 
                 return true;
@@ -200,28 +236,54 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
+//    @Override
+//    public void onBackPressed() {
+//
+//        new AlertDialog.Builder(this)
+//                .setTitle("Exit From App")
+//                .setMessage("Are you sure you want to Exit?")
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        MainActivity.this.onBackPressed();
+//
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                            finishAffinity();
+//                        } else {
+//                            finish();
+//                        }
+//                    }
+//
+//                })
+//                .setNegativeButton("No", null)
+//                .show();
+//
+//    }
 
-        new AlertDialog.Builder(this)
-                .setTitle("Exit From App")
-                .setMessage("Are you sure you want to Exit?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        MainActivity.this.onBackPressed();
+    public void initializeUI(){
 
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            finishAffinity();
-                        } else {
-                            finish();
-                        }
-                    }
+        List<String> DamageType = Arrays.asList(getResources().getStringArray(R.array.house_damage));
+        int setDamageType = DamageType.indexOf(generalFormModel.getG1());
+        spinnerDamageType.setSelection(setDamageType);
 
-                })
-                .setNegativeButton("No", null)
-                .show();
 
+        List<String> DistrictName = Arrays.asList(getResources().getStringArray(R.array.district_name));
+        int setDistrictName = DistrictName.indexOf(generalFormModel.getG2());
+        spinnerDistrictName.setSelection(setDistrictName);
+
+        List<String> ruralMunicipalityName = Arrays.asList(getResources().getStringArray(R.array.rural_municipality));
+        int setMunicipalityName = ruralMunicipalityName.indexOf(generalFormModel.getG4());
+        spinnerRuralMunicipality.setSelection(setMunicipalityName);
+
+        tvRuralMunicipality.setText(generalFormModel.getG4());
+        tvCurrentWardNo.setText(generalFormModel.getG5());
+        tvPreviousVdcMun.setText(generalFormModel.getG6());
+        tvPreviousWardNo.setText(generalFormModel.getG7());
+        tvTole.setText(generalFormModel.getG8());
+        tvHouseCode.setText(generalFormModel.getG9());
+        tvNissaNo.setText(generalFormModel.getG_10());
+        tvCitizenshipNo.setText(generalFormModel.getG_11());
+        tvPaNo.setText(generalFormModel.getG_12());
     }
 
 

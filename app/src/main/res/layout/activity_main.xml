@@ -129,6 +129,13 @@
 
 
             <!--rural municipality-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stringG4"
+                android:textColor="@color/accent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -143,8 +150,7 @@
                     <AutoCompleteTextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="45dp"
-                        android:hint="@string/stringG4"
+                        android:hint=""
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:id="@+id/general_info_rural_municipality" />

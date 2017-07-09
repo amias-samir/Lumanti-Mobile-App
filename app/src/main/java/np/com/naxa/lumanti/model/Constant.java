@@ -12,4 +12,10 @@ public class Constant {
     public static String [] SEX = {"Male", "Female", "Other"};
 
     public static String URL_DATA_SEND = "http://naxa.com.np/lumanti/ApiController/insertdata";
+
+    public static int countGeneral = 0;
+    public static int countDemographic = 0;
+    public static int countReconstruction = 0;
+    public static int countEarthquakeRelief = 0;
+    public static int countSaveSend = 0;
 }

@@ -193,6 +193,17 @@
                         android:padding="5dp">
 
                         <Button
+                            android:id="@+id/earthquake_relief_status_prev"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/button_pressed_hwc_light"
+                            android:text="@string/previous"
+                            android:textColor="#ffffff" />
+
+                        <Button
                             android:id="@+id/earthquake_relief_status_next"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

@@ -50,7 +50,7 @@ public class SplashScreenActivity extends Activity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    Intent stuff = new Intent(SplashScreenActivity.this,MainActivity.class);
+                    Intent stuff = new Intent(SplashScreenActivity.this,HomeListActivity.class);
                     startActivity(stuff);
                 }
                 finish();

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Lumanti</string>
-    <string name="view_saved_forms">View Saved Forms(सेभ गरिएका फाइलहरु)</string>
+    <string name="view_saved_forms">View Saved Forms \n(सेभ गरिएका फाइलहरु)</string>
+    <string name="shelter_status">Shelter Status \n(स्थाइ आवास निर्माण तथ्याङ्क)</string>
     <string name="total_mem_validation_error">total family member error, please review your input(कुल संख्या मिलेन)</string>
     <string name="stringG1">Damage Type(क्षतिको प्रकार)</string>
     <string name="stringG2">District Name(जिल्ला)</string>
@@ -78,6 +79,7 @@
     <string name="sendBtnText">send</string>
     <string name="saveBtnText">save</string>
     <string name="data_sent_successfully">Data sent successfully</string>
+    <string name="previous">Previous</string>
 
 
     <string-array name="sex">

@@ -1,10 +1,7 @@
 package np.com.naxa.lumanti.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -18,7 +15,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import np.com.naxa.lumanti.R;
-import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 
 public class DemographicInfoActivity extends AppCompatActivity {
@@ -58,6 +54,8 @@ public class DemographicInfoActivity extends AppCompatActivity {
     Spinner spinnerBeforeAfterDisabled;
     @BindView(R.id.demographic_info_next)
     Button btnNext;
+    @BindView(R.id.demographic_info_prev)
+    Button btnPrev;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,18 +73,16 @@ public class DemographicInfoActivity extends AppCompatActivity {
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-            generalFormModel = new GeneralFormModel();
-         generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+        generalFormModel = new GeneralFormModel();
+        generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
 //        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
 
     }
 
 
-
     @OnClick(R.id.demographic_info_next)
     public void NextPage() {
-        String b_5no,b15_64no,b5_14no,ab_65no,maleno,femaleno,otherno;
-
+        String b_5no, b15_64no, b5_14no, ab_65no, maleno, femaleno, otherno;
 
 
         b_5no = tvBelow_5_No.getText().toString();
@@ -97,25 +93,25 @@ public class DemographicInfoActivity extends AppCompatActivity {
         femaleno = tvFemaleFamilyNo.getText().toString();
         otherno = tvOthreFamilyNo.getText().toString();
 
-        if(b_5no.isEmpty() || b_5no.equals("")){
+        if (b_5no.isEmpty() || b_5no.equals("")) {
             b_5no = "0";
         }
-        if(b5_14no.isEmpty() || b5_14no.equals("")){
+        if (b5_14no.isEmpty() || b5_14no.equals("")) {
             b5_14no = "0";
         }
-        if(b15_64no.isEmpty() || b15_64no.equals("")){
+        if (b15_64no.isEmpty() || b15_64no.equals("")) {
             b15_64no = "0";
         }
-        if(ab_65no.isEmpty() || ab_65no.equals("")){
+        if (ab_65no.isEmpty() || ab_65no.equals("")) {
             ab_65no = "0";
         }
-        if(maleno.isEmpty() || maleno.equals("")){
+        if (maleno.isEmpty() || maleno.equals("")) {
             maleno = "0";
         }
-        if(femaleno.isEmpty() || femaleno.equals("")){
+        if (femaleno.isEmpty() || femaleno.equals("")) {
             femaleno = "0";
         }
-        if(otherno.isEmpty() || otherno.equals("")){
+        if (otherno.isEmpty() || otherno.equals("")) {
             otherno = "0";
         }
 
@@ -128,35 +124,34 @@ public class DemographicInfoActivity extends AppCompatActivity {
         int female = Integer.parseInt(femaleno);
         int other = Integer.parseInt(otherno);
 
-        int total1 = below5+betn5_14+betn15_64+above65;
-        int total2 = male+female+other ;
+        int total1 = below5 + betn5_14 + betn15_64 + above65;
+        int total2 = male + female + other;
 
-        if(total1 == total2){
-        generalFormModel.setA1(tvHeadName.getText().toString());
-        generalFormModel.setA1_a(spinnerHeadSex.getSelectedItem().toString());
-        generalFormModel.setA1_b(tvHeadAge.getText().toString());
-        generalFormModel.setA2_a(tvBelow_5_No.getText().toString());
-        generalFormModel.setA2_b(tvBetween_5_14_No.getText().toString());
-        generalFormModel.setA2_c(tvBetween_15_64_No.getText().toString());
-        generalFormModel.setA2_d(tvAbove_65_No.getText().toString());
+        if (total1 == total2) {
+            generalFormModel.setA1(tvHeadName.getText().toString());
+            generalFormModel.setA1_a(spinnerHeadSex.getSelectedItem().toString());
+            generalFormModel.setA1_b(tvHeadAge.getText().toString());
+            generalFormModel.setA2_a(tvBelow_5_No.getText().toString());
+            generalFormModel.setA2_b(tvBetween_5_14_No.getText().toString());
+            generalFormModel.setA2_c(tvBetween_15_64_No.getText().toString());
+            generalFormModel.setA2_d(tvAbove_65_No.getText().toString());
 
 
-        generalFormModel.setA2_e(tvFamilyMemTotal.getText().toString());
+            generalFormModel.setA2_e(tvFamilyMemTotal.getText().toString());
 
-        generalFormModel.setA2_f(tvMaleFamilyNo.getText().toString());
-        generalFormModel.setA2_g(tvFemaleFamilyNo.getText().toString());
-        generalFormModel.setA2_h(tvOthreFamilyNo.getText().toString());
-        generalFormModel.setA3(spinnerDisPregLac.getSelectedItem().toString());
-        generalFormModel.setA3_a(spinnerSpecifyDisPregLac.getSelectedItem().toString());
-        generalFormModel.setA3_b(tvDisabilityType.getText().toString());
-        generalFormModel.setA3_c(spinnerBeforeAfterDisabled.getSelectedItem().toString());
+            generalFormModel.setA2_f(tvMaleFamilyNo.getText().toString());
+            generalFormModel.setA2_g(tvFemaleFamilyNo.getText().toString());
+            generalFormModel.setA2_h(tvOthreFamilyNo.getText().toString());
+            generalFormModel.setA3(spinnerDisPregLac.getSelectedItem().toString());
+            generalFormModel.setA3_a(spinnerSpecifyDisPregLac.getSelectedItem().toString());
+            generalFormModel.setA3_b(tvDisabilityType.getText().toString());
+            generalFormModel.setA3_c(spinnerBeforeAfterDisabled.getSelectedItem().toString());
 
-        Intent intent = new Intent(DemographicInfoActivity.this, ReconstructionStatusActivity.class);
-        intent.putExtra("generalFormModel", generalFormModel);
-        startActivity(intent);
+            Intent intent = new Intent(DemographicInfoActivity.this, ReconstructionStatusActivity.class);
+            intent.putExtra("generalFormModel", generalFormModel);
+            startActivity(intent);
 
-        }
-        else {
+        } else {
             Toast.makeText(this, getString(R.string.total_mem_validation_error), Toast.LENGTH_SHORT).show();
             tvBelow_5_No.setError(getString(R.string.total_mem_validation_error));
             tvBetween_5_14_No.setError(getString(R.string.total_mem_validation_error));
@@ -169,36 +164,39 @@ public class DemographicInfoActivity extends AppCompatActivity {
 
     }
 
-
-
+    @OnClick(R.id.demographic_info_prev)
+    public void PreviousPage(){
+        Intent intent = new Intent(DemographicInfoActivity.this, MainActivity.class);
+        intent.putExtra("generalFormModel", generalFormModel);
+        startActivity(intent);
+    }
 
 
     @OnItemSelected(R.id.demographic_info_dis_preg_lac)
     public void spinnerItemSelected(Spinner spinner, int position) {
         // code here
-        int id = position ;
+        int id = position;
         String disable = spinnerDisPregLac.getSelectedItem().toString();
-        if (disable.equals("Yes(छ)")){
+        if (disable.equals("Yes(छ)")) {
             spinnerSpecifyDisPregLac.setVisibility(View.VISIBLE);
 
-        }
-        else {
+        } else {
             spinnerSpecifyDisPregLac.setVisibility(View.INVISIBLE);
             tvDisabilityType.setVisibility(View.INVISIBLE);
         }
 
     }
+
     @OnItemSelected(R.id.demographic_info_specify_dis_preg_lac)
     public void DisableSelected(Spinner spinner, int position) {
         // code here
         final String[] values = getResources().getStringArray(R.array.specify_dis_lac_preg);
-        int id = position ;
+        int id = position;
         String specifyDisable = spinnerSpecifyDisPregLac.getSelectedItem().toString();
-        if (specifyDisable.equals(values[1])){
+        if (specifyDisable.equals(values[1])) {
             tvDisabilityType.setVisibility(View.VISIBLE);
             spinnerBeforeAfterDisabled.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             tvDisabilityType.setVisibility(View.INVISIBLE);
             spinnerBeforeAfterDisabled.setVisibility(View.INVISIBLE);
         }

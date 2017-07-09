@@ -40,9 +40,6 @@ import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.model.LatLng;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -80,6 +77,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     String imagePath3, encodedImage3 = "", imageName3 = "no_photo3";
     String imagePath4, encodedImage4 = "", imageName4 = "no_photo4";
     Bitmap thumbnail1, thumbnail2, thumbnail3, thumbnail4;
+
 
     private boolean booimg1 = false, booimg2 = false, booimg3 = false, booimg4 = false;
 
@@ -130,6 +128,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     AutoCompleteTextView tvOthersSpecify;
     @BindView(R.id.reconstruction_status_next)
     Button btnNext;
+    @BindView(R.id.reconstruction_status_prev)
+    Button btnPrev;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,10 +162,10 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAMERA_PIC1_REQUEST);
-                booimg1 = true ;
-                booimg2 = false ;
-                booimg3 = false ;
-                booimg4 = false ;
+                booimg1 = true;
+                booimg2 = false;
+                booimg3 = false;
+                booimg4 = false;
             }
         });
 
@@ -174,10 +174,10 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAMERA_PIC2_REQUEST);
-                booimg1 = false ;
-                booimg2 = true ;
-                booimg3 = false ;
-                booimg4 = false ;
+                booimg1 = false;
+                booimg2 = true;
+                booimg3 = false;
+                booimg4 = false;
             }
         });
 
@@ -186,10 +186,10 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAMERA_PIC3_REQUEST);
-                booimg1 = false ;
-                booimg2 = false ;
-                booimg3 = true ;
-                booimg4 = false ;
+                booimg1 = false;
+                booimg2 = false;
+                booimg3 = true;
+                booimg4 = false;
             }
         });
 
@@ -198,10 +198,10 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAMERA_PIC4_REQUEST);
-                booimg1 = false ;
-                booimg2 = false ;
-                booimg3 = false ;
-                booimg4 = true ;
+                booimg1 = false;
+                booimg2 = false;
+                booimg3 = false;
+                booimg4 = true;
             }
         });
 
@@ -214,13 +214,10 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     }
 
 
-
-
-
     @OnClick(R.id.reconstruction_status_next)
     public void NextPage() {
 
-        if(isGpsTaken) {
+        if (isGpsTaken) {
             generalFormModel.setB1_lat(finalLat + "");
             generalFormModel.setB1_long(finalLong + "");
             generalFormModel.setB1_img1(encodedImage1);
@@ -235,7 +232,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             Intent intent = new Intent(ReconstructionStatusActivity.this, EarthquakeReliefStatusActivity.class);
             intent.putExtra("generalFormModel", generalFormModel);
             startActivity(intent);
-        }else {
+        } else {
             Toast.makeText(getApplicationContext(), "You need to take at least one gps cooordinate", Toast.LENGTH_SHORT).show();
         }
     }
@@ -249,9 +246,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     }
 
 
-
-
-
     @OnClick(R.id.reconstruction_status_preview_map)
     public void PreviewMap() {
 //        if (CheckValues.isFromSavedFrom) {
@@ -259,13 +253,13 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 //            startActivity(new Intent(ReconstructionStatusActivity.this, MapPointActivity.class));
 //        } else {
 
-            if (GPS_TRACKER_FOR_POINT.GPS_POINT_INITILIZED) {
-                StaticListOfCoordinates.setList(listCf);
-                startActivity(new Intent(ReconstructionStatusActivity.this, MapPointActivity.class));
-            } else {
-                Default_DIalog.showDefaultDialog(context, R.string.app_name, "Please try again, Gps not initialized");
+        if (GPS_TRACKER_FOR_POINT.GPS_POINT_INITILIZED) {
+            StaticListOfCoordinates.setList(listCf);
+            startActivity(new Intent(ReconstructionStatusActivity.this, MapPointActivity.class));
+        } else {
+            Default_DIalog.showDefaultDialog(context, R.string.app_name, "Please try again, Gps not initialized");
 
-            }
+        }
 //        }
     }
 
@@ -310,19 +304,19 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 String file_extn = filePath.substring(filePath.lastIndexOf(".") + 1);
 
 //                image_name_tv.setText(filePath);
-                if(booimg1) {
+                if (booimg1) {
                     imagePath1 = filePath;
                     addImage();
                 }
-                if(booimg2) {
+                if (booimg2) {
                     imagePath2 = filePath;
                     addImage();
                 }
-                if(booimg3) {
+                if (booimg3) {
                     imagePath3 = filePath;
                     addImage();
                 }
-                if(booimg4) {
+                if (booimg4) {
                     imagePath4 = filePath;
                     addImage();
                 }
@@ -387,7 +381,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             }
         }
 
-        if(requestCode == GEOPOINT_RESULT_CODE ){
+        if (requestCode == GEOPOINT_RESULT_CODE) {
             switch (resultCode) {
                 case RESULT_OK:
                     String location = data.getStringExtra(LOCATION_RESULT);
@@ -405,12 +399,11 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                     listCf.add(d);
                     isGpsTaken = true;
 
-                    if(!split_lat.equals("") && !split_lon.equals("")) {
-                        GPS_TRACKER_FOR_POINT.GPS_POINT_INITILIZED = true ;
+                    if (!split_lat.equals("") && !split_lon.equals("")) {
+                        GPS_TRACKER_FOR_POINT.GPS_POINT_INITILIZED = true;
                         btnPreviewMap.setEnabled(true);
                         btnGpsStart.setText("Location Recorded");
                     }
-
 
 
 //                    Toast.makeText(this.context, location, Toast.LENGTH_SHORT).show();
@@ -428,16 +421,16 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         long timeInMillis = calendar.getTimeInMillis();
 
 
-        if(booimg1) {
+        if (booimg1) {
             imageName1 = "lumanti" + timeInMillis;
 
-            Log.e("Reconstruction", "saveToExternalSorage: "+imageName1 );
+            Log.e("Reconstruction", "saveToExternalSorage: " + imageName1);
 
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName1);
 //        if (!file1.mkdirs()) {
 //            Toast.makeText(getApplicationContext(), ""+file1, Toast.LENGTH_SHORT).show();
-            Log.e("Reconstruction", "saveToExternalSorage: "+file1 );
+            Log.e("Reconstruction", "saveToExternalSorage: " + file1);
 
 //        }
 
@@ -452,7 +445,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        if(booimg2) {
+        if (booimg2) {
             imageName2 = "lumanti" + timeInMillis;
 
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
@@ -472,7 +465,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        if(booimg3) {
+        if (booimg3) {
             imageName3 = "lumanti" + timeInMillis;
 
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
@@ -492,7 +485,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        if(booimg4) {
+        if (booimg4) {
             imageName1 = "lumanti" + timeInMillis;
 
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
@@ -534,12 +527,12 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
     public void addImage() {
 
-        if(booimg1) {
+        if (booimg1) {
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName1);
             String path = file1.toString();
 
-            Log.e("Reconstruction addimage", "saveToExternalSorage: "+imageName1 );
+            Log.e("Reconstruction addimage", "saveToExternalSorage: " + imageName1);
 
 
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -563,7 +556,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             Log.e("IMAGE STRING", "-" + encodedImage1);
         }
 
-        if(booimg2) {
+        if (booimg2) {
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName2);
             String path = file1.toString();
@@ -589,7 +582,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             Log.e("IMAGE STRING", "-" + encodedImage2);
         }
 
-        if(booimg3) {
+        if (booimg3) {
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName3);
             String path = file1.toString();
@@ -615,7 +608,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             Log.e("IMAGE STRING", "-" + encodedImage3);
         }
 
-        if(booimg4) {
+        if (booimg4) {
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName4);
             String path = file1.toString();
@@ -642,7 +635,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         }
 
     }
-
 
 
     private void askForPermission(String permission, Integer requestCode) {
@@ -696,28 +688,24 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     }
 
 
-
-
     @OnItemSelected(R.id.reconstruction_status_living_situation)
     public void spinnerItemSelected(Spinner spinner, int position) {
         // code here
         final String[] values = getResources().getStringArray(R.array.current_living_situation);
-        int id = position ;
+        int id = position;
         String living_situation = spinnerLivingSituation.getSelectedItem().toString();
-        if (living_situation.equals(values[1])){
+        if (living_situation.equals(values[1])) {
             spinnerBuildBy.setVisibility(View.VISIBLE);
             spinnerConstructionType.setVisibility(View.VISIBLE);
             tvOthersSpecify.setVisibility(View.INVISIBLE);
 
 
-        }
-        else if(living_situation.equals(values[5])){
+        } else if (living_situation.equals(values[5])) {
             spinnerBuildBy.setVisibility(View.INVISIBLE);
             spinnerConstructionType.setVisibility(View.INVISIBLE);
             tvOthersSpecify.setVisibility(View.VISIBLE);
 
-        }
-        else {
+        } else {
             spinnerBuildBy.setVisibility(View.INVISIBLE);
             spinnerConstructionType.setVisibility(View.INVISIBLE);
             tvOthersSpecify.setVisibility(View.INVISIBLE);
