@@ -69,6 +69,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     public static final int GEOPOINT_RESULT_CODE = 1994;
     public static final String LOCATION_RESULT = "LOCATION_RESULT";
 
+    String B64Eimage1 = "", B64Eimage2 = "", B64Eimage3 = "", B64Eimage4 = "";
+
 
     int CAMERA_PIC1_REQUEST = 02;
     int CAMERA_PIC2_REQUEST = 03;
@@ -218,7 +220,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
         if(Constant.countReconstruction !=0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
-//            initializeUI();
+            initializeUI();
         }
 
     }
@@ -238,6 +240,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             generalFormModel.setB2_a(spinnerBuildBy.getSelectedItem().toString());
             generalFormModel.setB2_b(spinnerConstructionType.getSelectedItem().toString());
             generalFormModel.setB2_c(tvOthersSpecify.getText().toString());
+
+            Constant.countReconstruction = 1;
 
             Intent intent = new Intent(ReconstructionStatusActivity.this, EarthquakeReliefStatusActivity.class);
             if(Constant.countEarthquakeRelief == 0) {
@@ -265,6 +269,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         generalFormModel.setB2_a(spinnerBuildBy.getSelectedItem().toString());
         generalFormModel.setB2_b(spinnerConstructionType.getSelectedItem().toString());
         generalFormModel.setB2_c(tvOthersSpecify.getText().toString());
+
+        Constant.countReconstruction = 1;
 
         Intent intent = new Intent(ReconstructionStatusActivity.this, DemographicInfoActivity.class);
         intent.putExtra("PgeneralFormModel", generalFormModel);
@@ -753,5 +759,66 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 //
 //    }
 
+    public void initializeUI(){
+
+//        Log.e("Demographics SAMIR", "initializeUI: "+ generalFormModel.toString() );
+//=========================== map ===============================//
+        finalLat = Double.parseDouble(generalFormModel.getB1_lat());
+        finalLong = Double.parseDouble(generalFormModel.getB1_long());
+        LatLng d = new LatLng(finalLat, finalLong);
+        listCf.add(d);
+        if(finalLat!=0 && finalLong!=0){
+            btnGpsStart.setText("Location Recorded");
+            btnPreviewMap.setEnabled(true);
+        }
+
+//        ========================================image ==================================//
+            B64Eimage1 = generalFormModel.getB1_img1();
+            B64Eimage2 = generalFormModel.getB1_img2();
+            B64Eimage3 = generalFormModel.getB1_img3();
+            B64Eimage4 = generalFormModel.getB1_img4();
+
+        byte[] decodedString1 = Base64.decode(B64Eimage1, Base64.DEFAULT);
+        Bitmap decodedByteimage1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
+        ivPhotographSiteimageViewPreview1.setImageBitmap(decodedByteimage1);
+        ivPhotographSiteimageViewPreview1.setVisibility(View.VISIBLE);
+
+
+        byte[] decodedString2 = Base64.decode(B64Eimage2, Base64.DEFAULT);
+        Bitmap decodedByteimage2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
+        ivPhotographSiteimageViewPreview2.setImageBitmap(decodedByteimage2);
+        ivPhotographSiteimageViewPreview2.setVisibility(View.VISIBLE);
+
+
+        byte[] decodedString3 = Base64.decode(B64Eimage3, Base64.DEFAULT);
+        Bitmap decodedByteimage3 = BitmapFactory.decodeByteArray(decodedString3, 0, decodedString3.length);
+        ivPhotographSiteimageViewPreview3.setImageBitmap(decodedByteimage3);
+        ivPhotographSiteimageViewPreview3.setVisibility(View.VISIBLE);
+
+
+        byte[] decodedString4 = Base64.decode(B64Eimage4, Base64.DEFAULT);
+        Bitmap decodedByteimage4 = BitmapFactory.decodeByteArray(decodedString4, 0, decodedString4.length);
+        ivPhotographSiteimageViewPreview4.setImageBitmap(decodedByteimage4);
+        ivPhotographSiteimageViewPreview4.setVisibility(View.VISIBLE);
+
+
+
+//        ====================================spinner =======================================//
+        List<String> CurrentLiving = Arrays.asList(getResources().getStringArray(R.array.current_living_situation));
+        int setCurrentLiving = CurrentLiving.indexOf(generalFormModel.getB2());
+        spinnerLivingSituation.setSelection(setCurrentLiving);
+
+
+        List<String> BuiltBy = Arrays.asList(getResources().getStringArray(R.array.build_by));
+        int setBuiltBy = BuiltBy.indexOf(generalFormModel.getB2_a());
+        spinnerBuildBy.setSelection(setBuiltBy);
+
+        List<String> ConstructionType = Arrays.asList(getResources().getStringArray(R.array.consctruction_type));
+        int setConstructionType = ConstructionType.indexOf(generalFormModel.getA3_a());
+        spinnerConstructionType.setSelection(setConstructionType);
+
+        tvOthersSpecify.setText(generalFormModel.getB2_c());
+
+    }
 
 }
