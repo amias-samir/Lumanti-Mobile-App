@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 //        NextPage();
         Log.e(" MAIN ACTIVITY SAMIR", "onCreate: "+""+Constant.countGeneral );
         if(Constant.countGeneral!=0) {
-            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
 
             initializeUI();
         }
@@ -134,7 +134,12 @@ public class MainActivity extends AppCompatActivity {
 
             Constant.countGeneral = 1;
             Intent intent = new Intent(MainActivity.this, DemographicInfoActivity.class);
-            intent.putExtra("generalFormModel", generalFormModel);
+            if(Constant.countDemographic == 0) {
+                intent.putExtra("generalFormModel", generalFormModel);
+            }else {
+                intent.putExtra("PgeneralFormModel", generalFormModel);
+
+            }
             startActivity(intent);
         } else {
             Toast.makeText(this, "District name and Nissa no. is required", Toast.LENGTH_SHORT).show();

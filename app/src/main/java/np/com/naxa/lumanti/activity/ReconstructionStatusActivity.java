@@ -44,6 +44,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -55,6 +56,7 @@ import np.com.naxa.lumanti.R;
 import np.com.naxa.lumanti.gps.GPS_TRACKER_FOR_POINT;
 import np.com.naxa.lumanti.gps.GeoPointActivity;
 import np.com.naxa.lumanti.gps.MapPointActivity;
+import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.Default_DIalog;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 import np.com.naxa.lumanti.model.StaticListOfCoordinates;
@@ -207,9 +209,17 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
 
         generalFormModel = new GeneralFormModel();
-        generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+//        generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+        if(Constant.countReconstruction == 0) {
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
 //        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
-//        Toast.makeText(this, ""+ generalFormModel.getA1(), Toast.LENGTH_SHORT).show();
+            Log.e(" MAIN ACTIVITY SAMIR", "onCreate: " + "" + Constant.countReconstruction);
+        }
+
+        if(Constant.countReconstruction !=0) {
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
+//            initializeUI();
+        }
 
     }
 
@@ -230,11 +240,35 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             generalFormModel.setB2_c(tvOthersSpecify.getText().toString());
 
             Intent intent = new Intent(ReconstructionStatusActivity.this, EarthquakeReliefStatusActivity.class);
-            intent.putExtra("generalFormModel", generalFormModel);
+            if(Constant.countEarthquakeRelief == 0) {
+                intent.putExtra("generalFormModel", generalFormModel);
+            }else {
+                intent.putExtra("PgeneralFormModel", generalFormModel);
+
+            }
             startActivity(intent);
         } else {
             Toast.makeText(getApplicationContext(), "You need to take at least one gps cooordinate", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @OnClick(R.id.reconstruction_status_prev)
+    public void PreviousPage(){
+
+        generalFormModel.setB1_lat(finalLat + "");
+        generalFormModel.setB1_long(finalLong + "");
+        generalFormModel.setB1_img1(encodedImage1);
+        generalFormModel.setB1_img2(encodedImage2);
+        generalFormModel.setB1_img3(encodedImage3);
+        generalFormModel.setB1_img4(encodedImage4);
+        generalFormModel.setB2(spinnerLivingSituation.getSelectedItem().toString());
+        generalFormModel.setB2_a(spinnerBuildBy.getSelectedItem().toString());
+        generalFormModel.setB2_b(spinnerConstructionType.getSelectedItem().toString());
+        generalFormModel.setB2_c(tvOthersSpecify.getText().toString());
+
+        Intent intent = new Intent(ReconstructionStatusActivity.this, DemographicInfoActivity.class);
+        intent.putExtra("PgeneralFormModel", generalFormModel);
+        startActivity(intent);
     }
 
     @OnClick(R.id.reconstruction_status_GpsStart)

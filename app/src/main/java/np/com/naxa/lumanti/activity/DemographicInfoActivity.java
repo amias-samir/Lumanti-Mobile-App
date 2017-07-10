@@ -4,17 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 
 public class DemographicInfoActivity extends AppCompatActivity {
@@ -74,9 +79,17 @@ public class DemographicInfoActivity extends AppCompatActivity {
 
 
         generalFormModel = new GeneralFormModel();
-        generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
-//        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
 
+        if(Constant.countDemographic == 0) {
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+//        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
+            Log.e(" MAIN ACTIVITY SAMIR", "onCreate: " + "" + Constant.countDemographic);
+        }
+
+        if(Constant.countDemographic !=0) {
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
+            initializeUI();
+        }
     }
 
 
@@ -147,8 +160,15 @@ public class DemographicInfoActivity extends AppCompatActivity {
             generalFormModel.setA3_b(tvDisabilityType.getText().toString());
             generalFormModel.setA3_c(spinnerBeforeAfterDisabled.getSelectedItem().toString());
 
+            Constant.countDemographic = 1;
+
             Intent intent = new Intent(DemographicInfoActivity.this, ReconstructionStatusActivity.class);
-            intent.putExtra("generalFormModel", generalFormModel);
+            if(Constant.countReconstruction == 0) {
+                intent.putExtra("generalFormModel", generalFormModel);
+            }else {
+                intent.putExtra("PgeneralFormModel", generalFormModel);
+
+            }
             startActivity(intent);
 
         } else {
@@ -166,8 +186,29 @@ public class DemographicInfoActivity extends AppCompatActivity {
 
     @OnClick(R.id.demographic_info_prev)
     public void PreviousPage(){
+
+        generalFormModel.setA1(tvHeadName.getText().toString());
+        generalFormModel.setA1_a(spinnerHeadSex.getSelectedItem().toString());
+        generalFormModel.setA1_b(tvHeadAge.getText().toString());
+        generalFormModel.setA2_a(tvBelow_5_No.getText().toString());
+        generalFormModel.setA2_b(tvBetween_5_14_No.getText().toString());
+        generalFormModel.setA2_c(tvBetween_15_64_No.getText().toString());
+        generalFormModel.setA2_d(tvAbove_65_No.getText().toString());
+
+
+        generalFormModel.setA2_e(tvFamilyMemTotal.getText().toString());
+
+        generalFormModel.setA2_f(tvMaleFamilyNo.getText().toString());
+        generalFormModel.setA2_g(tvFemaleFamilyNo.getText().toString());
+        generalFormModel.setA2_h(tvOthreFamilyNo.getText().toString());
+        generalFormModel.setA3(spinnerDisPregLac.getSelectedItem().toString());
+        generalFormModel.setA3_a(spinnerSpecifyDisPregLac.getSelectedItem().toString());
+        generalFormModel.setA3_b(tvDisabilityType.getText().toString());
+        generalFormModel.setA3_c(spinnerBeforeAfterDisabled.getSelectedItem().toString());
+
+        Constant.countDemographic = 1;
         Intent intent = new Intent(DemographicInfoActivity.this, MainActivity.class);
-        intent.putExtra("generalFormModel", generalFormModel);
+        intent.putExtra("PgeneralFormModel", generalFormModel);
         startActivity(intent);
     }
 
@@ -198,8 +239,25 @@ public class DemographicInfoActivity extends AppCompatActivity {
             spinnerBeforeAfterDisabled.setVisibility(View.VISIBLE);
         } else {
             tvDisabilityType.setVisibility(View.INVISIBLE);
+            tvDisabilityType.setText("");
             spinnerBeforeAfterDisabled.setVisibility(View.INVISIBLE);
         }
+
+    }
+
+    @OnItemSelected(R.id.demographic_info_before_after_disabled)
+    public void BeforeAfterEQ(Spinner spinner, int position) {
+        // code here
+        final String[] values = getResources().getStringArray(R.array.before_after_earthquake);
+        int id = position;
+        String specifyDisable = spinnerBeforeAfterDisabled.getSelectedItem().toString();
+//        if (specifyDisable.equals(values[1])) {
+//            tvDisabilityType.setVisibility(View.VISIBLE);
+//            spinnerBeforeAfterDisabled.setVisibility(View.VISIBLE);
+//        } else {
+//            tvDisabilityType.setVisibility(View.INVISIBLE);
+//            spinnerBeforeAfterDisabled.setVisibility(View.INVISIBLE);
+//        }
 
     }
 
@@ -208,4 +266,39 @@ public class DemographicInfoActivity extends AppCompatActivity {
 //        return;
 //
 //    }
+
+    public void initializeUI(){
+
+//        Log.e("Demographics SAMIR", "initializeUI: "+ generalFormModel.toString() );
+
+        List<String> Sex = Arrays.asList(getResources().getStringArray(R.array.sex));
+        int setSex = Sex.indexOf(generalFormModel.getA1_a());
+        spinnerHeadSex.setSelection(setSex);
+
+
+        List<String> DisablePregLact = Arrays.asList(getResources().getStringArray(R.array.yes_no));
+        int setDisablePregLact = DisablePregLact.indexOf(generalFormModel.getA3());
+        spinnerDisPregLac.setSelection(setDisablePregLact);
+
+        List<String> SpecifyDisablePregLact = Arrays.asList(getResources().getStringArray(R.array.specify_dis_lac_preg));
+        int setSpecifyDisablePregLact = SpecifyDisablePregLact.indexOf(generalFormModel.getA3_a());
+        spinnerSpecifyDisPregLac.setSelection(setSpecifyDisablePregLact);
+
+        List<String> BeforeAfterEarthquake = Arrays.asList(getResources().getStringArray(R.array.before_after_earthquake));
+        int setBeforeAfterEarthquake = BeforeAfterEarthquake.indexOf(generalFormModel.getA3_c());
+        spinnerSpecifyDisPregLac.setSelection(setBeforeAfterEarthquake);
+
+        tvHeadName.setText(generalFormModel.getA1());
+        tvHeadAge.setText(generalFormModel.getA1_b());
+        tvBelow_5_No.setText(generalFormModel.getA2_a());
+        tvBetween_5_14_No.setText(generalFormModel.getA2_b());
+        tvBetween_15_64_No.setText(generalFormModel.getA2_c());
+        tvAbove_65_No.setText(generalFormModel.getA2_d());
+        tvFamilyMemTotal.setText(generalFormModel.getA2_e());
+        tvMaleFamilyNo.setText(generalFormModel.getA2_f());
+        tvFemaleFamilyNo.setText(generalFormModel.getA2_g());
+        tvOthreFamilyNo.setText(generalFormModel.getA2_h());
+        tvDisabilityType.setText(generalFormModel.getA3_b());
+
+    }
 }

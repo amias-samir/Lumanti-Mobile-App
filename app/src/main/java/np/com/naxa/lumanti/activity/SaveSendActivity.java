@@ -92,8 +92,16 @@ public class SaveSendActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         generalFormModel = new GeneralFormModel();
-        generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+        if(Constant.countSaveSend == 0) {
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
 //        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
+            Log.e(" MAIN ACTIVITY SAMIR", "onCreate: " + "" + Constant.countEarthquakeRelief);
+        }
+
+        if(Constant.countSaveSend !=0) {
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
+//            initializeUI();
+        }
 
 
         //Check internet connection

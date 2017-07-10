@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 
 public class EarthquakeReliefStatusActivity extends AppCompatActivity {
@@ -49,8 +51,17 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
         tvKindSupport.setVisibility(View.INVISIBLE);
 
         generalFormModel = new GeneralFormModel();
-        generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+
+        if(Constant.countEarthquakeRelief == 0) {
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
 //        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
+            Log.e(" MAIN ACTIVITY SAMIR", "onCreate: " + "" + Constant.countEarthquakeRelief);
+        }
+
+        if(Constant.countEarthquakeRelief !=0) {
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
+//            initializeUI();
+        }
 
 
     }
@@ -72,7 +83,12 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
 
 
         Intent intent = new Intent(EarthquakeReliefStatusActivity.this, SaveSendActivity.class);
-        intent.putExtra("generalFormModel", generalFormModel);
+        if(Constant.countSaveSend == 0) {
+            intent.putExtra("generalFormModel", generalFormModel);
+        }else {
+            intent.putExtra("PgeneralFormModel", generalFormModel);
+
+        }
         startActivity(intent);
     }
 
