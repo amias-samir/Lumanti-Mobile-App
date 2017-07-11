@@ -120,7 +120,8 @@
                             android:layout_height="200dp"
                             android:layout_below="@+id/reconstructionPhotographSiteLable1"
                             android:layout_centerHorizontal="true"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:background="@mipmap/ic_launcher"/>
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
@@ -168,7 +169,8 @@
                             android:layout_height="200dp"
                             android:layout_below="@+id/reconstructionPhotographSiteLable2"
                             android:layout_centerHorizontal="true"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            />
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
@@ -216,6 +218,7 @@
                             android:layout_height="200dp"
                             android:layout_below="@+id/reconstructionPhotographSiteLable3"
                             android:layout_centerHorizontal="true"
+                            android:background="@mipmap/ic_launcher"
                             android:visibility="gone" />
 
                     </RelativeLayout>
@@ -264,6 +267,7 @@
                             android:layout_height="200dp"
                             android:layout_below="@+id/reconstructionPhotographSiteLable4"
                             android:layout_centerHorizontal="true"
+                            android:background="@mipmap/ic_launcher"
                             android:visibility="gone" />
 
                     </RelativeLayout>
