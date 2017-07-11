@@ -229,7 +229,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     @OnClick(R.id.reconstruction_status_next)
     public void NextPage() {
 
-        if (isGpsTaken) {
+        if(Constant.countReconstruction == 2){
             generalFormModel.setB1_lat(finalLat + "");
             generalFormModel.setB1_long(finalLong + "");
             generalFormModel.setB1_img1(encodedImage1);
@@ -241,7 +241,30 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             generalFormModel.setB2_b(spinnerConstructionType.getSelectedItem().toString());
             generalFormModel.setB2_c(tvOthersSpecify.getText().toString());
 
-            Constant.countReconstruction = 1;
+            Constant.countReconstruction = 2;
+
+            Intent intent = new Intent(ReconstructionStatusActivity.this, EarthquakeReliefStatusActivity.class);
+            if(Constant.countEarthquakeRelief == 0) {
+                intent.putExtra("generalFormModel", generalFormModel);
+            }else {
+                intent.putExtra("PgeneralFormModel", generalFormModel);
+
+            }
+            startActivity(intent);
+        }
+        else if (isGpsTaken) {
+            generalFormModel.setB1_lat(finalLat + "");
+            generalFormModel.setB1_long(finalLong + "");
+            generalFormModel.setB1_img1(encodedImage1);
+            generalFormModel.setB1_img2(encodedImage2);
+            generalFormModel.setB1_img3(encodedImage3);
+            generalFormModel.setB1_img4(encodedImage4);
+            generalFormModel.setB2(spinnerLivingSituation.getSelectedItem().toString());
+            generalFormModel.setB2_a(spinnerBuildBy.getSelectedItem().toString());
+            generalFormModel.setB2_b(spinnerConstructionType.getSelectedItem().toString());
+            generalFormModel.setB2_c(tvOthersSpecify.getText().toString());
+
+            Constant.countReconstruction = 2;
 
             Intent intent = new Intent(ReconstructionStatusActivity.this, EarthquakeReliefStatusActivity.class);
             if(Constant.countEarthquakeRelief == 0) {

@@ -1,6 +1,5 @@
 package np.com.naxa.lumanti.activity;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -53,12 +52,12 @@ import np.com.naxa.lumanti.model.GeneralFormModel;
 
 public class SaveSendActivity extends AppCompatActivity {
 
-    Toolbar toolbar ;
+    Toolbar toolbar;
 
-    GeneralFormModel generalFormModel ;
+    GeneralFormModel generalFormModel;
 
     Gson gson = new Gson();
-    String jsonToSend ;
+    String jsonToSend;
 
     ProgressDialog mProgressDlg;
     Context context = this;
@@ -79,6 +78,8 @@ public class SaveSendActivity extends AppCompatActivity {
     Button btnSend;
     @BindView(R.id.water_sanitation_save)
     Button btnSave;
+    @BindView(R.id.reconstruction_status_prev)
+    Button btnPrev;
     private String TAG = "SaveSendActivity";
 
     @Override
@@ -92,15 +93,15 @@ public class SaveSendActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         generalFormModel = new GeneralFormModel();
-        if(Constant.countSaveSend == 0) {
+        if (Constant.countSaveSend == 0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
 //        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
             Log.e(" MAIN ACTIVITY SAMIR", "onCreate: " + "" + Constant.countEarthquakeRelief);
         }
 
-        if(Constant.countSaveSend !=0) {
+        if (Constant.countSaveSend != 0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
-//            initializeUI();
+            initializeUI();
         }
 
 
@@ -159,9 +160,7 @@ public class SaveSendActivity extends AppCompatActivity {
                     });
 
 
-
-                }
-                else {
+                } else {
                     final View coordinatorLayoutView = findViewById(R.id.main_activity);
                     Snackbar.make(coordinatorLayoutView, "No internet connection", Snackbar.LENGTH_LONG)
                             .setAction("Retry", null).show();
@@ -184,10 +183,10 @@ public class SaveSendActivity extends AppCompatActivity {
 
 //                if (formNameSavedForm.equals("")){
 
-                if(!generalFormModel.getG_10().equals("") && !generalFormModel.getG2().equals("") ) {
+                if (!generalFormModel.getG_10().equals("") && !generalFormModel.getG2().equals("")) {
 
                     FormNameToInput.setText(generalFormModel.getG_10() + "_" + generalFormModel.getG2());
-                }else {
+                } else {
                     FormNameToInput.setText("Lumanti");
                 }
 //                }
@@ -204,7 +203,7 @@ public class SaveSendActivity extends AppCompatActivity {
                 String dateString = sdf.format(date);
                 dateToInput.setText(dateString);
 
-                Log.e(TAG, "SaveSend: "+dateToInput );
+                Log.e(TAG, "SaveSend: " + dateToInput);
 
                 AppCompatButton logIn = (AppCompatButton) showDialog.findViewById(R.id.login_button);
                 showDialog.setTitle("Save Data");
@@ -268,7 +267,22 @@ public class SaveSendActivity extends AppCompatActivity {
     }
 
 
-    public void setGeneralFormModelValue(){
+    @OnClick(R.id.reconstruction_status_prev)
+    public void PreviousPage() {
+
+        generalFormModel.setF5(tvRecommendationRegardingReconstruction.getText().toString());
+        generalFormModel.setF6(tvAnySpecificInfo.getText().toString());
+        generalFormModel.setF7(tvIdentifiedGap.getText().toString());
+
+        Constant.countSaveSend = 1;
+
+        Intent intent = new Intent(SaveSendActivity.this, EarthquakeReliefStatusActivity.class);
+        intent.putExtra("PgeneralFormModel", generalFormModel);
+        startActivity(intent);
+    }
+
+
+    public void setGeneralFormModelValue() {
 
 
         generalFormModel.setF5(tvRecommendationRegardingReconstruction.getText().toString());
@@ -278,11 +292,11 @@ public class SaveSendActivity extends AppCompatActivity {
     }
 
 
-    public void convertDataToJson(){
+    public void convertDataToJson() {
 
         jsonToSend = gson.toJson(generalFormModel);
 
-        Log.d("capacity_building", "convertDatToJson: "+ jsonToSend);
+        Log.d("capacity_building", "convertDatToJson: " + jsonToSend);
     }
 
     public void sendDatToserver() {
@@ -293,6 +307,8 @@ public class SaveSendActivity extends AppCompatActivity {
             restApii.execute();
         }
     }
+
+
 
     private class RestApii extends AsyncTask<String, Void, String> {
 
@@ -330,10 +346,10 @@ public class SaveSendActivity extends AppCompatActivity {
             if (dataSentStatus.equals("200")) {
 //                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
                 String formNameToSend;
-                if(!generalFormModel.getG_10().equals("") && !generalFormModel.getG2().equals("") ) {
+                if (!generalFormModel.getG_10().equals("") && !generalFormModel.getG2().equals("")) {
 
                     formNameToSend = (generalFormModel.getG_10() + "_" + generalFormModel.getG2());
-                }else {
+                } else {
                     formNameToSend = ("Lumanti");
                 }
 
@@ -387,7 +403,6 @@ public class SaveSendActivity extends AppCompatActivity {
                     }
                 });
             }
-
 
 
         }
@@ -470,6 +485,12 @@ public class SaveSendActivity extends AppCompatActivity {
 //        return;
 //
 //    }
+
+    public void initializeUI(){
+        tvRecommendationRegardingReconstruction.setText(generalFormModel.getF5());
+        tvAnySpecificInfo.setText(generalFormModel.getF6());
+        tvIdentifiedGap.setText(generalFormModel.getF7());
+    }
 
 
 }

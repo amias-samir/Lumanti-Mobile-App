@@ -10,6 +10,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import java.util.Arrays;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -60,7 +63,7 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
 
         if(Constant.countEarthquakeRelief !=0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
-//            initializeUI();
+            initializeUI();
         }
 
 
@@ -81,6 +84,7 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
 
         generalFormModel.setC2_b(tvKindSupport.getText().toString());
 
+        Constant.countEarthquakeRelief = 1;
 
         Intent intent = new Intent(EarthquakeReliefStatusActivity.this, SaveSendActivity.class);
         if(Constant.countSaveSend == 0) {
@@ -91,6 +95,29 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
         }
         startActivity(intent);
     }
+
+    @OnClick(R.id.earthquake_relief_status_prev)
+    public void PreviousPage() {
+
+        generalFormModel.setC1(spinnerReconstructionGrant.getSelectedItem().toString());
+        generalFormModel.setC2(spinnerReceivedSupport.getSelectedItem().toString());
+
+        if (spinnerReceivedSupport.getSelectedItem().toString().equals("In Kind")) {
+            generalFormModel.setC2_a("0");
+        } else {
+            generalFormModel.setC2_a(receivedInstallment.getSelectedItemId() + "");
+
+        }
+
+        generalFormModel.setC2_b(tvKindSupport.getText().toString());
+
+        Constant.countEarthquakeRelief = 1;
+
+        Intent intent = new Intent(EarthquakeReliefStatusActivity.this, ReconstructionStatusActivity.class);
+            intent.putExtra("PgeneralFormModel", generalFormModel);
+        startActivity(intent);
+    }
+
 
 
     @OnItemSelected(R.id.earthquake_relief_received_support)
@@ -118,6 +145,29 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
 //        return;
 //
 //    }
+
+
+    public void initializeUI(){
+
+//        Log.e("Demographics SAMIR", "initializeUI: "+ generalFormModel.toString() );
+
+        List<String> ReconstructionGrant = Arrays.asList(getResources().getStringArray(R.array.yes_no));
+        int setReconstructionGrant = ReconstructionGrant.indexOf(generalFormModel.getC1());
+        spinnerReconstructionGrant.setSelection(setReconstructionGrant);
+
+
+        List<String> ReceivedSupport = Arrays.asList(getResources().getStringArray(R.array.received_support));
+        int setReceivedSupport = ReceivedSupport.indexOf(generalFormModel.getC2());
+        spinnerReceivedSupport.setSelection(setReceivedSupport);
+
+        List<String> Installment = Arrays.asList(getResources().getStringArray(R.array.specify_dis_lac_preg));
+//        int setInstallment = Installment.indexOf(generalFormModel.getC2_a());
+        int setInstallment = Integer.parseInt(generalFormModel.getC2_a());
+        receivedInstallment.setSelection(setInstallment);
+
+        tvKindSupport.setText(generalFormModel.getC2_b());
+
+    }
 
 
 }
