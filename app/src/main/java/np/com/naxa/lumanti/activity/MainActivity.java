@@ -22,7 +22,6 @@ import android.widget.Toast;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Nullable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
