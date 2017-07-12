@@ -207,6 +207,7 @@ public class DemographicInfoActivity extends AppCompatActivity {
         generalFormModel.setA3_c(spinnerBeforeAfterDisabled.getSelectedItem().toString());
 
         Constant.countDemographic = 1;
+
         Intent intent = new Intent(DemographicInfoActivity.this, MainActivity.class);
         intent.putExtra("PgeneralFormModel", generalFormModel);
         startActivity(intent);

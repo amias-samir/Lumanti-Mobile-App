@@ -245,6 +245,10 @@ public class SaveSendActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     showDialog.dismiss();
+
+// ====================================== reinitialize constant variable=================================================//
+                                    reinitializeConstantVariable();
+
                                     Intent intent = new Intent(SaveSendActivity.this, SavedFormsActivity.class);
                                     startActivity(intent);
 //                                finish();
@@ -388,6 +392,9 @@ public class SaveSendActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         showDialog.dismiss();
+// ====================================== reinitialize constant variable=================================================//
+                        reinitializeConstantVariable();
+
                         Intent intent = new Intent(SaveSendActivity.this, MainActivity.class);
                         startActivity(intent);
 //                                finish();
@@ -492,5 +499,24 @@ public class SaveSendActivity extends AppCompatActivity {
         tvIdentifiedGap.setText(generalFormModel.getF7());
     }
 
+    public void reinitializeConstantVariable (){
+
+        Constant.countGeneral = 0 ;
+        Constant.countDemographic = 0 ;
+        Constant.countReconstruction = 0 ;
+        Constant.countEarthquakeRelief = 0 ;
+        Constant.countReconstructionGPS = 0 ;
+        Constant.countSaveSend = 0 ;
+
+        Constant.takenimg1 = false;
+        Constant.takenimg2 = false;
+        Constant.takenimg3 = false;
+        Constant.takenimg4 = false;
+
+        Constant.takenimg1Name = "";
+        Constant.takenimg2Name = "";
+        Constant.takenimg3Name = "";
+        Constant.takenimg4Name = "";
+    }
 
 }

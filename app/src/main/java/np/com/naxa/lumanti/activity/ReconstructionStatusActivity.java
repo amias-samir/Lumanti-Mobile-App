@@ -230,6 +230,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     @OnClick(R.id.reconstruction_status_next)
     public void NextPage() {
 
+        addImage();
+
         if(Constant.countReconstructionGPS == 2){
             generalFormModel.setB1_lat(finalLat + "");
             generalFormModel.setB1_long(finalLong + "");
@@ -861,7 +863,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         spinnerBuildBy.setSelection(setBuiltBy);
 
         List<String> ConstructionType = Arrays.asList(getResources().getStringArray(R.array.consctruction_type));
-        int setConstructionType = ConstructionType.indexOf(generalFormModel.getA3_a());
+        int setConstructionType = ConstructionType.indexOf(generalFormModel.getB2_b());
         spinnerConstructionType.setSelection(setConstructionType);
 
         tvOthersSpecify.setText(generalFormModel.getB2_c());

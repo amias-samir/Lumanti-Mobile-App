@@ -21,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.model.Constant;
 
 public class HomeListActivity extends AppCompatActivity {
 
@@ -149,6 +150,10 @@ public class HomeListActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.top_layout_shelter_status:
+
+//====================================== reset constant variable if they set ===========================================//
+                reinitializeConstantVariable();
+
                 Intent intent_main = new Intent(HomeListActivity.this, MainActivity.class);
                 startActivity(intent_main);
                 break;
@@ -190,4 +195,25 @@ public class HomeListActivity extends AppCompatActivity {
     }
 
     //===========================================end of menu item =======================================//
+
+
+    public void reinitializeConstantVariable (){
+
+        Constant.countGeneral = 0 ;
+        Constant.countDemographic = 0 ;
+        Constant.countReconstruction = 0 ;
+        Constant.countEarthquakeRelief = 0 ;
+        Constant.countReconstructionGPS = 0 ;
+        Constant.countSaveSend = 0 ;
+
+        Constant.takenimg1 = false;
+        Constant.takenimg2 = false;
+        Constant.takenimg3 = false;
+        Constant.takenimg4 = false;
+
+        Constant.takenimg1Name = "";
+        Constant.takenimg2Name = "";
+        Constant.takenimg3Name = "";
+        Constant.takenimg4Name = "";
+    }
 }
