@@ -211,11 +211,12 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
 
         generalFormModel = new GeneralFormModel();
+        Log.e(" MAIN ACTIVITY SAMIR", "onCreate: countReconstruction" + "" + Constant.countReconstruction);
+
 //        generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
         if(Constant.countReconstruction == 0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
 //        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
-            Log.e(" MAIN ACTIVITY SAMIR", "onCreate: " + "" + Constant.countReconstruction);
         }
 
         if(Constant.countReconstruction !=0) {
@@ -282,6 +283,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
     @OnClick(R.id.reconstruction_status_prev)
     public void PreviousPage(){
+
+        addImage();
 
         generalFormModel.setB1_lat(finalLat + "");
         generalFormModel.setB1_long(finalLong + "");
@@ -487,6 +490,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
         if (booimg1) {
             imageName1 = "lumanti" + timeInMillis;
+            Constant.takenimg1Name = imageName1;
 
             Log.e("Reconstruction", "saveToExternalSorage: " + imageName1);
 
@@ -511,6 +515,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         }
         if (booimg2) {
             imageName2 = "lumanti" + timeInMillis;
+            Constant.takenimg2Name = imageName2;
+
 
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName2);
@@ -531,6 +537,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         }
         if (booimg3) {
             imageName3 = "lumanti" + timeInMillis;
+            Constant.takenimg3Name = imageName3;
+
 
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName3);
@@ -550,7 +558,9 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             }
         }
         if (booimg4) {
-            imageName1 = "lumanti" + timeInMillis;
+            imageName4 = "lumanti" + timeInMillis;
+            Constant.takenimg4Name = imageName4;
+
 
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName4);
@@ -591,7 +601,16 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
     public void addImage() {
 
-        if (booimg1) {
+//        check encoded string is in model class or not
+        if(Constant.countReconstruction != 0){
+          imageName1 = Constant.takenimg1Name;
+          imageName2 = Constant.takenimg2Name;
+          imageName3 = Constant.takenimg3Name;
+          imageName4 = Constant.takenimg4Name;
+        }
+
+
+        if (booimg1 || Constant.takenimg1) {
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName1);
             String path = file1.toString();
@@ -617,10 +636,11 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
             //generate base64 string of image
             encodedImage1 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
+            Constant.takenimg1 = true ;
             Log.e("IMAGE STRING", "-" + encodedImage1);
         }
 
-        if (booimg2) {
+        if (booimg2 || Constant.takenimg2) {
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName2);
             String path = file1.toString();
@@ -643,10 +663,11 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
             //generate base64 string of image
             encodedImage2 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
+            Constant.takenimg2 = true ;
             Log.e("IMAGE STRING", "-" + encodedImage2);
         }
 
-        if (booimg3) {
+        if (booimg3 || Constant.takenimg3) {
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName3);
             String path = file1.toString();
@@ -669,10 +690,11 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
             //generate base64 string of image
             encodedImage3 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
+            Constant.takenimg3 = true ;
             Log.e("IMAGE STRING", "-" + encodedImage3);
         }
 
-        if (booimg4) {
+        if (booimg4 || Constant.takenimg4) {
             File file1 = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_PICTURES), imageName4);
             String path = file1.toString();
@@ -695,6 +717,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
             //generate base64 string of image
             encodedImage4 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
+            Constant.takenimg4 = true ;
             Log.e("IMAGE STRING", "-" + encodedImage4);
         }
 

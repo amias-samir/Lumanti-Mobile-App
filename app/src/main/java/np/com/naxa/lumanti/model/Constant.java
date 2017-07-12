@@ -19,4 +19,11 @@ public class Constant {
     public static int countReconstructionGPS = 0;
     public static int countEarthquakeRelief = 0;
     public static int countSaveSend = 0;
+
+
+    public static boolean takenimg1 = false, takenimg2 = false, takenimg3 = false, takenimg4 = false;
+    public static String takenimg1Name = "";
+    public static String takenimg2Name = "";
+    public static String takenimg3Name = "";
+    public static String takenimg4Name = "";
 }
