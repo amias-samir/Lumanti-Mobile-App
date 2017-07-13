@@ -349,6 +349,7 @@ public class SaveSendActivity extends AppCompatActivity {
 
             if (dataSentStatus.equals("200")) {
 //                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
+
                 String formNameToSend;
                 if (!generalFormModel.getG_10().equals("") && !generalFormModel.getG2().equals("")) {
 
@@ -370,6 +371,14 @@ public class SaveSendActivity extends AppCompatActivity {
                 long id = dataBaseFormSent.insertIntoTable_Main(data);
                 Log.e("dbID", "" + id);
                 dataBaseFormSent.close();
+
+                if(!Constant.formID.equals("")){
+                    DataBaseForm_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseForm_NotSent(getApplicationContext());
+                    dataBaseNepalPublicHealthNotSent.open();
+                    dataBaseNepalPublicHealthNotSent.dropRowNotSentForms(Constant.formID);
+//                Toast.makeText(getActivity() ,resultCur.get(position).date+ " Long Clicked "+id , Toast.LENGTH_SHORT ).show();
+                    dataBaseNepalPublicHealthNotSent.close();
+                }
 //
 //
                 DisplayMetrics metrics = context.getResources().getDisplayMetrics();

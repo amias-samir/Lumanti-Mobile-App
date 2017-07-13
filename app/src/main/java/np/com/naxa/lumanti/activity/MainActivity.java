@@ -103,10 +103,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra("JSON1")) {
             Bundle bundle = intent.getExtras();
+            Constant.isFomSavedForm = true;
 
             String jsonToParse = (String) bundle.get("JSON1");
             Log.e("MainActivity", "onCreate: Json "+jsonToParse );
             String formid = (String) bundle.get("DBid");
+            Constant.formID = formid ;
             String sent_Status = (String) bundle.get("sent_Status");
 
             Gson gson = new Gson();

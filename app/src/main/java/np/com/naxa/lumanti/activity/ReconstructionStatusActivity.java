@@ -232,13 +232,22 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
         addImage();
 
+        if(Constant.isFomSavedForm){
+            encodedImage1 = B64Eimage1;
+            encodedImage2 = B64Eimage2;
+            encodedImage3 = B64Eimage3;
+            encodedImage4 = B64Eimage4;
+        }
+
         if(Constant.countReconstructionGPS == 2){
             generalFormModel.setB1_lat(finalLat + "");
             generalFormModel.setB1_long(finalLong + "");
+
             generalFormModel.setB1_img1(encodedImage1);
             generalFormModel.setB1_img2(encodedImage2);
             generalFormModel.setB1_img3(encodedImage3);
             generalFormModel.setB1_img4(encodedImage4);
+
             generalFormModel.setB2(spinnerLivingSituation.getSelectedItem().toString());
             generalFormModel.setB2_a(spinnerBuildBy.getSelectedItem().toString());
             generalFormModel.setB2_b(spinnerConstructionType.getSelectedItem().toString());
@@ -290,6 +299,13 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
         generalFormModel.setB1_lat(finalLat + "");
         generalFormModel.setB1_long(finalLong + "");
+
+        if(Constant.isFomSavedForm){
+            encodedImage1 = B64Eimage1;
+            encodedImage2 = B64Eimage2;
+            encodedImage3 = B64Eimage3;
+            encodedImage4 = B64Eimage4;
+        }
 
         generalFormModel.setB1_img1(encodedImage1);
         generalFormModel.setB1_img2(encodedImage2);
