@@ -46,6 +46,7 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.activity.MainActivity;
 import np.com.naxa.lumanti.activity.SavedFormsActivity;
 import np.com.naxa.lumanti.adapter.GridSpacingItemDecorator;
 import np.com.naxa.lumanti.adapter.Not_Sent_Forms_Adapter;
@@ -129,7 +130,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
     protected void alert_editlist(final int position) {
 
         // TODO Auto-generated method stub
-        final CharSequence[] items = {"Send", "Delete"};
+        final CharSequence[] items = {"Send","Open", "Delete"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Choose Action");
@@ -160,10 +161,19 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                         Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_SHORT).show();
 
                     }
+                }
+                else if (items[item] == "Open") {
+                    String id = resultCur.get(position).formId;
+                    String jSon = resultCur.get(position).jSON;
+                    String photo = resultCur.get(position).photo;
+                    String gps = resultCur.get(position).gps;
+                    String DBid = resultCur.get(position).dbId;
+                    String sent_Status = resultCur.get(position).status;
+                    String form_name = resultCur.get(position).formName;
+                    loadForm(id, jSon, DBid, sent_Status, form_name);
 
-//                    loadForm(id, jSon, photo, gps, DBid, sent_Status, form_name);
-
-                } else if (items[item] == "Delete") {
+                }
+                else if (items[item] == "Delete") {
                     DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
                     int width = metrics.widthPixels;
                     int height = metrics.heightPixels;
@@ -214,15 +224,18 @@ public class Fragment_Not_Sent_Forms extends Fragment {
     }
 
 
-    public void loadForm(String formId, String jsonData , String photo , String gps, String DBid, String status, String form_name){
+
+
+    public void loadForm(String formId, String jsonData , String DBid, String status, String form_name){
         switch (formId){
 
             case "1" :
 
-                Intent intent1 = new Intent(getActivity(), Fragment_Not_Sent_Forms.class);
+                Intent intent1 = new Intent(getActivity(), MainActivity.class);
+                Constant.isFomSavedForm = true ;
                 intent1.putExtra("JSON1", jsonData);
-                intent1.putExtra("photo" , photo);
-                intent1.putExtra("gps" , gps) ;
+//                intent1.putExtra("photo" , photo);
+//                intent1.putExtra("gps" , gps) ;
                 intent1.putExtra("DBid", DBid);
                 intent1.putExtra("sent_Status", status);
                 intent1.putExtra("form_name", form_name);

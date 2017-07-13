@@ -26,4 +26,6 @@ public class Constant {
     public static String takenimg2Name = "";
     public static String takenimg3Name = "";
     public static String takenimg4Name = "";
+
+    public static boolean isFomSavedForm = false ;
 }

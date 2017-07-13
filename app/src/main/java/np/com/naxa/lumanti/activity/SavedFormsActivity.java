@@ -15,6 +15,7 @@ import java.util.List;
 import np.com.naxa.lumanti.R;
 import np.com.naxa.lumanti.fragments.Fragment_Not_Sent_Forms;
 import np.com.naxa.lumanti.fragments.Fragment_Sent_Forms;
+import np.com.naxa.lumanti.model.Constant;
 
 
 public class SavedFormsActivity extends AppCompatActivity {
@@ -36,6 +37,8 @@ public class SavedFormsActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
+
+        reinitializeConstantVariable();
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -91,6 +94,26 @@ public class SavedFormsActivity extends AppCompatActivity {
         }
     }
 
+
+    public void reinitializeConstantVariable (){
+
+        Constant.countGeneral = 0 ;
+        Constant.countDemographic = 0 ;
+        Constant.countReconstruction = 0 ;
+        Constant.countEarthquakeRelief = 0 ;
+        Constant.countReconstructionGPS = 0 ;
+        Constant.countSaveSend = 0 ;
+
+        Constant.takenimg1 = false;
+        Constant.takenimg2 = false;
+        Constant.takenimg3 = false;
+        Constant.takenimg4 = false;
+
+        Constant.takenimg1Name = "";
+        Constant.takenimg2Name = "";
+        Constant.takenimg3Name = "";
+        Constant.takenimg4Name = "";
+    }
 
 }
 

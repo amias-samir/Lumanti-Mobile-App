@@ -16,6 +16,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -89,14 +91,33 @@ public class MainActivity extends AppCompatActivity {
         generalFormModel = new GeneralFormModel();
 
 
-
-//        NextPage();
+//        get intent from next page();
         Log.e(" MAIN ACTIVITY SAMIR", "onCreate: countGeneral"+""+Constant.countGeneral );
         if(Constant.countGeneral!=0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
 
             initializeUI();
         }
+
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("JSON1")) {
+            Bundle bundle = intent.getExtras();
+
+            String jsonToParse = (String) bundle.get("JSON1");
+            Log.e("MainActivity", "onCreate: Json "+jsonToParse );
+            String formid = (String) bundle.get("DBid");
+            String sent_Status = (String) bundle.get("sent_Status");
+
+            Gson gson = new Gson();
+            // 2. JSON to Java object, read it from a Json String.
+            generalFormModel = gson.fromJson(jsonToParse, GeneralFormModel.class);
+            reinitializeConstantVariable();
+            initializeUI();
+
+
+        }
+
 
 
 
@@ -285,6 +306,28 @@ public class MainActivity extends AppCompatActivity {
         tvNissaNo.setText(generalFormModel.getG_10());
         tvCitizenshipNo.setText(generalFormModel.getG_11());
         tvPaNo.setText(generalFormModel.getG_12());
+    }
+
+
+
+    public void reinitializeConstantVariable (){
+
+        Constant.countGeneral = 1 ;
+        Constant.countDemographic = 1 ;
+        Constant.countReconstruction = 1 ;
+        Constant.countEarthquakeRelief = 1 ;
+        Constant.countReconstructionGPS = 2 ;
+        Constant.countSaveSend = 0 ;
+
+//        Constant.takenimg1 = false;
+//        Constant.takenimg2 = false;
+//        Constant.takenimg3 = false;
+//        Constant.takenimg4 = false;
+//
+//        Constant.takenimg1Name = "";
+//        Constant.takenimg2Name = "";
+//        Constant.takenimg3Name = "";
+//        Constant.takenimg4Name = "";
     }
 
 
