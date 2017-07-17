@@ -198,6 +198,8 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
             cbInCash.setChecked(true);
             cbInKind.setChecked(true);
 
+            receivedInstallment.setVisibility(View.VISIBLE);
+
             int setInstallment = Integer.parseInt(generalFormModel.getC2_a());
             receivedInstallment.setSelection(setInstallment);
 
