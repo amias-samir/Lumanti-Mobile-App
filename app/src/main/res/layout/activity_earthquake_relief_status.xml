@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,13 +7,14 @@
     android:layout_height="match_parent"
     tools:context="np.com.naxa.lumanti.activity.MainActivity">
 
-    <include layout="@layout/toolbar_layout"
-        android:id="@+id/toolbar"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
 
     <ScrollView
-        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -34,10 +34,10 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    card_view:cardBackgroundColor="@color/transparent"
-                    card_view:cardElevation="1dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp">
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_below="@+id/reconsctructionGrantLbl"
-                            android:entries="@array/yes_no"/>
+                            android:entries="@array/yes_no" />
 
                     </RelativeLayout>
 
@@ -75,16 +75,17 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    card_view:cardBackgroundColor="@color/transparent"
-                    card_view:cardElevation="1dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp">
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:orientation="vertical"
                         android:padding="5dp">
 
                         <TextView
@@ -100,15 +101,62 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/monsoon" />
 
+                        <!--in cash checkbox-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/receivedSupportLbl"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+                            <CheckBox
+                                android:id="@+id/earthquake_relief_cb_in_cash"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:layout_toEndOf="@id/earthquake_relief_cb_in_cash"
+                                android:layout_toRightOf="@id/earthquake_relief_cb_in_cash"
+                                android:text="In Cash"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="@color/black" />
+                        </RelativeLayout>
+
+                        <!--in kind checkbox-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/receivedSupportLbl"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+                            <CheckBox
+                                android:id="@+id/earthquake_relief_cb_in_kind"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:layout_toEndOf="@id/earthquake_relief_cb_in_kind"
+                                android:layout_toRightOf="@id/earthquake_relief_cb_in_kind"
+                                android:text="In Kind"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="@color/black" />
+                        </RelativeLayout>
+
                         <Spinner
                             android:id="@+id/earthquake_relief_received_support"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_below="@+id/receivedSupportLbl"
-                            android:entries="@array/received_support"/>
+                            android:entries="@array/received_support"
+                            android:visibility="gone" />
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
@@ -116,10 +164,10 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    card_view:cardBackgroundColor="@color/transparent"
-                    card_view:cardElevation="1dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp">
+                    card_view:cardBackgroundColor="@color/transparent"
+                    card_view:cardElevation="1dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -147,7 +195,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_below="@+id/installmentLbl"
-                            android:entries="@array/installment"/>
+                            android:entries="@array/installment" />
 
                     </RelativeLayout>
 
@@ -157,22 +205,22 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:text="@string/stringC2_b"
-                    android:textColor="@color/accent"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"/>
+                    android:textColor="@color/accent" />
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <AutoCompleteTextView
+                        android:id="@+id/earthquake_relief_kind_support"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint=""
                         android:inputType="text"
-                        android:textColor="@color/black"
-                        android:id="@+id/earthquake_relief_kind_support" />
+                        android:textColor="@color/black" />
                 </android.support.design.widget.TextInputLayout>
-
 
 
                 <!-- Next -->
@@ -196,8 +244,8 @@
                             android:id="@+id/earthquake_relief_status_prev"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
                             android:background="@drawable/button_pressed_hwc_light"
                             android:text="@string/previous"
