@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
             tvPreviousVdcMun.setText("Dhaibung VDC ((धैबुङ्ग गाविस))");
 
         } else if (selected_item.equals(values[2])) {
-            tvPreviousVdcMun.setText("Laharapauwa VDC (धैबुङ्ग गाविस)");
+            tvPreviousVdcMun.setText("Laharapauwa VDC (लहरापौवा गाविस)");
             rural_municipality = values[2];
 
         }else {
