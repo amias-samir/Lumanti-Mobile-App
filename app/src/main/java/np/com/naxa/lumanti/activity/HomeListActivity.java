@@ -12,16 +12,28 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import np.com.naxa.lumanti.R;
 import np.com.naxa.lumanti.model.Constant;
+import np.com.naxa.lumanti.sugar.Municipality_ward_list;
 
 public class HomeListActivity extends AppCompatActivity {
 
@@ -45,6 +57,9 @@ public class HomeListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         requestPermission();
+
+        //        load municipality dta to database
+        loadMunicipalityList();
     }
 
 
@@ -215,5 +230,62 @@ public class HomeListActivity extends AppCompatActivity {
         Constant.takenimg2Name = "";
         Constant.takenimg3Name = "";
         Constant.takenimg4Name = "";
+    }
+
+
+//    load local JSON file
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = this.getAssets().open("json/Lumanti_munici_ward.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+
+
+//    List<Municipality_ward_list> user_list = new ArrayList<>();
+    double count = Municipality_ward_list.count(Municipality_ward_list.class);
+
+
+
+
+    public void loadMunicipalityList () {
+        Log.e("Municipality SAMIR", "loadMunicipalityList count: " + "" + count);
+
+        if(count <= 0){
+
+        try {
+            JSONObject obj = new JSONObject(loadJSONFromAsset());
+            JSONArray municipalityJArray = obj.getJSONArray("Municipality_list");
+
+            for (int i = 0; i < municipalityJArray.length(); i++) {
+                JSONObject jObj = municipalityJArray.getJSONObject(i);
+                Log.e("Municipality SAMIR", "loadMunicipalityList: "+jObj.toString() );
+                String sn = jObj.getString("sn");
+                String district = jObj.getString("district");
+                String current_municipality = jObj.getString("current_municipality");
+                String current_ward = jObj.getString("current_ward");
+                String previous_municipality = jObj.getString("previous_municipality");
+                String previous_ward = jObj.getString("previous_ward");
+
+                Municipality_ward_list municipalityWardList = new Municipality_ward_list(sn, district, current_municipality, current_ward, previous_municipality, previous_ward);
+                municipalityWardList.save();
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     }
 }

@@ -21,7 +21,6 @@ import com.google.gson.Gson;
 import java.util.Arrays;
 import java.util.List;
 
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     GeneralFormModel generalFormModel;
 
-    static int count = 0 ;
+    static int count = 0;
 
 
     @BindView(R.id.general_info_damage_type)
@@ -74,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
     CardView rlRuralCardLayout;
     @BindView(R.id.inputlatoutRural)
     TextInputLayout inputlatoutRural;
+    @BindView(R.id.general_info_current_ward_spinner)
+    Spinner CurrentWardSpinner;
+    @BindView(R.id.general_info_previous_vdc_spinner)
+    Spinner PreviousVdcSpinner;
+    @BindView(R.id.general_info_previous_ward_spinner)
+    Spinner PreviousWardSpinner;
 
 
     @Override
@@ -88,12 +93,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         generalFormModel = new GeneralFormModel();
 
 
 //        get intent from next page();
-        Log.e(" MAIN ACTIVITY SAMIR", "onCreate: countGeneral"+""+Constant.countGeneral );
-        if(Constant.countGeneral!=0) {
+        Log.e(" MAIN ACTIVITY SAMIR", "onCreate: countGeneral" + "" + Constant.countGeneral);
+        if (Constant.countGeneral != 0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
 
             initializeUI();
@@ -106,9 +112,9 @@ public class MainActivity extends AppCompatActivity {
             Constant.isFomSavedForm = true;
 
             String jsonToParse = (String) bundle.get("JSON1");
-            Log.e("MainActivity", "onCreate: Json "+jsonToParse );
+            Log.e("MainActivity", "onCreate: Json " + jsonToParse);
             String formid = (String) bundle.get("DBid");
-            Constant.formID = formid ;
+            Constant.formID = formid;
             String sent_Status = (String) bundle.get("sent_Status");
 
             Gson gson = new Gson();
@@ -121,8 +127,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
     }
 
     @OnClick(R.id.general_info_next)
@@ -133,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         if ((!(spinnerDistrictName.getSelectedItem().toString()).equals(values[0]) || !(tvNissaNo.getText().toString()).isEmpty()) && !(tvNissaNo.getText().toString()).equals("")) {
 
 //            final String[] values = getResources().getStringArray(R.array.district_name);
-            if(!(spinnerDistrictName.getSelectedItem().toString()).equals(values[1])){
+            if (!(spinnerDistrictName.getSelectedItem().toString()).equals(values[1])) {
                 rural_municipality = tvRuralMunicipality.getText().toString();
             }
 
@@ -153,9 +157,9 @@ public class MainActivity extends AppCompatActivity {
 
             Constant.countGeneral = 1;
             Intent intent = new Intent(MainActivity.this, DemographicInfoActivity.class);
-            if(Constant.countDemographic == 0) {
+            if (Constant.countDemographic == 0) {
                 intent.putExtra("generalFormModel", generalFormModel);
-            }else {
+            } else {
                 intent.putExtra("PgeneralFormModel", generalFormModel);
 
             }
@@ -192,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
             tvRuralMunicipality.setText("");
 
 
-
         }
     }
 
@@ -210,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
             tvPreviousVdcMun.setText("Laharapauwa VDC (लहरापौवा गाविस)");
             rural_municipality = values[2];
 
-        }else {
+        } else {
             rural_municipality = values[0];
             tvPreviousVdcMun.setText("");
         }
@@ -284,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //    }
 
-    public void initializeUI(){
+    public void initializeUI() {
 
         List<String> DamageType = Arrays.asList(getResources().getStringArray(R.array.house_damage));
         int setDamageType = DamageType.indexOf(generalFormModel.getG1());
@@ -311,15 +314,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void reinitializeConstantVariable() {
 
-    public void reinitializeConstantVariable (){
-
-        Constant.countGeneral = 1 ;
-        Constant.countDemographic = 1 ;
-        Constant.countReconstruction = 1 ;
-        Constant.countEarthquakeRelief = 1 ;
-        Constant.countReconstructionGPS = 2 ;
-        Constant.countSaveSend = 0 ;
+        Constant.countGeneral = 1;
+        Constant.countDemographic = 1;
+        Constant.countReconstruction = 1;
+        Constant.countEarthquakeRelief = 1;
+        Constant.countReconstructionGPS = 2;
+        Constant.countSaveSend = 0;
 
 //        Constant.takenimg1 = false;
 //        Constant.takenimg2 = false;
@@ -333,4 +335,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+    @OnClick({R.id.general_info_district_name, R.id.general_info_rural_municipality_spinner, R.id.general_info_current_ward_spinner, R.id.general_info_previous_vdc_spinner, R.id.general_info_previous_ward_spinner})
+    public void onSpinnerClick(View view) {
+        switch (view.getId()) {
+            case R.id.general_info_district_name:
+                break;
+            case R.id.general_info_rural_municipality_spinner:
+                break;
+            case R.id.general_info_current_ward_spinner:
+                break;
+            case R.id.general_info_previous_vdc_spinner:
+                break;
+            case R.id.general_info_previous_ward_spinner:
+                break;
+        }
+    }
 }

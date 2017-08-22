@@ -300,7 +300,7 @@ public class SaveSendActivity extends AppCompatActivity {
 
         jsonToSend = gson.toJson(generalFormModel);
 
-        Log.d("capacity_building", "convertDatToJson: " + jsonToSend);
+        Log.e("capacity_building", "convertDatToJson: " + jsonToSend);
     }
 
     public void sendDatToserver() {
