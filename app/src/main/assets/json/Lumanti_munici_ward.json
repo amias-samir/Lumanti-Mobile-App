@@ -2,155 +2,155 @@
 	"Municipality_list": [
 		{
 			"sn": "1",
-			"district": "Rasuwa",
-			"current_municipality": "Kalika Rural Municipality",
-			"current_ward": "3",
-			"previous_municipality": "Dhaibung",
-			"previous_ward": "3"
+			"district": "Rasuwa(रसुवा)",
+			"current_municipality": "Kalika Rural Municipality (कालिका गाउँपालिका)",
+			"current_ward": "३(3)",
+			"previous_municipality": "Dhaibung VDC (धैबुंग गा.बि.स)",
+			"previous_ward": "३(3)"
 		},
 		{
 			"sn": "2",
-			"district": "Rasuwa",
-			"current_municipality": "Kalika Rural Municipality",
-			"current_ward": "3",
-			"previous_municipality": "Dhaibung",
-			"previous_ward": "4"
+			"district": "Rasuwa(रसुवा)",
+			"current_municipality": "Kalika Rural Municipality (कालिका गाउँपालिका)",
+			"current_ward": "३(3)",
+			"previous_municipality": "Dhaibung VDC (धैबुंग गा.बि.स)",
+			"previous_ward": "४(4)"
 		},
 		{
 			"sn": "3",
-			"district": "Rasuwa",
-			"current_municipality": "Uttargaya Rural Municipality",
-			"current_ward": "4",
-			"previous_municipality": "Laharepauwa",
-			"previous_ward": "7"
+			"district": "Rasuwa(रसुवा)",
+			"current_municipality": "Uttargaya Rural Municipality (उत्तरगया गाउँपालिका)",
+			"current_ward": "४(4)",
+			"previous_municipality": "Laharepauwa VDC (लहरेपौवा गा.बि.स)",
+			"previous_ward": "७(7)"
 		},
 		{
 			"sn": "4",
-			"district": "Rasuwa",
-			"current_municipality": "Uttargaya Rural Municipality",
-			"current_ward": "5",
-			"previous_municipality": "Laharepauwa",
-			"previous_ward": "9"
+			"district": "Rasuwa(रसुवा)",
+			"current_municipality": "Uttargaya Rural Municipality (उत्तरगया गाउँपालिका)",
+			"current_ward": "५(5)",
+			"previous_municipality": "Laharepauwa VDC (लहरेपौवा गा.बि.स)",
+			"previous_ward": "९(9)"
 		},
 		{
 			"sn": "5",
-			"district": "Lalitpur",
-			"current_municipality": "Mahalaxmi Municipality",
-			"current_ward": "6",
-			"previous_municipality": "Mahalaxmi Municipality",
-			"previous_ward": "12"
+			"district": "Lalitpur(ललितपुर)",
+			"current_municipality": "Mahalaxmi Municipality (महालक्ष्मी नगरपालिका)",
+			"current_ward": "६(6)",
+			"previous_municipality": "Mahalaxmi Municipality (महालक्ष्मी नगरपालिका)",
+			"previous_ward": "१२(12)"
 		},
 		{
 			"sn": "6",
-			"district": "Lalitpur",
-			"current_municipality": "Mahalaxmi Municipality",
-			"current_ward": "6",
-			"previous_municipality": "Mahalaxmi Municipality",
-			"previous_ward": "13"
+			"district": "Lalitpur(ललितपुर)",
+			"current_municipality": "Mahalaxmi Municipality (महालक्ष्मी नगरपालिका)",
+			"current_ward": "६(6)",
+			"previous_municipality": "Mahalaxmi Municipality (महालक्ष्मी नगरपालिका)",
+			"previous_ward": "१३(13)"
 		},
 		{
 			"sn": "7",
-			"district": "Lalitpur",
-			"current_municipality": "Mahalaxmi Municipality",
-			"current_ward": "6",
-			"previous_municipality": "Mahalaxmi Municipality",
-			"previous_ward": "14"
+			"district": "Lalitpur(ललितपुर)",
+			"current_municipality": "Mahalaxmi Municipality (महालक्ष्मी नगरपालिका)",
+			"current_ward": "६(6)",
+			"previous_municipality": "Mahalaxmi Municipality (महालक्ष्मी नगरपालिका)",
+			"previous_ward": "१४(14)"
 		},
 		{
 			"sn": "8",
-			"district": "Lalitpur",
-			"current_municipality": "Godawari Municipality",
-			"current_ward": "12",
-			"previous_municipality": "Bajrabarahi Municipality",
-			"previous_ward": "5"
+			"district": "Lalitpur(ललितपुर)",
+			"current_municipality": "Godawari Municipality (गोदावरी नगरपालिका)",
+			"current_ward": "१२(12)",
+			"previous_municipality": "Bajrabarahi Municipality (बज्रबाराही नगरपालिका)",
+			"previous_ward": "५(5)"
 		},
 		{
 			"sn": "9",
-			"district": "Lalitpur",
-			"current_municipality": "Godawari Municipality",
-			"current_ward": "12",
-			"previous_municipality": "Bajrabarahi Municipality",
-			"previous_ward": "6"
+			"district": "Lalitpur(ललितपुर)",
+			"current_municipality": "Godawari Municipality (गोदावरी नगरपालिका)",
+			"current_ward": "१२(12)",
+			"previous_municipality": "Bajrabarahi Municipality (बज्रबाराही नगरपालिका)",
+			"previous_ward": "६(6)"
 		},
 		{
 			"sn": "10",
-			"district": "Lalitpur",
-			"current_municipality": "Godawari Municipality",
-			"current_ward": "13",
-			"previous_municipality": "Bajrabarahi Municipality",
-			"previous_ward": "2"
+			"district": "Lalitpur(ललितपुर)",
+			"current_municipality": "Godawari Municipality (गोदावरी नगरपालिका)",
+			"current_ward": "१३(13)",
+			"previous_municipality": "Bajrabarahi Municipality (बज्रबाराही नगरपालिका)",
+			"previous_ward": "२(2)"
 		},
 		{
 			"sn": "11",
-			"district": "Lalitpur",
-			"current_municipality": "Godawari Municipality",
-			"current_ward": "10",
-			"previous_municipality": "Bajrabarahi Municipality",
-			"previous_ward": "12"
+			"district": "Lalitpur(ललितपुर)",
+			"current_municipality": "Godawari Municipality (गोदावरी नगरपालिका)",
+			"current_ward": "१०(10)",
+			"previous_municipality": "Bajrabarahi Municipality (बज्रबाराही नगरपालिका)",
+			"previous_ward": "१२(12)"
 		},
 		{
 			"sn": "12",
-			"district": "Lalitpur",
-			"current_municipality": "Godawari Municipality",
-			"current_ward": "10",
-			"previous_municipality": "Bajrabarahi Municipality",
-			"previous_ward": "13"
+			"district": "Lalitpur(ललितपुर)",
+			"current_municipality": "Godawari Municipality (गोदावरी नगरपालिका)",
+			"current_ward": "१०(10)",
+			"previous_municipality": "Bajrabarahi Municipality (बज्रबाराही नगरपालिका)",
+			"previous_ward": "१३(13)"
 		},
 		{
 			"sn": "13",
-			"district": "Lalitpur",
-			"current_municipality": "Godawari Municipality",
-			"current_ward": "5",
-			"previous_municipality": "Bajrabarahi Municipality",
-			"previous_ward": "14"
+			"district": "Lalitpur(ललितपुर)",
+			"current_municipality": "Godawari Municipality (गोदावरी नगरपालिका)",
+			"current_ward": "५(5)",
+			"previous_municipality": "Bajrabarahi Municipality (बज्रबाराही नगरपालिका)",
+			"previous_ward": "१४(14)"
 		},
 		{
 			"sn": "14",
-			"district": "Lalitpur",
-			"current_municipality": "Godawari Municipality",
-			"current_ward": "5",
-			"previous_municipality": "Bajrabarahi Municipality",
-			"previous_ward": "15"
+			"district": "Lalitpur(ललितपुर)",
+			"current_municipality": "Godawari Municipality (गोदावरी नगरपालिका)",
+			"current_ward": "५(5)",
+			"previous_municipality": "Bajrabarahi Municipality (बज्रबाराही नगरपालिका)",
+			"previous_ward": "१५(15)"
 		},
 		{
 			"sn": "15",
-			"district": "Kathmandu",
-			"current_municipality": "Chandragiri Municipality",
-			"current_ward": "9",
-			"previous_municipality": "Chandragiri Municipality",
-			"previous_ward": "13"
+			"district": "Kathmandu(काठमाडौँ)",
+			"current_municipality": "Chandragiri Municipality (चन्द्रागिरी नगरपालिका)",
+			"current_ward": "९(9)",
+			"previous_municipality": "Chandragiri Municipality (चन्द्रागिरी नगरपालिका)",
+			"previous_ward": "१३(13)"
 		},
 		{
 			"sn": "16",
-			"district": "Kathmandu",
-			"current_municipality": "Chandragiri Municipality",
-			"current_ward": "9",
-			"previous_municipality": "Chandragiri Municipality",
-			"previous_ward": "14"
+			"district": "Kathmandu(काठमाडौँ)",
+			"current_municipality": "Chandragiri Municipality (चन्द्रागिरी नगरपालिका)",
+			"current_ward": "९(9)",
+			"previous_municipality": "Chandragiri Municipality (चन्द्रागिरी नगरपालिका)",
+			"previous_ward": "१४(14)"
 		},
 		{
 			"sn": "17",
-			"district": "Makwanpur",
-			"current_municipality": "Thaha Municipality",
-			"current_ward": "9",
-			"previous_municipality": "Chitlang VDC",
-			"previous_ward": "4"
+			"district": "Makawanpur(मकवानपुर)",
+			"current_municipality": "Thaha Municipality (थाहा नगरपालिका)",
+			"current_ward": "९(9)",
+			"previous_municipality": "Chitlang VDC (चित्लांग ग.बि.स)",
+			"previous_ward": "४(4)"
 		},
 		{
 			"sn": "18",
-			"district": "Makwanpur",
-			"current_municipality": "Thaha Municipality",
-			"current_ward": "10",
-			"previous_municipality": "Chitlang VDC",
-			"previous_ward": "7"
+			"district": "Makawanpur(मकवानपुर)",
+			"current_municipality": "Thaha Municipality (थाहा नगरपालिका)",
+			"current_ward": "१०(10)",
+			"previous_municipality": "Chitlang VDC (चित्लांग ग.बि.स)",
+			"previous_ward": "७(7)"
 		},
 		{
 			"sn": "19",
-			"district": "Makwanpur",
-			"current_municipality": "Thaha Municipality",
-			"current_ward": "10",
-			"previous_municipality": "Chitlang VDC",
-			"previous_ward": "9"
+			"district": "Makawanpur(मकवानपुर)",
+			"current_municipality": "Thaha Municipality (थाहा नगरपालिका)",
+			"current_ward": "१०(10)",
+			"previous_municipality": "Chitlang VDC (चित्लांग ग.बि.स)",
+			"previous_ward": "९(9)"
 		}
 	]
 }

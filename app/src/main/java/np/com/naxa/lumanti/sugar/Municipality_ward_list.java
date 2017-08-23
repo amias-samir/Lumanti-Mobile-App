@@ -11,11 +11,11 @@ public class Municipality_ward_list extends SugarRecord {
     @Unique
     String  sn ;
 
-    String district_name;
-    String municipality_name;
-    String current_ward;
-    String prev_municipality_name;
-    String prev_ward;
+    public String district_name;
+    public String municipality_name;
+    public String current_ward;
+    public String prev_municipality_name;
+    public String prev_ward;
 
     public Municipality_ward_list(){
     }
