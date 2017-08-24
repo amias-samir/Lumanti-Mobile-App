@@ -2,6 +2,8 @@ package np.com.naxa.lumanti.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -50,14 +52,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinnerDistrictName;
     @BindView(R.id.general_info_district_code)
     AutoCompleteTextView tvDistrictCode;
-//    @BindView(R.id.general_info_rural_municipality)
-//    AutoCompleteTextView tvRuralMunicipality;
-//    @BindView(R.id.general_info_current_ward_no)
-//    AutoCompleteTextView tvCurrentWardNo;
-//    @BindView(R.id.general_info_previous_vdc_mun)
-//    AutoCompleteTextView tvPreviousVdcMun;
-//    @BindView(R.id.general_info_previous_ward_no)
-//    AutoCompleteTextView tvPreviousWardNo;
+
     @BindView(R.id.general_info_tole)
     AutoCompleteTextView tvTole;
     @BindView(R.id.general_info_house_code)
@@ -103,32 +98,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
-
-
-        //VDC name spinner
-        List<Municipality_ward_list> allContacts = Municipality_ward_list.listAll(Municipality_ward_list.class);
-        ArrayList<String> arr = new ArrayList<>();
-        for(Municipality_ward_list contact:allContacts){
-            if(!arr.contains(contact.district_name)) {
-                arr.add(contact.district_name); // or arr.add(contact.name); if it's public
-            }
-        }
-//        String[] distArray = arr.toArray(new String[0]);
-
-        Log.e("MAIN_ACTIVITY", "onCreate: districtArray SAMIR"+ arr);
-
-        districtNameadpt = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arr);
-        districtNameadpt
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDistrictName.setAdapter(districtNameadpt);
-
-
-
-
         generalFormModel = new GeneralFormModel();
-
 
 
 //        get intent from next page();
@@ -136,7 +106,28 @@ public class MainActivity extends AppCompatActivity {
         if (Constant.countGeneral != 0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
 
+            initializeSpinnerAdapterSaved();
             initializeUI();
+        } else {
+
+            //VDC name spinner
+            List<Municipality_ward_list> allContacts = Municipality_ward_list.listAll(Municipality_ward_list.class);
+            ArrayList<String> arr = new ArrayList<>();
+            for (Municipality_ward_list contact : allContacts) {
+                if (!arr.contains(contact.district_name)) {
+                    arr.add(contact.district_name); // or arr.add(contact.name); if it's public
+                }
+            }
+//        String[] distArray = arr.toArray(new String[0]);
+
+            Log.e("MAIN_ACTIVITY", "onCreate: districtArray SAMIR" + arr);
+
+            districtNameadpt = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item, arr);
+            districtNameadpt
+                    .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerDistrictName.setAdapter(districtNameadpt);
+
         }
 
 
@@ -155,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
             // 2. JSON to Java object, read it from a Json String.
             generalFormModel = gson.fromJson(jsonToParse, GeneralFormModel.class);
             reinitializeConstantVariable();
+
+            initializeSpinnerAdapterSaved();
             initializeUI();
 
 
@@ -168,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         tvNissaNo.setError(null);
         final String[] values = getResources().getStringArray(R.array.district_name);
 
-        if ((!(spinnerDistrictName.getSelectedItem().toString()).equals(values[0]) || !(tvNissaNo.getText().toString()).isEmpty()) && !(tvNissaNo.getText().toString()).equals("")) {
+        if ((!(tvNissaNo.getText().toString()).isEmpty()) && !(tvNissaNo.getText().toString()).equals("")) {
 
 ////            final String[] values = getResources().getStringArray(R.array.district_name);
 //            if (!(spinnerDistrictName.getSelectedItem().toString()).equals(values[1])) {
@@ -179,10 +172,10 @@ public class MainActivity extends AppCompatActivity {
             generalFormModel.setG1(spinnerDamageType.getSelectedItem().toString());
             generalFormModel.setG2(spinnerDistrictName.getSelectedItem().toString());
             generalFormModel.setG3(tvDistrictCode.getText().toString());
-            generalFormModel.setG4(rural_municipality);
-//            generalFormModel.setG5(CurrentWardSpinner.getSelectedItem().toString());
-//            generalFormModel.setG6(PreviousVdcSpinner.getSelectedItem().toString());
-//            generalFormModel.setG7(PreviousWardSpinner.getSelectedItem().toString());
+            generalFormModel.setG4(spinnerRuralMunicipality.getSelectedItem().toString());
+            generalFormModel.setG5(CurrentWardSpinner.getSelectedItem().toString());
+            generalFormModel.setG6(PreviousVdcSpinner.getSelectedItem().toString());
+            generalFormModel.setG7(PreviousWardSpinner.getSelectedItem().toString());
             generalFormModel.setG8(tvTole.getText().toString());
             generalFormModel.setG9(tvHouseCode.getText().toString());
             generalFormModel.setG_10(tvNissaNo.getText().toString());
@@ -207,24 +200,23 @@ public class MainActivity extends AppCompatActivity {
 
     @OnItemSelected(R.id.general_info_district_name)
     public void ruralSpinner(Spinner spinner, int position) {
-            //VDC name spinner
-            List<Municipality_ward_list> allContacts = Municipality_ward_list.listAll(Municipality_ward_list.class);
-            ArrayList<String> municipalityArray = new ArrayList<>();
-            for(Municipality_ward_list contact:allContacts){
-                if((contact.district_name).equals(spinnerDistrictName.getSelectedItem().toString())) {
-                    if(!municipalityArray.contains(contact.municipality_name)) {
-                        municipalityArray.add(contact.municipality_name); // or arr.add(contact.name); if it's public
-                    }
+        //VDC name spinner
+        List<Municipality_ward_list> allContacts = Municipality_ward_list.listAll(Municipality_ward_list.class);
+        ArrayList<String> municipalityArray = new ArrayList<>();
+        for (Municipality_ward_list contact : allContacts) {
+            if ((contact.district_name).equals(spinnerDistrictName.getSelectedItem().toString())) {
+                if (!municipalityArray.contains(contact.municipality_name)) {
+                    municipalityArray.add(contact.municipality_name); // or arr.add(contact.name); if it's public
                 }
             }
-            Log.e("MAIN_ACTIVITY", "onCreate: districtArray SAMIR"+ municipalityArray);
+        }
+        Log.e("MAIN_ACTIVITY", "onCreate: districtArray SAMIR" + municipalityArray);
 
-            currentMuniVDCNameadpt = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_spinner_item, municipalityArray);
-            currentMuniVDCNameadpt
-                    .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinnerRuralMunicipality.setAdapter(currentMuniVDCNameadpt);
-
+        currentMuniVDCNameadpt = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, municipalityArray);
+        currentMuniVDCNameadpt
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerRuralMunicipality.setAdapter(currentMuniVDCNameadpt);
 
 
     }
@@ -234,21 +226,21 @@ public class MainActivity extends AppCompatActivity {
         //Current Ward no spinner
         List<Municipality_ward_list> allContacts = Municipality_ward_list.listAll(Municipality_ward_list.class);
         ArrayList<String> currentWardArray = new ArrayList<>();
-        for(Municipality_ward_list contact:allContacts){
-            if(((contact.district_name).equals(spinnerDistrictName.getSelectedItem().toString())) &&
-                    ((contact.municipality_name).equals(spinnerRuralMunicipality.getSelectedItem().toString())) ) {
+        for (Municipality_ward_list contact : allContacts) {
+            if (((contact.district_name).equals(spinnerDistrictName.getSelectedItem().toString())) &&
+                    ((contact.municipality_name).equals(spinnerRuralMunicipality.getSelectedItem().toString()))) {
 
-                if(!currentWardArray.contains(contact.current_ward)) {
+                if (!currentWardArray.contains(contact.current_ward)) {
                     currentWardArray.add(contact.current_ward); // or arr.add(contact.name); if it's public
                 }
             }
         }
-        Log.e("MAIN_ACTIVITY", "onCreate: districtArray SAMIR"+ currentWardArray);
+        Log.e("MAIN_ACTIVITY", "onCreate: districtArray SAMIR" + currentWardArray);
 
         currentWardNoadpt = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, currentWardArray);
-        currentMuniVDCNameadpt
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        currentWardNoadpt
+                .setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         CurrentWardSpinner.setAdapter(currentWardNoadpt);
 
     }
@@ -256,20 +248,20 @@ public class MainActivity extends AppCompatActivity {
 
     @OnItemSelected(R.id.general_info_current_ward_spinner)
     public void prevMUNIVDCSpinner(Spinner spinner, int position) {
-        //Current Ward no spinner
+        //Previous MuniVDC spinner
         List<Municipality_ward_list> allContacts = Municipality_ward_list.listAll(Municipality_ward_list.class);
         ArrayList<String> prevMuniArray = new ArrayList<>();
-        for(Municipality_ward_list contact:allContacts){
-            if(((contact.district_name).equals(spinnerDistrictName.getSelectedItem().toString())) &&
+        for (Municipality_ward_list contact : allContacts) {
+            if (((contact.district_name).equals(spinnerDistrictName.getSelectedItem().toString())) &&
                     ((contact.municipality_name).equals(spinnerRuralMunicipality.getSelectedItem().toString())) &&
                     ((contact.current_ward).equals(CurrentWardSpinner.getSelectedItem().toString()))) {
 
-                if(!prevMuniArray.contains(contact.prev_municipality_name)) {
+                if (!prevMuniArray.contains(contact.prev_municipality_name)) {
                     prevMuniArray.add(contact.prev_municipality_name); // or arr.add(contact.name); if it's public
                 }
             }
         }
-        Log.e("MAIN_ACTIVITY", "onCreate: districtArray SAMIR"+ prevMuniArray);
+        Log.e("MAIN_ACTIVITY", "onCreate: districtArray SAMIR" + prevMuniArray);
 
         prevMuniVDCNameadpt = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, prevMuniArray);
@@ -282,21 +274,21 @@ public class MainActivity extends AppCompatActivity {
 
     @OnItemSelected(R.id.general_info_previous_vdc_spinner)
     public void prevWardNoSpinner(Spinner spinner, int position) {
-        //Current Ward no spinner
+        //Previous Ward no spinner
         List<Municipality_ward_list> allContacts = Municipality_ward_list.listAll(Municipality_ward_list.class);
         ArrayList<String> prevWardArray = new ArrayList<>();
-        for(Municipality_ward_list contact:allContacts){
-            if(((contact.district_name).equals(spinnerDistrictName.getSelectedItem().toString())) &&
+        for (Municipality_ward_list contact : allContacts) {
+            if (((contact.district_name).equals(spinnerDistrictName.getSelectedItem().toString())) &&
                     ((contact.municipality_name).equals(spinnerRuralMunicipality.getSelectedItem().toString())) &&
                     ((contact.current_ward).equals(CurrentWardSpinner.getSelectedItem().toString())) &&
                     ((contact.prev_municipality_name).equals(PreviousVdcSpinner.getSelectedItem().toString()))) {
 
-                if(!prevWardArray.contains(contact.prev_ward)) {
+                if (!prevWardArray.contains(contact.prev_ward)) {
                     prevWardArray.add(contact.prev_ward); // or arr.add(contact.name); if it's public
                 }
             }
         }
-        Log.e("MAIN_ACTIVITY", "onCreate: districtArray SAMIR"+ prevWardArray);
+        Log.e("MAIN_ACTIVITY", "onCreate: districtArray SAMIR" + prevWardArray);
 
         prevWardNoadpt = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, prevWardArray);
@@ -305,14 +297,6 @@ public class MainActivity extends AppCompatActivity {
         PreviousWardSpinner.setAdapter(prevWardNoadpt);
 
     }
-
-
-////    @Nullable
-//    @OnClick(android.R.id.home)
-//    public void homeBack(){
-//        Intent intent_back = new Intent(MainActivity.this, HomeListActivity.class);
-//        startActivity(intent_back);
-//    }
 
 
     @Override
@@ -351,30 +335,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    @Override
-//    public void onBackPressed() {
-//
-//        new AlertDialog.Builder(this)
-//                .setTitle("Exit From App")
-//                .setMessage("Are you sure you want to Exit?")
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        MainActivity.this.onBackPressed();
-//
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                            finishAffinity();
-//                        } else {
-//                            finish();
-//                        }
-//                    }
-//
-//                })
-//                .setNegativeButton("No", null)
-//                .show();
-//
-//    }
-
     public void initializeUI() {
 
         List<String> DamageType = Arrays.asList(getResources().getStringArray(R.array.house_damage));
@@ -382,13 +342,81 @@ public class MainActivity extends AppCompatActivity {
         spinnerDamageType.setSelection(setDamageType);
 
 
-        List<String> DistrictName = Arrays.asList(getResources().getStringArray(R.array.district_name));
-        int setDistrictName = DistrictName.indexOf(generalFormModel.getG2());
-        spinnerDistrictName.setSelection(setDistrictName);
+//        List<String> DistrictName = Arrays.asList(getResources().getStringArray(R.array.district_name));
+//        int setDistrictName = DistrictName.indexOf(generalFormModel.getG2());
+//        spinnerDistrictName.setSelection(setDistrictName);
 
-        List<String> ruralMunicipalityName = Arrays.asList(getResources().getStringArray(R.array.rural_municipality));
-        int setMunicipalityName = ruralMunicipalityName.indexOf(generalFormModel.getG4());
-        spinnerRuralMunicipality.setSelection(setMunicipalityName);
+//        List<String> ruralMunicipalityName = Arrays.asList(getResources().getStringArray(R.array.rural_municipality));
+//        int setMunicipalityName = ruralMunicipalityName.indexOf(generalFormModel.getG4());
+//        spinnerRuralMunicipality.setSelection(setMunicipalityName);
+
+
+        int setDistrict = districtNameadpt.getPosition(generalFormModel.getG2());
+        Log.e("SPINNER Position", "District: SAMIR " + setDistrict);
+        spinnerDistrictName.setSelection(setDistrict);
+        currentMuniVDCNameadpt.notifyDataSetChanged();
+
+        Log.e("Set Spinner SAMIR", "initializeUI: " + generalFormModel.getG2() + ", " + generalFormModel.getG4() + ", " + generalFormModel.getG5() + ", " + generalFormModel.getG6() + ", " + generalFormModel.getG7());
+
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    int setCurrentMuniVDC = currentMuniVDCNameadpt.getPosition(generalFormModel.getG4());
+                    Log.e("SPINNER Position", "VDC: SAMIR " + setCurrentMuniVDC);
+                    spinnerRuralMunicipality.setSelection(setCurrentMuniVDC);
+                    currentWardNoadpt.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 200);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    int setCurrentWard = currentWardNoadpt.getPosition(generalFormModel.getG5());
+                    Log.e("SPINNER Position", "WARD: SAMIR " + setCurrentWard);
+                    CurrentWardSpinner.setSelection(setCurrentWard);
+                    prevMuniVDCNameadpt.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 400);
+
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    int setPrevMuniVDC = prevMuniVDCNameadpt.getPosition(generalFormModel.getG6());
+                    Log.e("SPINNER Position", "PreVCD: SAMIR " + setPrevMuniVDC);
+                    PreviousVdcSpinner.setSelection(setPrevMuniVDC);
+                    prevWardNoadpt.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 600);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    int setPrevWardNo = prevWardNoadpt.getPosition(generalFormModel.getG7());
+                    Log.e("SPINNER Position", "PreWARD: SAMIR " + setPrevWardNo);
+                    PreviousWardSpinner.setSelection(setPrevWardNo);
+//                    prevWardNoadpt.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 800);
+
 
 //        tvRuralMunicipality.setText(generalFormModel.getG4());
 //        tvCurrentWardNo.setText(generalFormModel.getG5());
@@ -421,6 +449,109 @@ public class MainActivity extends AppCompatActivity {
 //        Constant.takenimg2Name = "";
 //        Constant.takenimg3Name = "";
 //        Constant.takenimg4Name = "";
+    }
+
+
+    public void initializeSpinnerAdapterSaved() {
+        //district name spinner
+        List<Municipality_ward_list> allContacts = Municipality_ward_list.listAll(Municipality_ward_list.class);
+        ArrayList<String> arr = new ArrayList<>();
+        for (Municipality_ward_list contact : allContacts) {
+            if (!arr.contains(contact.district_name)) {
+                arr.add(contact.district_name); // or arr.add(contact.name); if it's public
+            }
+        }
+//        String[] distArray = arr.toArray(new String[0]);
+
+        Log.e("MAIN_ACTIVITY", "District SAMIR" + arr);
+
+        districtNameadpt = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arr);
+        districtNameadpt
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDistrictName.setAdapter(districtNameadpt);
+
+
+        //VDC name spinner
+        ArrayList<String> municipalityArray = new ArrayList<>();
+        for (Municipality_ward_list contact : allContacts) {
+            if ((contact.district_name).equals(generalFormModel.getG2())) {
+                if (!municipalityArray.contains(contact.municipality_name)) {
+                    municipalityArray.add(contact.municipality_name); // or arr.add(contact.name); if it's public
+                }
+            }
+        }
+        Log.e("MAIN_ACTIVITY", "CMuni SAMIR" + municipalityArray);
+
+        currentMuniVDCNameadpt = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, municipalityArray);
+        currentMuniVDCNameadpt
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerRuralMunicipality.setAdapter(currentMuniVDCNameadpt);
+
+
+//current ward no
+        ArrayList<String> currentWardArray = new ArrayList<>();
+        for (Municipality_ward_list contact : allContacts) {
+            if (((contact.district_name).equals(generalFormModel.getG2())) &&
+                    ((contact.municipality_name).equals(generalFormModel.getG4()))) {
+
+                if (!currentWardArray.contains(contact.current_ward)) {
+                    currentWardArray.add(contact.current_ward); // or arr.add(contact.name); if it's public
+                }
+            }
+        }
+        Log.e("MAIN_ACTIVITY", "CWard SAMIR" + currentWardArray);
+
+        currentWardNoadpt = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, currentWardArray);
+        currentWardNoadpt
+                .setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        CurrentWardSpinner.setAdapter(currentWardNoadpt);
+
+
+        //Previous MuniVDC spinner
+        ArrayList<String> prevMuniArray = new ArrayList<>();
+        for (Municipality_ward_list contact : allContacts) {
+            if (((contact.district_name).equals(generalFormModel.getG2())) &&
+                    ((contact.municipality_name).equals(generalFormModel.getG4())) &&
+                    ((contact.current_ward).equals(generalFormModel.getG5()))) {
+
+                if (!prevMuniArray.contains(contact.prev_municipality_name)) {
+                    prevMuniArray.add(contact.prev_municipality_name); // or arr.add(contact.name); if it's public
+                }
+            }
+        }
+        Log.e("MAIN_ACTIVITY", "PreMuni SAMIR" + prevMuniArray);
+
+        prevMuniVDCNameadpt = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, prevMuniArray);
+        prevMuniVDCNameadpt
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        PreviousVdcSpinner.setAdapter(prevMuniVDCNameadpt);
+
+
+        //Previous Ward no spinner
+        ArrayList<String> prevWardArray = new ArrayList<>();
+        for (Municipality_ward_list contact : allContacts) {
+            if (((contact.district_name).equals(generalFormModel.getG2())) &&
+                    ((contact.municipality_name).equals(generalFormModel.getG4())) &&
+                    ((contact.current_ward).equals(generalFormModel.getG5())) &&
+                    ((contact.prev_municipality_name).equals(generalFormModel.getG6()))) {
+
+                if (!prevWardArray.contains(contact.prev_ward)) {
+                    prevWardArray.add(contact.prev_ward); // or arr.add(contact.name); if it's public
+                }
+            }
+        }
+        Log.e("MAIN_ACTIVITY", "PreWard SAMIR" + prevWardArray);
+
+        prevWardNoadpt = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, prevWardArray);
+        prevWardNoadpt
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        PreviousWardSpinner.setAdapter(prevWardNoadpt);
+
     }
 
 }

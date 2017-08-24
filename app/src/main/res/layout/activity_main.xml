@@ -105,7 +105,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                        android:layout_below="@id/districtLbl"
-                        android:entries="@array/district_name"/>
+                        />
+                    <!--android:entries="@array/district_name"-->
 
                 </RelativeLayout>
 
@@ -193,7 +194,8 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_below="@id/ruralMunicipalityLbl"
-                            android:entries="@array/rural_municipality"/>
+                            />
+                        <!--android:entries="@array/rural_municipality"-->
 
                     </RelativeLayout>
 
@@ -248,7 +250,7 @@
 
                         <TextView
                             android:id="@+id/currentWardLbl"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
