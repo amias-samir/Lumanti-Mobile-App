@@ -83,6 +83,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     Bitmap thumbnail1, thumbnail2, thumbnail3, thumbnail4;
 
 
+
     private boolean booimg1 = false, booimg2 = false, booimg3 = false, booimg4 = false;
 
     boolean isGpsTaken = false;
@@ -128,6 +129,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     Spinner spinnerBuildBy;
     @BindView(R.id.reconstruction_status_construction_type)
     Spinner spinnerConstructionType;
+    @BindView(R.id.reconstruction_status_construction_status)
+    Spinner spinnerConstructionStatus;
     @BindView(R.id.reconstruction_status_others_specify)
     AutoCompleteTextView tvOthersSpecify;
     @BindView(R.id.reconstruction_status_next)
@@ -150,6 +153,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         spinnerBuildBy.setVisibility(View.INVISIBLE);
         tvOthersSpecify.setVisibility(View.INVISIBLE);
         btnPreviewMap.setEnabled(false);
+        spinnerConstructionStatus.setVisibility(View.INVISIBLE);
 
         client = new GoogleApiClient.Builder(this)
                 .addApi(AppIndex.API)
@@ -214,12 +218,12 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         Log.e(" MAIN ACTIVITY SAMIR", "onCreate: countReconstruction" + "" + Constant.countReconstruction);
 
 //        generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
-        if(Constant.countReconstruction == 0) {
+        if (Constant.countReconstruction == 0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
 //        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
         }
 
-        if(Constant.countReconstruction !=0) {
+        if (Constant.countReconstruction != 0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("PgeneralFormModel");
             initializeUI();
         }
@@ -232,14 +236,14 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
         addImage();
 
-        if(Constant.isFomSavedForm){
+        if (Constant.isFomSavedForm) {
             encodedImage1 = B64Eimage1;
             encodedImage2 = B64Eimage2;
             encodedImage3 = B64Eimage3;
             encodedImage4 = B64Eimage4;
         }
 
-        if(Constant.countReconstructionGPS == 2){
+        if (Constant.countReconstructionGPS == 2) {
             generalFormModel.setB1_lat(finalLat + "");
             generalFormModel.setB1_long(finalLong + "");
 
@@ -252,19 +256,20 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             generalFormModel.setB2_a(spinnerBuildBy.getSelectedItem().toString());
             generalFormModel.setB2_b(spinnerConstructionType.getSelectedItem().toString());
             generalFormModel.setB2_c(tvOthersSpecify.getText().toString());
+            generalFormModel.setB3(spinnerConstructionStatus.getSelectedItem().toString());
+
 
 //            Constant.countReconstructionGPS = 2;
 
             Intent intent = new Intent(ReconstructionStatusActivity.this, EarthquakeReliefStatusActivity.class);
-            if(Constant.countEarthquakeRelief == 0) {
+            if (Constant.countEarthquakeRelief == 0) {
                 intent.putExtra("generalFormModel", generalFormModel);
-            }else {
+            } else {
                 intent.putExtra("PgeneralFormModel", generalFormModel);
 
             }
             startActivity(intent);
-        }
-        else if (isGpsTaken) {
+        } else if (isGpsTaken) {
             generalFormModel.setB1_lat(finalLat + "");
             generalFormModel.setB1_long(finalLong + "");
             generalFormModel.setB1_img1(encodedImage1);
@@ -275,14 +280,16 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             generalFormModel.setB2_a(spinnerBuildBy.getSelectedItem().toString());
             generalFormModel.setB2_b(spinnerConstructionType.getSelectedItem().toString());
             generalFormModel.setB2_c(tvOthersSpecify.getText().toString());
+            generalFormModel.setB3(spinnerConstructionStatus.getSelectedItem().toString());
+
 
             Constant.countReconstructionGPS = 2;
             Constant.countReconstruction = 1;
 
             Intent intent = new Intent(ReconstructionStatusActivity.this, EarthquakeReliefStatusActivity.class);
-            if(Constant.countEarthquakeRelief == 0) {
+            if (Constant.countEarthquakeRelief == 0) {
                 intent.putExtra("generalFormModel", generalFormModel);
-            }else {
+            } else {
                 intent.putExtra("PgeneralFormModel", generalFormModel);
 
             }
@@ -293,14 +300,14 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.reconstruction_status_prev)
-    public void PreviousPage(){
+    public void PreviousPage() {
 
         addImage();
 
         generalFormModel.setB1_lat(finalLat + "");
         generalFormModel.setB1_long(finalLong + "");
 
-        if(Constant.isFomSavedForm){
+        if (Constant.isFomSavedForm) {
             encodedImage1 = B64Eimage1;
             encodedImage2 = B64Eimage2;
             encodedImage3 = B64Eimage3;
@@ -316,6 +323,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         generalFormModel.setB2_a(spinnerBuildBy.getSelectedItem().toString());
         generalFormModel.setB2_b(spinnerConstructionType.getSelectedItem().toString());
         generalFormModel.setB2_c(tvOthersSpecify.getText().toString());
+        generalFormModel.setB3(spinnerConstructionStatus.getSelectedItem().toString());
+
 
         Constant.countReconstruction = 1;
 
@@ -622,11 +631,11 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     public void addImage() {
 
 //        check encoded string is in model class or not
-        if(Constant.countReconstruction != 0){
-          imageName1 = Constant.takenimg1Name;
-          imageName2 = Constant.takenimg2Name;
-          imageName3 = Constant.takenimg3Name;
-          imageName4 = Constant.takenimg4Name;
+        if (Constant.countReconstruction != 0) {
+            imageName1 = Constant.takenimg1Name;
+            imageName2 = Constant.takenimg2Name;
+            imageName3 = Constant.takenimg3Name;
+            imageName4 = Constant.takenimg4Name;
         }
 
 
@@ -656,7 +665,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
             //generate base64 string of image
             encodedImage1 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
-            Constant.takenimg1 = true ;
+            Constant.takenimg1 = true;
             Log.e("IMAGE STRING", "-" + encodedImage1);
         }
 
@@ -683,7 +692,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
             //generate base64 string of image
             encodedImage2 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
-            Constant.takenimg2 = true ;
+            Constant.takenimg2 = true;
             Log.e("IMAGE STRING", "-" + encodedImage2);
         }
 
@@ -710,7 +719,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
             //generate base64 string of image
             encodedImage3 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
-            Constant.takenimg3 = true ;
+            Constant.takenimg3 = true;
             Log.e("IMAGE STRING", "-" + encodedImage3);
         }
 
@@ -737,7 +746,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
             //generate base64 string of image
             encodedImage4 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
-            Constant.takenimg4 = true ;
+            Constant.takenimg4 = true;
             Log.e("IMAGE STRING", "-" + encodedImage4);
         }
 
@@ -804,17 +813,20 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         if (living_situation.equals(values[1])) {
             spinnerBuildBy.setVisibility(View.VISIBLE);
             spinnerConstructionType.setVisibility(View.VISIBLE);
+            spinnerConstructionStatus.setVisibility(View.VISIBLE);
             tvOthersSpecify.setVisibility(View.INVISIBLE);
 
 
         } else if (living_situation.equals(values[5])) {
             spinnerBuildBy.setVisibility(View.INVISIBLE);
             spinnerConstructionType.setVisibility(View.INVISIBLE);
+            spinnerConstructionStatus.setVisibility(View.INVISIBLE);
             tvOthersSpecify.setVisibility(View.VISIBLE);
 
         } else {
             spinnerBuildBy.setVisibility(View.INVISIBLE);
             spinnerConstructionType.setVisibility(View.INVISIBLE);
+            spinnerConstructionStatus.setVisibility(View.INVISIBLE);
             tvOthersSpecify.setVisibility(View.INVISIBLE);
         }
 
@@ -826,7 +838,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 //
 //    }
 
-    public void initializeUI(){
+    public void initializeUI() {
 
 //        Log.e("Demographics SAMIR", "initializeUI: "+ generalFormModel.toString() );
 //=========================== map ===============================//
@@ -834,16 +846,16 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         finalLong = Double.parseDouble(generalFormModel.getB1_long());
         LatLng d = new LatLng(finalLat, finalLong);
         listCf.add(d);
-        if(finalLat!=0 && finalLong!=0){
+        if (finalLat != 0 && finalLong != 0) {
             btnGpsStart.setText("Location Recorded");
             btnPreviewMap.setEnabled(true);
         }
 
 //        ========================================image ==================================//
-            B64Eimage1 = generalFormModel.getB1_img1();
-            B64Eimage2 = generalFormModel.getB1_img2();
-            B64Eimage3 = generalFormModel.getB1_img3();
-            B64Eimage4 = generalFormModel.getB1_img4();
+        B64Eimage1 = generalFormModel.getB1_img1();
+        B64Eimage2 = generalFormModel.getB1_img2();
+        B64Eimage3 = generalFormModel.getB1_img3();
+        B64Eimage4 = generalFormModel.getB1_img4();
 
         byte[] decodedString1 = Base64.decode(B64Eimage1, Base64.DEFAULT);
         Bitmap decodedByteimage1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
@@ -869,7 +881,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         ivPhotographSiteimageViewPreview4.setVisibility(View.VISIBLE);
 
 
-
 //        ====================================spinner =======================================//
         List<String> CurrentLiving = Arrays.asList(getResources().getStringArray(R.array.current_living_situation));
         int setCurrentLiving = CurrentLiving.indexOf(generalFormModel.getB2());
@@ -883,6 +894,10 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         List<String> ConstructionType = Arrays.asList(getResources().getStringArray(R.array.consctruction_type));
         int setConstructionType = ConstructionType.indexOf(generalFormModel.getB2_b());
         spinnerConstructionType.setSelection(setConstructionType);
+
+        List<String> ConstructionStatus = Arrays.asList(getResources().getStringArray(R.array.construction_status));
+        int setConstructionStatus = ConstructionStatus.indexOf(generalFormModel.getB3());
+        spinnerConstructionStatus.setSelection(setConstructionStatus);
 
         tvOthersSpecify.setText(generalFormModel.getB2_c());
 

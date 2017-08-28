@@ -183,8 +183,11 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
 //        List<String> ReceivedSupport = Arrays.asList(getResources().getStringArray(R.array.received_support));
 //        int setReceivedSupport = ReceivedSupport.indexOf(generalFormModel.getC2());
 //        spinnerReceivedSupport.setSelection(setReceivedSupport);
-
-        if(generalFormModel.getC2().equals("In Cash")){
+    if ( generalFormModel.getC2().equals(null) || generalFormModel.getC2().equals("")) {
+            cbInCash.setChecked(false);
+            cbInKind.setChecked(false);
+        }
+        else if(generalFormModel.getC2().equals("In Cash")){
             cbInCash.setChecked(true);
             int setInstallment = Integer.parseInt(generalFormModel.getC2_a());
             receivedInstallment.setSelection(setInstallment);
@@ -204,8 +207,8 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
             receivedInstallment.setSelection(setInstallment);
 
             tvKindSupport.setText(generalFormModel.getC2_b());
-
         }
+
 
 
 

@@ -42,7 +42,122 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:layout_marginTop="@dimen/activity_horizontal_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/intervieweeLBL"
+                        android:textSize="20dp"/>
+
+                    <!--Interviewee Name-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stringA4"
+                        android:textColor="@color/accent"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_interviewee_name" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Relationship with house owner-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stringA5"
+                        android:textColor="@color/accent"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_interviewee_head_relationship" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Interviewee contct no-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stringA6"
+                        android:textColor="@color/accent"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:hint=""
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:id="@+id/demographic_info_interviewee_contact_no" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--Sex-->
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        card_view:cardBackgroundColor="@color/transparent"
+                        card_view:cardElevation="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:id="@+id/houseLbl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/general_info_district_name"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="5dp"
+                                android:text="@string/stringA7"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="@color/monsoon" />
+
+                            <Spinner
+                                android:id="@+id/demographic_info_house_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/houseLbl"
+                                android:entries="@array/house_type"/>
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+
+
+
                 <TextView
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"

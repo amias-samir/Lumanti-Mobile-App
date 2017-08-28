@@ -6,23 +6,23 @@ import java.io.Serializable;
  * Created by Samir on 6/21/2017.
  */
 
-public class GeneralFormModel implements Serializable{
+public class GeneralFormModel implements Serializable {
 
-//   G.  general information field
-    private String G1 ;
-    private String G2 ;
-    private String G3 ;
-    private String G4 ;
-    private String G5 ;
-    private String G6 ;
-    private String G7 ;
-    private String G8 ;
-    private String G9 ;
-    private String G_10 ;
-    private String G_11 ;
-    private String G_12 ;
+    //   G.  general information field
+    private String G1;
+    private String G2;
+    private String G3;
+    private String G4;
+    private String G5;
+    private String G6;
+    private String G7;
+    private String G8;
+    private String G9;
+    private String G_10;
+    private String G_11;
+    private String G_12;
 
-//    A. Demographic informtion field
+    //    A. Demographic informtion field
     private String A1;
     private String A1_a;
     private String A1_b;
@@ -38,8 +38,13 @@ public class GeneralFormModel implements Serializable{
     private String A3_a;
     private String A3_b;
     private String A3_c;
+    private String A4;
+    private String A5;
+    private String A6;
+    private String A7;
 
-//    B. Reconstruction Status
+
+    //    B. Reconstruction Status
     private String B1_lat;
     private String B1_long;
     private String B1_img1;
@@ -50,14 +55,15 @@ public class GeneralFormModel implements Serializable{
     private String B2_a;
     private String B2_b;
     private String B2_c;
+    private String B3;
 
-//    C. Earthquake relief status
+    //    C. Earthquake relief status
     private String C1;
     private String C2;
     private String C2_a;
     private String C2_b;
 
-//   D. Socio-Economic Information
+    //   D. Socio-Economic Information
     private String D1;
     private String D2;
     private String D2_a;
@@ -72,7 +78,7 @@ public class GeneralFormModel implements Serializable{
     private String E1_a;
     private String E2;
 
-//    F. Capacity Buiding
+    //    F. Capacity Buiding
     private String F1;
     private String F2;
     private String F2_a;
@@ -82,10 +88,11 @@ public class GeneralFormModel implements Serializable{
     private String F5;
     private String F6;
     private String F7;
+    private String F8;
+    private String F9;
 
 
-
-//    general information
+    //    general information
     public String getG1() {
         return G1;
     }
@@ -183,11 +190,10 @@ public class GeneralFormModel implements Serializable{
     }
 
 
-
-//    demogrphic information
-public String getA1() {
-    return A1;
-}
+    //    demogrphic information
+    public String getA1() {
+        return A1;
+    }
 
     public void setA1(String a1) {
         A1 = a1;
@@ -306,11 +312,43 @@ public String getA1() {
     }
 
 
+    public String getA4() {
+        return A4;
+    }
 
-//    Reconstruction Status
-public String getB1_lat() {
-    return B1_lat;
-}
+    public void setA4(String a4) {
+        A4 = a4;
+    }
+
+    public String getA5() {
+        return A5;
+    }
+
+    public void setA5(String a5) {
+        A5 = a5;
+    }
+
+    public String getA6() {
+        return A6;
+    }
+
+    public void setA6(String a6) {
+        A6 = a6;
+    }
+
+    public String getA7() {
+        return A7;
+    }
+
+    public void setA7(String a7) {
+        A7 = a7;
+    }
+
+
+    //    Reconstruction Status
+    public String getB1_lat() {
+        return B1_lat;
+    }
 
     public void setB1_lat(String b1_lat) {
         B1_lat = b1_lat;
@@ -388,11 +426,19 @@ public String getB1_lat() {
         B2_c = b2_c;
     }
 
+    public String getB3() {
+        return B3;
+    }
 
-//    Earthquake relief status
-public String getC1() {
-    return C1;
-}
+    public void setB3(String b3) {
+        B3 = b3;
+    }
+
+
+    //    Earthquake relief status
+    public String getC1() {
+        return C1;
+    }
 
     public void setC1(String c1) {
         C1 = c1;
@@ -423,10 +469,10 @@ public String getC1() {
     }
 
 
-//    Socio-Economic Information
-public String getD1() {
-    return D1;
-}
+    //    Socio-Economic Information
+    public String getD1() {
+        return D1;
+    }
 
     public void setD1(String d1) {
         D1 = d1;
@@ -489,10 +535,10 @@ public String getD1() {
     }
 
 
-//    Water Sanitation
-public String getE1() {
-    return E1;
-}
+    //    Water Sanitation
+    public String getE1() {
+        return E1;
+    }
 
     public void setE1(String e1) {
         E1 = e1;
@@ -515,43 +561,93 @@ public String getE1() {
     }
 
 
-//   Capacity building
-public  String getF1() {
-    return F1;
-}public void   setF1(String f1) {
+    //   Capacity building
+    public String getF1() {
+        return F1;
+    }
+
+    public void setF1(String f1) {
         F1 = f1;
-    }public String getF2() {
+    }
+
+    public String getF2() {
         return F2;
-    }public void   setF2(String f2) {
+    }
+
+    public void setF2(String f2) {
         F2 = f2;
-    }public String getF2_a() {
+    }
+
+    public String getF2_a() {
         return F2_a;
-    }public void   setF2_a(String f2_a) {
+    }
+
+    public void setF2_a(String f2_a) {
         F2_a = f2_a;
-    }public String getF2_b() {
+    }
+
+    public String getF2_b() {
         return F2_b;
-    }public void   setF2_b(String f2_b) {
+    }
+
+    public void setF2_b(String f2_b) {
         F2_b = f2_b;
-    }public String getF3() {
+    }
+
+    public String getF3() {
         return F3;
-    }public void   setF3(String f3) {
+    }
+
+    public void setF3(String f3) {
         F3 = f3;
-    }public String getF4() {
+    }
+
+    public String getF4() {
         return F4;
-    }public void   setF4(String f4) {
+    }
+
+    public void setF4(String f4) {
         F4 = f4;
-    }public String getF5() {
+    }
+
+    public String getF5() {
         return F5;
-    }public void   setF5(String f5) {
+    }
+
+    public void setF5(String f5) {
         F5 = f5;
-    }public String getF6() {
+    }
+
+    public String getF6() {
         return F6;
-    }public void   setF6(String f6) {
+    }
+
+    public void setF6(String f6) {
         F6 = f6;
-    }public String getF7() {
+    }
+
+    public String getF7() {
         return F7;
-    }public void   setF7(String f7) {
+    }
+
+    public void setF7(String f7) {
         F7 = f7;
+    }
+
+    public String getF8() {
+        return F8;
+    }
+
+    public void setF8(String f8) {
+        F8 = f8;
+    }
+
+    public String getF9() {
+        return F9;
+    }
+
+    public void setF9(String f9) {
+        F9 = f9;
     }
 
 

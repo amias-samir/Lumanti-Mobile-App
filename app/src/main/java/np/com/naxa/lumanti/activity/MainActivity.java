@@ -372,7 +372,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, 200);
+        }, 400);
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -386,7 +386,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, 400);
+        }, 800);
 
 
         handler.postDelayed(new Runnable() {
@@ -401,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, 600);
+        }, 1200);
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -415,7 +415,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, 800);
+        }, 1600);
 
 
 //        tvRuralMunicipality.setText(generalFormModel.getG4());

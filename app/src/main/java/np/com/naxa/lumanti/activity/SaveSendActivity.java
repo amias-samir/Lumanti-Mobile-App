@@ -1,13 +1,16 @@
 package np.com.naxa.lumanti.activity;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -38,6 +42,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -63,6 +68,11 @@ public class SaveSendActivity extends AppCompatActivity {
     Context context = this;
     String dataSentStatus, dateString;
 
+    private int year;
+    private int month;
+    private int day;
+    static final int DATE_DIALOG_ID = 999;
+
 
     NetworkInfo networkInfo;
     ConnectivityManager connectivityManager;
@@ -74,6 +84,12 @@ public class SaveSendActivity extends AppCompatActivity {
     AutoCompleteTextView tvAnySpecificInfo;
     @BindView(R.id.capacity_building_identified_gap)
     AutoCompleteTextView tvIdentifiedGap;
+
+    @BindView(R.id.capacity_building_surveyors_name)
+    AutoCompleteTextView SurveyorsName;
+    @BindView(R.id.capacity_building_date_of_interview)
+    AutoCompleteTextView DateOfInterview;
+
     @BindView(R.id.water_sanitation_send)
     Button btnSend;
     @BindView(R.id.water_sanitation_save)
@@ -91,6 +107,8 @@ public class SaveSendActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Suggestions/Feedback");
         setSupportActionBar(toolbar);
+
+        setCurrentDateOnView();
 
         generalFormModel = new GeneralFormModel();
         if (Constant.countSaveSend == 0) {
@@ -277,6 +295,9 @@ public class SaveSendActivity extends AppCompatActivity {
         generalFormModel.setF5(tvRecommendationRegardingReconstruction.getText().toString());
         generalFormModel.setF6(tvAnySpecificInfo.getText().toString());
         generalFormModel.setF7(tvIdentifiedGap.getText().toString());
+        generalFormModel.setF8(SurveyorsName.getText().toString());
+        generalFormModel.setF9(DateOfInterview.getText().toString());
+
 
         Constant.countSaveSend = 1;
 
@@ -292,6 +313,8 @@ public class SaveSendActivity extends AppCompatActivity {
         generalFormModel.setF5(tvRecommendationRegardingReconstruction.getText().toString());
         generalFormModel.setF6(tvAnySpecificInfo.getText().toString());
         generalFormModel.setF7(tvIdentifiedGap.getText().toString());
+        generalFormModel.setF8(SurveyorsName.getText().toString());
+        generalFormModel.setF9(DateOfInterview.getText().toString());
 
     }
 
@@ -311,6 +334,65 @@ public class SaveSendActivity extends AppCompatActivity {
             restApii.execute();
         }
     }
+
+
+
+
+
+
+    // display current date
+    public void setCurrentDateOnView() {
+
+        //dpResult = (DatePicker) findViewById(R.id.dpResult);
+
+        final Calendar c = Calendar.getInstance();
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+
+
+        // set current date into textview
+        DateOfInterview.setText(new StringBuilder()
+                // Month is 0 based, just add 1
+                .append(year).append("/").append(month + 1).append("/")
+                .append(day).append(""));
+    }
+
+    @OnClick(R.id.capacity_building_date_of_interview)
+    public void onViewTvDateClickListner() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            DateOfInterview.setShowSoftInputOnFocus(false);
+        }
+        showDialog(DATE_DIALOG_ID);
+    }
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DATE_DIALOG_ID:
+                // set date picker as current date
+                return new DatePickerDialog(this, datePickerListener, year, month,
+                        day);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+
+        // when dialog box is closed, below method will be called.
+        public void onDateSet(DatePicker view, int selectedYear,
+                              int selectedMonth, int selectedDay) {
+            year = selectedYear;
+            month = selectedMonth;
+            day = selectedDay;
+
+            // set selected date into textview
+            DateOfInterview.setText(new StringBuilder().append(year)
+                    .append("-").append(month + 1).append("-").append(day)
+                    .append(""));
+        }
+    };
+
+
 
 
 
@@ -372,7 +454,7 @@ public class SaveSendActivity extends AppCompatActivity {
                 Log.e("dbID", "" + id);
                 dataBaseFormSent.close();
 
-                if(!Constant.formID.equals("")){
+                if (!Constant.formID.equals("")) {
                     DataBaseForm_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseForm_NotSent(getApplicationContext());
                     dataBaseNepalPublicHealthNotSent.open();
                     dataBaseNepalPublicHealthNotSent.dropRowNotSentForms(Constant.formID);
@@ -502,20 +584,22 @@ public class SaveSendActivity extends AppCompatActivity {
 //
 //    }
 
-    public void initializeUI(){
+    public void initializeUI() {
         tvRecommendationRegardingReconstruction.setText(generalFormModel.getF5());
         tvAnySpecificInfo.setText(generalFormModel.getF6());
         tvIdentifiedGap.setText(generalFormModel.getF7());
+        SurveyorsName.setText(generalFormModel.getF8());
+        DateOfInterview.setText(generalFormModel.getF9());
     }
 
-    public void reinitializeConstantVariable (){
+    public void reinitializeConstantVariable() {
 
-        Constant.countGeneral = 0 ;
-        Constant.countDemographic = 0 ;
-        Constant.countReconstruction = 0 ;
-        Constant.countEarthquakeRelief = 0 ;
-        Constant.countReconstructionGPS = 0 ;
-        Constant.countSaveSend = 0 ;
+        Constant.countGeneral = 0;
+        Constant.countDemographic = 0;
+        Constant.countReconstruction = 0;
+        Constant.countEarthquakeRelief = 0;
+        Constant.countReconstructionGPS = 0;
+        Constant.countSaveSend = 0;
 
         Constant.takenimg1 = false;
         Constant.takenimg2 = false;
@@ -527,5 +611,8 @@ public class SaveSendActivity extends AppCompatActivity {
         Constant.takenimg3Name = "";
         Constant.takenimg4Name = "";
     }
+
+
+
 
 }
