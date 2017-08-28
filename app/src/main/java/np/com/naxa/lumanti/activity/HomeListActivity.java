@@ -34,6 +34,7 @@ import butterknife.OnClick;
 import np.com.naxa.lumanti.R;
 import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.sugar.Municipality_ward_list;
+import np.com.naxa.lumanti.sugar.NissaNo_Details;
 
 public class HomeListActivity extends AppCompatActivity {
 
@@ -59,6 +60,8 @@ public class HomeListActivity extends AppCompatActivity {
         requestPermission();
 
         //        load municipality dta to database
+        loadNissaNoList();
+
         loadMunicipalityList();
     }
 
@@ -233,6 +236,9 @@ public class HomeListActivity extends AppCompatActivity {
     }
 
 
+
+//    ==========================================VDC\Municipality list =======================================================//
+
 //    load local JSON file
     public String loadJSONFromAsset() {
         String json = null;
@@ -250,13 +256,8 @@ public class HomeListActivity extends AppCompatActivity {
         return json;
     }
 
-
-
 //    List<Municipality_ward_list> user_list = new ArrayList<>();
     double count = Municipality_ward_list.count(Municipality_ward_list.class);
-
-
-
 
     public void loadMunicipalityList () {
         Log.e("Municipality SAMIR", "loadMunicipalityList count: " + "" + count);
@@ -288,4 +289,71 @@ public class HomeListActivity extends AppCompatActivity {
     }
 
     }
+//    ========================================== end of VDC\Municipality list =======================================================//
+
+
+//    ==========================================Nissa No. list =======================================================//
+//    load local JSON file
+public String loadNissaNoJSONFromAsset() {
+    String json = null;
+    try {
+        InputStream is = this.getAssets().open("json/kathmandu_house_details.json");
+        int size = is.available();
+        byte[] buffer = new byte[size];
+        is.read(buffer);
+        is.close();
+        json = new String(buffer, "UTF-8");
+    } catch (IOException ex) {
+        ex.printStackTrace();
+        return null;
+    }
+    return json;
+}
+    //    List<NissaNo_Details> user_list = new ArrayList<>();
+    double rowcount = NissaNo_Details.count(NissaNo_Details.class);
+
+    public void loadNissaNoList () {
+        Log.e("NissaNo SAMIR", "loadNissaNoList count: " + "" + rowcount);
+
+        if(rowcount <= 0){
+
+            try {
+                JSONObject Nisaobj = new JSONObject(loadNissaNoJSONFromAsset());
+                Log.e("NissaNo SAMIR", "loadNissaNoList JSON: " + Nisaobj.toString());
+
+
+                JSONArray nissaJArray = Nisaobj.getJSONArray("data");
+                Log.e("NissaNo SAMIR", "loadNissaNoList ArrayLength: " + "" + nissaJArray.length());
+
+
+                for (int j = 0; j < nissaJArray.length(); j++) {
+                    JSONObject jObj = nissaJArray.getJSONObject(j);
+                    String sn = jObj.getString("sn");
+                    Log.e("NissaNo SAMIR", "inside loop : "+sn );
+
+                    String name_of_househead = jObj.getString("name_of_househead");
+                    String district = jObj.getString("district");
+                    String prev_VDC_Mun = jObj.getString("previous_VDC_Mun");
+                    String current_ward_no = jObj.getString("current_ward_no");
+                    String prev_ward_no = jObj.getString("Previous_ward_no");
+                    String tole = jObj.getString("tole");
+                    String nissa_no = jObj.getString("nissa_no");
+                    String pa_no = jObj.getString("pa_no");
+                    String citizenship_no = jObj.getString("citizenship_no");
+
+                    NissaNo_Details nissaNo_details = new NissaNo_Details(sn, name_of_househead, district, prev_VDC_Mun, current_ward_no,
+                            prev_ward_no, tole, nissa_no, pa_no, citizenship_no);
+
+                    nissaNo_details.save();
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+//    ==========================================end of Nissa No. list =======================================================//
+
 }
