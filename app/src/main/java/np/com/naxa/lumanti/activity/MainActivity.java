@@ -95,14 +95,15 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("General Information");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         generalFormModel = new GeneralFormModel();
 
         if (Constant.countNissaNoInput == 1) {
 //            autoset nissa related field
-           autoSetNissaRelatedField();
+            autoSetNissaRelatedField();
+            Constant.countNissaNoInput = 0;
         }
 
 
@@ -560,8 +561,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    public void autoSetNissaRelatedField(){
+    public void autoSetNissaRelatedField() {
         generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
         try {
 
@@ -571,22 +571,21 @@ public class MainActivity extends AppCompatActivity {
 
             } else if (generalFormModel.getG_10().equals(null)) {
                 tvNissaNo.setText("");
-
-
-                if (!generalFormModel.getG8().equals(null)) {
-                    tvTole.setText(generalFormModel.getG8());
-                } else if (generalFormModel.getG8().equals(null)) {
-                    tvTole.setText("");
-                }
-
-                if (!generalFormModel.getG9().equals(null)) {
-                    tvHouseCode.setText(generalFormModel.getG9());
-
-                } else if (generalFormModel.getG9().equals(null)) {
-                    tvHouseCode.setText("");
-
-                }
             }
+            if (!generalFormModel.getG8().equals(null)) {
+                tvTole.setText(generalFormModel.getG8());
+            } else if (generalFormModel.getG8().equals(null)) {
+                tvTole.setText("");
+            }
+
+            if (!generalFormModel.getG9().equals(null)) {
+                tvHouseCode.setText(generalFormModel.getG9());
+
+            } else if (generalFormModel.getG9().equals(null)) {
+                tvHouseCode.setText("");
+
+            }
+
             if (!generalFormModel.getG_11().equals(null)) {
                 tvCitizenshipNo.setText(generalFormModel.getG_11());
 
@@ -602,7 +601,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
 
         }
 
