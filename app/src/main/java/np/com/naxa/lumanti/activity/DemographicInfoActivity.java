@@ -318,12 +318,16 @@ public class DemographicInfoActivity extends AppCompatActivity {
         int setDisablePregLact = DisablePregLact.indexOf(generalFormModel.getA3());
         spinnerDisPregLac.setSelection(setDisablePregLact);
 
+        Log.e("Demographic", "initializeUI: "+generalFormModel.getA3()+", "+generalFormModel.getA3_a()+", "+ generalFormModel.getA3_c() );
+
         List<String> SpecifyDisablePregLact = Arrays.asList(getResources().getStringArray(R.array.specify_dis_lac_preg));
         int setSpecifyDisablePregLact = SpecifyDisablePregLact.indexOf(generalFormModel.getA3_a());
+        Log.e("Demographic SAMIRD", "specify type: "+setSpecifyDisablePregLact + ", "+SpecifyDisablePregLact.toString() );
         spinnerSpecifyDisPregLac.setSelection(setSpecifyDisablePregLact);
 
         List<String> BeforeAfterEarthquake = Arrays.asList(getResources().getStringArray(R.array.before_after_earthquake));
         int setBeforeAfterEarthquake = BeforeAfterEarthquake.indexOf(generalFormModel.getA3_c());
+        Log.e("Demographic SAMIRD", "before after: "+setBeforeAfterEarthquake );
         spinnerSpecifyDisPregLac.setSelection(setBeforeAfterEarthquake);
 
         List<String> HouseType = Arrays.asList(getResources().getStringArray(R.array.house_type));

@@ -61,7 +61,7 @@
 
                         <Spinner
                             android:id="@+id/earthquake_relief_reconstraction_grant"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_below="@+id/reconsctructionGrantLbl"
@@ -191,7 +191,7 @@
 
                         <Spinner
                             android:id="@+id/earthquake_relief_installment"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_below="@+id/installmentLbl"

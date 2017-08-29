@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
         currentWardNoadpt = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, currentWardArray);
         currentWardNoadpt
-                .setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         CurrentWardSpinner.setAdapter(currentWardNoadpt);
 
     }
@@ -512,7 +512,7 @@ public class MainActivity extends AppCompatActivity {
         currentWardNoadpt = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, currentWardArray);
         currentWardNoadpt
-                .setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         CurrentWardSpinner.setAdapter(currentWardNoadpt);
 
 
