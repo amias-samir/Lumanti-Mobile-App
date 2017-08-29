@@ -100,28 +100,9 @@ public class MainActivity extends AppCompatActivity {
 
         generalFormModel = new GeneralFormModel();
 
-        if(Constant.countNissaNoInput == 1){
-            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
-            if(!generalFormModel.getG8().equals(null)){
-                tvTole.setText(generalFormModel.getG8());
-            }
-            if(!generalFormModel.getG9().equals(null)){
-                tvHouseCode.setText(generalFormModel.getG9());
-
-            }
-            if(!generalFormModel.getG_10().equals(null)){
-                tvNissaNo.setText(generalFormModel.getG_10());
-
-            }
-            if(!generalFormModel.getG_11().equals(null)){
-                tvCitizenshipNo.setText(generalFormModel.getG_11());
-
-            }
-            if(!generalFormModel.getG_12().equals(null)){
-                tvPaNo.setText(generalFormModel.getG_12());
-
-            }
-
+        if (Constant.countNissaNoInput == 1) {
+//            autoset nissa related field
+           autoSetNissaRelatedField();
         }
 
 
@@ -575,6 +556,55 @@ public class MainActivity extends AppCompatActivity {
         prevWardNoadpt
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         PreviousWardSpinner.setAdapter(prevWardNoadpt);
+
+    }
+
+
+
+    public void autoSetNissaRelatedField(){
+        generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+        try {
+
+
+            if (!generalFormModel.getG_10().equals(null)) {
+                tvNissaNo.setText(generalFormModel.getG_10());
+
+            } else if (generalFormModel.getG_10().equals(null)) {
+                tvNissaNo.setText("");
+
+
+                if (!generalFormModel.getG8().equals(null)) {
+                    tvTole.setText(generalFormModel.getG8());
+                } else if (generalFormModel.getG8().equals(null)) {
+                    tvTole.setText("");
+                }
+
+                if (!generalFormModel.getG9().equals(null)) {
+                    tvHouseCode.setText(generalFormModel.getG9());
+
+                } else if (generalFormModel.getG9().equals(null)) {
+                    tvHouseCode.setText("");
+
+                }
+            }
+            if (!generalFormModel.getG_11().equals(null)) {
+                tvCitizenshipNo.setText(generalFormModel.getG_11());
+
+            } else if (generalFormModel.getG_11().equals(null)) {
+                tvCitizenshipNo.setText("");
+
+            }
+            if (!generalFormModel.getG_12().equals(null)) {
+                tvPaNo.setText(generalFormModel.getG_12());
+
+            } else if (generalFormModel.getG_12().equals(null)) {
+                tvPaNo.setText("");
+
+            }
+
+        }catch (NullPointerException e){
+
+        }
 
     }
 

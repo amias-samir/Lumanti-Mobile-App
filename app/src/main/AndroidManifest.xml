@@ -54,7 +54,7 @@
             android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.HomeListActivity" />
+                android:value=".activity.NissaNoInputActivity" />
         </activity>
         <activity
             android:name=".activity.DemographicInfoActivity"
@@ -89,12 +89,22 @@
         </activity>
         <activity
             android:name=".gps.GeoPointActivity"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+
         <activity
             android:name=".activity.SaveSendActivity"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity android:name=".activity.HomeListActivity"></activity>
-        <activity android:name=".activity.NissaNoInputActivity"></activity>
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+
+        <activity android:name=".activity.HomeListActivity">
+        </activity>
+
+        <activity android:name=".activity.NissaNoInputActivity"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeListActivity" /></activity>
     </application>
 
 </manifest>

@@ -67,12 +67,55 @@ public class NissaNoInputActivity extends AppCompatActivity {
             List<NissaNo_Details> nissaNo_detailses = NissaNo_Details.findWithQuery(NissaNo_Details.class, "Select * from NISSA_NODETAILS where NISSANO = ?", generalFormModel.getG_10());
 
             for (NissaNo_Details details : nissaNo_detailses) {
-                generalFormModel.setA1(details.name_of_househead);
-                generalFormModel.setG8(details.tole);
-                generalFormModel.setG9(details.household_no);
-                generalFormModel.setG_10(details.nissa_no);
-                generalFormModel.setG_11(details.citizenship_no);
-                generalFormModel.setG_12(details.pa_no);
+                if(details.name_of_househead.equals(null)){
+                    generalFormModel.setA1("");
+                } else {
+                    generalFormModel.setA1(details.name_of_househead);
+
+                }
+
+
+                if(details.tole.equals(null)){
+                    generalFormModel.setG8("");
+                } else {
+                    generalFormModel.setG8(details.tole);
+
+                }
+
+
+                if(details.household_no.equals(null)){
+                    generalFormModel.setG9("");
+                } else {
+                    generalFormModel.setG9(details.household_no);
+
+                }
+
+
+                if(details.nissa_no.equals(null)){
+                    generalFormModel.setG_10("");
+                } else {
+                    generalFormModel.setG_10(details.nissa_no);
+
+                }
+
+
+                if(details.citizenship_no.equals(null)){
+                    generalFormModel.setG_11("");
+                } else {
+                    generalFormModel.setG_11(details.citizenship_no);
+
+                }
+
+
+                if(details.pa_no.equals(null)){
+                    generalFormModel.setG_12("");
+                } else {
+                    generalFormModel.setG_12(details.pa_no);
+
+                }
+
+
+
 
             }
             Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getA1());
