@@ -172,7 +172,7 @@ public class HomeListActivity extends AppCompatActivity {
 //====================================== reset constant variable if they set ===========================================//
                 reinitializeConstantVariable();
 
-                Intent intent_main = new Intent(HomeListActivity.this, MainActivity.class);
+                Intent intent_main = new Intent(HomeListActivity.this, NissaNoInputActivity.class);
                 startActivity(intent_main);
                 break;
             case R.id.top_layout_saved_forms:
@@ -270,7 +270,7 @@ public class HomeListActivity extends AppCompatActivity {
 
             for (int i = 0; i < municipalityJArray.length(); i++) {
                 JSONObject jObj = municipalityJArray.getJSONObject(i);
-                Log.e("Municipality SAMIR", "loadMunicipalityList: "+jObj.toString() );
+//                Log.e("Municipality SAMIR", "loadMunicipalityList: "+jObj.toString() );
                 String sn = jObj.getString("sn");
                 String district = jObj.getString("district");
                 String current_municipality = jObj.getString("current_municipality");
@@ -329,7 +329,7 @@ public String loadNissaNoJSONFromAsset() {
                 for (int j = 0; j < nissaJArray.length(); j++) {
                     JSONObject jObj = nissaJArray.getJSONObject(j);
                     String sn = jObj.getString("sn");
-                    Log.e("NissaNo SAMIR", "inside loop : "+sn );
+//                    Log.e("NissaNo SAMIR", "inside loop : "+sn );
 
                     String name_of_househead = jObj.getString("name_of_househead");
                     String district = jObj.getString("district");
@@ -340,9 +340,10 @@ public String loadNissaNoJSONFromAsset() {
                     String nissa_no = jObj.getString("nissa_no");
                     String pa_no = jObj.getString("pa_no");
                     String citizenship_no = jObj.getString("citizenship_no");
+                    String household_no = jObj.getString("houshold_no");
 
                     NissaNo_Details nissaNo_details = new NissaNo_Details(sn, name_of_househead, district, prev_VDC_Mun, current_ward_no,
-                            prev_ward_no, tole, nissa_no, pa_no, citizenship_no);
+                            prev_ward_no, tole, nissa_no, pa_no, citizenship_no, household_no);
 
                     nissaNo_details.save();
 

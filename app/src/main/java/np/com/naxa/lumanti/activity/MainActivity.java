@@ -100,6 +100,30 @@ public class MainActivity extends AppCompatActivity {
 
         generalFormModel = new GeneralFormModel();
 
+        if(Constant.countNissaNoInput == 1){
+            generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+            if(!generalFormModel.getG8().equals(null)){
+                tvTole.setText(generalFormModel.getG8());
+            }
+            if(!generalFormModel.getG9().equals(null)){
+                tvHouseCode.setText(generalFormModel.getG9());
+
+            }
+            if(!generalFormModel.getG_10().equals(null)){
+                tvNissaNo.setText(generalFormModel.getG_10());
+
+            }
+            if(!generalFormModel.getG_11().equals(null)){
+                tvCitizenshipNo.setText(generalFormModel.getG_11());
+
+            }
+            if(!generalFormModel.getG_12().equals(null)){
+                tvPaNo.setText(generalFormModel.getG_12());
+
+            }
+
+        }
+
 
 //        get intent from next page();
         Log.e(" MAIN ACTIVITY SAMIR", "onCreate: countGeneral" + "" + Constant.countGeneral);

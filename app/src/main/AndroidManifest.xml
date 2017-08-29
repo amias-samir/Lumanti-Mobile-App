@@ -20,9 +20,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Dark">
-
-
-
         <activity
             android:name=".activity.SplashScreenActivity"
             android:windowSoftInputMode="stateHidden">
@@ -33,14 +30,18 @@
             </intent-filter>
         </activity>
 
-
-        <meta-data android:name="DATABASE" android:value="lumanti_database.db" />
-        <meta-data android:name="VERSION" android:value="1" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="np.com.naxa.lumanti.sugar" />
-
-
-
+        <meta-data
+            android:name="DATABASE"
+            android:value="lumanti_database.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="np.com.naxa.lumanti.sugar" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAMJnKb37T0YzQqwZ30djyGVgOtw-KTqUo" />
@@ -55,7 +56,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.HomeListActivity" />
         </activity>
-
         <activity
             android:name=".activity.DemographicInfoActivity"
             android:windowSoftInputMode="stateHidden" />
@@ -73,19 +73,13 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.CapacityBuildingActivity"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".gps.MapPointActivity"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".gps.MapPolyLineActivity"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".activity.SavedFormsActivity"
             android:windowSoftInputMode="stateHidden">
@@ -95,17 +89,12 @@
         </activity>
         <activity
             android:name=".gps.GeoPointActivity"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".activity.SaveSendActivity"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-
-        <activity android:name=".activity.HomeListActivity">
-        </activity>
-
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".activity.HomeListActivity"></activity>
+        <activity android:name=".activity.NissaNoInputActivity"></activity>
     </application>
 
 </manifest>

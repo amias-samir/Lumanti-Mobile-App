@@ -18,6 +18,7 @@ public class Constant {
     public static int countReconstruction = 0;
     public static int countReconstructionGPS = 0;
     public static int countEarthquakeRelief = 0;
+    public static int countNissaNoInput = 0;
     public static int countSaveSend = 0;
 
 

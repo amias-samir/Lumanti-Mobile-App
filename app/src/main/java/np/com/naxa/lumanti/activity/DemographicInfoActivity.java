@@ -100,6 +100,10 @@ public class DemographicInfoActivity extends AppCompatActivity {
 
         if (Constant.countDemographic == 0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
+
+            if(!generalFormModel.getA1().equals(null)){
+                tvHeadName.setText(generalFormModel.getA1());
+            }
 //        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
             Log.e(" MAIN ACTIVITY SAMIR", "onCreate: countDemographic" + "" + Constant.countDemographic);
         }

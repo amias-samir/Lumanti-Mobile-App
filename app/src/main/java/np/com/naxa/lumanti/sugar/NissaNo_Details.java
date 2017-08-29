@@ -20,12 +20,13 @@ public class NissaNo_Details extends SugarRecord {
     public String nissa_no;
     public String pa_no;
     public String citizenship_no;
+    public String household_no;
 
     public NissaNo_Details(){
     }
 
     public NissaNo_Details(String sn, String name_of_househead, String district, String prev_VDC_Mun, String current_ward_no,
-                           String prev_ward_no, String tole, String nissa_no, String pa_no, String citizenship_no){
+                           String prev_ward_no, String tole, String nissa_no, String pa_no, String citizenship_no, String household_no){
         this.sn = sn;
         this.name_of_househead = name_of_househead;
         this.district = district;
@@ -36,5 +37,6 @@ public class NissaNo_Details extends SugarRecord {
         this.nissa_no = nissa_no;
         this.pa_no = pa_no;
         this.citizenship_no = citizenship_no;
+        this.household_no = household_no;
     }
 }

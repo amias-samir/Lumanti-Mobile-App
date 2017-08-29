@@ -43,7 +43,6 @@
     <string name="stringA7">House Type (घरको प्रकार)</string>
 
 
-
     <string name="get_gps_locationBtnText">Get gps location (घरको GPS लिनुहोस्)</string>
     <string name="preview_mapBtnText">Preview Map (नक्सामा हर्नुहोस्)</string>
     <string name="photograph1LBL">Front image of the house with family member (घरको फोटो (अगाडी बाट परिवारका सदस्यहरु सहित)</string>
@@ -245,7 +244,6 @@
         <item>"Micro finance(लघुवित्त)"</item>
         <item>"Others(अन्य)"</item>
     </string-array>
-
 
 
     <string-array name="construction_status">
