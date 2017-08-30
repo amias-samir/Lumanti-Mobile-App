@@ -54,6 +54,10 @@
 
     <!--spinner -->
     <style name="SpinnerDropDownItem" >
+        <item name="android:layout_marginTop"> @dimen/layout_margin </item>
+        <item name="android:singleLine"> false </item>
+        <item name="android:maxLines"> 2 </item>
+        <item name="android:divider"> @color/divider_grey</item>
         <item name="android:textColor">@color/nliveo_black</item>
         <item name="android:background">@color/nliveo_white</item>
         <item name="android:selectableItemBackground">@color/accent</item>
