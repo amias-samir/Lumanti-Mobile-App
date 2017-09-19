@@ -328,7 +328,7 @@ public class DemographicInfoActivity extends AppCompatActivity {
         List<String> BeforeAfterEarthquake = Arrays.asList(getResources().getStringArray(R.array.before_after_earthquake));
         int setBeforeAfterEarthquake = BeforeAfterEarthquake.indexOf(generalFormModel.getA3_c());
         Log.e("Demographic SAMIRD", "before after: "+setBeforeAfterEarthquake );
-        spinnerSpecifyDisPregLac.setSelection(setBeforeAfterEarthquake);
+        spinnerBeforeAfterDisabled.setSelection(setBeforeAfterEarthquake);
 
         List<String> HouseType = Arrays.asList(getResources().getStringArray(R.array.house_type));
         int setHouseType = HouseType.indexOf(generalFormModel.getA7());

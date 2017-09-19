@@ -90,12 +90,12 @@ public class NissaNoInputActivity extends AppCompatActivity {
                 generalFormModel.setG_11(details.citizenship_no);
                 generalFormModel.setG_12(details.pa_no);
             }
-            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getA1());
-            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getG8());
-            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getG9());
-            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getG_10());
-            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getG_11());
-            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getG_12());
+//            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getA1());
+//            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getG8());
+//            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getG9());
+//            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getG_10());
+//            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getG_11());
+//            Log.e("NissaNoDetails SAMIR", "onViewClicked: " + generalFormModel.getG_12());
 
             Constant.countNissaNoInput = 1 ;
 

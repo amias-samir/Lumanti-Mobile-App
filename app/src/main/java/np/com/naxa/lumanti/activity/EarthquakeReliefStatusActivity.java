@@ -183,32 +183,34 @@ public class EarthquakeReliefStatusActivity extends AppCompatActivity {
 //        List<String> ReceivedSupport = Arrays.asList(getResources().getStringArray(R.array.received_support));
 //        int setReceivedSupport = ReceivedSupport.indexOf(generalFormModel.getC2());
 //        spinnerReceivedSupport.setSelection(setReceivedSupport);
-    if ( generalFormModel.getC2().equals(null) || generalFormModel.getC2().equals("")) {
-            cbInCash.setChecked(false);
-            cbInKind.setChecked(false);
+        try {
+            if (generalFormModel.getC2().equals(null) && generalFormModel.getC2().equals("")) {
+                cbInCash.setChecked(false);
+                cbInKind.setChecked(false);
+            } else if (generalFormModel.getC2().equals("In Cash")) {
+                cbInCash.setChecked(true);
+                int setInstallment = Integer.parseInt(generalFormModel.getC2_a());
+                receivedInstallment.setSelection(setInstallment);
+
+            } else if (generalFormModel.getC2().equals("In Kind")) {
+                cbInKind.setChecked(true);
+                tvKindSupport.setText(generalFormModel.getC2_b());
+
+
+            } else if (generalFormModel.getC2().equals("In Cash , In Kind")) {
+                cbInCash.setChecked(true);
+                cbInKind.setChecked(true);
+
+                receivedInstallment.setVisibility(View.VISIBLE);
+
+                int setInstallment = Integer.parseInt(generalFormModel.getC2_a());
+                receivedInstallment.setSelection(setInstallment);
+
+                tvKindSupport.setText(generalFormModel.getC2_b());
+            }
+        }catch (NullPointerException e){
+
         }
-        else if(generalFormModel.getC2().equals("In Cash")){
-            cbInCash.setChecked(true);
-            int setInstallment = Integer.parseInt(generalFormModel.getC2_a());
-            receivedInstallment.setSelection(setInstallment);
-
-        }else if(generalFormModel.getC2().equals("In Kind")){
-            cbInKind.setChecked(true);
-            tvKindSupport.setText(generalFormModel.getC2_b());
-
-
-        }else if(generalFormModel.getC2().equals("In Cash , In Kind")){
-            cbInCash.setChecked(true);
-            cbInKind.setChecked(true);
-
-            receivedInstallment.setVisibility(View.VISIBLE);
-
-            int setInstallment = Integer.parseInt(generalFormModel.getC2_a());
-            receivedInstallment.setSelection(setInstallment);
-
-            tvKindSupport.setText(generalFormModel.getC2_b());
-        }
-
 
 
 

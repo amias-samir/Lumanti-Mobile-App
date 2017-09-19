@@ -172,6 +172,8 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                     String form_name = resultCur.get(position).formName;
                     loadForm(id, jSon, DBid, sent_Status, form_name);
 
+
+
                 }
                 else if (items[item] == "Delete") {
                     DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
@@ -233,12 +235,20 @@ public class Fragment_Not_Sent_Forms extends Fragment {
 
                 Intent intent1 = new Intent(getActivity(), MainActivity.class);
                 Constant.isFomSavedForm = true ;
+//                Constant.countGeneral = 1 ;
                 intent1.putExtra("JSON1", jsonData);
+//
 //                intent1.putExtra("photo" , photo);
 //                intent1.putExtra("gps" , gps) ;
                 intent1.putExtra("DBid", DBid);
                 intent1.putExtra("sent_Status", status);
                 intent1.putExtra("form_name", form_name);
+
+                Log.e("Not Sent Fragment", "loadForm: "+jsonData );
+                Log.e("Not Sent Fragment", "loadForm: "+DBid );
+                Log.e("Not Sent Fragment", "loadForm: "+status );
+                Log.e("Not Sent Fragment", "loadForm: "+form_name );
+
                 startActivity(intent1);
                 break;
 

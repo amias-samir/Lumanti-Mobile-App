@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -91,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        Log.e("MainActivity", "onCreate: "+"sdbsdbsdhcb" );
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("General Information");
@@ -148,13 +151,15 @@ public class MainActivity extends AppCompatActivity {
             Constant.formID = formid;
             String sent_Status = (String) bundle.get("sent_Status");
 
-            Gson gson = new Gson();
+
             // 2. JSON to Java object, read it from a Json String.
+            Gson gson = new Gson();
             generalFormModel = gson.fromJson(jsonToParse, GeneralFormModel.class);
             reinitializeConstantVariable();
 
             initializeSpinnerAdapterSaved();
             initializeUI();
+
 
 
         }
@@ -444,7 +449,7 @@ public class MainActivity extends AppCompatActivity {
         Constant.countReconstruction = 1;
         Constant.countEarthquakeRelief = 1;
         Constant.countReconstructionGPS = 2;
-        Constant.countSaveSend = 0;
+        Constant.countSaveSend = 1;
 
 //        Constant.takenimg1 = false;
 //        Constant.takenimg2 = false;

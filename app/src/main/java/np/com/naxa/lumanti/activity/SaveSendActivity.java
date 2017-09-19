@@ -188,6 +188,8 @@ public class SaveSendActivity extends AppCompatActivity {
                 break;
             case R.id.water_sanitation_save:
 
+                setGeneralFormModelValue();
+
                 convertDataToJson();
 
                 DisplayMetrics metrics = context.getResources().getDisplayMetrics();
@@ -277,6 +279,7 @@ public class SaveSendActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     showDialog.dismiss();
+                                    reinitializeConstantVariable();
                                     Intent intent = new Intent(SaveSendActivity.this, MainActivity.class);
                                     startActivity(intent);
                                 }
