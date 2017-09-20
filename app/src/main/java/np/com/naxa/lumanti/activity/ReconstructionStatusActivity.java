@@ -178,9 +178,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         btnPhotoSite1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(cameraIntent, CAMERA_PIC1_REQUEST);
-
                 booimg1 = true;
                 booimg2 = false;
                 booimg3 = false;
@@ -192,8 +189,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         btnPhotoSite2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(cameraIntent, CAMERA_PIC2_REQUEST);
                 booimg1 = false;
                 booimg2 = true;
                 booimg3 = false;
@@ -205,8 +200,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         btnPhotoSite3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(cameraIntent, CAMERA_PIC3_REQUEST);
                 booimg1 = false;
                 booimg2 = false;
                 booimg3 = true;
@@ -218,8 +211,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         btnPhotoSite4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(cameraIntent, CAMERA_PIC4_REQUEST);
                 booimg1 = false;
                 booimg2 = false;
                 booimg3 = false;
@@ -249,27 +240,9 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     @OnClick(R.id.reconstruction_status_next)
     public void NextPage() {
 
-//        addImage();
-
-//        if (Constant.isFomSavedForm) {
-//            imageSavedFormModel.setB1_img1_encode(B64Eimage1);
-//            imageSavedFormModel.setB1_img2_encode(B64Eimage2);
-//            imageSavedFormModel.setB1_img3_encode(B64Eimage3);
-//            imageSavedFormModel.setB1_img4_encode(B64Eimage4);
-////            encodedImage1 = B64Eimage1;
-////            encodedImage2 = B64Eimage2;
-////            encodedImage3 = B64Eimage3;
-////            encodedImage4 = B64Eimage4;
-//        }
-
         if (Constant.countReconstructionGPS == 2) {
             generalFormModel.setB1_lat(finalLat + "");
             generalFormModel.setB1_long(finalLong + "");
-
-//            generalFormModel.setB1_img1(imageSavedFormModel.getB1_img1_encode());
-//            generalFormModel.setB1_img2(imageSavedFormModel.getB1_img2_encode());
-//            generalFormModel.setB1_img3(imageSavedFormModel.getB1_img3_encode());
-//            generalFormModel.setB1_img4(imageSavedFormModel.getB1_img4_encode());
 
             generalFormModel.setB1_img1("");
             generalFormModel.setB1_img2("");
@@ -297,14 +270,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         } else if (isGpsTaken) {
             generalFormModel.setB1_lat(finalLat + "");
             generalFormModel.setB1_long(finalLong + "");
-//            generalFormModel.setB1_img1(encodedImage1);
-//            generalFormModel.setB1_img2(encodedImage2);
-//            generalFormModel.setB1_img3(encodedImage3);
-//            generalFormModel.setB1_img4(encodedImage4);
-//            generalFormModel.setB1_img1(imageSavedFormModel.getB1_img1_encode());
-//            generalFormModel.setB1_img2(imageSavedFormModel.getB1_img2_encode());
-//            generalFormModel.setB1_img3(imageSavedFormModel.getB1_img3_encode());
-//            generalFormModel.setB1_img4(imageSavedFormModel.getB1_img4_encode());
+
 
             generalFormModel.setB1_img1("");
             generalFormModel.setB1_img2("");
@@ -337,27 +303,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     @OnClick(R.id.reconstruction_status_prev)
     public void PreviousPage() {
 
-//        addImage();
-
         generalFormModel.setB1_lat(finalLat + "");
         generalFormModel.setB1_long(finalLong + "");
-
-//        if (Constant.isFomSavedForm) {
-//            encodedImage1 = B64Eimage1;
-//            encodedImage2 = B64Eimage2;
-//            encodedImage3 = B64Eimage3;
-//            encodedImage4 = B64Eimage4;
-//        }
-
-//        generalFormModel.setB1_img1(encodedImage1);
-//        generalFormModel.setB1_img2(encodedImage2);
-//        generalFormModel.setB1_img3(encodedImage3);
-//        generalFormModel.setB1_img4(encodedImage4);
-
-//        generalFormModel.setB1_img1(imageSavedFormModel.getB1_img1_encode());
-//        generalFormModel.setB1_img2(imageSavedFormModel.getB1_img2_encode());
-//        generalFormModel.setB1_img3(imageSavedFormModel.getB1_img3_encode());
-//        generalFormModel.setB1_img4(imageSavedFormModel.getB1_img4_encode());
 
         generalFormModel.setB1_img1("");
         generalFormModel.setB1_img2("");
@@ -389,10 +336,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
     @OnClick(R.id.reconstruction_status_preview_map)
     public void PreviewMap() {
-//        if (CheckValues.isFromSavedFrom) {
-//            StaticListOfCoordinates.setList(listCf);
-//            startActivity(new Intent(ReconstructionStatusActivity.this, MapPointActivity.class));
-//        } else {
 
         if (GPS_TRACKER_FOR_POINT.GPS_POINT_INITILIZED) {
             StaticListOfCoordinates.setList(listCf);
@@ -401,7 +344,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             Default_DIalog.showDefaultDialog(context, R.string.app_name, "Please try again, Gps not initialized");
 
         }
-//        }
     }
 
 
@@ -437,46 +379,11 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-//        if (requestCode == 1)
-//            if (resultCode == Activity.RESULT_OK) {
-//                Uri selectedImage = data.getData();
-//
-//                String filePath = getPath(selectedImage);
-//                String file_extn = filePath.substring(filePath.lastIndexOf(".") + 1);
-//
-////                image_name_tv.setText(filePath);
-//                if (booimg1) {
-//                    imagePath1 = filePath;
-//                    addImage();
-//                }
-//                if (booimg2) {
-//                    imagePath2 = filePath;
-//                    addImage();
-//                }
-//                if (booimg3) {
-//                    imagePath3 = filePath;
-//                    addImage();
-//                }
-//                if (booimg4) {
-//                    imagePath4 = filePath;
-//                    addImage();
-//                }
-////                Toast.makeText(getApplicationContext(),""+encodedImage,Toast.LENGTH_SHORT).show();
-////                if (file_extn.equals("img") || file_extn.equals("jpg") || file_extn.equals("jpeg") || file_extn.equals("gif") || file_extn.equals("png")) {
-////                    //FINE
-////
-////                }
-////                else{
-////                    //NOT IN REQUIRED FORMAT
-////                }
-//            }
 
         if (requestCode == CAMERA_PIC1_REQUEST && resultCode == RESULT_OK) {
             galleryAddPic1();
             setPic(ivPhotographSiteimageViewPreview1, imagePath1);
             imageSavedFormModel.setB1_img1_path(imagePath1);
-
-
         }
 
         if (requestCode == CAMERA_PIC2_REQUEST && resultCode == RESULT_OK) {
@@ -497,58 +404,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             imageSavedFormModel.setB1_img4_path(imagePath4);
         }
 
-
-//        if (requestCode == CAMERA_PIC1_REQUEST) {
-//            if (resultCode == Activity.RESULT_OK) {
-//                thumbnail1 = (Bitmap) data.getExtras().get("data");
-//                //  ImageView image =(ImageView) findViewById(R.id.Photo);
-//                // image.setImageBitmap(thumbnail);
-//                ivPhotographSiteimageViewPreview1.setVisibility(View.VISIBLE);
-//                ivPhotographSiteimageViewPreview1.setImageBitmap(thumbnail1);
-//                saveToExternalSorage(thumbnail1);
-//                addImage();
-////                Toast.makeText(getApplicationContext(), "" + encodedImage, Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//
-//        if (requestCode == CAMERA_PIC2_REQUEST) {
-//            if (resultCode == Activity.RESULT_OK) {
-//                thumbnail2 = (Bitmap) data.getExtras().get("data");
-//                //  ImageView image =(ImageView) findViewById(R.id.Photo);
-//                // image.setImageBitmap(thumbnail);
-//                ivPhotographSiteimageViewPreview2.setVisibility(View.VISIBLE);
-//                ivPhotographSiteimageViewPreview2.setImageBitmap(thumbnail2);
-//                saveToExternalSorage(thumbnail2);
-//                addImage();
-////                Toast.makeText(getApplicationContext(), "" + encodedImage, Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//
-//        if (requestCode == CAMERA_PIC3_REQUEST) {
-//            if (resultCode == Activity.RESULT_OK) {
-//                thumbnail3 = (Bitmap) data.getExtras().get("data");
-//                //  ImageView image =(ImageView) findViewById(R.id.Photo);
-//                // image.setImageBitmap(thumbnail);
-//                ivPhotographSiteimageViewPreview3.setVisibility(View.VISIBLE);
-//                ivPhotographSiteimageViewPreview3.setImageBitmap(thumbnail3);
-//                saveToExternalSorage(thumbnail3);
-//                addImage();
-////                Toast.makeText(getApplicationContext(), "" + encodedImage, Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//
-//        if (requestCode == CAMERA_PIC4_REQUEST) {
-//            if (resultCode == Activity.RESULT_OK) {
-//                thumbnail4 = (Bitmap) data.getExtras().get("data");
-//                //  ImageView image =(ImageView) findViewById(R.id.Photo);
-//                // image.setImageBitmap(thumbnail);
-//                ivPhotographSiteimageViewPreview4.setVisibility(View.VISIBLE);
-//                ivPhotographSiteimageViewPreview4.setImageBitmap(thumbnail4);
-//                saveToExternalSorage(thumbnail4);
-//                addImage();
-////                Toast.makeText(getApplicationContext(), "" + encodedImage, Toast.LENGTH_SHORT).show();
-//            }
-//        }
 
         if (requestCode == GEOPOINT_RESULT_CODE) {
             switch (resultCode) {
@@ -574,255 +429,10 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                         btnGpsStart.setText("Location Recorded");
                     }
 
-
 //                    Toast.makeText(this.context, location, Toast.LENGTH_SHORT).show();
                     break;
             }
         }
-    }
-
-
-    private void saveToExternalSorage(Bitmap thumbnail) {
-        // TODO Auto-generated method stub
-        //String merocinema="Mero Cinema";
-//        String movname=getIntent().getExtras().getString("Title");
-        Calendar calendar = Calendar.getInstance();
-        long timeInMillis = calendar.getTimeInMillis();
-
-
-        if (booimg1) {
-            imageName1 = "lumanti" + timeInMillis;
-            Constant.takenimg1Name = imageName1;
-
-            Log.e("Reconstruction", "saveToExternalSorage: " + imageName1);
-
-            File file1 = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), imageName1);
-//        if (!file1.mkdirs()) {
-//            Toast.makeText(getApplicationContext(), ""+file1, Toast.LENGTH_SHORT).show();
-            Log.e("Reconstruction", "saveToExternalSorage: " + file1);
-
-//        }
-
-            if (file1.exists()) file1.delete();
-            try {
-                FileOutputStream out = new FileOutputStream(file1);
-                thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                out.flush();
-                out.close();
-                Toast.makeText(getApplicationContext(), "Saved " + imageName1, Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (booimg2) {
-            imageName2 = "lumanti" + timeInMillis;
-            Constant.takenimg2Name = imageName2;
-
-
-            File file1 = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), imageName2);
-//        if (!file1.mkdirs()) {
-//            Toast.makeText(getApplicationContext(), "Not Created", Toast.LENGTH_SHORT).show();
-//        }
-
-            if (file1.exists()) file1.delete();
-            try {
-                FileOutputStream out = new FileOutputStream(file1);
-                thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                out.flush();
-                out.close();
-                Toast.makeText(getApplicationContext(), "Saved " + imageName2, Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (booimg3) {
-            imageName3 = "lumanti" + timeInMillis;
-            Constant.takenimg3Name = imageName3;
-
-
-            File file1 = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), imageName3);
-//        if (!file1.mkdirs()) {
-//            Toast.makeText(getApplicationContext(), "Not Created", Toast.LENGTH_SHORT).show();
-//        }
-
-            if (file1.exists()) file1.delete();
-            try {
-                FileOutputStream out = new FileOutputStream(file1);
-                thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                out.flush();
-                out.close();
-                Toast.makeText(getApplicationContext(), "Saved " + imageName3, Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (booimg4) {
-            imageName4 = "lumanti" + timeInMillis;
-            Constant.takenimg4Name = imageName4;
-
-
-            File file1 = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), imageName4);
-//        if (!file1.mkdirs()) {
-//            Toast.makeText(getApplicationContext(), "Not Created", Toast.LENGTH_SHORT).show();
-//        }
-
-            if (file1.exists()) file1.delete();
-            try {
-                FileOutputStream out = new FileOutputStream(file1);
-                thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                out.flush();
-                out.close();
-                Toast.makeText(getApplicationContext(), "Saved " + imageName4, Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public String getPath(Uri uri) {
-        // just some safety built in
-        if (uri == null) {
-            // TODO perform some logging or show user feedback
-            return null;
-        }
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
-        if (cursor != null) {
-            int column_index = cursor
-                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        }
-        // this is our fallback here
-        return uri.getPath();
-    }
-
-    public void addImage() {
-
-//        check encoded string is in model class or not
-        if (Constant.countReconstruction != 0) {
-            imageName1 = Constant.takenimg1Name;
-            imageName2 = Constant.takenimg2Name;
-            imageName3 = Constant.takenimg3Name;
-            imageName4 = Constant.takenimg4Name;
-        }
-
-
-        if (booimg1 || Constant.takenimg1) {
-            File file1 = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), imageName1);
-            String path = file1.toString();
-
-            Log.e("Reconstruction addimage", "saveToExternalSorage: " + imageName1);
-
-
-            BitmapFactory.Options options = new BitmapFactory.Options();
-
-            options.inSampleSize = 1;
-            options.inPurgeable = true;
-            Bitmap bm = BitmapFactory.decodeFile(path, options);
-//        Bitmap bm = BitmapFactory.decodeFile( imagePath ,options);
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-
-
-            // bitmap object
-
-            byte[] byteImage_photo = baos.toByteArray();
-
-            //generate base64 string of image
-            encodedImage1 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
-            Constant.takenimg1 = true;
-            Log.e("IMAGE STRING", "-" + encodedImage1);
-        }
-
-        if (booimg2 || Constant.takenimg2) {
-            File file1 = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), imageName2);
-            String path = file1.toString();
-
-            BitmapFactory.Options options = new BitmapFactory.Options();
-
-            options.inSampleSize = 1;
-            options.inPurgeable = true;
-            Bitmap bm = BitmapFactory.decodeFile(path, options);
-//        Bitmap bm = BitmapFactory.decodeFile( imagePath ,options);
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-
-
-            // bitmap object
-
-            byte[] byteImage_photo = baos.toByteArray();
-
-            //generate base64 string of image
-            encodedImage2 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
-            Constant.takenimg2 = true;
-            Log.e("IMAGE STRING", "-" + encodedImage2);
-        }
-
-        if (booimg3 || Constant.takenimg3) {
-            File file1 = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), imageName3);
-            String path = file1.toString();
-
-            BitmapFactory.Options options = new BitmapFactory.Options();
-
-            options.inSampleSize = 1;
-            options.inPurgeable = true;
-            Bitmap bm = BitmapFactory.decodeFile(path, options);
-//        Bitmap bm = BitmapFactory.decodeFile( imagePath ,options);
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-
-
-            // bitmap object
-
-            byte[] byteImage_photo = baos.toByteArray();
-
-            //generate base64 string of image
-            encodedImage3 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
-            Constant.takenimg3 = true;
-            Log.e("IMAGE STRING", "-" + encodedImage3);
-        }
-
-        if (booimg4 || Constant.takenimg4) {
-            File file1 = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), imageName4);
-            String path = file1.toString();
-
-            BitmapFactory.Options options = new BitmapFactory.Options();
-
-            options.inSampleSize = 1;
-            options.inPurgeable = true;
-            Bitmap bm = BitmapFactory.decodeFile(path, options);
-//        Bitmap bm = BitmapFactory.decodeFile( imagePath ,options);
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-
-
-            // bitmap object
-
-            byte[] byteImage_photo = baos.toByteArray();
-
-            //generate base64 string of image
-            encodedImage4 = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
-            Constant.takenimg4 = true;
-            Log.e("IMAGE STRING", "-" + encodedImage4);
-        }
-
     }
 
 
@@ -1359,74 +969,26 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             mImageView.setImageBitmap(bitmap);
             Constant.takenimg1 = true;
 
-//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-//            byte[] byteArray = byteArrayOutputStream.toByteArray();
-//            encodedImage1 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-//            generalFormModel.setB1_img1(encodedImage1);
-//
-//            imageSavedFormModel.setB1_img1_encode(encodedImage1);
-//
-//            Log.e("Reconstruction", "setPic1: " + generalFormModel.getB1_img1());
         }
         if (booimg2) {
 
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath2, bmOptions);
             mImageView.setImageBitmap(bitmap);
-
             Constant.takenimg2 = true;
-
-//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-//            byte[] byteArray = byteArrayOutputStream.toByteArray();
-//            encodedImage2 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-//            generalFormModel.setB1_img2(encodedImage2);
-//
-//            imageSavedFormModel.setB1_img2_encode(encodedImage2);
-//
-//
-//            Log.e("Reconstruction", "setPic2: " + generalFormModel.getB1_img2());
-
-
         }
 
         if (booimg3) {
 
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath3, bmOptions);
             mImageView.setImageBitmap(bitmap);
-
             Constant.takenimg3 = true ;
-
-//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-//            byte[] byteArray = byteArrayOutputStream.toByteArray();
-//            encodedImage3 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-//            generalFormModel.setB1_img3(encodedImage3);
-//
-//            imageSavedFormModel.setB1_img3_encode(encodedImage3);
-//
-//            Log.e("Reconstruction", "setPic3: " + generalFormModel.getB1_img3());
-
-
         }
 
         if (booimg4) {
 
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath4, bmOptions);
             mImageView.setImageBitmap(bitmap);
-
             Constant.takenimg4 = true;
-
-//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-//            byte[] byteArray = byteArrayOutputStream.toByteArray();
-//            encodedImage4 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-//            generalFormModel.setB1_img4(encodedImage4);
-//
-//            imageSavedFormModel.setB1_img4_encode(encodedImage4);
-//
-//            Log.e("Reconstruction", "setPic4: " + generalFormModel.getB1_img4());
-
 
         }
 
