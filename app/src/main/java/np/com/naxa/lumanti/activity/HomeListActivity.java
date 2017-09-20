@@ -297,7 +297,7 @@ public class HomeListActivity extends AppCompatActivity {
 public String loadNissaNoJSONFromAsset() {
     String json = null;
     try {
-        InputStream is = this.getAssets().open("json/kathmandu_house_details.json");
+        InputStream is = this.getAssets().open("json/lumanti_nissa_details.json");
         int size = is.available();
         byte[] buffer = new byte[size];
         is.read(buffer);
@@ -333,17 +333,21 @@ public String loadNissaNoJSONFromAsset() {
 
                     String name_of_househead = jObj.getString("name_of_househead");
                     String district = jObj.getString("district");
+
                     String prev_VDC_Mun = jObj.getString("previous_VDC_Mun");
+                    String prev_ward_no = jObj.getString("previous_ward_no");
+                    String current_VDC_Mun = jObj.getString("current_VDC_Mun");
                     String current_ward_no = jObj.getString("current_ward_no");
-                    String prev_ward_no = jObj.getString("Previous_ward_no");
-                    String tole = jObj.getString("tole");
+//                    Log.e("NissaNo SAMIR", "inside loop : ward "+current_ward_no );
+
+                    String tole = jObj.getString("tole ");
                     String nissa_no = jObj.getString("nissa_no");
                     String pa_no = jObj.getString("pa_no");
                     String citizenship_no = jObj.getString("citizenship_no");
                     String household_no = jObj.getString("houshold_no");
 
-                    NissaNo_Details nissaNo_details = new NissaNo_Details(sn, name_of_househead, district, prev_VDC_Mun, current_ward_no,
-                            prev_ward_no, tole, nissa_no, pa_no, citizenship_no, household_no);
+                    NissaNo_Details nissaNo_details = new NissaNo_Details(sn, name_of_househead, district, prev_VDC_Mun,
+                            prev_ward_no,current_VDC_Mun, current_ward_no, tole, nissa_no, pa_no, citizenship_no, household_no);
 
                     nissaNo_details.save();
 
