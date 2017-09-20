@@ -163,10 +163,10 @@ public class MainActivity extends AppCompatActivity {
             generalFormModel = gson.fromJson(jsonToParse, GeneralFormModel.class);
             imageSavedFormModel = gson.fromJson(jsonToPhotoPath, ImageSavedFormModel.class);
 //
-            Log.e("MainActivity", "onCreate: img1: "+imageSavedFormModel.getB1_img1_path() );
-            Log.e("MainActivity", "onCreate: img2: "+imageSavedFormModel.getB1_img2_path() );
-            Log.e("MainActivity", "onCreate: img3: "+imageSavedFormModel.getB1_img3_path() );
-            Log.e("MainActivity", "onCreate: img4: "+imageSavedFormModel.getB1_img4_path() );
+//            Log.e("MainActivity", "onCreate: img1: "+imageSavedFormModel.getB1_img1_path() );
+//            Log.e("MainActivity", "onCreate: img2: "+imageSavedFormModel.getB1_img2_path() );
+//            Log.e("MainActivity", "onCreate: img3: "+imageSavedFormModel.getB1_img3_path() );
+//            Log.e("MainActivity", "onCreate: img4: "+imageSavedFormModel.getB1_img4_path() );
 
             reinitializeConstantVariable();
 

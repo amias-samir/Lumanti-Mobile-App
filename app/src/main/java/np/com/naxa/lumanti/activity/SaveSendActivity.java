@@ -6,6 +6,8 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -16,6 +18,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -35,6 +38,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -61,6 +65,7 @@ public class SaveSendActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     GeneralFormModel generalFormModel;
+    ImageSavedFormModel imageSavedFormModel;
 
     Gson gson = new Gson();
     String jsonToSend;
@@ -69,6 +74,8 @@ public class SaveSendActivity extends AppCompatActivity {
     ProgressDialog mProgressDlg;
     Context context = this;
     String dataSentStatus, dateString;
+
+    String encodedImage1 = "", encodedImage2 = "", encodedImage3 = "", encodedImage4 = "";
 
     private int year;
     private int month;
@@ -113,6 +120,8 @@ public class SaveSendActivity extends AppCompatActivity {
         setCurrentDateOnView();
 
         generalFormModel = new GeneralFormModel();
+        imageSavedFormModel = new ImageSavedFormModel();
+
         if (Constant.countSaveSend == 0) {
             generalFormModel = (GeneralFormModel) getIntent().getSerializableExtra("generalFormModel");
 //        Toast.makeText(this, ""+ generalFormModel.getG1(), Toast.LENGTH_SHORT).show();
@@ -166,6 +175,8 @@ public class SaveSendActivity extends AppCompatActivity {
                             mProgressDlg.setIndeterminate(false);
                             mProgressDlg.setCancelable(false);
                             mProgressDlg.show();
+
+                            imageB64Encoder();
                             convertDataToJson();
                             sendDatToserver();
 //                                finish();
@@ -284,7 +295,7 @@ public class SaveSendActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     showDialog.dismiss();
                                     reinitializeConstantVariable();
-                                    Intent intent = new Intent(SaveSendActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(SaveSendActivity.this, NissaNoInputActivity.class);
                                     startActivity(intent);
                                 }
                             });
@@ -346,6 +357,139 @@ public class SaveSendActivity extends AppCompatActivity {
 
 
     public void imageB64Encoder (){
+
+//        image 1 encode
+        try {
+            if (Constant.takenimg1) {
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(imageSavedFormModel.getB1_img1_path(), bmOptions);
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+
+                // Determine how much to scale down the image
+                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+
+                //bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inSampleSize = scaleFactor;
+
+                bmOptions.inPurgeable = true;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(imageSavedFormModel.getB1_img1_path(), bmOptions);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                encodedImage1 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                generalFormModel.setB1_img1(encodedImage1);
+            }
+        }catch (Exception e){
+            Log.e(TAG, "imageB64Encoder1: "+e.toString() );
+        }
+
+        //    ======================    image 2 encode======================================//
+        try {
+            if (Constant.takenimg2) {
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(imageSavedFormModel.getB1_img2_path(), bmOptions);
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+
+                // Determine how much to scale down the image
+                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+
+                //bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inSampleSize = scaleFactor;
+
+                bmOptions.inPurgeable = true;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(imageSavedFormModel.getB1_img2_path(), bmOptions);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                encodedImage2 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                generalFormModel.setB1_img2(encodedImage2);
+            }
+        }catch (Exception e){
+            Log.e(TAG, "imageB64Encoder2: "+e.toString() );
+        }
+
+        //    ======================    image 3 encode======================================//
+        try {
+            if (Constant.takenimg3) {
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(imageSavedFormModel.getB1_img3_path(), bmOptions);
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+
+                // Determine how much to scale down the image
+                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+
+                //bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inSampleSize = scaleFactor;
+
+                bmOptions.inPurgeable = true;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(imageSavedFormModel.getB1_img3_path(), bmOptions);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                encodedImage3 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                generalFormModel.setB1_img3(encodedImage3);
+            }
+        }catch (Exception e){
+            Log.e(TAG, "imageB64Encoder3: "+e.toString() );
+        }
+
+        //    ======================    image 4 encode======================================//
+        try {
+            if (Constant.takenimg4) {
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(imageSavedFormModel.getB1_img4_path(), bmOptions);
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+
+                // Determine how much to scale down the image
+                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+
+                //bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inSampleSize = scaleFactor;
+
+                bmOptions.inPurgeable = true;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(imageSavedFormModel.getB1_img4_path(), bmOptions);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                encodedImage4 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                generalFormModel.setB1_img4(encodedImage4);
+            }
+        }catch (Exception e){
+            Log.e(TAG, "imageB64Encoder 4 : "+e.toString() );
+        }
+
 
     }
 
@@ -509,7 +653,7 @@ public class SaveSendActivity extends AppCompatActivity {
 // ====================================== reinitialize constant variable=================================================//
                         reinitializeConstantVariable();
 
-                        Intent intent = new Intent(SaveSendActivity.this, MainActivity.class);
+                        Intent intent = new Intent(SaveSendActivity.this, NissaNoInputActivity.class);
                         startActivity(intent);
 //                                finish();
                     }
@@ -519,8 +663,8 @@ public class SaveSendActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         showDialog.dismiss();
-//                            Intent intent = new Intent(PregnentWomenActivity.this, MainActivity.class);
-//                            startActivity(intent);
+                        Intent intent = new Intent(SaveSendActivity.this, HomeListActivity.class);
+                        startActivity(intent);
                     }
                 });
             }
