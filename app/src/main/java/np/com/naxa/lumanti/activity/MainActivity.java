@@ -33,6 +33,7 @@ import butterknife.OnItemSelected;
 import np.com.naxa.lumanti.R;
 import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
+import np.com.naxa.lumanti.model.ImageSavedFormModel;
 import np.com.naxa.lumanti.sugar.Municipality_ward_list;
 
 import static android.R.id.list;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     GeneralFormModel generalFormModel;
+    ImageSavedFormModel imageSavedFormModel;
 
     static int count = 0;
 
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         generalFormModel = new GeneralFormModel();
+        imageSavedFormModel = new ImageSavedFormModel();
 
         if (Constant.countNissaNoInput == 1) {
 //            autoset nissa related field
@@ -146,15 +149,25 @@ public class MainActivity extends AppCompatActivity {
             Constant.isFomSavedForm = true;
 
             String jsonToParse = (String) bundle.get("JSON1");
+            String jsonToPhotoPath = (String) bundle.get("PhotoJSON");
             Log.e("MainActivity", "onCreate: Json " + jsonToParse);
             String formid = (String) bundle.get("DBid");
             Constant.formID = formid;
             String sent_Status = (String) bundle.get("sent_Status");
 
+//            ImageSavedFormModel imageSavedFormModel = new ImageSavedFormModel();
+
 
             // 2. JSON to Java object, read it from a Json String.
             Gson gson = new Gson();
             generalFormModel = gson.fromJson(jsonToParse, GeneralFormModel.class);
+            imageSavedFormModel = gson.fromJson(jsonToPhotoPath, ImageSavedFormModel.class);
+//
+            Log.e("MainActivity", "onCreate: img1: "+imageSavedFormModel.getB1_img1_path() );
+            Log.e("MainActivity", "onCreate: img2: "+imageSavedFormModel.getB1_img2_path() );
+            Log.e("MainActivity", "onCreate: img3: "+imageSavedFormModel.getB1_img3_path() );
+            Log.e("MainActivity", "onCreate: img4: "+imageSavedFormModel.getB1_img4_path() );
+
             reinitializeConstantVariable();
 
             initializeSpinnerAdapterSaved();
@@ -367,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerDistrictName.setSelection(setDistrict);
         currentMuniVDCNameadpt.notifyDataSetChanged();
 
-        Log.e("Set Spinner SAMIR", "initializeUI: " + generalFormModel.getG2() + ", " + generalFormModel.getG4() + ", " + generalFormModel.getG5() + ", " + generalFormModel.getG6() + ", " + generalFormModel.getG7());
+//        Log.e("Set Spinner SAMIR", "initializeUI: " + generalFormModel.getG2() + ", " + generalFormModel.getG4() + ", " + generalFormModel.getG5() + ", " + generalFormModel.getG6() + ", " + generalFormModel.getG7());
 
         Handler handler = new Handler(Looper.getMainLooper());
 

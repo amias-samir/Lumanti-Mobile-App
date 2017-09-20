@@ -54,6 +54,7 @@ import np.com.naxa.lumanti.database.DataBaseForm_NotSent;
 import np.com.naxa.lumanti.database.DataBaseForm_Sent;
 import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
+import np.com.naxa.lumanti.model.ImageSavedFormModel;
 
 public class SaveSendActivity extends AppCompatActivity {
 
@@ -63,6 +64,7 @@ public class SaveSendActivity extends AppCompatActivity {
 
     Gson gson = new Gson();
     String jsonToSend;
+    String jsonPhotoPath;
 
     ProgressDialog mProgressDlg;
     Context context = this;
@@ -190,6 +192,8 @@ public class SaveSendActivity extends AppCompatActivity {
 
                 setGeneralFormModelValue();
 
+                convertPhotoPathToJson();
+
                 convertDataToJson();
 
                 DisplayMetrics metrics = context.getResources().getDisplayMetrics();
@@ -242,7 +246,7 @@ public class SaveSendActivity extends AppCompatActivity {
                             Toast.makeText(context, "Please fill the required field. ", Toast.LENGTH_SHORT).show();
                         } else {
                             String[] data = new String[]{"1", formName, dateDataCollected, jsonToSend, "",
-                                    "" + "", "Not Sent", "0"};
+                                    jsonPhotoPath, "Not Sent", "0"};
 
                             DataBaseForm_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseForm_NotSent(context);
                             dataBaseNepalPublicHealthNotSent.open();
@@ -326,7 +330,23 @@ public class SaveSendActivity extends AppCompatActivity {
 
         jsonToSend = gson.toJson(generalFormModel);
 
+
         Log.e("capacity_building", "convertDatToJson: " + jsonToSend);
+    }
+
+    public void convertPhotoPathToJson() {
+
+        ImageSavedFormModel imageSavedFormModel = new ImageSavedFormModel();
+
+        jsonPhotoPath = gson.toJson(imageSavedFormModel);
+
+
+        Log.e("capacity_building", "convertDatToJson: " + jsonToSend);
+    }
+
+
+    public void imageB64Encoder (){
+
     }
 
     public void sendDatToserver() {

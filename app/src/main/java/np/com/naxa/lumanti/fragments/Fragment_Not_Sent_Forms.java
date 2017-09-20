@@ -170,7 +170,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                     String DBid = resultCur.get(position).dbId;
                     String sent_Status = resultCur.get(position).status;
                     String form_name = resultCur.get(position).formName;
-                    loadForm(id, jSon, DBid, sent_Status, form_name);
+                    loadForm(id, jSon,photo, DBid, sent_Status, form_name);
 
 
 
@@ -228,7 +228,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
 
 
 
-    public void loadForm(String formId, String jsonData , String DBid, String status, String form_name){
+    public void loadForm(String formId, String jsonData ,String photoJson , String DBid, String status, String form_name){
         switch (formId){
 
             case "1" :
@@ -237,6 +237,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                 Constant.isFomSavedForm = true ;
 //                Constant.countGeneral = 1 ;
                 intent1.putExtra("JSON1", jsonData);
+                intent1.putExtra("PhotoJSON", photoJson);
 //
 //                intent1.putExtra("photo" , photo);
 //                intent1.putExtra("gps" , gps) ;

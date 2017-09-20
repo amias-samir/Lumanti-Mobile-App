@@ -251,16 +251,16 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
 //        addImage();
 
-        if (Constant.isFomSavedForm) {
-            imageSavedFormModel.setB1_img1_encode(B64Eimage1);
-            imageSavedFormModel.setB1_img2_encode(B64Eimage2);
-            imageSavedFormModel.setB1_img3_encode(B64Eimage3);
-            imageSavedFormModel.setB1_img4_encode(B64Eimage4);
-//            encodedImage1 = B64Eimage1;
-//            encodedImage2 = B64Eimage2;
-//            encodedImage3 = B64Eimage3;
-//            encodedImage4 = B64Eimage4;
-        }
+//        if (Constant.isFomSavedForm) {
+//            imageSavedFormModel.setB1_img1_encode(B64Eimage1);
+//            imageSavedFormModel.setB1_img2_encode(B64Eimage2);
+//            imageSavedFormModel.setB1_img3_encode(B64Eimage3);
+//            imageSavedFormModel.setB1_img4_encode(B64Eimage4);
+////            encodedImage1 = B64Eimage1;
+////            encodedImage2 = B64Eimage2;
+////            encodedImage3 = B64Eimage3;
+////            encodedImage4 = B64Eimage4;
+//        }
 
         if (Constant.countReconstructionGPS == 2) {
             generalFormModel.setB1_lat(finalLat + "");
@@ -973,6 +973,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 Bitmap bitmap = BitmapFactory.decodeFile(imagePath1, bmOptions);
                 ivPhotographSiteimageViewPreview1.setImageBitmap(bitmap);
 
+                Constant.takenimg1 = true;
+
             }
         } catch (NullPointerException e) {
             Log.d("Reconstruction", "initializeUI: exception img1");
@@ -1006,6 +1008,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 bmOptions.inPurgeable = true;
                 Bitmap bitmap = BitmapFactory.decodeFile(imagePath2, bmOptions);
                 ivPhotographSiteimageViewPreview2.setImageBitmap(bitmap);
+
+                Constant.takenimg2 = true;
             }
         } catch (NullPointerException e) {
             Log.d("Reconstruction", "initializeUI: exception img2");
@@ -1040,6 +1044,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 bmOptions.inPurgeable = true;
                 Bitmap bitmap = BitmapFactory.decodeFile(imagePath3, bmOptions);
                 ivPhotographSiteimageViewPreview3.setImageBitmap(bitmap);
+
+                Constant.takenimg3 = true ;
             }
         } catch (NullPointerException e) {
             Log.d("Reconstruction", "initializeUI: exception img3");
@@ -1074,6 +1080,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 bmOptions.inPurgeable = true;
                 Bitmap bitmap = BitmapFactory.decodeFile(imagePath4, bmOptions);
                 ivPhotographSiteimageViewPreview4.setImageBitmap(bitmap);
+
+                Constant.takenimg4 = true;
             }
         } catch (NullPointerException e) {
             Log.d("Reconstruction", "initializeUI: exception img4");
@@ -1349,32 +1357,35 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath1, bmOptions);
             mImageView.setImageBitmap(bitmap);
+            Constant.takenimg1 = true;
 
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream.toByteArray();
-            encodedImage1 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-            generalFormModel.setB1_img1(encodedImage1);
-
-            imageSavedFormModel.setB1_img1_encode(encodedImage1);
-
-            Log.e("Reconstruction", "setPic1: " + generalFormModel.getB1_img1());
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+//            byte[] byteArray = byteArrayOutputStream.toByteArray();
+//            encodedImage1 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+//            generalFormModel.setB1_img1(encodedImage1);
+//
+//            imageSavedFormModel.setB1_img1_encode(encodedImage1);
+//
+//            Log.e("Reconstruction", "setPic1: " + generalFormModel.getB1_img1());
         }
         if (booimg2) {
 
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath2, bmOptions);
             mImageView.setImageBitmap(bitmap);
 
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream.toByteArray();
-            encodedImage2 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-            generalFormModel.setB1_img2(encodedImage2);
+            Constant.takenimg2 = true;
 
-            imageSavedFormModel.setB1_img2_encode(encodedImage2);
-
-
-            Log.e("Reconstruction", "setPic2: " + generalFormModel.getB1_img2());
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+//            byte[] byteArray = byteArrayOutputStream.toByteArray();
+//            encodedImage2 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+//            generalFormModel.setB1_img2(encodedImage2);
+//
+//            imageSavedFormModel.setB1_img2_encode(encodedImage2);
+//
+//
+//            Log.e("Reconstruction", "setPic2: " + generalFormModel.getB1_img2());
 
 
         }
@@ -1384,15 +1395,17 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath3, bmOptions);
             mImageView.setImageBitmap(bitmap);
 
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream.toByteArray();
-            encodedImage3 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-            generalFormModel.setB1_img3(encodedImage3);
+            Constant.takenimg3 = true ;
 
-            imageSavedFormModel.setB1_img3_encode(encodedImage3);
-
-            Log.e("Reconstruction", "setPic3: " + generalFormModel.getB1_img3());
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+//            byte[] byteArray = byteArrayOutputStream.toByteArray();
+//            encodedImage3 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+//            generalFormModel.setB1_img3(encodedImage3);
+//
+//            imageSavedFormModel.setB1_img3_encode(encodedImage3);
+//
+//            Log.e("Reconstruction", "setPic3: " + generalFormModel.getB1_img3());
 
 
         }
@@ -1402,15 +1415,17 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath4, bmOptions);
             mImageView.setImageBitmap(bitmap);
 
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream.toByteArray();
-            encodedImage4 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-            generalFormModel.setB1_img4(encodedImage4);
+            Constant.takenimg4 = true;
 
-            imageSavedFormModel.setB1_img4_encode(encodedImage4);
-
-            Log.e("Reconstruction", "setPic4: " + generalFormModel.getB1_img4());
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+//            byte[] byteArray = byteArrayOutputStream.toByteArray();
+//            encodedImage4 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+//            generalFormModel.setB1_img4(encodedImage4);
+//
+//            imageSavedFormModel.setB1_img4_encode(encodedImage4);
+//
+//            Log.e("Reconstruction", "setPic4: " + generalFormModel.getB1_img4());
 
 
         }
