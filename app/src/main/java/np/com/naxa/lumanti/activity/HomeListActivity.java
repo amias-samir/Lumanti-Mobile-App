@@ -327,63 +327,6 @@ public class HomeListActivity extends AppCompatActivity {
     //    List<NissaNo_Details> user_list = new ArrayList<>();
     double rowcount = NissaNo_Details.count(NissaNo_Details.class);
 
-
-    public void loadNissaNoList() {
-        Log.e("NissaNo SAMIR", "loadNissaNoList count: " + "" + rowcount);
-
-        if (rowcount <= 0) {
-
-            try {
-                JSONObject Nisaobj = new JSONObject(loadNissaNoJSONFromAsset());
-                Log.e("NissaNo SAMIR", "loadNissaNoList JSON: " + Nisaobj.toString());
-
-
-                JSONArray nissaJArray = Nisaobj.getJSONArray("data");
-                Log.e("NissaNo SAMIR", "loadNissaNoList ArrayLength: " + "" + nissaJArray.length());
-
-                totalProgressValue = nissaJArray.length();
-
-                for (int j = 0; j < nissaJArray.length(); j++) {
-
-                    progressValue = j;
-
-                    JSONObject jObj = nissaJArray.getJSONObject(j);
-                    String sn = jObj.getString("sn");
-                    Log.e("NissaNo SAMIR", "inside loop : " + sn);
-
-                    String name_of_househead = jObj.getString("name_of_househead");
-                    String district = jObj.getString("district");
-
-                    String prev_VDC_Mun = jObj.getString("previous_VDC_Mun");
-                    String prev_ward_no = jObj.getString("previous_ward_no");
-                    String current_VDC_Mun = jObj.getString("current_VDC_Mun");
-                    String current_ward_no = jObj.getString("current_ward_no");
-//                    Log.e("NissaNo SAMIR", "inside loop : ward "+current_ward_no );
-
-                    String tole = jObj.getString("tole ");
-                    String nissa_no = jObj.getString("nissa_no");
-                    String pa_no = jObj.getString("pa_no");
-                    String citizenship_no = jObj.getString("citizenship_no");
-                    String household_no = jObj.getString("houshold_no");
-
-                    NissaNo_Details nissaNo_details = new NissaNo_Details(sn, name_of_househead, district, prev_VDC_Mun,
-                            prev_ward_no, current_VDC_Mun, current_ward_no, tole, nissa_no, pa_no, citizenship_no, household_no);
-
-                    nissaNo_details.save();
-
-//                    mPdialog.setProgress(progressValue);
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-    }
-//    ==========================================end of Nissa No. list =======================================================//
-
-
     public void loadNissaListWithProgress() {
 
         // do something long
@@ -482,5 +425,9 @@ public class HomeListActivity extends AppCompatActivity {
 
 
     }
+//    ==========================================end of Nissa No. list =======================================================//
+
+
+
 
 }
