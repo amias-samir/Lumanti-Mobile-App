@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -151,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
             String jsonToParse = (String) bundle.get("JSON1");
             String jsonToPhotoPath = (String) bundle.get("PhotoJSON");
             Log.e("MainActivity", "onCreate: Json " + jsonToParse);
+            Log.e("MainActivity", "onCreate: PhotoJson " + jsonToPhotoPath);
             String formid = (String) bundle.get("DBid");
             Constant.formID = formid;
             String sent_Status = (String) bundle.get("sent_Status");
@@ -161,12 +164,25 @@ public class MainActivity extends AppCompatActivity {
             // 2. JSON to Java object, read it from a Json String.
             Gson gson = new Gson();
             generalFormModel = gson.fromJson(jsonToParse, GeneralFormModel.class);
-            imageSavedFormModel = gson.fromJson(jsonToPhotoPath, ImageSavedFormModel.class);
+
+            try {
+                JSONObject jsonObj = new JSONObject(jsonToPhotoPath);
+
+                imageSavedFormModel.setB1_img1_path(jsonObj.getString("B1_img1_path"));
+                imageSavedFormModel.setB1_img2_path(jsonObj.getString("B1_img2_path"));
+                imageSavedFormModel.setB1_img3_path(jsonObj.getString("B1_img3_path"));
+                imageSavedFormModel.setB1_img4_path(jsonObj.getString("B1_img4_path"));
+
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+//            imageSavedFormModel = gson.fromJson(jsonToPhotoPath, ImageSavedFormModel.class);
 //
-//            Log.e("MainActivity", "onCreate: img1: "+imageSavedFormModel.getB1_img1_path() );
-//            Log.e("MainActivity", "onCreate: img2: "+imageSavedFormModel.getB1_img2_path() );
-//            Log.e("MainActivity", "onCreate: img3: "+imageSavedFormModel.getB1_img3_path() );
-//            Log.e("MainActivity", "onCreate: img4: "+imageSavedFormModel.getB1_img4_path() );
+            Log.e("MainActivity", "onCreate: img1: "+imageSavedFormModel.getB1_img1_path() );
+            Log.e("MainActivity", "onCreate: img2: "+imageSavedFormModel.getB1_img2_path() );
+            Log.e("MainActivity", "onCreate: img3: "+imageSavedFormModel.getB1_img3_path() );
+            Log.e("MainActivity", "onCreate: img4: "+imageSavedFormModel.getB1_img4_path() );
 
             reinitializeConstantVariable();
 

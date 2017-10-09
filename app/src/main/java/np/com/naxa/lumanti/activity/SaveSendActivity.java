@@ -68,6 +68,7 @@ public class SaveSendActivity extends AppCompatActivity {
     ImageSavedFormModel imageSavedFormModel;
 
     Gson gson = new Gson();
+    Gson gson1 = new Gson();
     String jsonToSend;
     String jsonPhotoPath;
 
@@ -263,6 +264,17 @@ public class SaveSendActivity extends AppCompatActivity {
                             dataBaseNepalPublicHealthNotSent.open();
                             dataBaseNepalPublicHealthNotSent.insertIntoTable_Main(data);
 
+                            if(Constant.isFomSavedForm) {
+                                if (!Constant.formID.equals("")) {
+//                                    DataBaseForm_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseForm_NotSent(getApplicationContext());
+//                                    dataBaseNepalPublicHealthNotSent.open();
+                                    dataBaseNepalPublicHealthNotSent.dropRowNotSentForms(Constant.formID);
+//                Toast.makeText(getActivity() ,resultCur.get(position).date+ " Long Clicked "+id , Toast.LENGTH_SHORT ).show();
+                                }
+                            }
+                            dataBaseNepalPublicHealthNotSent.close();
+
+
                             Toast.makeText(SaveSendActivity.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
                             showDialog.dismiss();
 
@@ -347,12 +359,29 @@ public class SaveSendActivity extends AppCompatActivity {
 
     public void convertPhotoPathToJson() {
 
-        ImageSavedFormModel imageSavedFormModel = new ImageSavedFormModel();
 
-        jsonPhotoPath = gson.toJson(imageSavedFormModel);
+        Log.e("save_send_activity", "image1Path1 " + imageSavedFormModel.getB1_img1_path());
+        Log.e("save_send_activity", "image1Path2 " + imageSavedFormModel.getB1_img2_path());
+        Log.e("save_send_activity", "image1Path3 " + imageSavedFormModel.getB1_img3_path());
+        Log.e("save_send_activity", "image1Path4 " + imageSavedFormModel.getB1_img4_path());
 
 
-        Log.e("capacity_building", "convertDatToJson: " + jsonToSend);
+        try {
+            JSONObject heder = new JSONObject();
+            heder.put("B1_img1_path", imageSavedFormModel.getB1_img1_path());
+            heder.put("B1_img2_path", imageSavedFormModel.getB1_img2_path());
+            heder.put("B1_img3_path", imageSavedFormModel.getB1_img3_path());
+            heder.put("B1_img4_path", imageSavedFormModel.getB1_img4_path());
+            jsonPhotoPath = heder.toString();
+
+        }catch (Exception e){
+                e.printStackTrace();
+        }
+
+//        jsonPhotoPath = gson1.toJson(imageSavedFormModel);
+
+
+        Log.e("save_send_activity", "converPhototDatToJson: " + jsonPhotoPath);
     }
 
 

@@ -6,10 +6,10 @@ package np.com.naxa.lumanti.model;
 
 public class ImageSavedFormModel {
 
-    private static String B1_img1_path;
-    private static String B1_img2_path;
-    private static String B1_img3_path;
-    private static String B1_img4_path;
+    private static String B1_img1_path = "";
+    private static String B1_img2_path = "";
+    private static String B1_img3_path = "";
+    private static String B1_img4_path = "";
 
 //    private static String B1_img1_encode;
 //    private static String B1_img2_encode;
