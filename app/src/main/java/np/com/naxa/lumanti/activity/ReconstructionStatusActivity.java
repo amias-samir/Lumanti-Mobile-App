@@ -550,6 +550,11 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         imagePath3 = imageSavedFormModel.getB1_img3_path();
         imagePath4 = imageSavedFormModel.getB1_img4_path();
 
+        Log.e("Reconstruction", "initializeUI: imagepath1:  " +imagePath1 );
+        Log.e("Reconstruction", "initializeUI: imagepath2:  " +imagePath2 );
+        Log.e("Reconstruction", "initializeUI: imagepath3:  " +imagePath3 );
+        Log.e("Reconstruction", "initializeUI: imagepath4:  " +imagePath4 );
+
 
 
 

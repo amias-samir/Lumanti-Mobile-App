@@ -1,6 +1,7 @@
 package np.com.naxa.lumanti.activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,8 +17,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,8 +28,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,8 +44,16 @@ public class HomeListActivity extends AppCompatActivity {
     RelativeLayout rlShelterStatus;
     @BindView(R.id.top_layout_saved_forms)
     RelativeLayout rlSavedForms;
+    @BindView(R.id.updatingLayout)
+    FrameLayout updatingFrameLayout;
     //Permission for higher then lollipop devices
     private int MULTIPLE_PERMISSION_CODE = 22;
+
+    int totalProgressValue, progressValue;
+    ProgressDialog mPdialog;
+
+    private ProgressBar progress;
+    private TextView updatingText;
 
 
     @Override
@@ -53,14 +62,21 @@ public class HomeListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_list);
         ButterKnife.bind(this);
 
+        progress = (ProgressBar) findViewById(R.id.progressBar1);
+        updatingText = (TextView) findViewById(R.id.textViewUpdating);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Shelter Status");
         setSupportActionBar(toolbar);
 
+        mPdialog = new ProgressDialog(this);
+
         requestPermission();
 
         //        load municipality dta to database
-        loadNissaNoList();
+//        loadNissaNoList();
+        loadNissaListWithProgress();
+
 
         loadMunicipalityList();
     }
@@ -163,7 +179,6 @@ public class HomeListActivity extends AppCompatActivity {
     }
 
 
-
     @OnClick({R.id.top_layout_shelter_status, R.id.top_layout_saved_forms})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -215,14 +230,14 @@ public class HomeListActivity extends AppCompatActivity {
     //===========================================end of menu item =======================================//
 
 
-    public void reinitializeConstantVariable (){
+    public void reinitializeConstantVariable() {
 
-        Constant.countGeneral = 0 ;
-        Constant.countDemographic = 0 ;
-        Constant.countReconstruction = 0 ;
-        Constant.countEarthquakeRelief = 0 ;
-        Constant.countReconstructionGPS = 0 ;
-        Constant.countSaveSend = 0 ;
+        Constant.countGeneral = 0;
+        Constant.countDemographic = 0;
+        Constant.countReconstruction = 0;
+        Constant.countEarthquakeRelief = 0;
+        Constant.countReconstructionGPS = 0;
+        Constant.countSaveSend = 0;
 
         Constant.takenimg1 = false;
         Constant.takenimg2 = false;
@@ -236,10 +251,9 @@ public class HomeListActivity extends AppCompatActivity {
     }
 
 
-
 //    ==========================================VDC\Municipality list =======================================================//
 
-//    load local JSON file
+    //    load local JSON file
     public String loadJSONFromAsset() {
         String json = null;
         try {
@@ -256,66 +270,68 @@ public class HomeListActivity extends AppCompatActivity {
         return json;
     }
 
-//    List<Municipality_ward_list> user_list = new ArrayList<>();
+    //    List<Municipality_ward_list> user_list = new ArrayList<>();
     double count = Municipality_ward_list.count(Municipality_ward_list.class);
 
-    public void loadMunicipalityList () {
+    public void loadMunicipalityList() {
         Log.e("Municipality SAMIR", "loadMunicipalityList count: " + "" + count);
 
-        if(count <= 0){
+        if (count <= 0) {
 
-        try {
-            JSONObject obj = new JSONObject(loadJSONFromAsset());
-            JSONArray municipalityJArray = obj.getJSONArray("Municipality_list");
+            try {
+                JSONObject obj = new JSONObject(loadJSONFromAsset());
+                JSONArray municipalityJArray = obj.getJSONArray("Municipality_list");
 
-            for (int i = 0; i < municipalityJArray.length(); i++) {
-                JSONObject jObj = municipalityJArray.getJSONObject(i);
+                for (int i = 0; i < municipalityJArray.length(); i++) {
+                    JSONObject jObj = municipalityJArray.getJSONObject(i);
 //                Log.e("Municipality SAMIR", "loadMunicipalityList: "+jObj.toString() );
-                String sn = jObj.getString("sn");
-                String district = jObj.getString("district");
-                String current_municipality = jObj.getString("current_municipality");
-                String current_ward = jObj.getString("current_ward");
-                String previous_municipality = jObj.getString("previous_municipality");
-                String previous_ward = jObj.getString("previous_ward");
+                    String sn = jObj.getString("sn");
+                    String district = jObj.getString("district");
+                    String current_municipality = jObj.getString("current_municipality");
+                    String current_ward = jObj.getString("current_ward");
+                    String previous_municipality = jObj.getString("previous_municipality");
+                    String previous_ward = jObj.getString("previous_ward");
 
-                Municipality_ward_list municipalityWardList = new Municipality_ward_list(sn, district, current_municipality, current_ward, previous_municipality, previous_ward);
-                municipalityWardList.save();
+                    Municipality_ward_list municipalityWardList = new Municipality_ward_list(sn, district, current_municipality, current_ward, previous_municipality, previous_ward);
+                    municipalityWardList.save();
 
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-    }
+        }
 
     }
 //    ========================================== end of VDC\Municipality list =======================================================//
 
 
-//    ==========================================Nissa No. list =======================================================//
+    //    ==========================================Nissa No. list =======================================================//
 //    load local JSON file
-public String loadNissaNoJSONFromAsset() {
-    String json = null;
-    try {
-        InputStream is = this.getAssets().open("json/lumanti_nissa_details.json");
-        int size = is.available();
-        byte[] buffer = new byte[size];
-        is.read(buffer);
-        is.close();
-        json = new String(buffer, "UTF-8");
-    } catch (IOException ex) {
-        ex.printStackTrace();
-        return null;
+    public String loadNissaNoJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = this.getAssets().open("json/lumanti_nissa_details.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
-    return json;
-}
+
     //    List<NissaNo_Details> user_list = new ArrayList<>();
     double rowcount = NissaNo_Details.count(NissaNo_Details.class);
 
-    public void loadNissaNoList () {
+
+    public void loadNissaNoList() {
         Log.e("NissaNo SAMIR", "loadNissaNoList count: " + "" + rowcount);
 
-        if(rowcount <= 0){
+        if (rowcount <= 0) {
 
             try {
                 JSONObject Nisaobj = new JSONObject(loadNissaNoJSONFromAsset());
@@ -325,11 +341,15 @@ public String loadNissaNoJSONFromAsset() {
                 JSONArray nissaJArray = Nisaobj.getJSONArray("data");
                 Log.e("NissaNo SAMIR", "loadNissaNoList ArrayLength: " + "" + nissaJArray.length());
 
+                totalProgressValue = nissaJArray.length();
 
                 for (int j = 0; j < nissaJArray.length(); j++) {
+
+                    progressValue = j;
+
                     JSONObject jObj = nissaJArray.getJSONObject(j);
                     String sn = jObj.getString("sn");
-//                    Log.e("NissaNo SAMIR", "inside loop : "+sn );
+                    Log.e("NissaNo SAMIR", "inside loop : " + sn);
 
                     String name_of_househead = jObj.getString("name_of_househead");
                     String district = jObj.getString("district");
@@ -347,9 +367,11 @@ public String loadNissaNoJSONFromAsset() {
                     String household_no = jObj.getString("houshold_no");
 
                     NissaNo_Details nissaNo_details = new NissaNo_Details(sn, name_of_househead, district, prev_VDC_Mun,
-                            prev_ward_no,current_VDC_Mun, current_ward_no, tole, nissa_no, pa_no, citizenship_no, household_no);
+                            prev_ward_no, current_VDC_Mun, current_ward_no, tole, nissa_no, pa_no, citizenship_no, household_no);
 
                     nissaNo_details.save();
+
+//                    mPdialog.setProgress(progressValue);
 
                 }
             } catch (JSONException e) {
@@ -360,5 +382,105 @@ public String loadNissaNoJSONFromAsset() {
 
     }
 //    ==========================================end of Nissa No. list =======================================================//
+
+
+    public void loadNissaListWithProgress() {
+
+        // do something long
+//        mPdialog.setTitle("Updting Nissa List");
+//        mPdialog.setMessage(progressValue+ " of "+totalProgressValue+ "\nPlease Wait...");
+//        mPdialog.setIndeterminate(false);
+//        mPdialog.setCancelable(false);
+//        mPdialog.show();
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+
+//                loadNissaNoList();
+
+
+                Log.e("NissaNo SAMIR", "loadNissaNoList count: " + "" + rowcount);
+
+                if (rowcount <= 0) {
+
+                    try {
+                        updatingFrameLayout.setVisibility(View.VISIBLE);
+
+                        JSONObject Nisaobj = new JSONObject(loadNissaNoJSONFromAsset());
+                        Log.e("NissaNo SAMIR", "loadNissaNoList JSON: " + Nisaobj.toString());
+
+
+                        JSONArray nissaJArray = Nisaobj.getJSONArray("data");
+                        Log.e("NissaNo SAMIR", "loadNissaNoList ArrayLength: " + "" + nissaJArray.length());
+
+                        totalProgressValue = nissaJArray.length();
+                        progress.setMax(totalProgressValue);
+
+                        for (int j = 1; j <= nissaJArray.length(); j++) {
+
+                            progressValue = j;
+
+                            JSONObject jObj = nissaJArray.getJSONObject(j);
+                            String sn = jObj.getString("sn");
+                            Log.e("NissaNo SAMIR", "inside loop : " + sn);
+
+                            String name_of_househead = jObj.getString("name_of_househead");
+                            String district = jObj.getString("district");
+
+                            String prev_VDC_Mun = jObj.getString("previous_VDC_Mun");
+                            String prev_ward_no = jObj.getString("previous_ward_no");
+                            String current_VDC_Mun = jObj.getString("current_VDC_Mun");
+                            String current_ward_no = jObj.getString("current_ward_no");
+//                    Log.e("NissaNo SAMIR", "inside loop : ward "+current_ward_no );
+
+                            String tole = jObj.getString("tole ");
+                            String nissa_no = jObj.getString("nissa_no");
+                            String pa_no = jObj.getString("pa_no");
+                            String citizenship_no = jObj.getString("citizenship_no");
+                            String household_no = jObj.getString("houshold_no");
+
+                            NissaNo_Details nissaNo_details = new NissaNo_Details(sn, name_of_househead, district, prev_VDC_Mun,
+                                    prev_ward_no, current_VDC_Mun, current_ward_no, tole, nissa_no, pa_no, citizenship_no, household_no);
+
+                            nissaNo_details.save();
+
+//                    mPdialog.setProgress(progressValue);
+
+                            progress.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    updatingText.setText(progressValue +" of "+ totalProgressValue);
+                                    progress.setProgress(progressValue);
+                                }
+                            });
+
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+//                hide progress frame
+                try {
+                    if (totalProgressValue == progressValue) {
+                        updatingFrameLayout.setVisibility(View.GONE);
+                    }
+                }catch (Exception e ){
+                }
+
+
+            }
+
+        };
+        new Thread(runnable).start();
+
+
+
+    }
 
 }
