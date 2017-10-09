@@ -330,11 +330,6 @@ public class HomeListActivity extends AppCompatActivity {
     public void loadNissaListWithProgress() {
 
         // do something long
-//        mPdialog.setTitle("Updting Nissa List");
-//        mPdialog.setMessage(progressValue+ " of "+totalProgressValue+ "\nPlease Wait...");
-//        mPdialog.setIndeterminate(false);
-//        mPdialog.setCancelable(false);
-//        mPdialog.show();
 
         Runnable runnable = new Runnable() {
             @Override
@@ -366,7 +361,7 @@ public class HomeListActivity extends AppCompatActivity {
 
                             JSONObject jObj = nissaJArray.getJSONObject(j);
                             String sn = jObj.getString("sn");
-                            Log.e("NissaNo SAMIR", "inside loop : " + sn);
+//                            Log.e("NissaNo SAMIR", "inside loop : " + sn);
 
                             String name_of_househead = jObj.getString("name_of_househead");
                             String district = jObj.getString("district");
@@ -388,7 +383,6 @@ public class HomeListActivity extends AppCompatActivity {
 
                             nissaNo_details.save();
 
-//                    mPdialog.setProgress(progressValue);
 
                             progress.post(new Runnable() {
                                 @Override
@@ -422,12 +416,8 @@ public class HomeListActivity extends AppCompatActivity {
         };
         new Thread(runnable).start();
 
-
-
     }
 //    ==========================================end of Nissa No. list =======================================================//
-
-
 
 
 }
