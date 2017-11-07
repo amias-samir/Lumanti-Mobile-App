@@ -8,7 +8,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -19,6 +24,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +34,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,6 +62,8 @@ import np.com.naxa.lumanti.adapter.RecyclerItemClickListener;
 import np.com.naxa.lumanti.database.DataBaseForm_NotSent;
 import np.com.naxa.lumanti.database.DataBaseForm_Sent;
 import np.com.naxa.lumanti.model.Constant;
+import np.com.naxa.lumanti.model.GeneralFormModel;
+import np.com.naxa.lumanti.model.ImageSavedFormModel;
 import np.com.naxa.lumanti.model.SavedFormParameters;
 
 
@@ -69,7 +79,13 @@ public class Fragment_Not_Sent_Forms extends Fragment {
     Context context = getActivity() ;
 
     String jsonToSend ;
+    String jsonToParse ;
     String DBid, form_name;
+    String photoPathJSON ;
+    ImageSavedFormModel imageSavedFormModel;
+    GeneralFormModel generalFormModel ;
+    String encodedImage1 = "", encodedImage2 = "", encodedImage3 = "", encodedImage4 = "";
+    String TAG = "NOT_SENT_FRAG";
 
     ProgressDialog mProgressDlg;
     String dataSentStatus, dateString;
@@ -94,6 +110,9 @@ public class Fragment_Not_Sent_Forms extends Fragment {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_not_send_form_list, container, false);
         recyclerView = (RecyclerView) rootview.findViewById(R.id.NewsList);
+
+        imageSavedFormModel = new ImageSavedFormModel();
+        generalFormModel = new GeneralFormModel();
 
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -141,8 +160,8 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                 if (items[item] == "Send") {
                     String id = resultCur.get(position).formId;
                     String jSon = resultCur.get(position).jSON;
-                    jsonToSend = resultCur.get(position).jSON;
-                    String photo = resultCur.get(position).photo;
+                    jsonToParse = resultCur.get(position).jSON;
+                    photoPathJSON = resultCur.get(position).photo;
                     String gps = resultCur.get(position).gps;
                     DBid = resultCur.get(position).dbId;
                     String sent_Status = resultCur.get(position).status;
@@ -156,6 +175,11 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                         mProgressDlg.setIndeterminate(false);
                         mProgressDlg.setCancelable(false);
                         mProgressDlg.show();
+
+                        mainJSONToModelClass();
+                        jsonParserImagePath();
+                        imageB64Encoder();
+                        convertDataToJson();
                         sendDatToserver();
                     }else {
                         Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_SHORT).show();
@@ -309,10 +333,14 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                 jsonObject = new JSONObject(result);
                 dataSentStatus = jsonObject.getString("status");
 
+//                dataSentStatus = null;
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
+
+            try{
 
             if (dataSentStatus.equals("200")) {
 
@@ -321,13 +349,14 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                 SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
                 dateString = sdf.format(date);
 
-                String[] data = new String[]{"1", form_name, dateString, jsonToSend, "",
-                        "" + "", "Sent", "0"};
+                String[] data = new String[]{"1", form_name, dateString, jsonToParse, "",
+                        "" + photoPathJSON, "Sent", "0"};
 
                 DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(getActivity());
                 dataBaseFormSent.open();
-                long id = dataBaseFormSent.insertIntoTable_Main(data);
-                Log.e("dbID", "" + id);
+//                long id =
+                        dataBaseFormSent.insertIntoTable_Main(data);
+//                Log.e("dbID", "" + id);
                 dataBaseFormSent.close();
 
                 DataBaseForm_NotSent dataBaseForm_notSent = new DataBaseForm_NotSent(getActivity());
@@ -341,6 +370,13 @@ public class Fragment_Not_Sent_Forms extends Fragment {
 //                createList();
 
             }
+
+            }catch (Exception e){
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "               Error !!! \n Please retry again later ", Toast.LENGTH_SHORT).show();
+            }
+
+
         }
 
         public String POST(String urll) {
@@ -404,6 +440,181 @@ public class Fragment_Not_Sent_Forms extends Fragment {
         Log.e("FILLTABLE", "AFTER FILL TABLE");
 //        CheckValues.setValue();
     }
+
+
+
+
+//    convert json to model class
+    public void mainJSONToModelClass(){
+        // 2. JSON to Java object, read it from a Json String.
+        Gson gson = new Gson();
+        generalFormModel = gson.fromJson(jsonToParse, GeneralFormModel.class);
+    }
+
+//    parse image path from photo json
+    public void jsonParserImagePath(){
+
+try {
+        JSONObject jsonObj = new JSONObject(photoPathJSON);
+
+        imageSavedFormModel.setB1_img1_path(jsonObj.getString("B1_img1_path"));
+        imageSavedFormModel.setB1_img2_path(jsonObj.getString("B1_img2_path"));
+        imageSavedFormModel.setB1_img3_path(jsonObj.getString("B1_img3_path"));
+        imageSavedFormModel.setB1_img4_path(jsonObj.getString("B1_img4_path"));
+
+    }
+            catch (Exception e){
+        e.printStackTrace();
+    }
+
+    }
+
+//    encode image to base64
+    public void imageB64Encoder (){
+
+//        image 1 encode
+        try {
+            if (!imageSavedFormModel.getB1_img1_path().equals(null) && !imageSavedFormModel.getB1_img1_path().equals("")) {
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(imageSavedFormModel.getB1_img1_path(), bmOptions);
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+
+                // Determine how much to scale down the image
+                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+
+                //bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inSampleSize = scaleFactor;
+
+                bmOptions.inPurgeable = true;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(imageSavedFormModel.getB1_img1_path(), bmOptions);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                encodedImage1 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                generalFormModel.setB1_img1(encodedImage1);
+            }
+        }catch (Exception e){
+            Log.e(TAG, "imageB64Encoder1: "+e.toString() );
+        }
+
+        //    ======================    image 2 encode======================================//
+        try {
+            if (!imageSavedFormModel.getB1_img2_path().equals(null) && !imageSavedFormModel.getB1_img2_path().equals("")) {
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(imageSavedFormModel.getB1_img2_path(), bmOptions);
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+
+                // Determine how much to scale down the image
+                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+
+                //bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inSampleSize = scaleFactor;
+
+                bmOptions.inPurgeable = true;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(imageSavedFormModel.getB1_img2_path(), bmOptions);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                encodedImage2 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                generalFormModel.setB1_img2(encodedImage2);
+            }
+        }catch (Exception e){
+            Log.e(TAG, "imageB64Encoder2: "+e.toString() );
+        }
+
+        //    ======================    image 3 encode======================================//
+        try {
+            if (!imageSavedFormModel.getB1_img3_path().equals(null) && !imageSavedFormModel.getB1_img3_path().equals("")) {
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(imageSavedFormModel.getB1_img3_path(), bmOptions);
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+
+                // Determine how much to scale down the image
+                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+
+                //bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inSampleSize = scaleFactor;
+
+                bmOptions.inPurgeable = true;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(imageSavedFormModel.getB1_img3_path(), bmOptions);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                encodedImage3 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                generalFormModel.setB1_img3(encodedImage3);
+            }
+        }catch (Exception e){
+            Log.e(TAG, "imageB64Encoder3: "+e.toString() );
+        }
+
+        //    ======================    image 4 encode======================================//
+        try {
+            if (!imageSavedFormModel.getB1_img4_path().equals(null) && !imageSavedFormModel.getB1_img4_path().equals("")) {
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(imageSavedFormModel.getB1_img4_path(), bmOptions);
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+
+                // Determine how much to scale down the image
+                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+
+                //bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inSampleSize = scaleFactor;
+
+                bmOptions.inPurgeable = true;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(imageSavedFormModel.getB1_img4_path(), bmOptions);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                encodedImage4 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                generalFormModel.setB1_img4(encodedImage4);
+            }
+        }catch (Exception e){
+            Log.e(TAG, "imageB64Encoder 4 : "+e.toString() );
+        }
+
+
+    }
+
+//    convert whole data to Mainjson
+    public void convertDataToJson() {
+        Gson gson = new Gson();
+    jsonToSend = gson.toJson(generalFormModel);
+
+
+    Log.e(TAG, "convertDatToJson: " + jsonToSend);
+}
 
 }
 

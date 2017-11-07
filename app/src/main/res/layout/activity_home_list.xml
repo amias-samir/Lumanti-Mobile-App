@@ -148,20 +148,28 @@
     <FrameLayout
         android:id="@+id/updatingLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:visibility="gone">
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:onClick="">
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">
+                android:layout_centerHorizontal="true"
+     android:layout_centerVertical="true"-->
 
  <RelativeLayout
+
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
+     android:layout_gravity="center_horizontal|center_vertical"
      android:layout_margin="30dp"
      android:background="@color/white">
         <TextView
             android:id="@+id/textViewUpdatingLBL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Updating Content"
+            android:text="Updating Nissa List..."
             android:layout_centerHorizontal="true"
             android:textSize="20dp"
             android:textColor="@color/primary_darker">
@@ -193,6 +201,8 @@
             >
         </ProgressBar>
  </RelativeLayout>
+
+        <!--</RelativeLayout>-->
     </FrameLayout>
 
 </RelativeLayout>

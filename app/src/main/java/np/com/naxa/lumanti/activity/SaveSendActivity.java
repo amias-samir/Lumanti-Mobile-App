@@ -646,8 +646,9 @@ public class SaveSendActivity extends AppCompatActivity {
 
                 DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(context);
                 dataBaseFormSent.open();
-                long id = dataBaseFormSent.insertIntoTable_Main(data);
-                Log.e("dbID", "" + id);
+//                long id =
+                        dataBaseFormSent.insertIntoTable_Main(data);
+//                Log.e("dbID", "" + id);
                 dataBaseFormSent.close();
 
                 if (!Constant.formID.equals("")) {

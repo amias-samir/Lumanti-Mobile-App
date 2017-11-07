@@ -211,12 +211,18 @@ public class Fragment_Sent_Forms extends Fragment {
     }
 
     private void createList() {
-        resultCur.clear();
-        DataBaseForm_Sent dataBaseNepalPublicHealthSent = new DataBaseForm_Sent(getActivity());
-        dataBaseNepalPublicHealthSent.open();
-        resultCur.addAll(dataBaseNepalPublicHealthSent.getAllSentForms());
+        try {
+            resultCur.clear();
+            DataBaseForm_Sent dataBaseNepalPublicHealthSent = new DataBaseForm_Sent(getActivity());
+            dataBaseNepalPublicHealthSent.open();
+            resultCur.addAll(dataBaseNepalPublicHealthSent.getAllSentForms());
 
-        fillTable();
+            fillTable();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public void fillTable() {
