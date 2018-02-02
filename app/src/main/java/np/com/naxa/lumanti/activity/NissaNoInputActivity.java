@@ -1,8 +1,11 @@
 package np.com.naxa.lumanti.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,12 +19,17 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import np.com.naxa.lumanti.BaseActivity;
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.application.Lumanti;
 import np.com.naxa.lumanti.model.Constant;
+import np.com.naxa.lumanti.model.Default_DIalog;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 import np.com.naxa.lumanti.sugar.NissaNo_Details;
 
-public class NissaNoInputActivity extends AppCompatActivity {
+public class NissaNoInputActivity extends BaseActivity {
+
+    public static final String TAG = "NissaNoInput";
 
     GeneralFormModel generalFormModel;
 
@@ -31,7 +39,6 @@ public class NissaNoInputActivity extends AppCompatActivity {
     AutoCompleteTextView tvNissaNo;
     @BindView(R.id.nissa_input_next)
     Button btnNext;
-
 
 
     @Override

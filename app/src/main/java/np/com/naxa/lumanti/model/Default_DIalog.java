@@ -2,6 +2,7 @@ package np.com.naxa.lumanti.model;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
@@ -43,4 +44,24 @@ public class Default_DIalog {
         });
     }
 
+
+    public static void showDefaultDialog(Context context, String title, String displayText) {
+
+
+        new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(displayText).setNeutralButton("Ok", null).create().show();
+
+
+
+
+
+    }
+
+    public static AlertDialog.Builder showAlertDialog(Context context, String title, String message){
+
+
+        return new AlertDialog.Builder(context).setTitle(title)
+                .setMessage(message);
+    }
 }

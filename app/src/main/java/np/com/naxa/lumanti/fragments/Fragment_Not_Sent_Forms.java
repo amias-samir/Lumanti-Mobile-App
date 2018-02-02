@@ -312,12 +312,12 @@ public class Fragment_Not_Sent_Forms extends Fragment {
 
             String text = null;
             text = POST(Constant.URL_DATA_SEND);
-            Log.d("Capacity Building", "RAW resposne" + text);
+            Log.e(TAG, "RAW resposne" + text);
+
 
             return text.toString();
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         protected void onPostExecute(String result) {
             // TODO Auto-generated method stub
@@ -327,7 +327,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
             }
 
 
-            Log.d("Not sent Fragment", "on post resposne" + result);
+            Log.e(TAG, "on post resposne" + result);
             JSONObject jsonObject = null;
             try {
                 jsonObject = new JSONObject(result);
@@ -406,8 +406,9 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                 writer.close();
                 os.close();
                 int responseCode = conn.getResponseCode();
-
+                Log.e(TAG, "SAMIR RESPONSE CODE : "+ responseCode);
                 if (responseCode == HttpsURLConnection.HTTP_OK) {
+
                     String line;
                     BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                     while ((line = br.readLine()) != null) {
@@ -500,6 +501,8 @@ try {
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 encodedImage1 = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 generalFormModel.setB1_img1(encodedImage1);
+                Log.e(TAG, "imageB64Encoder1: "+encodedImage1 );
+
             }
         }catch (Exception e){
             Log.e(TAG, "imageB64Encoder1: "+e.toString() );
@@ -533,6 +536,8 @@ try {
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 encodedImage2 = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 generalFormModel.setB1_img2(encodedImage2);
+                Log.e(TAG, "imageB64Encoder2: "+encodedImage2 );
+
             }
         }catch (Exception e){
             Log.e(TAG, "imageB64Encoder2: "+e.toString() );
@@ -566,6 +571,8 @@ try {
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 encodedImage3 = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 generalFormModel.setB1_img3(encodedImage3);
+                Log.e(TAG, "imageB64Encoder3: "+encodedImage3 );
+
             }
         }catch (Exception e){
             Log.e(TAG, "imageB64Encoder3: "+e.toString() );
@@ -599,6 +606,8 @@ try {
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 encodedImage4 = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 generalFormModel.setB1_img4(encodedImage4);
+                Log.e(TAG, "imageB64Encoder4: "+encodedImage4 );
+
             }
         }catch (Exception e){
             Log.e(TAG, "imageB64Encoder 4 : "+e.toString() );

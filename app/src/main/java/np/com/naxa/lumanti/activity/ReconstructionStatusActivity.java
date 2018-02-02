@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +20,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -66,8 +68,11 @@ import np.com.naxa.lumanti.model.GeneralFormModel;
 import np.com.naxa.lumanti.model.ImageSavedFormModel;
 import np.com.naxa.lumanti.model.StaticListOfCoordinates;
 
+import static np.com.naxa.lumanti.application.Lumanti.PHOTO_PATH;
+
 public class ReconstructionStatusActivity extends AppCompatActivity {
 
+    private static final String TAG = "ReconstructionStatus" ;
     Toolbar toolbar;
     GeneralFormModel generalFormModel;
 
@@ -182,7 +187,26 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 booimg2 = false;
                 booimg3 = false;
                 booimg4 = false;
-                dispatchTakePictureIntent();
+
+                if (TextUtils.isEmpty(generalFormModel.getG_10())) {
+                    Toast.makeText(context, "Nissa No. cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException | SecurityException e) {
+                    Toast.makeText(context, "Failed to open camera", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, e.getMessage());
+                    e.printStackTrace();
+                }
+
+                if (photoFile != null) {
+                    dispatchTakePictureIntent(photoFile);
+                }
+
+                dispatchTakePictureIntent(photoFile);
             }
         });
 
@@ -193,7 +217,25 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 booimg2 = true;
                 booimg3 = false;
                 booimg4 = false;
-                dispatchTakePictureIntent();
+                if (TextUtils.isEmpty(generalFormModel.getG_10())) {
+                    Toast.makeText(context, "Nissa No. cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException | SecurityException e) {
+                    Toast.makeText(context, "Failed to open camera", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, e.getMessage());
+                    e.printStackTrace();
+                }
+
+                if (photoFile != null) {
+                    dispatchTakePictureIntent(photoFile);
+                }
+
+                dispatchTakePictureIntent(photoFile);
             }
         });
 
@@ -204,7 +246,25 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 booimg2 = false;
                 booimg3 = true;
                 booimg4 = false;
-                dispatchTakePictureIntent();
+                if (TextUtils.isEmpty(generalFormModel.getG_10())) {
+                    Toast.makeText(context, "Nissa No. cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException | SecurityException e) {
+                    Toast.makeText(context, "Failed to open camera", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, e.getMessage());
+                    e.printStackTrace();
+                }
+
+                if (photoFile != null) {
+                    dispatchTakePictureIntent(photoFile);
+                }
+
+                dispatchTakePictureIntent(photoFile);
             }
         });
 
@@ -215,7 +275,25 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 booimg2 = false;
                 booimg3 = false;
                 booimg4 = true;
-                dispatchTakePictureIntent();
+                if (TextUtils.isEmpty(generalFormModel.getG_10())) {
+                    Toast.makeText(context, "Nissa No. cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException | SecurityException e) {
+                    Toast.makeText(context, "Failed to open camera", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, e.getMessage());
+                    e.printStackTrace();
+                }
+
+                if (photoFile != null) {
+                    dispatchTakePictureIntent(photoFile);
+                }
+
+                dispatchTakePictureIntent(photoFile);
             }
         });
 
@@ -730,7 +808,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 //    ================================================ image full size =============================================================//
 
 
-    private void dispatchTakePictureIntent() {
+    private void dispatchTakePictureIntent( File photoFile) {
 
         //scaling down needs the imageview to be visible
         if (booimg1) {
@@ -741,18 +819,21 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             // Ensure that there's a camera activity to handle the intent
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                 // Create the File where the photo should go
-                File photoFile = null;
-                try {
-                    photoFile = createImageFile();
-                } catch (IOException ex) {
-                    // Error occurred while creating the File
 
-                }
                 // Continue only if the File was successfully created
                 if (photoFile != null) {
                     Uri photoURI = FileProvider.getUriForFile(this,
                             "np.com.naxa.lumanti.fileprovider",
                             photoFile);
+
+                    List<ResolveInfo> resolvedIntentActivities = context.getPackageManager().
+                            queryIntentActivities(takePictureIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+                    for (ResolveInfo resolvedIntentInfo : resolvedIntentActivities) {
+                        String packageName = resolvedIntentInfo.activityInfo.packageName;
+
+                        context.grantUriPermission(packageName, photoURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    }
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                     startActivityForResult(takePictureIntent, CAMERA_PIC1_REQUEST);
                 }
@@ -767,18 +848,21 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             // Ensure that there's a camera activity to handle the intent
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                 // Create the File where the photo should go
-                File photoFile = null;
-                try {
-                    photoFile = createImageFile();
-                } catch (IOException ex) {
-                    // Error occurred while creating the File
 
-                }
                 // Continue only if the File was successfully created
                 if (photoFile != null) {
                     Uri photoURI = FileProvider.getUriForFile(this,
                             "np.com.naxa.lumanti.fileprovider",
                             photoFile);
+
+                    List<ResolveInfo> resolvedIntentActivities = context.getPackageManager().
+                            queryIntentActivities(takePictureIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+                    for (ResolveInfo resolvedIntentInfo : resolvedIntentActivities) {
+                        String packageName = resolvedIntentInfo.activityInfo.packageName;
+
+                        context.grantUriPermission(packageName, photoURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    }
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                     startActivityForResult(takePictureIntent, CAMERA_PIC2_REQUEST);
                 }
@@ -793,18 +877,21 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             // Ensure that there's a camera activity to handle the intent
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                 // Create the File where the photo should go
-                File photoFile = null;
-                try {
-                    photoFile = createImageFile();
-                } catch (IOException ex) {
-                    // Error occurred while creating the File
 
-                }
                 // Continue only if the File was successfully created
                 if (photoFile != null) {
                     Uri photoURI = FileProvider.getUriForFile(this,
                             "np.com.naxa.lumanti.fileprovider",
                             photoFile);
+
+                    List<ResolveInfo> resolvedIntentActivities = context.getPackageManager().
+                            queryIntentActivities(takePictureIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+                    for (ResolveInfo resolvedIntentInfo : resolvedIntentActivities) {
+                        String packageName = resolvedIntentInfo.activityInfo.packageName;
+
+                        context.grantUriPermission(packageName, photoURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    }
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                     startActivityForResult(takePictureIntent, CAMERA_PIC3_REQUEST);
                 }
@@ -820,18 +907,21 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
             // Ensure that there's a camera activity to handle the intent
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                 // Create the File where the photo should go
-                File photoFile = null;
-                try {
-                    photoFile = createImageFile();
-                } catch (IOException ex) {
-                    // Error occurred while creating the File
 
-                }
                 // Continue only if the File was successfully created
                 if (photoFile != null) {
                     Uri photoURI = FileProvider.getUriForFile(this,
                             "np.com.naxa.lumanti.fileprovider",
                             photoFile);
+
+                    List<ResolveInfo> resolvedIntentActivities = context.getPackageManager().
+                            queryIntentActivities(takePictureIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+                    for (ResolveInfo resolvedIntentInfo : resolvedIntentActivities) {
+                        String packageName = resolvedIntentInfo.activityInfo.packageName;
+
+                        context.grantUriPermission(packageName, photoURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    }
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                     startActivityForResult(takePictureIntent, CAMERA_PIC4_REQUEST);
                 }
@@ -848,12 +938,16 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         if (booimg1) {
             // Create an image file name
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String imageFileName = "JPEG_" + timeStamp + "_";
-            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            String imageFileName = "" +generalFormModel.getG_10() + "_FRONT"+timeStamp;
+            File storageDir = new File(PHOTO_PATH);
+            storageDir.mkdirs();
+
+
+            //File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             image = File.createTempFile(
                     imageFileName,  /* prefix */
-                    ".jpg",         /* suffix */
-                    storageDir      /* directory */
+                    ".jpg",
+                    storageDir/* suffix */
             );
 
             // Save a file: path for use with ACTION_VIEW intents
@@ -863,12 +957,16 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         if (booimg2) {
             // Create an image file name
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String imageFileName = "JPEG_" + timeStamp + "_";
-            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            String imageFileName = "" +generalFormModel.getG_10() + "_LEFT"+timeStamp;
+            File storageDir = new File(PHOTO_PATH);
+            storageDir.mkdirs();
+
+
+            //File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             image = File.createTempFile(
                     imageFileName,  /* prefix */
-                    ".jpg",         /* suffix */
-                    storageDir      /* directory */
+                    ".jpg",
+                    storageDir/* suffix */
             );
 
             // Save a file: path for use with ACTION_VIEW intents
@@ -878,12 +976,16 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         if (booimg3) {
             // Create an image file name
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String imageFileName = "JPEG_" + timeStamp + "_";
-            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            String imageFileName = "" +generalFormModel.getG_10() + "_RIGHT"+timeStamp;
+            File storageDir = new File(PHOTO_PATH);
+            storageDir.mkdirs();
+
+
+            //File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             image = File.createTempFile(
                     imageFileName,  /* prefix */
-                    ".jpg",         /* suffix */
-                    storageDir      /* directory */
+                    ".jpg",
+                    storageDir/* suffix */
             );
 
             // Save a file: path for use with ACTION_VIEW intents
@@ -893,12 +995,16 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         if (booimg4) {
             // Create an image file name
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String imageFileName = "JPEG_" + timeStamp + "_";
-            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            String imageFileName = "" +generalFormModel.getG_10() + "_BACK"+timeStamp;
+            File storageDir = new File(PHOTO_PATH);
+            storageDir.mkdirs();
+
+
+            //File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             image = File.createTempFile(
                     imageFileName,  /* prefix */
-                    ".jpg",         /* suffix */
-                    storageDir      /* directory */
+                    ".jpg",
+                    storageDir/* suffix */
             );
 
             // Save a file: path for use with ACTION_VIEW intents

@@ -11,12 +11,13 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import np.com.naxa.lumanti.application.Lumanti;
 import np.com.naxa.lumanti.model.SavedFormParameters;
 
 /**
  * Created by Samir on 4/4/2017.
  */
-public class DataBaseForm_Sent extends SQLiteOpenHelper {
+public class DataBaseForm_Sent extends ODKSQLiteOpenHelper {
         private final static String db_name = "_db_Lumanti_Sent.db";
         private final static int db_version = (int) 1;
 
@@ -43,8 +44,7 @@ public class DataBaseForm_Sent extends SQLiteOpenHelper {
         Context con;
 
     public DataBaseForm_Sent(Context context) {
-        super(context, db_name, null, db_version);
-        this.con = context;
+        super(Lumanti.extSdcard+Lumanti.mainFolder+Lumanti.dataFolder, db_name, null, db_version);
         // TODO Auto-generated constructor stub
     }
 
@@ -190,7 +190,7 @@ public class DataBaseForm_Sent extends SQLiteOpenHelper {
 
             sentFormsDetailsAll.add(savedFormParameters);
 
-            Log.e("", "getNOT_SENT_FORMS: " + sentFormsDetailsAll.size() );
+            Log.e("", "get_SENT_FORMS: " + sentFormsDetailsAll.size() );
 
 
         }

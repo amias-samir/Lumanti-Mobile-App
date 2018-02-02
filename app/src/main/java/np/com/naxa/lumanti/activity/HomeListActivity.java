@@ -33,12 +33,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.application.Lumanti;
 import np.com.naxa.lumanti.model.Constant;
+import np.com.naxa.lumanti.model.Default_DIalog;
 import np.com.naxa.lumanti.sugar.Municipality_ward_list;
 import np.com.naxa.lumanti.sugar.NissaNo_Details;
 
 public class HomeListActivity extends AppCompatActivity {
 
+    private static final String TAG = "HomeListActivity";
     Toolbar toolbar;
     @BindView(R.id.top_layout_shelter_status)
     RelativeLayout rlShelterStatus;
@@ -54,6 +57,28 @@ public class HomeListActivity extends AppCompatActivity {
 
     private ProgressBar progress;
     private TextView updatingText;
+
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        switch (requestCode) {
+//            case PERMISSION_WRITE:
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//
+//                    try {
+//                        Lumanti.createFolder();
+//                    } catch (Exception e) {
+//                        Default_DIalog.showDefaultDialog(this, "Unexpected Error Occurred", "Failed to create NaxaSurvey Directories, Forms can't be saved ");
+//                        Log.e(TAG, e.getMessage());
+//                        e.printStackTrace();
+//                    }
+//
+//                    break;
+//                }
+//        }
+//    }
 
 
     @Override
