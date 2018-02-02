@@ -44,6 +44,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -59,6 +60,15 @@ import np.com.naxa.lumanti.database.DataBaseForm_Sent;
 import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 import np.com.naxa.lumanti.model.ImageSavedFormModel;
+import np.com.naxa.lumanti.network.retrofit.ErrorSupportCallback;
+import np.com.naxa.lumanti.network.retrofit.NetworkApiClient;
+import np.com.naxa.lumanti.network.retrofit.NetworkApiInterface;
+import np.com.naxa.lumanti.network.retrofit.UploadResponse;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static np.com.naxa.lumanti.network.retrofit.UrlClass.REQUEST_OK;
 
 public class SaveSendActivity extends AppCompatActivity {
 
@@ -179,7 +189,8 @@ public class SaveSendActivity extends AppCompatActivity {
 
                             imageB64Encoder();
                             convertDataToJson();
-                            sendDatToserver();
+                            sendJsonToServerretrofit();
+//                            sendDatToserver();
 //                                finish();
                         }
                     });
@@ -810,6 +821,129 @@ public class SaveSendActivity extends AppCompatActivity {
     }
 
 
+    public void sendJsonToServerretrofit (){
+        NetworkApiInterface apiService = NetworkApiClient.getAPIClient().create(NetworkApiInterface.class);
+
+        Call<UploadResponse> call = apiService.uploadLumantiForm(jsonToSend);
+        call.enqueue(new ErrorSupportCallback<>(new Callback<UploadResponse>() {
+            @Override
+            public void onResponse(Call<UploadResponse> call, Response<UploadResponse> response) {
+
+                if(mProgressDlg.isShowing() && mProgressDlg != null){
+                    mProgressDlg.dismiss();
+                }
+
+                if (response == null) {
+                    Toast.makeText(SaveSendActivity.this, "null response", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                handleLoginResponse(response.body());
+            }
+
+
+            private void handleLoginResponse(UploadResponse uploadResponse) {
+                switch (uploadResponse.getStatus()) {
+                    case REQUEST_OK:
+
+                        handleLoginSucess();
+                        break;
+                    default:
+                        Toast.makeText(SaveSendActivity.this, uploadResponse.getData(), Toast.LENGTH_SHORT).show();
+
+                        break;
+                }
+            }
+
+            private void handleLoginSucess() {
+                String formNameToSend;
+                if (!generalFormModel.getG_10().equals("") && !generalFormModel.getG2().equals("")) {
+
+                    formNameToSend = (generalFormModel.getG_10() + "_" + generalFormModel.getG2());
+                } else {
+                    formNameToSend = ("Lumanti");
+                }
+
+                long date = System.currentTimeMillis();
+
+                SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
+                dateString = sdf.format(date);
+//
+                String[] data = new String[]{"1", formNameToSend, dateString, jsonToSend, "",
+                        "" + "", "Sent", "0"};
+
+                DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(context);
+                dataBaseFormSent.open();
+//                long id =
+                dataBaseFormSent.insertIntoTable_Main(data);
+//                Log.e("dbID", "" + id);
+                dataBaseFormSent.close();
+
+                if (!Constant.formID.equals("")) {
+                    DataBaseForm_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseForm_NotSent(getApplicationContext());
+                    dataBaseNepalPublicHealthNotSent.open();
+                    dataBaseNepalPublicHealthNotSent.dropRowNotSentForms(Constant.formID);
+//                Toast.makeText(getActivity() ,resultCur.get(position).date+ " Long Clicked "+id , Toast.LENGTH_SHORT ).show();
+                    dataBaseNepalPublicHealthNotSent.close();
+                }
+//
+//
+                DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+                int width = metrics.widthPixels;
+                int height = metrics.heightPixels;
+
+                Toast.makeText(context, R.string.data_sent_successfully, Toast.LENGTH_SHORT).show();
+
+                final Dialog showDialog = new Dialog(context);
+                showDialog.setContentView(R.layout.thank_you_popup);
+                final Button yes = (Button) showDialog.findViewById(R.id.buttonYes);
+                final Button no = (Button) showDialog.findViewById(R.id.buttonNo);
+
+                showDialog.setTitle("Successfully Sent");
+                showDialog.setCancelable(false);
+                showDialog.show();
+                showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showDialog.dismiss();
+// ====================================== reinitialize constant variable=================================================//
+                        reinitializeConstantVariable();
+
+                        Intent intent = new Intent(SaveSendActivity.this, NissaNoInputActivity.class);
+                        startActivity(intent);
+//                                finish();
+                    }
+                });
+
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showDialog.dismiss();
+                        Intent intent = new Intent(SaveSendActivity.this, HomeListActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<UploadResponse> call, Throwable t) {
+                if(mProgressDlg.isShowing() && mProgressDlg!= null){
+                    mProgressDlg.dismiss();
+                }
+                String message = "Some Error Occured!";
+
+                if (t instanceof SocketTimeoutException) {
+                    message = "Socket Time out. Please try again.";
+                }
+
+                Toast.makeText(SaveSendActivity.this, message, Toast.LENGTH_SHORT).show();
+
+            }
+
+        }));
+    }
 
 
 }

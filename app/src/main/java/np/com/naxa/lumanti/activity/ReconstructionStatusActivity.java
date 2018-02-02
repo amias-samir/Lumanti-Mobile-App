@@ -950,6 +950,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                     storageDir/* suffix */
             );
 
+
             // Save a file: path for use with ACTION_VIEW intents
             imagePath1 = image.getAbsolutePath();
         }

@@ -26,6 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
+
     public void hideKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {
