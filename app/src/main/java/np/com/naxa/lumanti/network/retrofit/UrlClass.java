@@ -12,7 +12,7 @@ public class UrlClass {
 
     public static final String BASE_URL = "http://naxa.com.np/lumanti/";
     public final static String URL_DATA_SEND ="ApiController/inserrtdata";
-    public final static String URL_DATA_SEND_FILE_UPLOAD ="ApiController/inserrtdata";
+    public final static String URL_DATA_SEND_FILE_UPLOAD ="ApiController/enter_record";
 
 
 //    insertdata

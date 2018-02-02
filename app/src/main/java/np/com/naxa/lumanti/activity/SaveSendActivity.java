@@ -193,7 +193,7 @@ public class SaveSendActivity extends AppCompatActivity {
                             mProgressDlg.setCancelable(false);
                             mProgressDlg.show();
 
-                            imageB64Encoder();
+//                            imageB64Encoder();
                             convertDataToJson();
                             sendJsonToServerretrofit();
 //                            sendDatToserver();
@@ -836,16 +836,16 @@ public class SaveSendActivity extends AppCompatActivity {
 
 
             int imageCount = 0 ;
-            if(!generalFormModel.getB1_img1().equals(null) && !generalFormModel.getB1_img1().equals("")){
+            if(!imageSavedFormModel.getB1_img1_path().equals(null) && !imageSavedFormModel.getB1_img1_path().equals("")){
                 imageCount++;
             }
-            if(!generalFormModel.getB1_img2().equals(null) && !generalFormModel.getB1_img2().equals("")){
+            if(!imageSavedFormModel.getB1_img2_path().equals(null) && !imageSavedFormModel.getB1_img2_path().equals("")){
                 imageCount++;
             }
-            if(!generalFormModel.getB1_img3().equals(null) && !generalFormModel.getB1_img3().equals("")){
+            if(!imageSavedFormModel.getB1_img3_path().equals(null) && !imageSavedFormModel.getB1_img3_path().equals("")){
                 imageCount++;
             }
-            if(!generalFormModel.getB1_img4().equals(null) && !generalFormModel.getB1_img4().equals("")){
+            if(!imageSavedFormModel.getB1_img4_path().equals(null) && !imageSavedFormModel.getB1_img4_path().equals("")){
                 imageCount++;
             }
 
@@ -863,9 +863,10 @@ public class SaveSendActivity extends AppCompatActivity {
 //            multiple image upload
             MultipartBody.Part[] surveyImagesParts = new MultipartBody.Part[imageCount];
 
-            if(!generalFormModel.getB1_img1().equals(null) && !generalFormModel.getB1_img1().equals("")){
-                int index = totalCount - 1- counter--  ;
-                File imageFile = new File(generalFormModel.getB1_img1());
+            if(!imageSavedFormModel.getB1_img1_path().equals(null) && !imageSavedFormModel.getB1_img1_path().equals("")){
+
+                int index = totalCount - counter--  ;
+                File imageFile = new File(imageSavedFormModel.getB1_img1_path());
                 Uri ImageToBeUploaded = FileProvider.getUriForFile(
                         SaveSendActivity.this,
                         "np.com.naxa.lumanti.fileprovider", imageFile);
@@ -878,12 +879,12 @@ public class SaveSendActivity extends AppCompatActivity {
                     return;
                 }
                 RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("SurveyImage", imageFile.getName(), surveyBody);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
             }
-            if(!generalFormModel.getB1_img2().equals(null) && !generalFormModel.getB1_img2().equals("")){
-                int index = totalCount - 1- counter--  ;
-                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + generalFormModel.getB1_img2());
-                File imageFile = new File(generalFormModel.getB1_img2());
+            if(!imageSavedFormModel.getB1_img2_path().equals(null) && !imageSavedFormModel.getB1_img2_path().equals("")){
+                int index = totalCount - counter--  ;
+                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img2_path());
+                File imageFile = new File(imageSavedFormModel.getB1_img2_path());
                 Uri ImageToBeUploaded = FileProvider.getUriForFile(
                         SaveSendActivity.this,
                         "np.com.naxa.lumanti.fileprovider", imageFile);
@@ -896,12 +897,12 @@ public class SaveSendActivity extends AppCompatActivity {
                     return;
                 }
                 RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("SurveyImage", imageFile.getName(), surveyBody);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
             }
-            if(!generalFormModel.getB1_img3().equals(null) && !generalFormModel.getB1_img3().equals("")){
-                int index = totalCount - 1- counter--  ;
-                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + generalFormModel.getB1_img3());
-                File imageFile = new File(generalFormModel.getB1_img3());
+            if(!imageSavedFormModel.getB1_img3_path().equals(null) && !imageSavedFormModel.getB1_img3_path().equals("")){
+                int index = totalCount - counter--  ;
+                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img3_path());
+                File imageFile = new File(imageSavedFormModel.getB1_img3_path());
                 Uri ImageToBeUploaded = FileProvider.getUriForFile(
                         SaveSendActivity.this,
                         "np.com.naxa.lumanti.fileprovider", imageFile);
@@ -914,12 +915,12 @@ public class SaveSendActivity extends AppCompatActivity {
                     return;
                 }
                 RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("SurveyImage", imageFile.getName(), surveyBody);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
             }
-            if(!generalFormModel.getB1_img4().equals(null) && !generalFormModel.getB1_img4().equals("")){
-                int index = totalCount - 1- counter--  ;
-                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + generalFormModel.getB1_img4());
-                File imageFile = new File(generalFormModel.getB1_img4());
+            if(!imageSavedFormModel.getB1_img4_path().equals(null) && !imageSavedFormModel.getB1_img4_path().equals("")){
+                int index = totalCount - counter--  ;
+                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img4_path());
+                File imageFile = new File(imageSavedFormModel.getB1_img4_path());
                 Uri ImageToBeUploaded = FileProvider.getUriForFile(
                         SaveSendActivity.this,
                         "np.com.naxa.lumanti.fileprovider", imageFile);
@@ -932,7 +933,7 @@ public class SaveSendActivity extends AppCompatActivity {
                     return;
                 }
                 RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("SurveyImage", imageFile.getName(), surveyBody);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
             }
 
             RequestBody data = RequestBody.create(MediaType.parse("text/plain"), jsonToSend);

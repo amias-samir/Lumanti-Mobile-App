@@ -11,12 +11,13 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 
+import static np.com.naxa.lumanti.network.retrofit.UrlClass.URL_DATA_SEND;
 import static np.com.naxa.lumanti.network.retrofit.UrlClass.URL_DATA_SEND_FILE_UPLOAD;
 
 
 public interface NetworkApiInterface {
     @FormUrlEncoded
-    @POST(URL_DATA_SEND_FILE_UPLOAD)
+    @POST(URL_DATA_SEND)
     Call<UploadResponse> uploadLumantiForm(@Field("data") String data);
 
 
