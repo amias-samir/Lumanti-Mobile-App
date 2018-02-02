@@ -869,9 +869,12 @@ public class SaveSendActivity extends AppCompatActivity {
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img1_path());
 
                 File imageFile = new File(imageSavedFormModel.getB1_img1_path());
-                Uri ImageToBeUploaded = FileProvider.getUriForFile(
-                        SaveSendActivity.this,
-                        "np.com.naxa.lumanti.fileprovider", imageFile);
+//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
+//                        SaveSendActivity.this,
+//                        "np.com.naxa.lumanti.fileprovider", imageFile);
+//
+//                Log.d(TAG, "sendJsonToServerretrofit: "+ImageToBeUploaded.toString());
+//                Log.d(TAG, "sendJsonToServerretrofit: "+imageFile.toString());
 
                 if (!imageFile.exists()) {
                     if(mProgressDlg.isShowing() && mProgressDlg != null){
@@ -880,16 +883,17 @@ public class SaveSendActivity extends AppCompatActivity {
                     Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Front Photo doesn't exist in storage");
                     return;
                 }
-                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
                 surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
             }
             if(!imageSavedFormModel.getB1_img2_path().equals(null) && !imageSavedFormModel.getB1_img2_path().equals("")){
                 int index = totalCount - counter--  ;
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img2_path());
                 File imageFile = new File(imageSavedFormModel.getB1_img2_path());
-                Uri ImageToBeUploaded = FileProvider.getUriForFile(
-                        SaveSendActivity.this,
-                        "np.com.naxa.lumanti.fileprovider", imageFile);
+//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
+//                        SaveSendActivity.this,
+//                        "np.com.naxa.lumanti.fileprovider", imageFile);
 
                 if (!imageFile.exists()) {
                     if(mProgressDlg.isShowing() && mProgressDlg != null){
@@ -898,16 +902,17 @@ public class SaveSendActivity extends AppCompatActivity {
                     Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Left Photo doesn't exist in storage");
                     return;
                 }
-                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
                 surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
             }
             if(!imageSavedFormModel.getB1_img3_path().equals(null) && !imageSavedFormModel.getB1_img3_path().equals("")){
                 int index = totalCount - counter--  ;
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img3_path());
                 File imageFile = new File(imageSavedFormModel.getB1_img3_path());
-                Uri ImageToBeUploaded = FileProvider.getUriForFile(
-                        SaveSendActivity.this,
-                        "np.com.naxa.lumanti.fileprovider", imageFile);
+//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
+//                        SaveSendActivity.this,
+//                        "np.com.naxa.lumanti.fileprovider", imageFile);
 
                 if (!imageFile.exists()) {
                     if(mProgressDlg.isShowing() && mProgressDlg != null){
@@ -916,16 +921,17 @@ public class SaveSendActivity extends AppCompatActivity {
                     Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Right Photo doesn't exist in storage");
                     return;
                 }
-                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
                 surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
             }
             if(!imageSavedFormModel.getB1_img4_path().equals(null) && !imageSavedFormModel.getB1_img4_path().equals("")){
                 int index = totalCount - counter--  ;
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img4_path());
                 File imageFile = new File(imageSavedFormModel.getB1_img4_path());
-                Uri ImageToBeUploaded = FileProvider.getUriForFile(
-                        SaveSendActivity.this,
-                        "np.com.naxa.lumanti.fileprovider", imageFile);
+//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
+//                        SaveSendActivity.this,
+//                        "np.com.naxa.lumanti.fileprovider", imageFile);
 
                 if (!imageFile.exists()) {
                     if(mProgressDlg.isShowing() && mProgressDlg != null){
@@ -934,7 +940,8 @@ public class SaveSendActivity extends AppCompatActivity {
                     Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Back Photo doesn't exist in storage");
                     return;
                 }
-                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
                 surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
             }
 
@@ -947,6 +954,7 @@ public class SaveSendActivity extends AppCompatActivity {
 //        Call<UploadResponse> call = apiService.uploadLumantiForm(jsonToSend);
         Call<UploadResponse> call = apiService.uploadFormWithImageFile(surveyImagesParts, data);
         call.enqueue(new ErrorSupportCallback<>(new Callback<UploadResponse>() {
+
             @Override
             public void onResponse(Call<UploadResponse> call, Response<UploadResponse> response) {
 
@@ -1053,7 +1061,9 @@ public class SaveSendActivity extends AppCompatActivity {
                 if(mProgressDlg.isShowing() && mProgressDlg!= null){
                     mProgressDlg.dismiss();
                 }
-                String message = "Some Error Occured!";
+                Log.d(TAG, "onFailure: "+t.toString());
+
+                String message = "Some Error Occured! \n"+t.toString();
 
                 if (t instanceof SocketTimeoutException) {
                     message = "Socket Time out. Please try again.";
