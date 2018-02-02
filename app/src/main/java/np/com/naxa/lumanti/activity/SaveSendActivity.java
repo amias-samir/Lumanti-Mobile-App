@@ -866,6 +866,8 @@ public class SaveSendActivity extends AppCompatActivity {
             if(!imageSavedFormModel.getB1_img1_path().equals(null) && !imageSavedFormModel.getB1_img1_path().equals("")){
 
                 int index = totalCount - counter--  ;
+                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img1_path());
+
                 File imageFile = new File(imageSavedFormModel.getB1_img1_path());
                 Uri ImageToBeUploaded = FileProvider.getUriForFile(
                         SaveSendActivity.this,
