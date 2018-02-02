@@ -10,7 +10,10 @@ public class UrlClass {
     public static final String REQUEST_401 = "401";
     public static final String REQUEST_400 = "400";
 
-    public static final String BASE_URL = "http://naxa.com.np/lumanti/ApiController/";
+    public static final String BASE_URL = "http://naxa.com.np/lumanti/";
+    public final static String URL_DATA_SEND ="ApiController/inserrtdata";
+    public final static String URL_DATA_SEND_FILE_UPLOAD ="ApiController/inserrtdata";
+
 
 //    insertdata
 
