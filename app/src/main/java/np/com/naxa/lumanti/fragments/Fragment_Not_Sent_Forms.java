@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 import java.io.ByteArrayOutputStream;
+import java.net.SocketTimeoutException;
 import java.text.SimpleDateFormat;
 
 import android.graphics.Bitmap;
@@ -54,7 +55,10 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 
 import np.com.naxa.lumanti.R;
+import np.com.naxa.lumanti.activity.HomeListActivity;
 import np.com.naxa.lumanti.activity.MainActivity;
+import np.com.naxa.lumanti.activity.NissaNoInputActivity;
+import np.com.naxa.lumanti.activity.SaveSendActivity;
 import np.com.naxa.lumanti.activity.SavedFormsActivity;
 import np.com.naxa.lumanti.adapter.GridSpacingItemDecorator;
 import np.com.naxa.lumanti.adapter.Not_Sent_Forms_Adapter;
@@ -65,6 +69,15 @@ import np.com.naxa.lumanti.model.Constant;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 import np.com.naxa.lumanti.model.ImageSavedFormModel;
 import np.com.naxa.lumanti.model.SavedFormParameters;
+import np.com.naxa.lumanti.network.retrofit.ErrorSupportCallback;
+import np.com.naxa.lumanti.network.retrofit.NetworkApiClient;
+import np.com.naxa.lumanti.network.retrofit.NetworkApiInterface;
+import np.com.naxa.lumanti.network.retrofit.UploadResponse;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static np.com.naxa.lumanti.network.retrofit.UrlClass.REQUEST_OK;
 
 
 /**
@@ -180,7 +193,8 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                         jsonParserImagePath();
                         imageB64Encoder();
                         convertDataToJson();
-                        sendDatToserver();
+//                        sendDatToserver();
+                        sendJsonToServerretrofit();
                     }else {
                         Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_SHORT).show();
 
@@ -624,6 +638,85 @@ try {
 
     Log.e(TAG, "convertDatToJson: " + jsonToSend);
 }
+
+
+    public void sendJsonToServerretrofit (){
+        NetworkApiInterface apiService = NetworkApiClient.getAPIClient().create(NetworkApiInterface.class);
+
+        Call<UploadResponse> call = apiService.uploadLumantiForm(jsonToSend);
+        call.enqueue(new ErrorSupportCallback<>(new Callback<UploadResponse>() {
+            @Override
+            public void onResponse(Call<UploadResponse> call, Response<UploadResponse> response) {
+
+                if(mProgressDlg.isShowing() && mProgressDlg != null){
+                    mProgressDlg.dismiss();
+                }
+
+                if (response == null) {
+                    Toast.makeText(getActivity(), "null response", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                handleLoginResponse(response.body());
+            }
+
+
+            private void handleLoginResponse(UploadResponse uploadResponse) {
+                switch (uploadResponse.getStatus()) {
+                    case REQUEST_OK:
+
+                        handleLoginSucess();
+                        break;
+                    default:
+                        Toast.makeText(getActivity(), uploadResponse.getData(), Toast.LENGTH_SHORT).show();
+
+                        break;
+                }
+            }
+
+            private void handleLoginSucess() {
+                long date = System.currentTimeMillis();
+
+                SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
+                dateString = sdf.format(date);
+
+                String[] data = new String[]{"1", form_name, dateString, jsonToParse, "",
+                        "" + photoPathJSON, "Sent", "0"};
+
+                DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(getActivity());
+                dataBaseFormSent.open();
+//                long id =
+                dataBaseFormSent.insertIntoTable_Main(data);
+//                Log.e("dbID", "" + id);
+                dataBaseFormSent.close();
+
+                DataBaseForm_NotSent dataBaseForm_notSent = new DataBaseForm_NotSent(getActivity());
+                dataBaseForm_notSent.open();
+                dataBaseForm_notSent.dropRowNotSentForms(DBid);
+
+                Toast.makeText(getActivity(), "Data sent successfully", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getActivity(),SavedFormsActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<UploadResponse> call, Throwable t) {
+                if(mProgressDlg.isShowing() && mProgressDlg!= null){
+                    mProgressDlg.dismiss();
+                }
+                String message = "Some Error Occured!";
+
+                if (t instanceof SocketTimeoutException) {
+                    message = "Socket Time out. Please try again.";
+                }
+
+                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+
+            }
+
+        }));
+    }
 
 }
 
