@@ -196,7 +196,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
 
                         mainJSONToModelClass();
                         jsonParserImagePath();
-                        imageB64Encoder();
+                        //imageB64Encoder();
                         convertDataToJson();
 //                        sendDatToserver();
                         sendJsonToServerretrofit();
