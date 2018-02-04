@@ -829,10 +829,9 @@ public class SaveSendActivity extends AppCompatActivity {
 
     public void sendJsonToServerretrofit (){
 
+
+
         if (jsonToSend.length() > 0) {
-
-
-
 
 
             int imageCount = 0 ;
@@ -862,12 +861,9 @@ public class SaveSendActivity extends AppCompatActivity {
 
 //            multiple image upload
             MultipartBody.Part[] surveyImagesParts = new MultipartBody.Part[imageCount];
-
             if(!imageSavedFormModel.getB1_img1_path().equals(null) && !imageSavedFormModel.getB1_img1_path().equals("")){
-
                 int index = totalCount - counter--  ;
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img1_path());
-
                 File imageFile = new File(imageSavedFormModel.getB1_img1_path());
 //                Uri ImageToBeUploaded = FileProvider.getUriForFile(
 //                        SaveSendActivity.this,
@@ -885,7 +881,7 @@ public class SaveSendActivity extends AppCompatActivity {
                 }
 //                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
                 RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
             }
             if(!imageSavedFormModel.getB1_img2_path().equals(null) && !imageSavedFormModel.getB1_img2_path().equals("")){
                 int index = totalCount - counter--  ;
@@ -904,7 +900,7 @@ public class SaveSendActivity extends AppCompatActivity {
                 }
 //                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
                 RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
             }
             if(!imageSavedFormModel.getB1_img3_path().equals(null) && !imageSavedFormModel.getB1_img3_path().equals("")){
                 int index = totalCount - counter--  ;
@@ -923,7 +919,7 @@ public class SaveSendActivity extends AppCompatActivity {
                 }
 //                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
                 RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
             }
             if(!imageSavedFormModel.getB1_img4_path().equals(null) && !imageSavedFormModel.getB1_img4_path().equals("")){
                 int index = totalCount - counter--  ;
@@ -942,7 +938,7 @@ public class SaveSendActivity extends AppCompatActivity {
                 }
 //                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
                 RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo", imageFile.getName(), surveyBody);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
             }
 
             RequestBody data = RequestBody.create(MediaType.parse("text/plain"), jsonToSend);

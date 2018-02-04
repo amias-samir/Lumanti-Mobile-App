@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Lumanti.iml" filepath="$PROJECT_DIR$/Lumanti.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lumanti.iml" filepath="$PROJECT_DIR$/lumanti.iml" />
     </modules>
   </component>
 </project>

@@ -1,8 +1,7 @@
 package np.com.naxa.lumanti.network.retrofit;
 
 
-
-
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.github.simonpercic.oklog3.OkLogInterceptor;
 
 import okhttp3.Dispatcher;
@@ -29,6 +28,7 @@ public class NetworkApiClient {
 
             okHttpBuilder.dispatcher(dispatcher);
             okHttpBuilder.addInterceptor(okLogInterceptor);
+            okHttpBuilder.addNetworkInterceptor(new StethoInterceptor());
 
             OkHttpClient okHttpClient = okHttpBuilder.build();
             retrofit = new Retrofit.Builder()

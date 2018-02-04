@@ -47,8 +47,11 @@ dependencies {
 
 
     compile 'com.github.simonpercic:oklog3:2.2.0'
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    compile 'com.facebook.stetho:stetho:1.4.2'
 
+// for OkHttp3, if you're using an older version,
+// check the stetho website
+    compile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
 
 
 //    image compressor

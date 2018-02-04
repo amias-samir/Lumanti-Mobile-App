@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
+import com.facebook.stetho.Stetho;
 import com.orm.SugarApp;
 
 import java.io.File;
@@ -28,6 +29,7 @@ public class Lumanti extends SugarApp {
     public void onCreate() {
         super.onCreate();
         setupContext();
+        Stetho.initializeWithDefaults(this);
     }
 
     private void setupContext(){
