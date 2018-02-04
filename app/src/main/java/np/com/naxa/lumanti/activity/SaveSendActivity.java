@@ -835,16 +835,16 @@ public class SaveSendActivity extends AppCompatActivity {
 
 
             int imageCount = 0 ;
-            if(!imageSavedFormModel.getB1_img1_path().equals(null) && !imageSavedFormModel.getB1_img1_path().equals("")){
+            if(imageSavedFormModel.getB1_img1_path() != null && !imageSavedFormModel.getB1_img1_path().equals("")){
                 imageCount++;
             }
-            if(!imageSavedFormModel.getB1_img2_path().equals(null) && !imageSavedFormModel.getB1_img2_path().equals("")){
+            if(imageSavedFormModel.getB1_img2_path() != null && !imageSavedFormModel.getB1_img2_path().equals("")){
                 imageCount++;
             }
-            if(!imageSavedFormModel.getB1_img3_path().equals(null) && !imageSavedFormModel.getB1_img3_path().equals("")){
+            if(imageSavedFormModel.getB1_img3_path() != null && !imageSavedFormModel.getB1_img3_path().equals("")){
                 imageCount++;
             }
-            if(!imageSavedFormModel.getB1_img4_path().equals(null) && !imageSavedFormModel.getB1_img4_path().equals("")){
+            if(imageSavedFormModel.getB1_img4_path() != null && !imageSavedFormModel.getB1_img4_path().equals("")){
                 imageCount++;
             }
 
@@ -861,7 +861,7 @@ public class SaveSendActivity extends AppCompatActivity {
 
 //            multiple image upload
             MultipartBody.Part[] surveyImagesParts = new MultipartBody.Part[imageCount];
-            if(!imageSavedFormModel.getB1_img1_path().equals(null) && !imageSavedFormModel.getB1_img1_path().equals("")){
+            if(imageSavedFormModel.getB1_img1_path() != null && !imageSavedFormModel.getB1_img1_path().equals("")){
                 int index = totalCount - counter--  ;
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img1_path());
                 File imageFile = new File(imageSavedFormModel.getB1_img1_path());
@@ -883,7 +883,7 @@ public class SaveSendActivity extends AppCompatActivity {
                 RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
                 surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
             }
-            if(!imageSavedFormModel.getB1_img2_path().equals(null) && !imageSavedFormModel.getB1_img2_path().equals("")){
+            if(imageSavedFormModel.getB1_img2_path() != null && !imageSavedFormModel.getB1_img2_path().equals("")){
                 int index = totalCount - counter--  ;
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img2_path());
                 File imageFile = new File(imageSavedFormModel.getB1_img2_path());
@@ -902,7 +902,7 @@ public class SaveSendActivity extends AppCompatActivity {
                 RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
                 surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
             }
-            if(!imageSavedFormModel.getB1_img3_path().equals(null) && !imageSavedFormModel.getB1_img3_path().equals("")){
+            if(imageSavedFormModel.getB1_img3_path() != null && !imageSavedFormModel.getB1_img3_path().equals("")){
                 int index = totalCount - counter--  ;
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img3_path());
                 File imageFile = new File(imageSavedFormModel.getB1_img3_path());
@@ -921,7 +921,7 @@ public class SaveSendActivity extends AppCompatActivity {
                 RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
                 surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
             }
-            if(!imageSavedFormModel.getB1_img4_path().equals(null) && !imageSavedFormModel.getB1_img4_path().equals("")){
+            if(imageSavedFormModel.getB1_img4_path() != null && !imageSavedFormModel.getB1_img4_path().equals("")){
                 int index = totalCount - counter--  ;
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img4_path());
                 File imageFile = new File(imageSavedFormModel.getB1_img4_path());

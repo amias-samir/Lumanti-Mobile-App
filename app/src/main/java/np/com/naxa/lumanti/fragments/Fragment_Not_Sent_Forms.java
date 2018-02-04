@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.net.SocketTimeoutException;
 import java.text.SimpleDateFormat;
 
@@ -66,6 +67,7 @@ import np.com.naxa.lumanti.adapter.RecyclerItemClickListener;
 import np.com.naxa.lumanti.database.DataBaseForm_NotSent;
 import np.com.naxa.lumanti.database.DataBaseForm_Sent;
 import np.com.naxa.lumanti.model.Constant;
+import np.com.naxa.lumanti.model.Default_DIalog;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 import np.com.naxa.lumanti.model.ImageSavedFormModel;
 import np.com.naxa.lumanti.model.SavedFormParameters;
@@ -73,6 +75,9 @@ import np.com.naxa.lumanti.network.retrofit.ErrorSupportCallback;
 import np.com.naxa.lumanti.network.retrofit.NetworkApiClient;
 import np.com.naxa.lumanti.network.retrofit.NetworkApiInterface;
 import np.com.naxa.lumanti.network.retrofit.UploadResponse;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,14 +94,14 @@ public class Fragment_Not_Sent_Forms extends Fragment {
     LinearLayoutManager linearLayoutManager;
     public static List<SavedFormParameters> resultCur = new ArrayList<>();
     Not_Sent_Forms_Adapter ca;
-    Context context = getActivity() ;
+    Context context = getActivity();
 
-    String jsonToSend ;
-    String jsonToParse ;
+    String jsonToSend;
+    String jsonToParse;
     String DBid, form_name;
-    String photoPathJSON ;
+    String photoPathJSON;
     ImageSavedFormModel imageSavedFormModel;
-    GeneralFormModel generalFormModel ;
+    GeneralFormModel generalFormModel;
     String encodedImage1 = "", encodedImage2 = "", encodedImage3 = "", encodedImage4 = "";
     String TAG = "NOT_SENT_FRAG";
 
@@ -162,7 +167,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
     protected void alert_editlist(final int position) {
 
         // TODO Auto-generated method stub
-        final CharSequence[] items = {"Send","Open", "Delete"};
+        final CharSequence[] items = {"Send", "Open", "Delete"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Choose Action");
@@ -195,12 +200,11 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                         convertDataToJson();
 //                        sendDatToserver();
                         sendJsonToServerretrofit();
-                    }else {
+                    } else {
                         Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_SHORT).show();
 
                     }
-                }
-                else if (items[item] == "Open") {
+                } else if (items[item] == "Open") {
                     String id = resultCur.get(position).formId;
                     String jSon = resultCur.get(position).jSON;
                     String photo = resultCur.get(position).photo;
@@ -208,12 +212,10 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                     String DBid = resultCur.get(position).dbId;
                     String sent_Status = resultCur.get(position).status;
                     String form_name = resultCur.get(position).formName;
-                    loadForm(id, jSon,photo, DBid, sent_Status, form_name);
+                    loadForm(id, jSon, photo, DBid, sent_Status, form_name);
 
 
-
-                }
-                else if (items[item] == "Delete") {
+                } else if (items[item] == "Delete") {
                     DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
                     int width = metrics.widthPixels;
                     int height = metrics.heightPixels;
@@ -264,15 +266,13 @@ public class Fragment_Not_Sent_Forms extends Fragment {
     }
 
 
+    public void loadForm(String formId, String jsonData, String photoJson, String DBid, String status, String form_name) {
+        switch (formId) {
 
-
-    public void loadForm(String formId, String jsonData ,String photoJson , String DBid, String status, String form_name){
-        switch (formId){
-
-            case "1" :
+            case "1":
 
                 Intent intent1 = new Intent(getActivity(), MainActivity.class);
-                Constant.isFomSavedForm = true ;
+                Constant.isFomSavedForm = true;
 //                Constant.countGeneral = 1 ;
                 intent1.putExtra("JSON1", jsonData);
                 intent1.putExtra("PhotoJSON", photoJson);
@@ -283,14 +283,13 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                 intent1.putExtra("sent_Status", status);
                 intent1.putExtra("form_name", form_name);
 
-                Log.e("Not Sent Fragment", "loadForm: "+jsonData );
-                Log.e("Not Sent Fragment", "loadForm: "+DBid );
-                Log.e("Not Sent Fragment", "loadForm: "+status );
-                Log.e("Not Sent Fragment", "loadForm: "+form_name );
+                Log.e("Not Sent Fragment", "loadForm: " + jsonData);
+                Log.e("Not Sent Fragment", "loadForm: " + DBid);
+                Log.e("Not Sent Fragment", "loadForm: " + status);
+                Log.e("Not Sent Fragment", "loadForm: " + form_name);
 
                 startActivity(intent1);
                 break;
-
 
 
         }
@@ -305,8 +304,6 @@ public class Fragment_Not_Sent_Forms extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
-
-
 
 
     public void sendDatToserver() {
@@ -354,43 +351,40 @@ public class Fragment_Not_Sent_Forms extends Fragment {
             }
 
 
-            try{
+            try {
 
-            if (dataSentStatus.equals("200")) {
+                if (dataSentStatus.equals("200")) {
 
-                long date = System.currentTimeMillis();
+                    long date = System.currentTimeMillis();
 
-                SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
-                dateString = sdf.format(date);
+                    SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
+                    dateString = sdf.format(date);
 
-                String[] data = new String[]{"1", form_name, dateString, jsonToParse, "",
-                        "" + photoPathJSON, "Sent", "0"};
+                    String[] data = new String[]{"1", form_name, dateString, jsonToParse, "",
+                            "" + photoPathJSON, "Sent", "0"};
 
-                DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(getActivity());
-                dataBaseFormSent.open();
+                    DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(getActivity());
+                    dataBaseFormSent.open();
 //                long id =
-                        dataBaseFormSent.insertIntoTable_Main(data);
+                    dataBaseFormSent.insertIntoTable_Main(data);
 //                Log.e("dbID", "" + id);
-                dataBaseFormSent.close();
+                    dataBaseFormSent.close();
 
-                DataBaseForm_NotSent dataBaseForm_notSent = new DataBaseForm_NotSent(getActivity());
-                dataBaseForm_notSent.open();
-                dataBaseForm_notSent.dropRowNotSentForms(DBid);
+                    DataBaseForm_NotSent dataBaseForm_notSent = new DataBaseForm_NotSent(getActivity());
+                    dataBaseForm_notSent.open();
+                    dataBaseForm_notSent.dropRowNotSentForms(DBid);
 
-                Toast.makeText(getActivity(), "Data sent successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Data sent successfully", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getActivity(),SavedFormsActivity.class);
-                startActivity(intent);
-//                createList();
+                    Intent intent = new Intent(getActivity(), SavedFormsActivity.class);
+                    startActivity(intent);
+                    //createList();
 
-            }
-
-            }catch (Exception e){
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(getActivity(), "               Error !!! \n Please retry again later ", Toast.LENGTH_SHORT).show();
             }
-
-
         }
 
         public String POST(String urll) {
@@ -420,7 +414,7 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                 writer.close();
                 os.close();
                 int responseCode = conn.getResponseCode();
-                Log.e(TAG, "SAMIR RESPONSE CODE : "+ responseCode);
+                Log.e(TAG, "SAMIR RESPONSE CODE : " + responseCode);
                 if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                     String line;
@@ -457,35 +451,32 @@ public class Fragment_Not_Sent_Forms extends Fragment {
     }
 
 
-
-
-//    convert json to model class
-    public void mainJSONToModelClass(){
+    //    convert json to model class
+    public void mainJSONToModelClass() {
         // 2. JSON to Java object, read it from a Json String.
         Gson gson = new Gson();
         generalFormModel = gson.fromJson(jsonToParse, GeneralFormModel.class);
     }
 
-//    parse image path from photo json
-    public void jsonParserImagePath(){
+    //    parse image path from photo json
+    public void jsonParserImagePath() {
 
-try {
-        JSONObject jsonObj = new JSONObject(photoPathJSON);
+        try {
+            JSONObject jsonObj = new JSONObject(photoPathJSON);
 
-        imageSavedFormModel.setB1_img1_path(jsonObj.getString("B1_img1_path"));
-        imageSavedFormModel.setB1_img2_path(jsonObj.getString("B1_img2_path"));
-        imageSavedFormModel.setB1_img3_path(jsonObj.getString("B1_img3_path"));
-        imageSavedFormModel.setB1_img4_path(jsonObj.getString("B1_img4_path"));
+            imageSavedFormModel.setB1_img1_path(jsonObj.getString("B1_img1_path"));
+            imageSavedFormModel.setB1_img2_path(jsonObj.getString("B1_img2_path"));
+            imageSavedFormModel.setB1_img3_path(jsonObj.getString("B1_img3_path"));
+            imageSavedFormModel.setB1_img4_path(jsonObj.getString("B1_img4_path"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
-            catch (Exception e){
-        e.printStackTrace();
-    }
 
-    }
-
-//    encode image to base64
-    public void imageB64Encoder (){
+    //    encode image to base64
+    public void imageB64Encoder() {
 
 //        image 1 encode
         try {
@@ -515,11 +506,11 @@ try {
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 encodedImage1 = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 generalFormModel.setB1_img1(encodedImage1);
-                Log.e(TAG, "imageB64Encoder1: "+encodedImage1 );
+                Log.e(TAG, "imageB64Encoder1: " + encodedImage1);
 
             }
-        }catch (Exception e){
-            Log.e(TAG, "imageB64Encoder1: "+e.toString() );
+        } catch (Exception e) {
+            Log.e(TAG, "imageB64Encoder1: " + e.toString());
         }
 
         //    ======================    image 2 encode======================================//
@@ -550,11 +541,11 @@ try {
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 encodedImage2 = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 generalFormModel.setB1_img2(encodedImage2);
-                Log.e(TAG, "imageB64Encoder2: "+encodedImage2 );
+                Log.e(TAG, "imageB64Encoder2: " + encodedImage2);
 
             }
-        }catch (Exception e){
-            Log.e(TAG, "imageB64Encoder2: "+e.toString() );
+        } catch (Exception e) {
+            Log.e(TAG, "imageB64Encoder2: " + e.toString());
         }
 
         //    ======================    image 3 encode======================================//
@@ -585,11 +576,11 @@ try {
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 encodedImage3 = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 generalFormModel.setB1_img3(encodedImage3);
-                Log.e(TAG, "imageB64Encoder3: "+encodedImage3 );
+                Log.e(TAG, "imageB64Encoder3: " + encodedImage3);
 
             }
-        }catch (Exception e){
-            Log.e(TAG, "imageB64Encoder3: "+e.toString() );
+        } catch (Exception e) {
+            Log.e(TAG, "imageB64Encoder3: " + e.toString());
         }
 
         //    ======================    image 4 encode======================================//
@@ -620,27 +611,248 @@ try {
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 encodedImage4 = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 generalFormModel.setB1_img4(encodedImage4);
-                Log.e(TAG, "imageB64Encoder4: "+encodedImage4 );
+                Log.e(TAG, "imageB64Encoder4: " + encodedImage4);
 
             }
-        }catch (Exception e){
-            Log.e(TAG, "imageB64Encoder 4 : "+e.toString() );
+        } catch (Exception e) {
+            Log.e(TAG, "imageB64Encoder 4 : " + e.toString());
         }
 
 
     }
 
-//    convert whole data to Mainjson
+    //    convert whole data to Mainjson
     public void convertDataToJson() {
         Gson gson = new Gson();
-    jsonToSend = gson.toJson(generalFormModel);
+        jsonToSend = gson.toJson(generalFormModel);
 
 
-    Log.e(TAG, "convertDatToJson: " + jsonToSend);
-}
+        Log.e(TAG, "convertDatToJson: " + jsonToSend);
+    }
+
+    public void sendJsonToServerretrofit() {
 
 
-    public void sendJsonToServerretrofit (){
+        if (jsonToSend.length() > 0) {
+
+
+            int imageCount = 0;
+            if (imageSavedFormModel != null && !imageSavedFormModel.getB1_img1_path().equals("")) {
+                imageCount++;
+            }
+            if (imageSavedFormModel != null && !imageSavedFormModel.getB1_img2_path().equals("")) {
+                imageCount++;
+            }
+            if (imageSavedFormModel != null && !imageSavedFormModel.getB1_img3_path().equals("")) {
+                imageCount++;
+            }
+            if (imageSavedFormModel != null && !imageSavedFormModel.getB1_img4_path().equals("")) {
+                imageCount++;
+            }
+
+            if (imageCount == 0) {
+                if (mProgressDlg.isShowing() && mProgressDlg != null) {
+                    mProgressDlg.dismiss();
+                }
+                Default_DIalog.showDefaultDialog(getActivity(), "Error", "Photo doesn't exist in storage");
+                return;
+            }
+
+            int totalCount = imageCount;
+            int counter = imageCount;
+
+//            multiple image upload
+            MultipartBody.Part[] surveyImagesParts = new MultipartBody.Part[imageCount];
+            if (imageSavedFormModel != null && !imageSavedFormModel.getB1_img1_path().equals("")) {
+                int index = totalCount - counter--;
+                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img1_path());
+                File imageFile = new File(imageSavedFormModel.getB1_img1_path());
+//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
+//                        getActivity(),
+//                        "np.com.naxa.lumanti.fileprovider", imageFile);
+//
+//                Log.d(TAG, "sendJsonToServerretrofit: "+ImageToBeUploaded.toString());
+//                Log.d(TAG, "sendJsonToServerretrofit: "+imageFile.toString());
+
+                if (!imageFile.exists()) {
+                    if (mProgressDlg.isShowing() && mProgressDlg != null) {
+                        mProgressDlg.dismiss();
+                    }
+                    Default_DIalog.showDefaultDialog(getActivity(), "Error", "Front Photo doesn't exist in storage");
+                    return;
+                }
+//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+            }
+            if (imageSavedFormModel != null && !imageSavedFormModel.getB1_img2_path().equals("")) {
+                int index = totalCount - counter--;
+                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img2_path());
+                File imageFile = new File(imageSavedFormModel.getB1_img2_path());
+//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
+//                        getActivity(),
+//                        "np.com.naxa.lumanti.fileprovider", imageFile);
+
+                if (!imageFile.exists()) {
+                    if (mProgressDlg.isShowing() && mProgressDlg != null) {
+                        mProgressDlg.dismiss();
+                    }
+                    Default_DIalog.showDefaultDialog(getActivity(), "Error", "Left Photo doesn't exist in storage");
+                    return;
+                }
+//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+            }
+            if (imageSavedFormModel != null && !imageSavedFormModel.getB1_img3_path().equals("")) {
+                int index = totalCount - counter--;
+                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img3_path());
+                File imageFile = new File(imageSavedFormModel.getB1_img3_path());
+//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
+//                        getActivity(),
+//                        "np.com.naxa.lumanti.fileprovider", imageFile);
+
+                if (!imageFile.exists()) {
+                    if (mProgressDlg.isShowing() && mProgressDlg != null) {
+                        mProgressDlg.dismiss();
+                    }
+                    Default_DIalog.showDefaultDialog(getActivity(), "Error", "Right Photo doesn't exist in storage");
+                    return;
+                }
+//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+            }
+            if (imageSavedFormModel != null && !imageSavedFormModel.getB1_img4_path().equals("")) {
+                int index = totalCount - counter--;
+                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img4_path());
+                File imageFile = new File(imageSavedFormModel.getB1_img4_path());
+//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
+//                        getActivity(),
+//                        "np.com.naxa.lumanti.fileprovider", imageFile);
+
+                if (!imageFile.exists()) {
+                    if (mProgressDlg.isShowing() && mProgressDlg != null) {
+                        mProgressDlg.dismiss();
+                    }
+                    Default_DIalog.showDefaultDialog(getActivity(), "Error", "Back Photo doesn't exist in storage");
+                    return;
+                }
+//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+            }
+
+            RequestBody data = RequestBody.create(MediaType.parse("text/plain"), jsonToSend);
+
+
+            NetworkApiInterface apiService = NetworkApiClient.getAPIClient().create(NetworkApiInterface.class);
+
+//        Call<UploadResponse> call = apiService.uploadLumantiForm(jsonToSend);
+            Call<UploadResponse> call = apiService.uploadFormWithImageFile(surveyImagesParts, data);
+            call.enqueue(new ErrorSupportCallback<>(new Callback<UploadResponse>() {
+
+                @Override
+                public void onResponse(Call<UploadResponse> call, Response<UploadResponse> response) {
+
+                    if (mProgressDlg.isShowing() && mProgressDlg != null) {
+                        mProgressDlg.dismiss();
+                    }
+
+                    if (response == null) {
+                        Toast.makeText(getActivity(), "null response", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    handleLoginResponse(response.body());
+                }
+
+
+                private void handleLoginResponse(UploadResponse uploadResponse) {
+                    switch (uploadResponse.getStatus()) {
+                        case REQUEST_OK:
+
+                            handleLoginSucess();
+                            break;
+                        default:
+                            Toast.makeText(getActivity(), uploadResponse.getData(), Toast.LENGTH_SHORT).show();
+
+                            break;
+                    }
+                }
+
+                private void handleLoginSucess() {
+                    long date = System.currentTimeMillis();
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
+                    dateString = sdf.format(date);
+
+                    String[] data = new String[]{"1", form_name, dateString, jsonToParse, "",
+                            "" + photoPathJSON, "Sent", "0"};
+
+                    DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(getActivity());
+                    dataBaseFormSent.open();
+//                long id =
+                    dataBaseFormSent.insertIntoTable_Main(data);
+//                Log.e("dbID", "" + id);
+                    dataBaseFormSent.close();
+
+                    DataBaseForm_NotSent dataBaseForm_notSent = new DataBaseForm_NotSent(getActivity());
+                    dataBaseForm_notSent.open();
+                    dataBaseForm_notSent.dropRowNotSentForms(DBid);
+
+                    Toast.makeText(getActivity(), "Data sent successfully", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getActivity(), SavedFormsActivity.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(Call<UploadResponse> call, Throwable t) {
+                    if (mProgressDlg.isShowing() && mProgressDlg != null) {
+                        mProgressDlg.dismiss();
+                    }
+                    Log.d(TAG, "onFailure: " + t.toString());
+
+                    String message = "Some Error Occured! \n" + t.toString();
+
+                    if (t instanceof SocketTimeoutException) {
+                        message = "Socket Time out. Please try again.";
+                    }
+
+                    Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+
+                }
+
+            }));
+        } else {
+            Default_DIalog.showDefaultDialog(getActivity(), "Error", "No data to send");
+            return;
+        }
+    }
+
+
+    public void reinitializeConstantVariable() {
+
+        Constant.countGeneral = 0;
+        Constant.countDemographic = 0;
+        Constant.countReconstruction = 0;
+        Constant.countEarthquakeRelief = 0;
+        Constant.countReconstructionGPS = 0;
+        Constant.countSaveSend = 0;
+
+        Constant.takenimg1 = false;
+        Constant.takenimg2 = false;
+        Constant.takenimg3 = false;
+        Constant.takenimg4 = false;
+
+        Constant.takenimg1Name = "";
+        Constant.takenimg2Name = "";
+        Constant.takenimg3Name = "";
+        Constant.takenimg4Name = "";
+    }
+
+    public void sendJsonToServerretrofitold() {
         NetworkApiInterface apiService = NetworkApiClient.getAPIClient().create(NetworkApiInterface.class);
 
         Call<UploadResponse> call = apiService.uploadLumantiForm(jsonToSend);
@@ -648,7 +860,7 @@ try {
             @Override
             public void onResponse(Call<UploadResponse> call, Response<UploadResponse> response) {
 
-                if(mProgressDlg.isShowing() && mProgressDlg != null){
+                if (mProgressDlg.isShowing() && mProgressDlg != null) {
                     mProgressDlg.dismiss();
                 }
 
@@ -696,13 +908,13 @@ try {
 
                 Toast.makeText(getActivity(), "Data sent successfully", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getActivity(),SavedFormsActivity.class);
+                Intent intent = new Intent(getActivity(), SavedFormsActivity.class);
                 startActivity(intent);
             }
 
             @Override
             public void onFailure(Call<UploadResponse> call, Throwable t) {
-                if(mProgressDlg.isShowing() && mProgressDlg!= null){
+                if (mProgressDlg.isShowing() && mProgressDlg != null) {
                     mProgressDlg.dismiss();
                 }
                 String message = "Some Error Occured!";
