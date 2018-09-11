@@ -865,13 +865,6 @@ public class SaveSendActivity extends AppCompatActivity {
                 int index = totalCount - counter--  ;
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img1_path());
                 File imageFile = new File(imageSavedFormModel.getB1_img1_path());
-//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
-//                        SaveSendActivity.this,
-//                        "np.com.naxa.lumanti.fileprovider", imageFile);
-//
-//                Log.d(TAG, "sendJsonToServerretrofit: "+ImageToBeUploaded.toString());
-//                Log.d(TAG, "sendJsonToServerretrofit: "+imageFile.toString());
-
                 if (!imageFile.exists()) {
                     if(mProgressDlg.isShowing() && mProgressDlg != null){
                         mProgressDlg.dismiss();
@@ -879,7 +872,6 @@ public class SaveSendActivity extends AppCompatActivity {
                     Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Front Photo doesn't exist in storage");
                     return;
                 }
-//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
                 RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
                 surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
             }

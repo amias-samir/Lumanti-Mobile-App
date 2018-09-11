@@ -205,9 +205,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 if (photoFile != null) {
                     dispatchTakePictureIntent(photoFile);
                 }
-
-                dispatchTakePictureIntent(photoFile);
-            }
+                }
         });
 
         btnPhotoSite2.setOnClickListener(new View.OnClickListener() {
@@ -235,7 +233,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                     dispatchTakePictureIntent(photoFile);
                 }
 
-                dispatchTakePictureIntent(photoFile);
             }
         });
 
@@ -264,7 +261,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                     dispatchTakePictureIntent(photoFile);
                 }
 
-                dispatchTakePictureIntent(photoFile);
             }
         });
 
@@ -293,7 +289,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                     dispatchTakePictureIntent(photoFile);
                 }
 
-                dispatchTakePictureIntent(photoFile);
             }
         });
 
@@ -610,18 +605,10 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         if (finalLat != 0 && finalLong != 0) {
             btnGpsStart.setText("Location Recorded");
             btnPreviewMap.setEnabled(true);
+            isGpsTaken = true;
+
         }
 
-//        ========================================image ==================================//
-//        B64Eimage1 = generalFormModel.getB1_img1();
-//        B64Eimage2 = generalFormModel.getB1_img2();
-//        B64Eimage3 = generalFormModel.getB1_img3();
-//        B64Eimage4 = generalFormModel.getB1_img4();
-//
-//        Log.e("Reconstruction", "SAMIR setPic1: " + B64Eimage1);
-//        Log.e("Reconstruction", "SAMIR setPic2: " + B64Eimage2);
-//        Log.e("Reconstruction", "SAMIR setPic3: " + B64Eimage3);
-//        Log.e("Reconstruction", "SAMIR setPic4: " + B64Eimage4);
 
         imagePath1 = imageSavedFormModel.getB1_img1_path();
         imagePath2 = imageSavedFormModel.getB1_img2_path();
@@ -634,17 +621,16 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         Log.e("Reconstruction", "initializeUI: imagepath4:  " +imagePath4 );
 
 
-
+        // Get the dimensions of the View
+        int targetW = ivPhotographSiteimageViewPreview1.getWidth();
+        int targetH = ivPhotographSiteimageViewPreview1.getHeight();
 
         try {
             if (!imagePath1.equals(null) && !imagePath1.equals("")) {
-//                byte[] decodedString1 = Base64.decode(B64Eimage1, Base64.DEFAULT);
-//                Bitmap decodedByteimage1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
-//                ivPhotographSiteimageViewPreview1.setImageBitmap(decodedByteimage1);
+
                 ivPhotographSiteimageViewPreview1.setVisibility(View.VISIBLE);
 
                 galleryAddPic1();
-//                setPic(ivPhotographSiteimageViewPreview1, imagePath1);
                 // Get the dimensions of the bitmap
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                 bmOptions.inJustDecodeBounds = true;
@@ -654,7 +640,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
 
                 // Determine how much to scale down the image
-                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+                int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
 
                 // Decode the image file into a Bitmap sized to fill the View
                 bmOptions.inJustDecodeBounds = false;
@@ -676,12 +662,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
         try {
             if (!imagePath2.equals(null) && !imagePath2.equals("")) {
-//                byte[] decodedString2 = Base64.decode(B64Eimage2, Base64.DEFAULT);
-//                Bitmap decodedByteimage2 = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
-//                ivPhotographSiteimageViewPreview2.setImageBitmap(decodedByteimage2);
                 ivPhotographSiteimageViewPreview2.setVisibility(View.VISIBLE);
                 galleryAddPic2();
-//                setPic(ivPhotographSiteimageViewPreview2, imagePath2);
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                 bmOptions.inJustDecodeBounds = true;
                 BitmapFactory.decodeFile(imagePath2, bmOptions);
@@ -690,7 +672,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
 
                 // Determine how much to scale down the image
-                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+                int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
 
                 // Decode the image file into a Bitmap sized to fill the View
                 bmOptions.inJustDecodeBounds = false;
@@ -712,12 +694,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         try {
 
             if (!imagePath3.equals(null) && !imagePath3.equals("")) {
-//                byte[] decodedString3 = Base64.decode(B64Eimage3, Base64.DEFAULT);
-//                Bitmap decodedByteimage3 = BitmapFactory.decodeByteArray(decodedString3, 0, decodedString3.length);
-//                ivPhotographSiteimageViewPreview3.setImageBitmap(decodedByteimage3);
                 ivPhotographSiteimageViewPreview3.setVisibility(View.VISIBLE);
                 galleryAddPic3();
-//                setPic(ivPhotographSiteimageViewPreview3, imagePath3);
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                 bmOptions.inJustDecodeBounds = true;
                 BitmapFactory.decodeFile(imagePath3, bmOptions);
@@ -726,7 +704,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
 
                 // Determine how much to scale down the image
-                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+                int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
 
                 // Decode the image file into a Bitmap sized to fill the View
                 bmOptions.inJustDecodeBounds = false;
@@ -748,9 +726,6 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
         try {
             if (!imagePath4.equals(null) && !imagePath4.equals("")) {
-//                byte[] decodedString4 = Base64.decode(B64Eimage4, Base64.DEFAULT);
-//                Bitmap decodedByteimage4 = BitmapFactory.decodeByteArray(decodedString4, 0, decodedString4.length);
-//                ivPhotographSiteimageViewPreview4.setImageBitmap(decodedByteimage4);
                 ivPhotographSiteimageViewPreview4.setVisibility(View.VISIBLE);
                 galleryAddPic4();
 //                setPic(ivPhotographSiteimageViewPreview4, imagePath4);
@@ -762,7 +737,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
 
                 // Determine how much to scale down the image
-                int scaleFactor = Math.min(photoW / 480, photoH / 640);
+                int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
 
                 // Decode the image file into a Bitmap sized to fill the View
                 bmOptions.inJustDecodeBounds = false;
