@@ -543,17 +543,6 @@ public class SaveSendActivity extends AppCompatActivity {
 
     }
 
-    public void sendDatToserver() {
-
-        if (jsonToSend.length() > 0) {
-
-            RestApii restApii = new RestApii();
-            restApii.execute();
-        }
-    }
-
-
-
 
 
 
@@ -612,161 +601,6 @@ public class SaveSendActivity extends AppCompatActivity {
 
 
 
-
-    private class RestApii extends AsyncTask<String, Void, String> {
-
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String text = null;
-            text = POST(Constant.URL_DATA_SEND);
-            Log.d("Capacity Building", "RAW resposne" + text);
-
-            return text.toString();
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            // TODO Auto-generated method stub
-
-            if (mProgressDlg != null && mProgressDlg.isShowing()) {
-                mProgressDlg.dismiss();
-            }
-
-
-            Log.d(TAG, "on post resposne" + result);
-            JSONObject jsonObject = null;
-            try {
-                jsonObject = new JSONObject(result);
-                dataSentStatus = jsonObject.getString("status");
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-            if (dataSentStatus.equals("200")) {
-//                Toast.makeText(context, "Data sent successfully", Toast.LENGTH_SHORT).show();
-
-                String formNameToSend;
-                if (!generalFormModel.getG_10().equals("") && !generalFormModel.getG2().equals("")) {
-
-                    formNameToSend = (generalFormModel.getG_10() + "_" + generalFormModel.getG2());
-                } else {
-                    formNameToSend = ("Lumanti");
-                }
-
-                long date = System.currentTimeMillis();
-
-                SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy h:mm a");
-                dateString = sdf.format(date);
-//
-                String[] data = new String[]{"1", formNameToSend, dateString, jsonToSend, "",
-                        "" + "", "Sent", "0"};
-
-                DataBaseForm_Sent dataBaseFormSent = new DataBaseForm_Sent(context);
-                dataBaseFormSent.open();
-//                long id =
-                        dataBaseFormSent.insertIntoTable_Main(data);
-//                Log.e("dbID", "" + id);
-                dataBaseFormSent.close();
-
-                if (!Constant.formID.equals("")) {
-                    DataBaseForm_NotSent dataBaseNepalPublicHealthNotSent = new DataBaseForm_NotSent(getApplicationContext());
-                    dataBaseNepalPublicHealthNotSent.open();
-                    dataBaseNepalPublicHealthNotSent.dropRowNotSentForms(Constant.formID);
-//                Toast.makeText(getActivity() ,resultCur.get(position).date+ " Long Clicked "+id , Toast.LENGTH_SHORT ).show();
-                    dataBaseNepalPublicHealthNotSent.close();
-                }
-//
-//
-                DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-                int width = metrics.widthPixels;
-                int height = metrics.heightPixels;
-
-                Toast.makeText(context, R.string.data_sent_successfully, Toast.LENGTH_SHORT).show();
-
-                final Dialog showDialog = new Dialog(context);
-                showDialog.setContentView(R.layout.thank_you_popup);
-                final Button yes = (Button) showDialog.findViewById(R.id.buttonYes);
-                final Button no = (Button) showDialog.findViewById(R.id.buttonNo);
-
-                showDialog.setTitle("Successfully Sent");
-                showDialog.setCancelable(false);
-                showDialog.show();
-                showDialog.getWindow().setLayout((6 * width) / 7, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                yes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showDialog.dismiss();
-// ====================================== reinitialize constant variable=================================================//
-                        reinitializeConstantVariable();
-
-                        Intent intent = new Intent(SaveSendActivity.this, NissaNoInputActivity.class);
-                        startActivity(intent);
-//                                finish();
-                    }
-                });
-
-                no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showDialog.dismiss();
-                        Intent intent = new Intent(SaveSendActivity.this, HomeListActivity.class);
-                        startActivity(intent);
-                    }
-                });
-            }
-
-
-        }
-
-        public String POST(String urll) {
-            String result = "";
-            URL url;
-
-            try {
-                url = new URL(urll);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(15000);
-                conn.setConnectTimeout(15000);
-                conn.setRequestMethod("POST");
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-
-
-                OutputStream os = conn.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(os, "UTF-8"));
-                Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("data", jsonToSend);
-
-                String query = builder.build().getEncodedQuery();
-
-                writer.write(query);
-                writer.flush();
-                writer.close();
-                os.close();
-                int responseCode = conn.getResponseCode();
-
-                if (responseCode == HttpsURLConnection.HTTP_OK) {
-                    String line;
-                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    while ((line = br.readLine()) != null) {
-                        result += line;
-                    }
-                } else {
-                    result = "";
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -889,7 +723,6 @@ public class SaveSendActivity extends AppCompatActivity {
             return;
         }
     }
-
 
     public void getCompressedImage1 (final File imageFile, final int index){
 
