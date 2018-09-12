@@ -10,6 +10,7 @@ android {
         versionCode 12
         versionName "2.9.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -55,7 +56,13 @@ dependencies {
 
 
 //    image compressor
-//    compile 'id.zelory:compressor:2.1.0'
+    compile 'id.zelory:compressor:2.1.0'
+
+//    reactive io
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.8'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile "android.arch.lifecycle:reactivestreams:1.1.1"
 
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'

@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Constant.isFomSavedForm = false;
+
 
         generalFormModel = new GeneralFormModel();
         imageSavedFormModel = new ImageSavedFormModel();

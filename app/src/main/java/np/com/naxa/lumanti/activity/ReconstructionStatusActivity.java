@@ -58,6 +58,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
+import id.zelory.compressor.Compressor;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import np.com.naxa.lumanti.R;
 import np.com.naxa.lumanti.gps.GPS_TRACKER_FOR_POINT;
 import np.com.naxa.lumanti.gps.GeoPointActivity;
@@ -67,12 +71,15 @@ import np.com.naxa.lumanti.model.Default_DIalog;
 import np.com.naxa.lumanti.model.GeneralFormModel;
 import np.com.naxa.lumanti.model.ImageSavedFormModel;
 import np.com.naxa.lumanti.model.StaticListOfCoordinates;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 import static np.com.naxa.lumanti.application.Lumanti.PHOTO_PATH;
 
 public class ReconstructionStatusActivity extends AppCompatActivity {
 
-    private static final String TAG = "ReconstructionStatus" ;
+    private static final String TAG = "ReconstructionStatus";
     Toolbar toolbar;
     GeneralFormModel generalFormModel;
 
@@ -205,7 +212,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 if (photoFile != null) {
                     dispatchTakePictureIntent(photoFile);
                 }
-                }
+            }
         });
 
         btnPhotoSite2.setOnClickListener(new View.OnClickListener() {
@@ -615,15 +622,17 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         imagePath3 = imageSavedFormModel.getB1_img3_path();
         imagePath4 = imageSavedFormModel.getB1_img4_path();
 
-        Log.e("Reconstruction", "initializeUI: imagepath1:  " +imagePath1 );
-        Log.e("Reconstruction", "initializeUI: imagepath2:  " +imagePath2 );
-        Log.e("Reconstruction", "initializeUI: imagepath3:  " +imagePath3 );
-        Log.e("Reconstruction", "initializeUI: imagepath4:  " +imagePath4 );
+        Log.e("Reconstruction", "initializeUI: imagepath1:  " + imagePath1);
+        Log.e("Reconstruction", "initializeUI: imagepath2:  " + imagePath2);
+        Log.e("Reconstruction", "initializeUI: imagepath3:  " + imagePath3);
+        Log.e("Reconstruction", "initializeUI: imagepath4:  " + imagePath4);
 
 
         // Get the dimensions of the View
-        int targetW = ivPhotographSiteimageViewPreview1.getWidth();
-        int targetH = ivPhotographSiteimageViewPreview1.getHeight();
+//        int targetW = ivPhotographSiteimageViewPreview1.getWidth();
+        int targetW = 480;
+//        int targetH = ivPhotographSiteimageViewPreview1.getHeight();
+        int targetH = 640;
 
         try {
             if (!imagePath1.equals(null) && !imagePath1.equals("")) {
@@ -716,7 +725,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                 Bitmap bitmap = BitmapFactory.decodeFile(imagePath3, bmOptions);
                 ivPhotographSiteimageViewPreview3.setImageBitmap(bitmap);
 
-                Constant.takenimg3 = true ;
+                Constant.takenimg3 = true;
             }
         } catch (NullPointerException e) {
             Log.d("Reconstruction", "initializeUI: exception img3");
@@ -783,7 +792,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 //    ================================================ image full size =============================================================//
 
 
-    private void dispatchTakePictureIntent( File photoFile) {
+    private void dispatchTakePictureIntent(File photoFile) {
 
         //scaling down needs the imageview to be visible
         if (booimg1) {
@@ -800,6 +809,8 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                     Uri photoURI = FileProvider.getUriForFile(this,
                             "np.com.naxa.lumanti.fileprovider",
                             photoFile);
+
+
 
                     List<ResolveInfo> resolvedIntentActivities = context.getPackageManager().
                             queryIntentActivities(takePictureIntent, PackageManager.MATCH_DEFAULT_ONLY);
@@ -913,7 +924,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         if (booimg1) {
             // Create an image file name
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String imageFileName = "" +generalFormModel.getG_10() + "_FRONT"+timeStamp;
+            String imageFileName = "" + generalFormModel.getG_10() + "_FRONT" + timeStamp;
             File storageDir = new File(PHOTO_PATH);
             storageDir.mkdirs();
 
@@ -925,15 +936,42 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
                     storageDir/* suffix */
             );
 
+//            new Compressor(ReconstructionStatusActivity.this)
+//                    .compressToFileAsFlowable(image)
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(new Consumer<File>() {
+//                        @Override
+//                        public void accept(File file) {
+//
+//                            image = file;
+//                            int file_size = Integer.parseInt(String.valueOf(image.length() / 1024));
+//                            Log.d(TAG, "getCompressedImageFile: compressed " + file_size + "KB");
+//                            imagePath1 = image.getAbsolutePath();
+//
+//
+//                        }
+//                    }, new Consumer<Throwable>() {
+//                        @Override
+//                        public void accept(Throwable throwable) {
+//                            throwable.printStackTrace();
+////                                showError(throwable.getMessage());
+//                            imagePath1 = image.getAbsolutePath();
+//
+//                            Toast.makeText(context, throwable.getMessage().toString(), Toast.LENGTH_SHORT).show();
+//                            int file_size = Integer.parseInt(String.valueOf(image.length() / 1024));
+//                            Log.d(TAG, "getCompressedImageFile: default " + file_size + " KB");
+//                        }
+//                    });
 
-            // Save a file: path for use with ACTION_VIEW intents
             imagePath1 = image.getAbsolutePath();
+            // Save a file: path for use with ACTION_VIEW intents
         }
 
         if (booimg2) {
             // Create an image file name
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String imageFileName = "" +generalFormModel.getG_10() + "_LEFT"+timeStamp;
+            String imageFileName = "" + generalFormModel.getG_10() + "_LEFT" + timeStamp;
             File storageDir = new File(PHOTO_PATH);
             storageDir.mkdirs();
 
@@ -952,7 +990,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         if (booimg3) {
             // Create an image file name
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String imageFileName = "" +generalFormModel.getG_10() + "_RIGHT"+timeStamp;
+            String imageFileName = "" + generalFormModel.getG_10() + "_RIGHT" + timeStamp;
             File storageDir = new File(PHOTO_PATH);
             storageDir.mkdirs();
 
@@ -971,7 +1009,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
         if (booimg4) {
             // Create an image file name
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String imageFileName = "" +generalFormModel.getG_10() + "_BACK"+timeStamp;
+            String imageFileName = "" + generalFormModel.getG_10() + "_BACK" + timeStamp;
             File storageDir = new File(PHOTO_PATH);
             storageDir.mkdirs();
 
@@ -992,35 +1030,159 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
 
     private void galleryAddPic1() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(imagePath1);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
+        if (Constant.isFomSavedForm){
+            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            File f = new File(imagePath1);
+            Uri contentUri = Uri.fromFile(f);
+            mediaScanIntent.setData(contentUri);
+            this.sendBroadcast(mediaScanIntent);
+        }else {
+            File f = new File(imagePath1);
+            new Compressor(ReconstructionStatusActivity.this)
+                    .compressToFileAsFlowable(f)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<File>() {
+                        @Override
+                        public void accept(File file) {
+                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            Uri contentUri = Uri.fromFile(file);
+                            mediaScanIntent.setData(contentUri);
+                            ReconstructionStatusActivity.this.sendBroadcast(mediaScanIntent);
+                            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: compressed " + file_size + "KB");
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) {
+                            throwable.printStackTrace();
+                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            File f = new File(imagePath1);
+                            Uri contentUri = Uri.fromFile(f);
+                            mediaScanIntent.setData(contentUri);
+                            ReconstructionStatusActivity.this.sendBroadcast(mediaScanIntent);
+                            int file_size = Integer.parseInt(String.valueOf(f.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: default " + file_size + " KB");
+                        }
+                    });
+        }
     }
 
     private void galleryAddPic2() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(imagePath2);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
+        if(Constant.isFomSavedForm) {
+            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            File f = new File(imagePath2);
+            Uri contentUri = Uri.fromFile(f);
+            mediaScanIntent.setData(contentUri);
+            this.sendBroadcast(mediaScanIntent);
+        }else {
+            File f = new File(imagePath2);
+            new Compressor(ReconstructionStatusActivity.this)
+                    .compressToFileAsFlowable(f)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<File>() {
+                        @Override
+                        public void accept(File file) {
+                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            Uri contentUri = Uri.fromFile(file);
+                            mediaScanIntent.setData(contentUri);
+                            ReconstructionStatusActivity.this.sendBroadcast(mediaScanIntent);
+                            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: compressed " + file_size + "KB");
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) {
+                            throwable.printStackTrace();
+                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            File f = new File(imagePath2);
+                            Uri contentUri = Uri.fromFile(f);
+                            mediaScanIntent.setData(contentUri);
+                            ReconstructionStatusActivity.this.sendBroadcast(mediaScanIntent);
+                            int file_size = Integer.parseInt(String.valueOf(f.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: default " + file_size + " KB");
+                        }
+                    });
+        }
     }
 
     private void galleryAddPic3() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(imagePath3);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
+        if(Constant.isFomSavedForm) {
+            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            File f = new File(imagePath3);
+            Uri contentUri = Uri.fromFile(f);
+            mediaScanIntent.setData(contentUri);
+            this.sendBroadcast(mediaScanIntent);
+        }else {
+            File f = new File(imagePath3);
+            new Compressor(ReconstructionStatusActivity.this)
+                    .compressToFileAsFlowable(f)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<File>() {
+                        @Override
+                        public void accept(File file) {
+                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            Uri contentUri = Uri.fromFile(file);
+                            mediaScanIntent.setData(contentUri);
+                            ReconstructionStatusActivity.this.sendBroadcast(mediaScanIntent);
+                            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: compressed " + file_size + "KB");
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) {
+                            throwable.printStackTrace();
+                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            File f = new File(imagePath3);
+                            Uri contentUri = Uri.fromFile(f);
+                            mediaScanIntent.setData(contentUri);
+                            ReconstructionStatusActivity.this.sendBroadcast(mediaScanIntent);
+                            int file_size = Integer.parseInt(String.valueOf(f.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: default " + file_size + " KB");
+                        }
+                    });
+        }
     }
 
     private void galleryAddPic4() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(imagePath4);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
+        if(Constant.isFomSavedForm) {
+            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            File f = new File(imagePath4);
+            Uri contentUri = Uri.fromFile(f);
+            mediaScanIntent.setData(contentUri);
+            this.sendBroadcast(mediaScanIntent);
+        }else {
+            File f = new File(imagePath4);
+            new Compressor(ReconstructionStatusActivity.this)
+                    .compressToFileAsFlowable(f)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<File>() {
+                        @Override
+                        public void accept(File file) {
+                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            Uri contentUri = Uri.fromFile(file);
+                            mediaScanIntent.setData(contentUri);
+                            ReconstructionStatusActivity.this.sendBroadcast(mediaScanIntent);
+                            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: compressed " + file_size + "KB");
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) {
+                            throwable.printStackTrace();
+                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            File f = new File(imagePath4);
+                            Uri contentUri = Uri.fromFile(f);
+                            mediaScanIntent.setData(contentUri);
+                            ReconstructionStatusActivity.this.sendBroadcast(mediaScanIntent);
+                            int file_size = Integer.parseInt(String.valueOf(f.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: default " + file_size + " KB");
+                        }
+                    });
+        }
     }
 
 
@@ -1068,7 +1230,7 @@ public class ReconstructionStatusActivity extends AppCompatActivity {
 
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath3, bmOptions);
             mImageView.setImageBitmap(bitmap);
-            Constant.takenimg3 = true ;
+            Constant.takenimg3 = true;
         }
 
         if (booimg4) {

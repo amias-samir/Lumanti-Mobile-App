@@ -3,7 +3,6 @@ package np.com.naxa.lumanti.activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,7 +14,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
@@ -50,12 +48,18 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Observable;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import id.zelory.compressor.Compressor;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import np.com.naxa.lumanti.R;
 import np.com.naxa.lumanti.database.DataBaseForm_NotSent;
 import np.com.naxa.lumanti.database.DataBaseForm_Sent;
@@ -827,12 +831,12 @@ public class SaveSendActivity extends AppCompatActivity {
     }
 
 
+    MultipartBody.Part[] surveyImagesParts;
+    int index;
+    int totalCount;
+    int counter;
     public void sendJsonToServerretrofit (){
-
-
-
         if (jsonToSend.length() > 0) {
-
 
             int imageCount = 0 ;
             if(imageSavedFormModel.getB1_img1_path() != null && !imageSavedFormModel.getB1_img1_path().equals("")){
@@ -856,87 +860,205 @@ public class SaveSendActivity extends AppCompatActivity {
                 return;
             }
 
-            int totalCount = imageCount;
-            int counter = imageCount;
+            totalCount = imageCount;
+            counter = imageCount;
 
 //            multiple image upload
-            MultipartBody.Part[] surveyImagesParts = new MultipartBody.Part[imageCount];
-            if(imageSavedFormModel.getB1_img1_path() != null && !imageSavedFormModel.getB1_img1_path().equals("")){
-                int index = totalCount - counter--  ;
+           surveyImagesParts = new MultipartBody.Part[imageCount];
+
+            if(imageSavedFormModel.getB1_img1_path() != null && !imageSavedFormModel.getB1_img1_path().equals("")) {
+                index = totalCount - counter--;
                 Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img1_path());
-                File imageFile = new File(imageSavedFormModel.getB1_img1_path());
+                final File imageFile = new File(imageSavedFormModel.getB1_img1_path());
+
+
                 if (!imageFile.exists()) {
-                    if(mProgressDlg.isShowing() && mProgressDlg != null){
+                    if (mProgressDlg.isShowing() && mProgressDlg != null) {
                         mProgressDlg.dismiss();
                     }
                     Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Front Photo doesn't exist in storage");
                     return;
                 }
-                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
-            }
-            if(imageSavedFormModel.getB1_img2_path() != null && !imageSavedFormModel.getB1_img2_path().equals("")){
-                int index = totalCount - counter--  ;
-                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img2_path());
-                File imageFile = new File(imageSavedFormModel.getB1_img2_path());
-//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
-//                        SaveSendActivity.this,
-//                        "np.com.naxa.lumanti.fileprovider", imageFile);
 
-                if (!imageFile.exists()) {
-                    if(mProgressDlg.isShowing() && mProgressDlg != null){
-                        mProgressDlg.dismiss();
+                getCompressedImage1(imageFile , index);
+
+            }
+
+    }else {
+            Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "No data to send");
+            return;
+        }
+    }
+
+
+    public void getCompressedImage1 (final File imageFile, final int index){
+
+        new Compressor(SaveSendActivity.this)
+                .compressToFileAsFlowable(imageFile)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<File>() {
+                    @Override
+                    public void accept(File file) {
+                        RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), file);
+                        surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+                        int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+                        Log.d(TAG, "getCompressedImageFile: compressed " + file_size + "KB");
+                        getCompressedImage2();
                     }
-                    Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Left Photo doesn't exist in storage");
-                    return;
-                }
-//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
-                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
-            }
-            if(imageSavedFormModel.getB1_img3_path() != null && !imageSavedFormModel.getB1_img3_path().equals("")){
-                int index = totalCount - counter--  ;
-                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img3_path());
-                File imageFile = new File(imageSavedFormModel.getB1_img3_path());
-//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
-//                        SaveSendActivity.this,
-//                        "np.com.naxa.lumanti.fileprovider", imageFile);
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) {
+                        throwable.printStackTrace();
 
-                if (!imageFile.exists()) {
-                    if(mProgressDlg.isShowing() && mProgressDlg != null){
-                        mProgressDlg.dismiss();
+                        RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+                        surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+                        int file_size = Integer.parseInt(String.valueOf(imageFile.length() / 1024));
+                        Log.d(TAG, "getCompressedImageFile: default " + file_size + " KB");
+                        getCompressedImage2();
                     }
-                    Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Right Photo doesn't exist in storage");
-                    return;
-                }
-//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
-                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
-            }
-            if(imageSavedFormModel.getB1_img4_path() != null && !imageSavedFormModel.getB1_img4_path().equals("")){
-                int index = totalCount - counter--  ;
-                Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img4_path());
-                File imageFile = new File(imageSavedFormModel.getB1_img4_path());
-//                Uri ImageToBeUploaded = FileProvider.getUriForFile(
-//                        SaveSendActivity.this,
-//                        "np.com.naxa.lumanti.fileprovider", imageFile);
+                });
 
-                if (!imageFile.exists()) {
-                    if(mProgressDlg.isShowing() && mProgressDlg != null){
-                        mProgressDlg.dismiss();
-                    }
-                    Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Back Photo doesn't exist in storage");
-                    return;
+    }
+
+    public void getCompressedImage2 (){
+
+        if(imageSavedFormModel.getB1_img2_path() != null && !imageSavedFormModel.getB1_img2_path().equals("")) {
+            index = totalCount - counter--;
+            Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img2_path());
+            final File imageFile = new File(imageSavedFormModel.getB1_img2_path());
+
+            if (!imageFile.exists()) {
+                if (mProgressDlg.isShowing() && mProgressDlg != null) {
+                    mProgressDlg.dismiss();
                 }
-//                RequestBody surveyBody = RequestBody.create(MediaType.parse(getContentResolver().getType(ImageToBeUploaded)), imageFile);
-                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-                surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+                Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Left Photo doesn't exist in storage");
+                return;
             }
 
-            RequestBody data = RequestBody.create(MediaType.parse("text/plain"), jsonToSend);
+            new Compressor(SaveSendActivity.this)
+                    .compressToFileAsFlowable(imageFile)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<File>() {
+                        @Override
+                        public void accept(File file) {
+                            RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), file);
+                            surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+                            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: compressed " + file_size + "KB");
+                            getCompressedImage3();
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) {
+                            throwable.printStackTrace();
+
+                            RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+                            surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+                            int file_size = Integer.parseInt(String.valueOf(imageFile.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: default " + file_size + " KB");
+                            getCompressedImage3();
+                        }
+                    });
+
+        }
+    }
+
+    public void getCompressedImage3 (){
+
+        if(imageSavedFormModel.getB1_img3_path() != null && !imageSavedFormModel.getB1_img3_path().equals("")) {
+            index = totalCount - counter--;
+            Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img3_path());
+            final File imageFile = new File(imageSavedFormModel.getB1_img3_path());
 
 
+            if (!imageFile.exists()) {
+                if (mProgressDlg.isShowing() && mProgressDlg != null) {
+                    mProgressDlg.dismiss();
+                }
+                Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Right Photo doesn't exist in storage");
+                return;
+            }
 
+            new Compressor(SaveSendActivity.this)
+                    .compressToFileAsFlowable(imageFile)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<File>() {
+                        @Override
+                        public void accept(File file) {
+                            RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), file);
+                            surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+                            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: compressed " + file_size + "KB");
+                            getCompressedImage4();
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) {
+                            throwable.printStackTrace();
+
+                            RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+                            surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+                            int file_size = Integer.parseInt(String.valueOf(imageFile.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: default " + file_size + " KB");
+                            getCompressedImage4();
+                        }
+                    });
+
+        }
+
+    }
+
+    public void getCompressedImage4 (){
+
+        if(imageSavedFormModel.getB1_img4_path() != null && !imageSavedFormModel.getB1_img4_path().equals("")) {
+            index = totalCount - counter--;
+            Log.d(TAG, "requestUploadSurvey: survey image " + index + "  " + imageSavedFormModel.getB1_img4_path());
+            final File imageFile = new File(imageSavedFormModel.getB1_img4_path());
+
+
+            if (!imageFile.exists()) {
+                if (mProgressDlg.isShowing() && mProgressDlg != null) {
+                    mProgressDlg.dismiss();
+                }
+                Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "Back Photo doesn't exist in storage");
+                return;
+            }
+
+            new Compressor(SaveSendActivity.this)
+                    .compressToFileAsFlowable(imageFile)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<File>() {
+                        @Override
+                        public void accept(File file) {
+                            RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), file);
+                            surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+                            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: compressed " + file_size + "KB");
+                            sendCompressedImageData();
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) {
+                            throwable.printStackTrace();
+
+                            RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+                            surveyImagesParts[index] = MultipartBody.Part.createFormData("photo[]", imageFile.getName(), surveyBody);
+                            int file_size = Integer.parseInt(String.valueOf(imageFile.length() / 1024));
+                            Log.d(TAG, "getCompressedImageFile: default " + file_size + " KB");
+                            sendCompressedImageData();
+                        }
+                    });
+        }
+
+    }
+
+
+    public void sendCompressedImageData(){
+        RequestBody data = RequestBody.create(MediaType.parse("text/plain"), jsonToSend);
         NetworkApiInterface apiService = NetworkApiClient.getAPIClient().create(NetworkApiInterface.class);
 
 //        Call<UploadResponse> call = apiService.uploadLumantiForm(jsonToSend);
@@ -1062,11 +1184,6 @@ public class SaveSendActivity extends AppCompatActivity {
             }
 
         }));
-    }else {
-            Default_DIalog.showDefaultDialog(SaveSendActivity.this, "Error", "No data to send");
-            return;
-        }
     }
-
 
 }
