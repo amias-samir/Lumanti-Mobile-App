@@ -685,6 +685,8 @@ public class Fragment_Not_Sent_Forms extends Fragment {
 
                 getCompressedImage1(imageFile , index);
 
+            }else {
+                getCompressedImage2();
             }
 
         }else {
@@ -765,6 +767,8 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                         }
                     });
 
+        } else {
+            getCompressedImage3();
         }
     }
 
@@ -810,6 +814,8 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                         }
                     });
 
+        } else {
+            getCompressedImage4();
         }
 
     }
@@ -855,6 +861,8 @@ public class Fragment_Not_Sent_Forms extends Fragment {
                             sendCompressedImageData();
                         }
                     });
+        }else {
+            sendCompressedImageData();
         }
 
     }

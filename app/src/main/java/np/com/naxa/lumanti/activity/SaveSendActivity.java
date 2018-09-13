@@ -716,6 +716,8 @@ public class SaveSendActivity extends AppCompatActivity {
 
                 getCompressedImage1(imageFile , index);
 
+            }else {
+                getCompressedImage2();
             }
 
     }else {
@@ -795,6 +797,8 @@ public class SaveSendActivity extends AppCompatActivity {
                         }
                     });
 
+        }else {
+            getCompressedImage3();
         }
     }
 
@@ -840,6 +844,8 @@ public class SaveSendActivity extends AppCompatActivity {
                         }
                     });
 
+        }else {
+            getCompressedImage4();
         }
 
     }
@@ -885,6 +891,8 @@ public class SaveSendActivity extends AppCompatActivity {
                             sendCompressedImageData();
                         }
                     });
+        } else {
+            sendCompressedImageData();
         }
 
     }

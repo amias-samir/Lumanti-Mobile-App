@@ -19,7 +19,7 @@ import np.com.naxa.lumanti.model.SavedFormParameters;
  */
 public class DataBaseForm_Sent extends ODKSQLiteOpenHelper {
         private final static String db_name = "_db_Lumanti_Sent.db";
-        private final static int db_version = (int) 2;
+        private final static int db_version = (int) 4;
 
         public final static String ID_TABLE = "_id_table";
         public final static String TABLE_ID  = "_table_id";
